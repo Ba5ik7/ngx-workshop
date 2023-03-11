@@ -1,9 +1,9 @@
 /* eslint-disable */
 export default {
-  displayName: 'workshop-ui',
+  displayName: 'admin',
   preset: '../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
-  coverageDirectory: '../../coverage/apps/workshop-ui',
+  coverageDirectory: '../../coverage/apps/admin',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
       'jest-preset-angular',

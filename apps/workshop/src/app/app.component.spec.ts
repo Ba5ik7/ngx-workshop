@@ -6,8 +6,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RouterTestingModule],
-      declarations: [AppComponent, NxWelcomeComponent],
+      imports: [AppComponent, NxWelcomeComponent, RouterTestingModule],
     }).compileComponents();
   });
 
@@ -17,10 +16,10 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'workshop-ui'`, () => {
+  it(`should have as title 'workshop'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('workshop-ui');
+    expect(app.title).toEqual('workshop');
   });
 
   it('should render title', () => {
@@ -28,7 +27,7 @@ describe('AppComponent', () => {
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.querySelector('h1')?.textContent).toContain(
-      'Welcome workshop-ui'
+      'Welcome workshop'
     );
   });
 });

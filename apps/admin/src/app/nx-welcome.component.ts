@@ -1,9 +1,12 @@
 import { Component, ViewEncapsulation } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 /* eslint-disable */
 
 @Component({
-  selector: 'ngx-workshop-nx-welcome',
+  selector: 'ngx-nx-welcome',
+  standalone: true,
+  imports: [CommonModule],
   template: `
     <!--
      * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -433,7 +436,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
         <div id="welcome">
           <h1>
             <span> Hello there, </span>
-            Welcome workshop-ui 👋
+            Welcome admin 👋
           </h1>
         </div>
 

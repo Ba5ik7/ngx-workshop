@@ -1,25 +1,22 @@
 {
-  "name": "workshop-ui",
+  "name": "admin",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "sourceRoot": "apps/workshop-ui/src",
-  "prefix": "ngx-workshop",
+  "sourceRoot": "apps/admin/src",
+  "prefix": "ngx",
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/apps/workshop-ui",
-        "index": "apps/workshop-ui/src/index.html",
-        "main": "apps/workshop-ui/src/main.ts",
+        "outputPath": "dist/apps/admin",
+        "index": "apps/admin/src/index.html",
+        "main": "apps/admin/src/main.ts",
         "polyfills": ["zone.js"],
-        "tsConfig": "apps/workshop-ui/tsconfig.app.json",
+        "tsConfig": "apps/admin/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
-        "assets": [
-          "apps/workshop-ui/src/favicon.ico",
-          "apps/workshop-ui/src/assets"
-        ],
-        "styles": ["apps/workshop-ui/src/styles.scss"],
+        "assets": ["apps/admin/src/favicon.ico", "apps/admin/src/assets"],
+        "styles": ["apps/admin/src/styles.scss"],
         "scripts": []
       },
       "configurations": {
@@ -53,10 +50,10 @@
       "executor": "@angular-devkit/build-angular:dev-server",
       "configurations": {
         "production": {
-          "browserTarget": "workshop-ui:build:production"
+          "browserTarget": "admin:build:production"
         },
         "development": {
-          "browserTarget": "workshop-ui:build:development"
+          "browserTarget": "admin:build:development"
         }
       },
       "defaultConfiguration": "development"
@@ -64,24 +61,21 @@
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
       "options": {
-        "browserTarget": "workshop-ui:build"
+        "browserTarget": "admin:build"
       }
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": [
-          "apps/workshop-ui/**/*.ts",
-          "apps/workshop-ui/**/*.html"
-        ]
+        "lintFilePatterns": ["apps/admin/**/*.ts", "apps/admin/**/*.html"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "apps/workshop-ui/jest.config.ts",
+        "jestConfig": "apps/admin/jest.config.ts",
         "passWithNoTests": true
       },
       "configurations": {

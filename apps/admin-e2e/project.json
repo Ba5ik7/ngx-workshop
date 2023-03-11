@@ -1,19 +1,19 @@
 {
-  "name": "workshop-ui-e2e",
+  "name": "admin-e2e",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "apps/workshop-ui-e2e/src",
+  "sourceRoot": "apps/admin-e2e/src",
   "projectType": "application",
   "targets": {
     "e2e": {
       "executor": "@nrwl/cypress:cypress",
       "options": {
-        "cypressConfig": "apps/workshop-ui-e2e/cypress.config.ts",
-        "devServerTarget": "workshop-ui:serve:development",
+        "cypressConfig": "apps/admin-e2e/cypress.config.ts",
+        "devServerTarget": "admin:serve:development",
         "testingType": "e2e"
       },
       "configurations": {
         "production": {
-          "devServerTarget": "workshop-ui:serve:production"
+          "devServerTarget": "admin:serve:production"
         }
       }
     },
@@ -21,10 +21,10 @@
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["apps/workshop-ui-e2e/**/*.{js,ts}"]
+        "lintFilePatterns": ["apps/admin-e2e/**/*.{js,ts}"]
       }
     }
   },
   "tags": [],
-  "implicitDependencies": ["workshop-ui"]
+  "implicitDependencies": ["admin"]
 }
