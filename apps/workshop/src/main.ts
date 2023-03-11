@@ -1,3 +1,7 @@
+import 'codemirror/mode/javascript/javascript';
+import 'codemirror/mode/css/css';
+import 'codemirror/mode/xml/xml';
+
 import { bootstrapApplication } from '@angular/platform-browser';
 import {
   provideRouter,
@@ -9,7 +13,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { importProvidersFrom } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
-import { HighlightOptions, HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
 import { JwtInterceptor } from './app/interceptors/jwt.interceptor';
 
 import { NGX_EDITORJS_CLIENT_OPTIONS } from '@tmdjr/ngx-editorjs-client';
@@ -24,18 +27,6 @@ bootstrapApplication(AppComponent, {
     importProvidersFrom(BrowserAnimationsModule),
     importProvidersFrom(HttpClientModule),
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    {
-      provide: HIGHLIGHT_OPTIONS,
-      useValue: <HighlightOptions>{
-        coreLibraryLoader: () => import('highlight.js/lib/core'),
-        languages: {
-          typescript: () => import('highlight.js/lib/languages/typescript'),
-          css: () => import('highlight.js/lib/languages/css'),
-          html: () => import('highlight.js/lib/languages/xml')
-        },
-        themePath: 'assets/css/highlightjs-themes/gradient-dark.css'
-      }
-    },
     {
       provide: NGX_EDITORJS_CLIENT_OPTIONS,
       useValue: {

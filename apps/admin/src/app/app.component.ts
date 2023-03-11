@@ -2,16 +2,14 @@ import { RouterModule } from '@angular/router';
 import { Component, ViewEncapsulation } from '@angular/core';
 import { NavigationService } from './shared/services/navigation/navigation.service';
 import { NavbarModule } from './shared/components/navbar/navbar.module';
-import { HighlightModule } from 'ngx-highlightjs';
 
 @Component({
   standalone: true,
-  imports: [HighlightModule, NavbarModule, RouterModule],
+  imports: [NavbarModule, RouterModule],
   selector: 'ngx-admin',
   template: `
     <app-navbar class="mat-elevation-z6"></app-navbar>
     <router-outlet></router-outlet>
-    <pre><code highlight="html"><html></html></code></pre>
   `,
   styles: [`
     ngx-admin {
