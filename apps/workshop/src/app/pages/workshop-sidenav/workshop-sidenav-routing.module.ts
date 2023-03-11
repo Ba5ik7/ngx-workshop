@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from 'src/app/guards/auth.guard';
+import { AuthGuard } from '../../guards/auth.guard';
 import { WorkshopCategoryListComponent } from './workshop-category-list/workshop-category-list.component';
 import { WorkshopSidenavComponent } from './workshop-sidenav.component';
 

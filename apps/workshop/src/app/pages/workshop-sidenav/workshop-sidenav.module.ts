@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { WorkshopSidenavRoutingModule } from './workshop-sidenav-routing.module';
 import { WorkshopSidenavComponent } from './workshop-sidenav.component';
 
-import { FooterModule } from 'src/app/shared/components/footer/footer.module';
+import { FooterModule } from '../../shared/components/footer/footer.module';
 
 import { MatIconModule } from '@angular/material/icon';
 import { MatLegacyListModule as MatListModule } from '@angular/material/legacy-list';

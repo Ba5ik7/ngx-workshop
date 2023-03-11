@@ -1,5 +1,5 @@
 @use '@angular/material' as mat;
-@use '../../app/app-theme';
+@use '../../../app/app-theme';
 
 // Define the light theme.
 $primary: mat.define-palette(mat.$deep-purple-palette);

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Category } from 'src/app/shared/interfaces/category.interface';
+import { Category } from '../../../shared/interfaces/category.interface';
 import { NavigationService } from '../../../shared/services/navigation/navigation.service';
 
 @Component({
