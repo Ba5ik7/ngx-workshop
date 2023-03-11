@@ -1,0 +1,39 @@
+workshop-viewer-terrence-dusell {
+  display: block;
+  padding: 20px 60px;
+  
+  .workshop-viewer-container {
+    .mat-card {
+      max-width: 650px;
+      padding: 16px 56px 36px 56px;
+    }
+  
+    h1 {
+      padding: 20px 0 0;
+    }
+  
+  }
+}
+
+
+@media (max-width: 720px) {
+  workshop-viewer-terrence-dusell {
+    padding: 0px;
+    .workshop-viewer-container {
+      .mat-card {
+        max-width: 650px;
+        padding: 16px 10px 36px 10px;
+        border-radius: 0px;
+        margin-bottom: 0px;
+      }
+    
+      // h1 {
+      //   padding: 0.6em 0 3px
+      // }
+    
+      // p {
+      //   line-height: 1.6em;
+      // }
+    }
+  }
+}

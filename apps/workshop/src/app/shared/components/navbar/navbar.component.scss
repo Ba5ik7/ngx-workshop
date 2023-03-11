@@ -1,0 +1,52 @@
+.navbar-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 8px 16px;
+
+}
+
+.workshop-logo {
+  height: 26px;
+  margin: 0 4px 3px 0;
+  vertical-align: middle;
+}
+
+.docs-navbar-link {
+  text-decoration: inherit;
+  flex: 1;
+}
+
+.docs-navbar {
+  display: none;
+}
+
+.docs-navbar-show-small {
+  display: none;
+}
+
+@media (max-width: 720px) {
+  .docs-navbar-hide-small {
+    display: none;
+  }
+
+  .docs-navbar-show-small {
+    display: block;
+  }
+
+  .docs-navbar {
+    display: flex;
+  }
+
+  .docs-navbar--workshop-logo {
+    padding: 0;
+  }
+}
+
+theme-picker {
+  display: none;
+
+  @media (min-width: 328px) {
+    display: block;
+  }
+}

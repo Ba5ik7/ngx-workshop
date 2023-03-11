@@ -1,0 +1,43 @@
+<nav class="navbar-header">
+  <a mat-button routerLink="/" class="docs-navbar--workshop-logo">
+    <mat-icon class="workshop-logo">tips_and_updates</mat-icon>
+    <span>Ngx-Workshop</span>
+  </a>
+  <a mat-button class="docs-navbar-hide-small docs-button"
+      *ngFor="let section of sections$ | async | keyvalue;"
+      [routerLink]="section.key"
+      routerLinkActive="navbar-menu-item-selected">
+    <img class="workshop-logo" [src]="section.value.menuSvgPath">
+    <span>{{section.value.sectionTitle}}</span>
+  </a>
+
+  <div class="flex-spacer"></div>
+  
+  <ng-container *ngIf="signedIn$ | async; else authentication">
+    <profile-fab></profile-fab>
+  </ng-container>
+  <ng-template #authentication>
+    <theme-picker></theme-picker>
+    <a mat-button (click)="openDialog()">Sign In</a>
+  </ng-template>
+
+  <!-- <a mat-button class="docs-button docs-navbar-hide-small"
+      href="https://github.com/Ba5ik7/workshop-viewer"
+      target="_blank"
+      aria-label="GitHub Repository">
+    <img matButtonIcon
+         class="workshop-logo"
+         src="/assets/img/github-circle-white-transparent.svg"
+         alt="github">
+    GitHub
+  </a> -->
+</nav>
+<nav class="docs-navbar docs-navbar-show-small" aria-label="Section Nav Bar">
+  <a mat-button class="docs-navbar-link"
+      *ngFor="let section of sections$ | async | keyvalue;"
+      [routerLink]="section.key"
+      outerLinkActive="navbar-menu-item-selected">
+      <img class="workshop-logo" [src]="section.value.menuSvgPath">
+    <span>{{section.value.sectionTitle}}</span>
+  </a>
+</nav>

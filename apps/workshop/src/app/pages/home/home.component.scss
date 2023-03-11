@@ -1,0 +1,134 @@
+@use '@angular/material' as mat;
+
+.header-background {
+  overflow: hidden;
+  position: relative;
+  height: 420px;
+}
+
+.header-background::before {
+  content: '';
+  position: absolute;
+  background-image: url('../../../assets/img/tips_and_updates_white.svg');
+  background-size: 400px;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-repeat: no-repeat;
+  background-position: 80% 20px;
+  opacity: 0.2;
+}
+
+.header-section {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  text-align: center;
+}
+
+.header-headline {
+  h1 {
+    font-size: 56px;
+    font-weight: bold;
+    line-height: 56px;
+    margin: 15px 5px;
+  }
+
+  h2 {
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 28px;
+    margin: 15px 0 25px 0;
+  }
+}
+
+.header-start {
+  text-align: center;
+  margin: 15px 0 0 0;
+
+  .mat-raised-button {
+    font-size: 15px;
+  }
+}
+
+.home-promo {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  // padding: 16px;
+  // width: 75%;
+  // max-width: 1080px;
+  // margin: auto;
+
+  a {
+    text-decoration: none;
+  }
+
+  h2 {
+    font-size: 25px;
+    font-weight: 400;
+    margin: 0 0 16px;
+    padding: 0;
+  }
+
+  p {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 28px;
+    margin: 0 0 24px 0;
+    padding: 0;
+  }
+
+  mat-divider {
+    width: 100%;
+  }
+
+  mat-icon {
+    vertical-align: middle;
+  }
+}
+
+.home-row {
+  display: flex;
+  flex-direction: row;
+  margin: 25px 0;
+  gap: 50px;
+  align-items: flex-start;
+}
+
+.home-row-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  width: 275px;
+  border-radius: 12px;
+  transition: box-shadow .4s;
+
+  &:hover {
+    cursor: pointer;
+    @include mat.elevation(6);
+  }
+
+  img {
+    width: 250px;
+  }
+
+  p {
+    text-align: justify;
+    padding: 0 19px;
+  }
+}
+
+@media (max-width: 720px) {
+  .home-row {
+    flex-direction: column;
+  }
+
+  .home-row-column--angular-section {
+    order: -1;
+  }
+}

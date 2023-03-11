@@ -1,0 +1,12 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 64px;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  min-width: 720px;
+}

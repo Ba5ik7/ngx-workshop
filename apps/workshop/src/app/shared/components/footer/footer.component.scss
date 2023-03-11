@@ -1,0 +1,30 @@
+.footer {
+  padding: 12px;
+  font-size: 12px;
+}
+
+.docs-footer-list {
+  align-items: center;
+  display: flex;
+  flex-flow: row;
+  justify-content: space-around;
+  padding: 8px;
+}
+
+.docs-footer--github {
+  display: none;
+  img {
+    height: 50px;
+  }
+}
+
+
+
+@media screen and (max-width: 884px){
+  // .docs-footer-list {
+  //   flex-direction: column;
+  // }
+  .docs-footer--github { 
+    display: block;
+  }
+}

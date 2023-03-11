@@ -1,0 +1,15 @@
+workshop-detail {
+  width: 100%;
+
+  .paginator {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+  }
+  
+}
+
+.workshop-detail-content {
+  grid-template-columns: minmax(320px, 875px) auto;
+  display: grid;
+}
