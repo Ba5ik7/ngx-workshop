@@ -1,0 +1,42 @@
+<ng-container *ngIf="chatAppData$ | async as data">
+
+  <div class="messages-panel">
+    <div class="messages">
+      <div *ngIf="data.chatRoom.messages.length > 0; else noMessages">
+        <ul>
+          <li *ngFor="let message of data.chatRoom.messages">
+            [{{ message.user }}]: {{ message.content }}
+          </li>
+        </ul>
+      </div>
+      <ng-template #noMessages><p>No messages in this room</p></ng-template>
+    </div>
+
+      <mat-form-field class="message sticky" color="accent">
+        <mat-label>Message</mat-label>
+        <input matInput color="accent"
+          [(ngModel)]="message"
+          (keyup.enter)="sendMessage()" />
+        <button mat-mini-fab color="accent" matSuffix>
+          <mat-icon>send</mat-icon>
+        </button>
+      </mat-form-field>
+
+  </div>
+
+  <div class="rooms-list-panel">
+    <div class="rooms">
+      <mat-nav-list>
+        <a mat-list-item>Rooms</a>
+        <mat-divider></mat-divider>
+        <a mat-list-item *ngFor="let room of data.rooms"
+          (click)="switchRoom(room)"
+          [routerLink]="'../' + room"
+          routerLinkActive="workshop-menu-nav-item-selected">
+          <!-- <mat-icon class="create-icon">note_add</mat-icon> -->
+          {{room}}
+        </a>
+      </mat-nav-list>
+    </div>
+  </div>
+</ng-container>

@@ -1,0 +1,76 @@
+@use '@angular/material' as mat;
+@use 'sass:color';
+@use 'sass:map';
+
+@use '@tmdjr/ngx-editorjs' as ngx-editorjs;
+@use '@tmdjr/ngx-editorjs-blockquotes-block' as ngx-editorjs-blockquotes-block;
+@use '@tmdjr/ngx-editorjs-code-block' as ngx-editorjs-code-block;
+
+@use './pages/not-found/not-found-theme';
+// @use './pages/home/home-theme';
+@use './pages/workshop-sidenav/workshop-sidenav';
+@use './pages/workshop-editor/workshop-editor';
+@use './pages/chat/chat';
+
+@use './shared/components/footer/footer-theme';
+@use './shared/components/navbar/navbar-theme';
+@use './shared/components/workshop-viewer/live-example/live-example-theme';
+
+// Styles for the docs app that are based on the current theme.
+@mixin theme($theme) {
+  $primary: map.get($theme, primary);
+  $accent: map.get($theme, accent);
+  $warn: map.get($theme, warn);
+  $background: map.get($theme, background);
+  $foreground: map.get($theme, foreground);
+  $next-theme: mat.define-palette(mat.$red-palette);
+  $is-dark-theme: map.get($theme, is-dark);
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(mat.get-color-from-palette($primary, default), .45);
+  }
+
+  ::selection {
+    background-color: rgba(mat.get-color-from-palette($primary, default), .4);
+  }
+
+  .app-background {
+    background: mat.get-color-from-palette($background, background);
+  }
+
+  .primary-header {
+    background: mat.get-color-from-palette($primary);
+
+    h1 {
+      color: mat.get-color-from-palette($primary, default-contrast);
+    }
+  }
+
+  .create-icon {
+    color: mat.get-color-from-palette($primary);
+  }
+  .edit-icon {
+    color: mat.get-color-from-palette($accent);
+  }
+  .delete-icon {
+    color: mat.get-color-from-palette($warn);
+  }
+
+  .warn {
+    color: mat.get-color-from-palette($warn);
+  }
+  
+  @include ngx-editorjs.theme($theme);
+  @include ngx-editorjs-blockquotes-block.theme($theme);
+  @include ngx-editorjs-code-block.theme($theme);
+
+  // @include home-theme.theme($theme);
+  @include not-found-theme.theme($theme);
+  @include workshop-sidenav.theme($theme);
+  @include workshop-editor.theme($theme);
+  @include chat.theme($theme);
+
+  @include footer-theme.theme($theme);
+  @include navbar-theme.theme($theme);
+  @include live-example-theme.theme($theme);
+}

@@ -1,0 +1,9 @@
+.form-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  .form-level-error-message {
+    color:  #f44336;
+  }
+}

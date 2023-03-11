@@ -7,16 +7,48 @@
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
+        "baseHref": "/admin/",
         "outputPath": "dist/apps/admin",
         "index": "apps/admin/src/index.html",
         "main": "apps/admin/src/main.ts",
-        "polyfills": ["zone.js"],
+        "polyfills": [
+          "zone.js"
+        ],
         "tsConfig": "apps/admin/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
-        "assets": ["apps/admin/src/favicon.ico", "apps/admin/src/assets"],
-        "styles": ["apps/admin/src/styles.scss"],
+        "assets": [
+          "apps/admin/src/favicon.ico",
+          "apps/admin/src/assets"
+        ],
+        "styles": [
+          {
+            "input": "apps/admin/src/styles.scss"
+          },
+          {
+            "inject": false,
+            "input": "apps/admin/src/assets/styles/custom-themes/pink-bluegrey.scss",
+            "bundleName": "pink-bluegrey"
+          },
+          {
+            "inject": false,
+            "input": "apps/admin/src/assets/styles/custom-themes/deeppurple-amber.scss",
+            "bundleName": "deeppurple-amber"
+          },
+          {
+            "inject": false,
+            "input": "apps/admin/src/assets/styles/custom-themes/indigo-pink.scss",
+            "bundleName": "indigo-pink"
+          },
+          {
+            "inject": false,
+            "input": "apps/workshop/src/assets/styles/custom-themes/purple-green.scss",
+            "bundleName": "purple-green"
+          }
+        ],
         "scripts": []
       },
       "configurations": {
@@ -66,14 +98,21 @@
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
+      "outputs": [
+        "{options.outputFile}"
+      ],
       "options": {
-        "lintFilePatterns": ["apps/admin/**/*.ts", "apps/admin/**/*.html"]
+        "lintFilePatterns": [
+          "apps/admin/**/*.ts",
+          "apps/admin/**/*.html"
+        ]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
       "options": {
         "jestConfig": "apps/admin/jest.config.ts",
         "passWithNoTests": true

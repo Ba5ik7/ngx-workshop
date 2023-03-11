@@ -1,0 +1,12 @@
+<div class="workshop-category-list-summary">
+  <div>This is the summary of the categories under this section.</div>
+</div>
+<div class="workshop-category-list">
+  <mat-card 
+    *ngFor="let category of categories | async" 
+    [routerLink]="'../' + category.id">
+    <img mat-card-image src="/admin/assets/img/category-placeholder.png">
+    <mat-card-title>{{category.name}}</mat-card-title>
+    <mat-card-subtitle>{{category.summary}}</mat-card-subtitle>
+  </mat-card>
+</div>

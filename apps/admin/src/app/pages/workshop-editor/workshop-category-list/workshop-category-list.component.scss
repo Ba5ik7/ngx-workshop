@@ -1,0 +1,39 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.workshop-category-list-summary {
+  padding: 25px 40px 0;
+  font-size: 18px;
+  line-height: 1.5;
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 1255px) {
+  .workshop-category-list-summary {
+    max-width: 600px;
+  }
+}
+
+@media (max-width: 694px) {
+  .workshop-category-list-summary {
+    max-width: 280px;
+  }
+}
+
+.workshop-category-list {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px;
+  justify-content: center;
+}
+
+mat-card {
+  cursor: pointer;
+  width: 280px;
+  margin: 20px;
+  vertical-align: top;
+}

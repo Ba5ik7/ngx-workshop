@@ -1,0 +1,26 @@
+<mat-nav-list>
+  <a mat-list-item (click)="createCategory()">
+    <mat-icon class="create-icon">note_add</mat-icon>
+    Create Category
+  </a>
+  <mat-divider></mat-divider>
+</mat-nav-list>
+<mat-nav-list cdkDropList class="category-list" (cdkDropListDropped)="drop($event)">
+  <a mat-list-item routerLink="./workshop-category-list"
+    routerLinkActive="workshop-menu-nav-item-selected">
+    <mat-icon>view_module</mat-icon>
+    Categories List
+  </a>  
+  <a mat-list-item cdkDrag *ngFor="let category of categories"
+    class="category-item"
+    [cdkDragDisabled]="cdkDragDisabled"
+    [routerLink]="'./' + category.id"
+    routerLinkActive="workshop-menu-nav-item-selected">
+    <mat-icon>drag_indicator</mat-icon>
+    {{category.name}}
+    <div class="flex-spacer"></div>
+    <mat-icon class="edit-icon" (click)="editCategory($event, category)">edit</mat-icon>
+    <mat-icon class="delete-icon" (click)="deleteCategory($event, category)">delete</mat-icon>
+  </a>
+</mat-nav-list>
+<mat-divider></mat-divider>

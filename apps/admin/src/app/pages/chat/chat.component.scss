@@ -1,0 +1,31 @@
+:host {
+  grid-template-columns: calc(100vw - 558px) auto;
+  display: grid;
+}
+
+::ng-deep .message > .mat-form-field-wrapper {
+  margin-bottom: -1.25em;
+}
+
+::ng-deep .message .mat-form-field-flex {
+  align-items: center;
+  gap: 10px;
+  padding: .75em!important;
+}
+.rooms-list-panel {
+  position: sticky;
+  top: 0;
+  height: calc(100vh - 56px);
+  width: 315px;
+}
+
+.messages-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.sticky {
+  position: sticky;
+  bottom: 0;
+}

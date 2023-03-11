@@ -1,0 +1,25 @@
+.live-example-wrapper {
+  border-radius: 4px;
+  margin: 24px 0;
+  h3 {
+    margin-top: 10px;
+  }
+}
+
+
+.live-example-title {
+  align-content: center;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  padding: 8px 8px 8px 16px;
+}
+
+.live-example-title-spacer {
+  flex: 1 1 auto;
+}
+
+
+.live-example-body {
+  padding: 30px;
+}

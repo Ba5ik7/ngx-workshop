@@ -1,0 +1,48 @@
+:host {
+  display: flex;
+  flex-direction: column;
+
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .page-list {
+    height: 200px;
+    overflow: auto;
+  }
+
+  mat-icon {
+    margin: 0 10px 3px 0;
+    vertical-align: middle;
+  }
+
+  .edit-icon, .delete-icon {
+    opacity: 0.45;
+    &:hover {
+      opacity: 1;
+    }
+  }
+  
+  .publish-actions {
+    padding: 10px 10px;
+    text-align: right;
+  }
+
+  .page-item {
+    .edit-icon, .delete-icon {
+      margin: 0 0 0 10px;
+      opacity: 0;
+    }
+    &:hover {
+      .edit-icon, .delete-icon {
+        opacity: 0.45;
+      }
+    }
+  }
+    
+  .edit-icon, .delete-icon {
+    &:hover {
+      opacity: 1!important;
+    }
+  }
+}
