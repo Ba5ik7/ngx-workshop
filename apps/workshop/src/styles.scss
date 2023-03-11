@@ -1,6 +1,6 @@
 @use '@angular/material' as mat;
-@use './app-theme';
-@use './styles/general';
+@use './app/app-theme';
+@use './assets/styles/general';
 
 // Define the light theme.
 $primary: mat.define-palette(mat.$indigo-palette);

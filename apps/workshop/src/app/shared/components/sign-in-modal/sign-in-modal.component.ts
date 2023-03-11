@@ -15,9 +15,9 @@ import { MatLegacyDialogRef as MatDialogRef } from '@angular/material/legacy-dia
 import { MatLegacyFormFieldModule as MatFormFieldModule, MAT_LEGACY_FORM_FIELD_DEFAULT_OPTIONS as MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/legacy-form-field';
 import { MatLegacyInput as MatInput, MatLegacyInputModule as MatInputModule } from '@angular/material/legacy-input';
 import { Subject, takeUntil } from 'rxjs';
-import { UserStateService } from 'src/app/shared/services/user-state/user-state.service';
-import { MatchPasswordValidator } from 'src/app/shared/validators/match-passwords.validator';
-import { PasswordValidator } from 'src/app/shared/validators/password.validator';
+import { UserStateService } from '../../services/user-state/user-state.service';
+import { MatchPasswordValidator } from '../../validators/match-passwords.validator';
+import { PasswordValidator } from '../../validators/password.validator';
 import { AuthenticationService } from './authentication.service';
 
 @Component({
