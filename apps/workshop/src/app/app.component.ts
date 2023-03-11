@@ -16,12 +16,44 @@ import { MatLegacyDialogModule as MatDialogModule } from '@angular/material/lega
     NavbarModule,
     MatDialogModule
   ],
-  selector: 'ngx-root',
+  selector: 'ngx-workshop',
   template: `
     <app-navbar class="mat-elevation-z6"></app-navbar>
     <router-outlet></router-outlet>
   `,
-  styles: [],
+  styles: [`
+    ngx-workshop {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+
+    app-navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 2;
+    }
+    ngx-workshop > workshop-sidenav {
+      flex: 1;
+    }
+
+    ngx-workshop > router-outlet + .main-content,
+    ngx-workshop > router-outlet + workshop-sidenav {
+      margin-top: 56px;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    @media (max-width: 720px) {
+      ngx-workshop > router-outlet + .main-content,
+      ngx-workshop > router-outlet + workshop-sidenav {
+        margin-top: 92px;
+      }
+    }
+
+  `],
   encapsulation: ViewEncapsulation.None,
 })
 export class AppComponent {
