@@ -22,7 +22,6 @@
     "@tmdjr/ngx-editorjs-paragraph-block": "^0.0.32",
     "@tmdjr/ngx-editorjs-image-block": "^0.0.32",
     "@tmdjr/ngx-editorjs-code-block": "^0.0.32",
-    "ngx-highlightjs": "^8.0.0",
     "rxjs": "~7.8.0",
     "socket.io-client": "^4.5.1",
     "tslib": "^2.3.0",
