@@ -1,9 +1,23 @@
 import { Component } from '@angular/core';
 import { map } from 'rxjs/operators';
-import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
+import { Breakpoints, BreakpointObserver, LayoutModule } from '@angular/cdk/layout';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatLegacyCardModule as MatCardModule } from '@angular/material/legacy-card';
+import { MatLegacyMenuModule as MatMenuModule } from '@angular/material/legacy-menu';
+import { MatIconModule } from '@angular/material/icon';
+import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
 
 @Component({
-  selector: 'dynamic-grid-list',
+  standalone: true,
+  imports: [
+    MatGridListModule,
+    MatCardModule,
+    MatMenuModule,
+    MatIconModule,
+    MatButtonModule,
+    LayoutModule
+  ],
+  selector: 'ngx-dynamic-grid-list',
   templateUrl: './dynamic-grid-list.component.html',
   styleUrls: ['./dynamic-grid-list.component.scss']
 })

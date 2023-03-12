@@ -11,7 +11,7 @@ const routes: Routes = [
       {
         canActivate: [AuthGuard],
         path: 'dashboard',
-        loadChildren: () => import('../dashboard/dashboard.module').then(m => m.DashboardModule)
+        loadChildren: () => import('../dashboard/dashboard.component').then(m => m.DashboardComponent)
       },
       {
         canActivate: [AuthGuard],
