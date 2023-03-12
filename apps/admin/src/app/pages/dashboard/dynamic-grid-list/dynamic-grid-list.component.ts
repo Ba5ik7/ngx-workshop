@@ -6,10 +6,12 @@ import { MatLegacyCardModule as MatCardModule } from '@angular/material/legacy-c
 import { MatLegacyMenuModule as MatMenuModule } from '@angular/material/legacy-menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
+import { CommonModule } from '@angular/common';
 
 @Component({
   standalone: true,
   imports: [
+    CommonModule,
     MatGridListModule,
     MatCardModule,
     MatMenuModule,

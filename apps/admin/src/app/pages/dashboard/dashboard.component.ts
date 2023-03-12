@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DynamicGridListComponent } from './dynamic-grid-list/dynamic-grid-list.component';
 
 import { NavigationService } from '../../shared/services/navigation/navigation.service';
@@ -12,7 +11,6 @@ import { NavigationService } from '../../shared/services/navigation/navigation.s
   imports: [
     CommonModule,
     DynamicGridListComponent,
-    DashboardRoutingModule
   ],
   template: `<ngx-dynamic-grid-list></ngx-dynamic-grid-list>`,
   styles: [`:host { width: 100%; }`],
