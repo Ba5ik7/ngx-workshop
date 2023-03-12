@@ -1,14 +1,14 @@
 import { RouterModule } from '@angular/router';
 import { Component, ViewEncapsulation } from '@angular/core';
 import { NavigationService } from './shared/services/navigation/navigation.service';
-import { NavbarModule } from './shared/components/navbar/navbar.module';
+import { NavbarComponent } from './shared/components/navbar/navbar.component';
 
 @Component({
   standalone: true,
-  imports: [NavbarModule, RouterModule],
+  imports: [NavbarComponent, RouterModule],
   selector: 'ngx-admin',
   template: `
-    <app-navbar class="mat-elevation-z6"></app-navbar>
+    <ngx-navbar class="mat-elevation-z6"></ngx-navbar>
     <router-outlet></router-outlet>
   `,
   styles: [`
