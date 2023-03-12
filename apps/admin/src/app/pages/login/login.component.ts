@@ -7,7 +7,7 @@ import { UserStateService } from '../../shared/services/user-state/user-state.se
 import { AuthService } from '../../shared/services/auth/auth.service';
 
 @Component({
-  selector: 'app-login',
+  selector: 'ngx-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   destory: Subject<boolean> = new Subject();
 
   signInFormLevelMessage!: string;
-  formLoading: boolean = false;
+  formLoading = false;
 
   signInFormErrorMessages: { [key: string]: string } = {
     email: '', password: ''
