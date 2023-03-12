@@ -1,16 +1,16 @@
 import { CommonModule } from '@angular/common';
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { ThemePickerModule } from '../theme-picker/theme-picker.module';
 import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
 import { RouterModule } from '@angular/router';
+import { ThemePickerComponent } from '../theme-picker/theme-picker.component';
 
 @Component({
   standalone: true,
   imports: [
     CommonModule,
     RouterModule,
-    ThemePickerModule,
+    ThemePickerComponent,
     MatButtonModule,
     MatIconModule
   ],
@@ -22,7 +22,7 @@ import { RouterModule } from '@angular/router';
         <span>Ngx-Admin</span>
       </a>
       <div class="flex-spacer"></div>
-      <theme-picker></theme-picker>
+      <ngx-theme-picker></ngx-theme-picker>
       <a mat-button href="https://github.com/Ba5ik7/workshop-viewer" target="_blank">
         <img class="workshop-logo"
             src="/admin/assets/img/github-circle-white-transparent.svg"

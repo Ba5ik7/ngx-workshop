@@ -6,8 +6,8 @@ import { LocalStorage, WebstorageService } from '../../services/webstorage/webst
 export class ThemePickerService {
   static THEME_EXAMPLE_ICON = 'assets/img/theme-demo-icon.svg';
   static DEFAULT_THEME = 'indigo-pink';
-  static STRORAGE_KEY: string = 'theme-picker-current-name';
-  static NOT_FOUND: string = 'NOT_FOUND';
+  static STRORAGE_KEY = 'theme-picker-current-name';
+  static NOT_FOUND = 'NOT_FOUND';
 
   constructor(@Inject(DOCUMENT) private document: Document, private webstorageService: WebstorageService ) { }
 
