@@ -16,24 +16,14 @@ import { NavbarModule } from './shared/components/navbar/navbar.module';
       display: flex;
       flex-direction: column;
       height: 100vh;
-    }
 
-    app-navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 2;
-    }
-    ngx-admin > workshop-sidenav {
-      flex: 1;
-    }
-
-    ngx-admin > router-outlet + .main-content,
-    ngx-admin > router-outlet + workshop-sidenav {
-      margin-top: 56px;
-      overflow-y: auto;
-      -webkit-overflow-scrolling: touch;
+      & > workshop-sidenav { flex: 1; }
+      & > router-outlet + .main-content,
+      & > router-outlet + workshop-sidenav {
+        margin-top: 56px;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+      }
     }
   `],
   encapsulation: ViewEncapsulation.None,
