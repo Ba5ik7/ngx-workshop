@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
-import { ThemePickerService } from './theme-picker.service';
+import { ThemePickerService } from '../../services/theme-picker/theme-picker.service';
 
 import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
 import { MatIconModule } from '@angular/material/icon';
@@ -19,7 +19,6 @@ import { MatLegacyTooltipModule as MatTooltipModule } from '@angular/material/le
     MatIconModule,
     MatTooltipModule
   ],
-  providers: [ThemePickerService],
   template: `
     <button mat-icon-button
             [mat-menu-trigger-for]="themeMenu"

@@ -2,7 +2,9 @@ import { DOCUMENT } from '@angular/common';
 import { Inject, Injectable } from '@angular/core';
 import { LocalStorage, WebstorageService } from '../../services/webstorage/webstorage.service';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class ThemePickerService {
   static THEME_EXAMPLE_ICON = 'assets/img/theme-demo-icon.svg';
   static DEFAULT_THEME = 'indigo-pink';
