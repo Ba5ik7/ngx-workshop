@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { debounceTime, Observable, Subject } from 'rxjs';
+import { inject, Injectable } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
 import { IUser } from '../../interfaces/user.interface';
 
 @Injectable({
@@ -8,17 +8,16 @@ import { IUser } from '../../interfaces/user.interface';
 })
 export class AuthService {
 
-
-  constructor(private httpClient: HttpClient) { }
+  httpClient: HttpClient = inject(HttpClient);
 
   signInFormErrorSubject = new Subject<number>();
   signInFormError$ = this.signInFormErrorSubject.asObservable();
 
-  signInFormSuccessSubject = new Subject<Object>();
+  signInFormSuccessSubject = new Subject<unknown>();
   signInFormSuccess$ = this.signInFormSuccessSubject.asObservable();
 
   signIn(user: IUser) {
-    this.httpClient.post<Object>('/api/authentication/sign-in', user)
+    this.httpClient.post<unknown>('/api/authentication/sign-in', user)
     .subscribe({
       next: (token) => this.signInFormSuccessSubject.next(token),
       error: (httpError: HttpErrorResponse) => this.signInFormErrorSubject.next(httpError.status)

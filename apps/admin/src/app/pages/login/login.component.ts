@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { UserStateService } from '../../shared/services/user-state/user-state.service';
 import { AuthService } from '../../shared/services/auth/auth.service';
+import { IUser } from '../../shared/interfaces/user.interface';
 
 @Component({
   selector: 'ngx-login',
