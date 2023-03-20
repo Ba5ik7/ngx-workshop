@@ -1,10 +1,12 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { NavigationModule } from './modules/navigation/navigation.module';
 import { WorkshopModule } from './modules/workshop/workshop.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ChatModule } from './modules/chat/chat.module';
 import { IamModule } from './modules/iam/iam.module';
+import { Influx } from './providers/influx';
+import { LoggerMiddleware } from './middleware/logger.middleware';
 
 @Module({
   imports: [
@@ -22,5 +24,10 @@ import { IamModule } from './modules/iam/iam.module';
     ChatModule,
     IamModule,
   ],
+  providers: [Influx],
 })
-export class AppModule {}
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(LoggerMiddleware).forRoutes('*');
+  }
+}

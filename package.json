@@ -15,6 +15,7 @@
     "@angular/platform-browser": "~15.2.0",
     "@angular/platform-browser-dynamic": "~15.2.0",
     "@angular/router": "~15.2.0",
+    "@influxdata/influxdb-client": "^1.33.2",
     "@nestjs/common": "^9.0.0",
     "@nestjs/config": "^2.2.0",
     "@nestjs/core": "^9.0.0",

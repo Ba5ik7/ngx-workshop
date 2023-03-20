@@ -37,5 +37,6 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+/tools/locust/__pycache__
 
 .angular
