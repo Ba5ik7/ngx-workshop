@@ -40,3 +40,4 @@ Thumbs.db
 /tools/locust/__pycache__
 
 .angular
+.env
