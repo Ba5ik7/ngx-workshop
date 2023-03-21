@@ -5,8 +5,8 @@ import { InfluxDB, Point } from '@influxdata/influxdb-client';
 export class Influx extends InfluxDB {
   constructor() {
     super({
-      url: 'http://localhost:8086', // Replace with your InfluxDB URL
-      token: 'MubHub8cZNu3hmWiu87onyWwmq-oSPtdaY3QLpsM0iK6bhjtDKeD1qQpVRa_U_meRubwmLTpokGMugYInL1_ew==', // Replace with the token you created in InfluxDB
+      url: process.env.INFLUXDB_URL,
+      token: process.env.INFLUXDB_TOKEN
     });
   }
 
