@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
-import { FooterModule } from '../../shared/components/footer/footer.module';
 import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
+import { FooterComponent } from '../../shared/components/footer/footer.component';
 
 
 @NgModule({
@@ -14,7 +14,7 @@ import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/lega
   imports: [
     CommonModule,
     HomeRoutingModule,
-    FooterModule,
+    FooterComponent,
     MatButtonModule
   ]
 })
