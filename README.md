@@ -1,6 +1,6 @@
 # Ngx-Workshop <a href="https://nx.dev" target="_blank"><img src="images/nx-logo.png" height="37"></a>
 
-<div><!-- .element: style="display: flex; flex-direction: row;" -->
+<div style="display: flex; justify-content: space-evenly; flex-direction: row; width: 100%">
 <a href="https://angular.io/" target="_blank"><img src="images/angular-logo.svg" height="45" alt="Angular" /></a>
 <a href="http://nestjs.com/" target="blank"><img src="images/nestjs-logo.svg" height="45" alt="Nest Js" /></a>
 <a href="https://www.nginx.com/" target="blank"><img src="images/nginx-logo.svg" height="45" alt="Nginx" /></a>
