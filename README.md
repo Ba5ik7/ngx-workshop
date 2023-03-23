@@ -1,12 +1,11 @@
 # Ngx-Workshop <a href="https://nx.dev" target="_blank"><img src="images/nx-logo.png" height="37"></a>
 
-<div style="display: flex; justify-content: space-evenly; flex-direction: row; width: 100%;">
 <a href="https://angular.io/" target="_blank"><img src="images/angular-logo.svg" height="45" alt="Angular" /></a>
 <a href="http://nestjs.com/" target="blank"><img src="images/nestjs-logo.svg" height="45" alt="Nest Js" /></a>
 <a href="https://www.nginx.com/" target="blank"><img src="images/nginx-logo.svg" height="45" alt="Nginx" /></a>
 <a href="https://www.mongodb.com" target="_blank"><img src="images/mongodb-logo.png" height="45" alt="MongoDB" ></a>
 <a href="https://www.influxdata.com/" target="_blank"><img src="images/influxdb-logo.svg" height="45" alt="MongoDB" ></a>
-</div>
+
 
 ## Installing Locally
 To run the application locally, we need to install a few dependences:
@@ -18,7 +17,8 @@ To run the application locally, we need to install a few dependences:
   <li>MonogoDB</li>
   <li>InfluxDB</li>
 </ul>
-<p>I'll walk through how I install them. Big fan of <a href="https://en.wikipedia.org/wiki/KISS_principle" target="_blank">KISS</a>. However, please feel free to install them how you would like.</p>
+
+I'll walk through how I install them. Big fan of <a href="https://en.wikipedia.org/wiki/KISS_principle" target="_blank">KISS</a>. However, please feel free to install them how you would like.
 
 ### NodeJs
 <a href="https://github.com/nvm-sh/logos"><img alt="nvm project logo" src="images/nvm-logo.svg" height="50" /></a>
