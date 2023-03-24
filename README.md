@@ -89,7 +89,7 @@ Copy the content of this [file](install-helper/default.conf) to the nginx defaul
 
 <img src="images/nginx-conf.png" width="700" />
 
-
+Stop and restart the Nginx container.
 
 
 ### MonogoDB
