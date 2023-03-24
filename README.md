@@ -71,7 +71,7 @@ npm install -g @nestjs/cli
 
 Install Docker desktop <a href="https://www.docker.com/products/docker-desktop/" target="_blank">application</a>:
 
-<a href="https://www.docker.com/products/docker-desktop/"><img alt="nvm" src="images/docker-desktop.png" width="400" /></a>
+<a href="https://www.docker.com/products/docker-desktop/"><img alt="docker" src="images/docker-desktop.png" width="400" /></a>
 
 
 ### Nginx
@@ -85,9 +85,12 @@ Install the Nginx Docker Container:
 docker run --name workshop-nginx -p 80:80 -d nginx
 ```
 
-After installing we need to add some proxy rules.
+After installing we need to add some proxy rules to `/etc/nginx/conf.d/default.conf`.
 
-Open 
+Copy the content for this <a href="install-helper/default.conf" target="_blank">file</a> to the nginx default.conf flie.
+
+<img alt="nvm" src="images/nginx-conf.png" width="700" />
+ 
 
 ### MonogoDB
 
