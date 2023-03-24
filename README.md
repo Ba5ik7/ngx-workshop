@@ -21,7 +21,9 @@ To run the application locally, we need to install a few dependences:
 
 I'll walk through how I install them. Big fan of [KISS](https://en.wikipedia.org/wiki/KISS_principle). However, please feel free to install them how you would like.
 
-### NodeJs
+<hr>
+
+### NodeJs NVM
 [<img src="images/nodejs-logo.svg" height="60" />](https://github.com/nodejs/node)
 [<img src="images/nvm-logo.svg" height="40" />](https://github.com/nvm-sh/logos)
 
@@ -40,8 +42,9 @@ Install `18.10.0` version of NodeJs:
 nvm install 18.10.0
 ```
 
-### Angular CLI
+<hr>
 
+### Angular CLI
 [<img src="images/angular-logo-2.svg" height="50" />](https://github.com/nodejs/node)
 [<img src="images/cli-logo.svg" width="50" />](https://github.com/nvm-sh/logos)
 
@@ -51,6 +54,9 @@ Install the Angular CLI using the `npm` package manager:
 ```
 npm install -g @angular/cli
 ```
+
+<hr>
+
 ### NestJs CLI
 [<img src="images/nestjs-logo.svg" height="45"/>](http://nestjs.com/)
 
@@ -61,8 +67,9 @@ Install the NestJs CLI using the `npm` package manager:
 npm install -g @nestjs/cli
 ```
 
-### Docker
+<hr>
 
+### Docker
 [<img src="images/docker-logo.png" height="48" />](https://www.docker.com/)
 
 [Documents](https://docs.docker.com/)
@@ -71,9 +78,9 @@ Install Docker desktop [application](https://www.docker.com/products/docker-desk
 
 [<img src="images/docker-desktop.png" width="700" />](https://www.docker.com/products/docker-desktop/)
 
+<hr>
 
 ### Nginx
-
 [<img src="images/nginx-logo.svg" height="48" />](https://www.nginx.com/)
 
 [Documents](https://docs.nginx.com/)
@@ -92,11 +99,17 @@ Copy the content of this [file](install-helpers/default.conf) to the nginx defau
 Stop and restart the Nginx container.
 
 
-### MonogoDB
+<hr>
 
+### MonogoDB
 [<img src="images/mongodb-logo-2.svg" height="45" >](https://www.mongodb.com)
 
 [Documents](https://www.mongodb.com/docs/)
+
+Install the MongoDB Docker Container:
+```
+docker run --name workshop-mongo -d -p 27017:27017 mongo:latest
+```
 
 ### InfluxDB
 
