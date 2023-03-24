@@ -13,6 +13,7 @@ To run the application locally, we need to install a few dependences:
   <li>NodeJs</li>
   <li>Angular CLI</li>
   <li>NestJs CLI</li>
+  <li>Docker</li>
   <li>Nginx</li>
   <li>MonogoDB</li>
   <li>InfluxDB</li>
@@ -78,6 +79,15 @@ Install Docker desktop <a href="https://www.docker.com/products/docker-desktop/"
 <a href="https://www.nginx.com/" target="blank"><img src="images/nginx-logo.svg" alt="Nginx" height="48"/></a>
 
 <a href="https://docs.nginx.com/" target="_blank">Documents</a>
+
+Install the Nginx Docker Container:
+```
+docker run --name workshop-nginx -p 80:80 -d nginx
+```
+
+After installing we need to add some proxy rules.
+
+Open 
 
 ### MonogoDB
 
