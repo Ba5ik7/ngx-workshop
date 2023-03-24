@@ -85,7 +85,7 @@ docker run --name workshop-nginx -p 80:80 -d nginx
 
 After installing we need to add some proxy rules to `/etc/nginx/conf.d/default.conf`.
 
-Copy the content of this [file](install-helper/default.conf) to the nginx default.conf flie.
+Copy the content of this [file](install-helpers/default.conf) to the nginx default.conf flie.
 
 <img src="images/nginx-conf.png" width="700" />
 
