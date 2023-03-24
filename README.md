@@ -21,9 +21,12 @@ To run the application locally, we need to install a few dependences:
 I'll walk through how I install them. Big fan of <a href="https://en.wikipedia.org/wiki/KISS_principle" target="_blank">KISS</a>. However, please feel free to install them how you would like.
 
 ### NodeJs
-<a href="https://github.com/nvm-sh/logos"><img alt="nvm project logo" src="images/nvm-logo.svg" height="50" /></a>
+<a href="https://github.com/nodejs/node"><img alt="nodejs" src="images/nodejs-logo.svg" height="60" /></a>
+<a href="https://github.com/nvm-sh/logos"><img alt="nvm" src="images/nvm-logo.svg" height="40" /></a>
 
-Normally, I use a node version manager for a easy and quick install of NodeJs. The NVM repo found <a href="https://github.com/nvm-sh/nvm" target="_blank">here</a>
+Normally, I use a node version manager for a easy and quick install of NodeJs.
+
+The NVM repo is found <a href="https://github.com/nvm-sh/nvm" target="_blank">here</a>
 
 Simply bash this command:
 
@@ -31,6 +34,7 @@ Simply bash this command:
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
 ```
 Restart or open a new terminal.
+
 Install ```18.10.0``` version of node:
 
 ```sh
@@ -38,6 +42,9 @@ nvm install 18.10.0
 ```
 
 ### Angular CLI
+
+<a href="https://github.com/nodejs/node"><img alt="nodejs" src="images/angular-logo-2.svg" height="50" /></a>
+<a href="https://github.com/nvm-sh/logos"><img alt="nvm" src="images/cli-logo.svg" width="50" /></a>
 
 ### NestJs CLI
 
