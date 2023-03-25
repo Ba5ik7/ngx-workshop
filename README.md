@@ -52,18 +52,25 @@ That's it! You're all set to start your Ngx-Workshop adventure. Happy installing
 
 NVM (Node Version Manager) is our go-to choice for effortlessly installing different versions of NodeJs. Let's get you started with NVM and NodeJs in a jiffy!
 
-Install `nvm`:
+### Installing NVM
+
+Run the following command in your terminal to install NVM:
 
 ```sh
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
 ```
-Restart terminal or open a new terminal.
 
-Install `18.10.0` version of NodeJs:
+Once it's done, restart your terminal or open a new one.
+
+### Installing NodeJs 18.10.0
+
+With NVM at your side, getting NodeJs 18.10.0 is a breeze. Just run:
 
 ```sh
 nvm install 18.10.0
 ```
+
+And that's it! You're all set with NodeJs, and you can thank NVM for making it so simple. Enjoy your Ngx-Workshop adventure! 🎉🌐
 
 <br>
 
@@ -175,7 +182,7 @@ docker run --name workshop-mongo -d -p 27017:27017 mongo:latest
 [Official Documentation](https://www.mongodb.com/docs/)
 
 ### Installing MongoDB Compass
-Install the MongoDB Compass desktop application:
+Install the MongoDB Compass desktop [application](https://www.mongodb.com/try/download/compass):
 
 <img src="images/mongodb-compass.png" width="700" />
 
