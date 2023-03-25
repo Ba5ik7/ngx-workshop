@@ -1,11 +1,5 @@
 # <img src="images/tips-and-updates.svg" /> Ngx-Workshop
 
-<!-- Welcome to Ngx-Workshop, where learning to create a full stack web application is as fun and easy as a walk in the park! With our user-friendly platform, you can create workshops on how to build the full stack workshop creation application  - talk about inception!
-
-Our application features a content management system that lets admins create workshops, a tests generator to make learning exciting and engaging, and a user journey tracking system to help you keep track of your progress. We believe that learning should be enjoyable, and that's exactly what we aim to provide with Ngx-Workshop.
-
-So, whether you're a seasoned developer looking to level up your skills or a newbie just dipping your toes in the programming waters, Ngx-Workshop has got you covered. Let's get ready to build some awesome web apps together! -->
-
 Get ready for an exciting journey as we embark on a fun and interactive adventure with Ngx-Workshop! Our mission is to make learning how to create full stack web applications not just educational but also an absolute blast. 🎓🎢
 
 ## What can you expect? 🧐
@@ -17,7 +11,7 @@ By using the application workshops, you'll dive headfirst into crafting the ulti
 
 3. User Journey Tracking System 🗺️ - Keep tabs on your progress and celebrate your achievements as you navigate through the world of full stack web development.
 
-So, buckle up and get ready to have a fantastic time exploring and learning with Ngx-Workshop! Happy coding! 🎉💻
+So, buckle up and get ready to have a fantastic time exploring and learning with Ngx-Workshop! Happy coding! 🎉
 
 <hr>
 
@@ -148,7 +142,10 @@ Import the hepler files:
 
 Files found [here](install-helpers/)
 
+<img src="images/mongodb-compass-sections.png" width="700" />
+
 We will walk through creating a user on the `workshop-api` project's readme.
+
 
 <hr>
 
@@ -157,10 +154,35 @@ We will walk through creating a user on the `workshop-api` project's readme.
 
 [Documents](https://docs.influxdata.com/)
 
-Install the MongoDB Docker Container:
+Install the InfluxDB Docker Container:
 ```
-docker run --name workshop-mongo -d -p 27017:27017 mongo:latest
+docker run --name influxdb -p 8086:8086 influxdb:2.0.9
 ```
 
-<hr>
+<img src="images/influxdb-docker.png" width="700" />
 
+
+## InfluxDB Admin
+
+Navigate to the admin panel `localhost:8086`
+
+Setup admin and while setting up the organization and bucket name use these values:
+
+- Orgination Name: `Ngx-Workshop`
+- Bucket Name: `Ngx-Workshop-Bucket`
+
+<img src="images/influx-admin-bucket.png" width="700" />
+
+Navigate to the Load Data section and Tokens tab generator new token named:
+
+- `Ngx-Workshop-API`
+
+<img src="images/influx-admin-token.png" width="700" />
+
+## Serving Locally
+
+<!-- Welcome to Ngx-Workshop, where learning to create a full stack web application is as fun and easy as a walk in the park! With our user-friendly platform, you can create workshops on how to build the full stack workshop creation application  - talk about inception!
+
+Our application features a content management system that lets admins create workshops, a tests generator to make learning exciting and engaging, and a user journey tracking system to help you keep track of your progress. We believe that learning should be enjoyable, and that's exactly what we aim to provide with Ngx-Workshop.
+
+So, whether you're a seasoned developer looking to level up your skills or a newbie just dipping your toes in the programming waters, Ngx-Workshop has got you covered. Let's get ready to build some awesome web apps together! -->
