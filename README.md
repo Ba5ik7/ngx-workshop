@@ -1,11 +1,25 @@
-# <img src="images/tips-and-updates.svg" /> Ngx-Workshop 
-<!-- <a href="https://nx.dev"><img src="images/nx-logo.png" height="37"></a>
-<a href="https://angular.io/"><img src="images/angular-logo.svg" height="45" /></a>
-<a href="http://nestjs.com/" target="blank"><img src="images/nestjs-logo.svg" height="45"/></a>
-<a href="https://www.nginx.com/" target="blank"><img src="images/nginx-logo.svg" height="45" /></a>
-<a href="https://www.mongodb.com"><img src="images/mongodb-logo.png" height="45" /></a>
-<a href="https://www.influxdata.com/"><img src="images/influxdb-logo.svg" height="45" /></a> -->
+# <img src="images/tips-and-updates.svg" /> Ngx-Workshop
 
+<!-- Welcome to Ngx-Workshop, where learning to create a full stack web application is as fun and easy as a walk in the park! With our user-friendly platform, you can create workshops on how to build the full stack workshop creation application  - talk about inception!
+
+Our application features a content management system that lets admins create workshops, a tests generator to make learning exciting and engaging, and a user journey tracking system to help you keep track of your progress. We believe that learning should be enjoyable, and that's exactly what we aim to provide with Ngx-Workshop.
+
+So, whether you're a seasoned developer looking to level up your skills or a newbie just dipping your toes in the programming waters, Ngx-Workshop has got you covered. Let's get ready to build some awesome web apps together! -->
+
+Get ready for an exciting journey as we embark on a fun and interactive adventure with Ngx-Workshop! Our mission is to make learning how to create full stack web applications not just educational but also an absolute blast. 🎓🎢
+
+## What can you expect? 🧐
+By using the application workshops, you'll dive headfirst into crafting the ultimate full stack workshop creation application. Ngx-Workshop has three core features to keep you engaged and help you level up your skills:
+
+1. Content Management System (CMS) 📚 - As an admin, you'll have the power to create and manage workshops with ease, turning your ideas into reality.
+
+2. Tests Generator 🧪 - Put your knowledge to the test! Generate quizzes on workshop topics to ensure you're mastering the content.
+
+3. User Journey Tracking System 🗺️ - Keep tabs on your progress and celebrate your achievements as you navigate through the world of full stack web development.
+
+So, buckle up and get ready to have a fantastic time exploring and learning with Ngx-Workshop! Happy coding! 🎉💻
+
+<hr>
 
 ## Installing Locally
 To run the application locally, we need to install a few dependences:
@@ -17,7 +31,6 @@ To run the application locally, we need to install a few dependences:
 - Nginx
 - MonogoDB
 - InfluxDB
-
 
 I'll walk through how I install them. Big fan of [KISS](https://en.wikipedia.org/wiki/KISS_principle). However, please feel free to install them how you would like.
 
@@ -140,23 +153,14 @@ We will walk through creating a user on the `workshop-api` project's readme.
 <hr>
 
 ### InfluxDB
+[<img src="images/influxdb-logo-2.svg" height="45" />](https://www.influxdata.com/)
+
+[Documents](https://docs.influxdata.com/)
+
+Install the MongoDB Docker Container:
+```
+docker run --name workshop-mongo -d -p 27017:27017 mongo:latest
+```
 
 <hr>
 
-## Development server
-
-Run `nx serve workshop-ui` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
-
-<hr>
-
-## Understand this workspace
-
-Run `nx graph` to see a diagram of the dependencies of the projects.
-
-## Remote caching
-
-Run `npx nx connect-to-nx-cloud` to enable [remote caching](https://nx.app) and make CI faster.
-
-## Further help
-
-Visit the [Nx Documentation](https://nx.dev) to learn more.
