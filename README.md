@@ -187,7 +187,7 @@ Install the MongoDB Compass desktop [application](https://www.mongodb.com/try/do
 <img src="images/mongodb-compass.png" width="700" />
 
 ### Configuring MongoDB Compass
-Connect to the localhost instance, create a new database named workshop-viewer, and then create four new collections:
+Connect to the localhost instance, create a new database named `workshop-viewer`, and then create four new collections:
 
 - categories
 - sections
@@ -196,7 +196,7 @@ Connect to the localhost instance, create a new database named workshop-viewer, 
 
 ### Importing Helper Files
 
-Import the following helper files found here:
+Import the following helper files found [here](install-helpers/):
 
 - categories.json
 - sections.json
