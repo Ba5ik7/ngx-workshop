@@ -9,15 +9,15 @@
 
 ## Installing Locally
 To run the application locally, we need to install a few dependences:
-<ul>
-  <li>NodeJs</li>
-  <li>Angular CLI</li>
-  <li>NestJs CLI</li>
-  <li>Docker</li>
-  <li>Nginx</li>
-  <li>MonogoDB</li>
-  <li>InfluxDB</li>
-</ul>
+
+- NodeJs
+- Angular CLI
+- NestJs CLI
+- Docker
+- Nginx
+- MonogoDB
+- InfluxDB
+
 
 I'll walk through how I install them. Big fan of [KISS](https://en.wikipedia.org/wiki/KISS_principle). However, please feel free to install them how you would like.
 
@@ -92,7 +92,7 @@ docker run --name workshop-nginx -p 80:80 -d nginx
 
 After installing we need to add some proxy rules to `/etc/nginx/conf.d/default.conf`.
 
-Copy the content of this [file](install-helpers/default.conf) to the nginx default.conf flie.
+Copy the content of this [file](install-helpers/default.conf) to the nginx `default.conf` flie.
 
 <img src="images/nginx-conf.png" width="700" />
 
@@ -111,12 +111,37 @@ Install the MongoDB Docker Container:
 docker run --name workshop-mongo -d -p 27017:27017 mongo:latest
 ```
 
+### MongoDB Compass
+[Documents](https://www.mongodb.com/docs/)
+
+Install MongoDB Compass desktop [application](https://www.mongodb.com/try/download/compass):
+
+<img src="images/mongodb-compass.png" width="700" />
+
+Connect to the localhost instance.
+
+Create and new database name `workshop-viewer`
+
+Create four new collections named:
+- `categories`
+- `sections`
+- `users`
+- `workshops`
+
+
+
+
+<hr>
+
 ### InfluxDB
 
+<hr>
 
 ## Development server
 
 Run `nx serve workshop-ui` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
+
+<hr>
 
 ## Understand this workspace
 
