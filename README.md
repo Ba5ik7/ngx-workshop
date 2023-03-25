@@ -125,11 +125,17 @@ Create and new database name `workshop-viewer`
 Create four new collections named:
 - `categories`
 - `sections`
-- `users`
 - `workshops`
+- `users`
 
+Import the hepler files: 
+- `categories.json`
+- `sections.json`
+- `workshops.json`
 
+Files found [here](install-helpers/)
 
+We will walk through creating a user on the `workshop-api` project's readme.
 
 <hr>
 
