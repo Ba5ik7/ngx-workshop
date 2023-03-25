@@ -139,7 +139,7 @@ Nginx brought a groundbreaking change to the world of reverse proxies with its u
 To get started with Nginx, install the Nginx Docker Container using the following command:
 
 ```sh
-docker run --name workshop-nginx -p 80:80 -d nginx
+docker run --name workshop-nginx -d -p 80:80 nginx
 ```
 
 ### Configuring Proxy Rules
@@ -214,12 +214,12 @@ With MongoDB and MongoDB Compass in your toolkit, you're all set to manage and v
 Get InfluxDB up and running by installing the InfluxDB Docker Container with the following command:
 
 ```sh
-docker run --name influxdb -p 8086:8086 influxdb:2.0.9
+docker run --name workshop-influxdb -d -p 8086:8086 influxdb:2.0.9
 ```
 
 <img src="images/influxdb-docker.png" width="700" />
 
-InfluxDB Admin: Manage Your Data Like a Boss! 💼👩‍💼
+## InfluxDB Admin: Manage Your Data Like a Boss!
 Navigate to the InfluxDB admin panel at `localhost:8086` and set up your admin account. While setting up the organization and bucket name, use these values:
 
 - Organization Name: `Ngx-Workshop`
@@ -237,10 +237,76 @@ Next, navigate to the Load Data section and Tokens tab. Generate a new token nam
 
 <br>
 
-# Serving Locally
+# Serving Locally: A Fun and Fuss-Free Way to Develop! 🎉💻
 
-<!-- Welcome to Ngx-Workshop, where learning to create a full stack web application is as fun and easy as a walk in the park! With our user-friendly platform, you can create workshops on how to build the full stack workshop creation application  - talk about inception!
+Serving your application locally allows you to develop and test your project in a comfortable and efficient environment. This way, you can experiment, make changes, and see the results in real-time without any delays or deployments. Say goodbye to the hassle of working on remote servers and embrace the power of local development!
 
-Our application features a content management system that lets admins create workshops, a tests generator to make learning exciting and engaging, and a user journey tracking system to help you keep track of your progress. We believe that learning should be enjoyable, and that's exactly what we aim to provide with Ngx-Workshop.
+## Code Editor: VS Code - A Developer's Dream!
 
-So, whether you're a seasoned developer looking to level up your skills or a newbie just dipping your toes in the programming waters, Ngx-Workshop has got you covered. Let's get ready to build some awesome web apps together! -->
+[<img src="images/vscode-logo.png" height="45" />](https://code.visualstudio.com/)
+
+Alright! Now that we've got all the dependencies installed, it's time to set up a local development environment. While it's up to you which code editor you prefer, we highly recommend using VS Code. Our workshops will be using this editor and its plugins throughout our journey.
+
+You can download VS Code [here](https://code.visualstudio.com/download). .
+
+## Cloning the Repo and Installing NPM Packages: Just a Couple of Commands Away!
+
+[<img src="images/github-logo.svg" height="45" />](https://github.com/)
+
+If you haven't already cloned this repo, go ahead and do so now with this `git` command:
+
+```sh
+git clone git@github.com:Ba5ik7/ngx-workshop.git
+```
+
+> Don't have SSH connected to GitHub? No worries! Follow this [link](https://docs.github.com/en/authentication/connecting-to-github-with-ssh) to get up and running with connecting to GitHub with SSH.
+
+Next, navigate to the new repo's folder and run this command to install all the required Node packages:
+
+```sh
+npm i
+```
+
+## Adding the NestJs Environment File: A Hidden Treasure!
+
+In the NestJs project folder, located at `apps/workshop-api/`, create a hidden file named `.env`. Then, add the following content:
+
+```ini
+MONGODB_URI=mongodb://host.docker.internal:27017/workshop-viewer
+
+JWT_SECRET=secretKey
+JWT_ACCESS_TOKEN_AUDIENCE=host.docker.internal:3000
+JWT_ACCESS_TOKEN_ISSUER=host.docker.internal:3000
+JWT_ACCESS_TOKEN_TTL=3600
+JWT_REFRESH_TOKEN_TTL=86400
+
+INFLUXDB_URL=http://localhost:8086
+INFLUXDB_TOKEN=NEED_TO_ADD_THE_INFUXDB_TOKEN_WE_GENERATED
+```
+
+Replace NEED_TO_ADD_THE_INFUXDB_TOKEN_WE_GENERATED with the token we created earlier while setting up InfluxDB.
+
+## Nx: Supercharge Your Monorepo!
+
+[<img src="images/nx-logo.png" height="45" />](https://nx.dev/)
+
+[Official Documentation](https://nx.dev/getting-started/intro/)
+
+This monorepo uses Nx to help manage projects. Nx builds on the functionality of the `Angular CLI` and `NestJs CLI`, adding even more features! The VS Code plugin for Nx comes pre-installed, so there's nothing left to do on that front.
+
+Start the application locally by running this `Nx CLI` command:
+
+```sh
+nx run-many --target=serve
+```
+
+Navigate to `localhost` and you'll see this:
+
+<img src="images/ngx-workshop-start.png" width="700" />
+
+
+After having fun exploring, head over to `localhost/admin` to set up the admin user:
+
+<img src="images/ngx-workshop-admin.png" width="700" />
+
+🎉 Now you can follow the Ngx-Workshop workshops locally or online at Ngx-Workshop. 🎉
