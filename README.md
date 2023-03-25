@@ -291,7 +291,7 @@ INFLUXDB_URL=http://localhost:8086
 INFLUXDB_TOKEN=NEED_TO_ADD_THE_INFUXDB_TOKEN_WE_GENERATED
 ```
 
-Replace NEED_TO_ADD_THE_INFUXDB_TOKEN_WE_GENERATED with the token we created earlier while setting up InfluxDB.
+Replace `NEED_TO_ADD_THE_INFUXDB_TOKEN_WE_GENERATED` with the token we created earlier while setting up InfluxDB.
 
 ## Nx: Supercharge Your Monorepo!
 
