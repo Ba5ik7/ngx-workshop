@@ -1,0 +1,22 @@
+[{
+  "_id": "angular",
+  "sectionTitle": "Angular",
+  "summary": "Angular Material offers a wide variety of UI components based on the",
+  "menuSvgPath": "/assets/img/angular-white-transparent.svg",
+  "headerSvgPath": "/assets/img/angular.svg",
+  "categoriesLastUpdated": ""
+},{
+  "_id": "nestjs",
+  "sectionTitle": "Nest JS",
+  "summary": "The Component Dev Kit (CDK) is a set of behavior primitives for building UI",
+  "menuSvgPath": "/assets/img/nestjs-white.svg",
+  "headerSvgPath": "/assets/img/nestjs.svg",
+  "categoriesLastUpdated": ""
+},{
+  "_id": "rxjs",
+  "sectionTitle": "RxJS",
+  "summary": "The Component Dev Kit (CDK) is a set of behavior primitives for building UI",
+  "menuSvgPath": "/assets/img/rxjs-white.svg",
+  "headerSvgPath": "/assets/img/rxjs.svg",
+  "categoriesLastUpdated": ""
+}]

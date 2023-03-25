@@ -1,0 +1,70 @@
+[{
+  "_id": {
+    "$oid": "641e404a8433aefda28fe3db"
+  },
+  "sectionId": "angular",
+  "sortId": 0,
+  "name": "Hello World",
+  "summary": "Something about Hello Dolly",
+  "examples": [],
+  "workshopDocuments": [
+    {
+      "_id": {
+        "$oid": "641e404a8433aefda28fe3dd"
+      },
+      "name": "Page",
+      "sortId": 0
+    }
+  ],
+  "id": "hello-world",
+  "__v": 0,
+  "workshopDocumentsLastUpdated": {
+    "$date": "2023-03-25T00:28:58.485Z"
+  }
+},{
+  "_id": {
+    "$oid": "641e40678433aefda28fe3e2"
+  },
+  "sectionId": "nestjs",
+  "sortId": 0,
+  "name": "Hello World",
+  "summary": "Something about Hello Dolly",
+  "examples": [],
+  "workshopDocuments": [
+    {
+      "_id": {
+        "$oid": "641e40678433aefda28fe3e4"
+      },
+      "name": "Page",
+      "sortId": 0
+    }
+  ],
+  "id": "hello-world",
+  "__v": 0,
+  "workshopDocumentsLastUpdated": {
+    "$date": "2023-03-25T00:29:27.698Z"
+  }
+},{
+  "_id": {
+    "$oid": "641e40728433aefda28fe3e8"
+  },
+  "sectionId": "rxjs",
+  "sortId": 0,
+  "name": "Hello World",
+  "summary": "Something about Hello Dolly",
+  "examples": [],
+  "workshopDocuments": [
+    {
+      "_id": {
+        "$oid": "641e40728433aefda28fe3ea"
+      },
+      "name": "Page",
+      "sortId": 0
+    }
+  ],
+  "id": "hello-world",
+  "__v": 0,
+  "workshopDocumentsLastUpdated": {
+    "$date": "2023-03-25T00:29:38.203Z"
+  }
+}]
