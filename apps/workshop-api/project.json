@@ -16,7 +16,8 @@
         "tsConfig": "apps/workshop-api/tsconfig.app.json",
         "assets": ["apps/workshop-api/src/assets"],
         "isolatedConfig": true,
-        "webpackConfig": "apps/workshop-api/webpack.config.js"
+        "webpackConfig": "apps/workshop-api/webpack.config.js",
+        "generatePackageJson": true
       },
       "configurations": {
         "development": {},
