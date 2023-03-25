@@ -1,17 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { NavigationService } from '../../shared/services/navigation/navigation.service';
 
 @Component({
-  selector: 'app-settings',
-  templateUrl: './settings.component.html',
-  styleUrls: ['./settings.component.scss']
+  standalone: true,
+  selector: 'ngx-settings',
+  template: `<h1>Settings</h1>`,
 })
 export class SettingsComponent implements OnInit {
-
-  constructor(navigationService: NavigationService) {
-    navigationService.sectionRouteSub.next('settings');
-  }
+  navigationService = inject(NavigationService);
   ngOnInit(): void {
+    this.navigationService.sectionRouteSub.next('settings');
   }
-
 }
