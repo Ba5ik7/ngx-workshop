@@ -3,6 +3,7 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
 import { RouterModule } from '@angular/router';
+import { ProfileFabComponent } from '../profile-fab/profile-fab.component';
 
 @Component({
   standalone: true,
@@ -14,6 +15,7 @@ import { RouterModule } from '@angular/router';
         <span>Ngx-Admin</span>
       </a>
       <div class="flex-spacer"></div>
+      <ngx-profile-fab></ngx-profile-fab>
     </nav>
   `,
   styles: [`
@@ -41,7 +43,8 @@ import { RouterModule } from '@angular/router';
     CommonModule,
     RouterModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    ProfileFabComponent
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })

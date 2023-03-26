@@ -24,6 +24,11 @@ export const SIDENAV_ROUTES: Route[] = [
       },
       {
         canActivate: [AuthGuard],
+        path: 'account',
+        loadChildren: () => import('./sidenav-pages/settings/settings.routing').then(m => m.SETTINGS_ROUTES)
+      },
+      {
+        canActivate: [AuthGuard],
         path: 'chat', loadChildren: () => import('./sidenav-pages/chat/chat.routing').then(m => m.CHAT_ROUTES)
       },
       {

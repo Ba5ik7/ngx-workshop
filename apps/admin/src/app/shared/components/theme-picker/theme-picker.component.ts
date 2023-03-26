@@ -20,13 +20,12 @@ import { MatLegacyTooltipModule as MatTooltipModule } from '@angular/material/le
     MatTooltipModule
   ],
   template: `
-    <button mat-icon-button
-            [mat-menu-trigger-for]="themeMenu"
-            matTooltip="Select a theme for the documentation">
-      <mat-icon>format_color_fill</mat-icon>
+    <button mat-button [mat-menu-trigger-for]="themeMenu" [matTooltip]="matTooltipTest">
+      {{ currentTheme | uppercase }}
+      <mat-icon class="dropdown-icon">format_color_fill</mat-icon>
     </button>
 
-    <mat-menu #themeMenu="matMenu" xPosition="before" class="theme-picker-menu">
+    <mat-menu #themeMenu="matMenu" class="theme-picker-menu">
       <button mat-menu-item *ngFor="let theme of themes | keyvalue" (click)="selectTheme(theme.key)">
         <mat-icon 
           [ngClass]="{'docs-theme-selected-icon': currentTheme === theme.key}"
@@ -44,6 +43,7 @@ import { MatLegacyTooltipModule as MatTooltipModule } from '@angular/material/le
 })
 export class ThemePickerComponent {
 
+  matTooltipTest = 'Select a theme for the documentation';
   currentTheme: string | undefined;
   themes: Map<string, string> = new Map([
     ['deeppurple-amber', 'Deep Purple & Amber'],

@@ -30,10 +30,6 @@ import { MatLegacyDialogModule as MatDialogModule } from '@angular/material/lega
             <mat-icon>chat</mat-icon>
             Chat
           </a>
-          <a mat-list-item routerLink="settings" routerLinkActive="workshop-menu-nav-item-selected">
-            <mat-icon>settings</mat-icon>
-            Settings
-          </a>
           <mat-divider></mat-divider>
           <a mat-list-item routerLinkActive="workshop-menu-nav-item-selected" (click)="createSection()">
             <mat-icon class="create-icon">note_add</mat-icon>

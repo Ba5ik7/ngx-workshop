@@ -143,7 +143,7 @@ export class LoginComponent implements OnInit {
 
   signSuccuessful(whatever: any): void {
     this.requestInProgress();
-    this.userStateService.setUserToken(whatever);
+    this.userStateService.signedIn.next(true);
     this.router.navigate(['auth', 'dashboard']);
   }
 }
