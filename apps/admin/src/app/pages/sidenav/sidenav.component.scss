@@ -4,47 +4,20 @@ ngx-sidenav {
   overflow: auto;
 }
 
-.sidenav-container {
-  flex: 1;
-  box-sizing: border-box;
-}
-
-.sidenav {
-  overflow: auto;
-}
-
-.sidenav-content {
-  display: flex;
-  flex-direction: column;
-  min-height: 100%;
-}
-
-.sidenav-inner-content {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-}
-
 .sidenav-body-content {
   display: flex;
   flex: 1 1 auto;
 }
 
-// Page Header
 .sidenav-page-header {
   display: flex;
   align-items: center;
 
-  @media (max-width: 959px) {
-    padding-left: 0;
-  }
   h1 {
-    outline: none;
     font-weight: 300;
     margin: 0;
     padding: 28px 8px;
-    font-size: 20px;
-    height:24px;
+
     @media (max-width: 959px) {
       padding: 24px 8px;
       font-size: 20px;
@@ -55,31 +28,22 @@ ngx-sidenav {
     width: 50px;
     margin: 0 10px;
   }
+
+  @media (max-width: 959px) {
+    padding-left: 0;
+  }
 }
-
-
 .sidenav-toggle {
   padding: 0;
   margin: 8px;
   min-width: 64px;
   display: none;
-
   @media (max-width: 959px) {
     display: flex;
     align-items: center;
     justify-content: center;
   }
-
-  mat-icon {
-    font-size: 30px;
-    height: 64px;
-    width: 64px;
-    line-height: 64px;
-    color: white;
-  }
 }
-
-
 .workshop-menu-nav {
   position: sticky;
   top: 0;
@@ -92,25 +56,6 @@ ngx-sidenav {
     &::-webkit-scrollbar {
       height: 4px;
       width: 4px;
-    }
-
-    ul {
-      list-style-type: none;
-      margin: 0 0 5px 0;
-      padding: 0;
-      overflow: hidden;
-    }
-
-    li {
-      font-size: 13px;
-      line-height: 16px;
-      margin: 0;
-      padding: 5px 15px 5px 20px;
-    }
-
-    a {
-      display: block;
-      text-decoration: none;
     }
   }
 
