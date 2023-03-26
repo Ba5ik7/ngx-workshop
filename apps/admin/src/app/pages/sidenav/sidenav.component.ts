@@ -3,12 +3,12 @@ import { Observable } from 'rxjs';
 import { NavigationService } from '../../shared/services/navigation/navigation.service';
 
 @Component({
-  selector: 'workshop-sidenav',
-  templateUrl: './workshop-sidenav.component.html',
-  styleUrls: ['./workshop-sidenav.component.scss'],
+  selector: 'ngx-sidenav',
+  templateUrl: './sidenav.component.html',
+  styleUrls: ['./sidenav.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class WorkshopSidenavComponent {
+export class SidenavComponent {
 
   sections!: Observable<any[]>;
   sectionTitle!: Observable<string>;

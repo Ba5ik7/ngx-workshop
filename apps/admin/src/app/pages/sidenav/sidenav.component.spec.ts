@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { WorkshopSidenavComponent } from './workshop-sidenav.component';
+import { WorkshopSidenavComponent } from './sidenav.component';
 
 describe('WorkshopSidenavComponent', () => {
   let component: WorkshopSidenavComponent;

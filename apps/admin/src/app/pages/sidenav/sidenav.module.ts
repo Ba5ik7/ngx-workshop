@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { WorkshopSidenavRoutingModule } from './workshop-sidenav-routing.module';
-import { WorkshopSidenavComponent } from './workshop-sidenav.component';
+import { WorkshopSidenavRoutingModule } from './sidenav-routing.module';
+import { SidenavComponent } from './sidenav.component';
 
 import { MatIconModule } from '@angular/material/icon';
 import { MatLegacyListModule as MatListModule } from '@angular/material/legacy-list';
@@ -15,7 +15,7 @@ import { FooterComponent } from '../../shared/components/footer/footer.component
 
 @NgModule({
   declarations: [
-    WorkshopSidenavComponent
+    SidenavComponent
   ],
   imports: [
     CommonModule,
