@@ -2,8 +2,9 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { DynamicGridListComponent } from './dynamic-grid-list/dynamic-grid-list.component';
+import { NavigationService } from '../../../../shared/services/navigation/navigation.service';
 
-import { NavigationService } from '../../shared/services/navigation/navigation.service';
+
 
 @Component({
   standalone: true,

@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { NavigationService } from '../../shared/services/navigation/navigation.service';
+import { NavigationService } from '../../../../shared/services/navigation/navigation.service';
 
 @Component({
   standalone: true,
