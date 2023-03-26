@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CreateSectionModalComponent } from './create-section-modal.component';
+import { CreateSectionModalComponent } from './create-section.component';
 
 describe('CreateSectionModalComponent', () => {
   let component: CreateSectionModalComponent;

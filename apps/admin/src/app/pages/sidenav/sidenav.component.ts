@@ -7,8 +7,8 @@ import { MatLegacyListModule as MatListModule } from '@angular/material/legacy-l
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { RouterModule } from '@angular/router';
 import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
-import { WorkshopMenuModule } from './sidenav-menu/sidenav-menu.module';
 import { FooterComponent } from '../../shared/components/footer/footer.component';
+import { SidenavMenuComponent } from './sidenav-menu/sidenav-menu.component';
 
 
 @Component({
@@ -98,12 +98,12 @@ import { FooterComponent } from '../../shared/components/footer/footer.component
   imports: [
     CommonModule,
     RouterModule,
-    WorkshopMenuModule,
     FooterComponent,
     MatButtonModule,
     MatIconModule,
     MatListModule,
-    MatSidenavModule
+    MatSidenavModule,
+    SidenavMenuComponent,
   ],
   encapsulation: ViewEncapsulation.None
 })
