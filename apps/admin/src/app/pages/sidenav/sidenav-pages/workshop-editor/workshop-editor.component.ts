@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { distinct, map, mergeMap, Observable, Subject, takeUntil, toArray } from 'rxjs';
-import { Category, CategoryWorkshopDocument } from '../../shared/interfaces/category.interface';
-import { NavigationService } from '../../shared/services/navigation/navigation.service';
+import { Category, CategoryWorkshopDocument } from '../../../../shared/interfaces/category.interface';
+import { NavigationService } from '../../../../shared/services/navigation/navigation.service';
 
 @Component({
   selector: 'app-workshop-editor',

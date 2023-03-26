@@ -2,8 +2,8 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnIni
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatLegacyDialogRef as MatDialogRef } from '@angular/material/legacy-dialog';
 import { Subject, take, takeUntil } from 'rxjs';
-import { Category } from '../../../../shared/interfaces/category.interface';
-import { NavigationService } from '../../../../shared/services/navigation/navigation.service';
+import { Category } from '../../../../../../shared/interfaces/category.interface';
+import { NavigationService } from '../../../../../../shared/services/navigation/navigation.service';
 import { WorkshopEditorService } from '../../workshop-editor.service';
 
 @Component({

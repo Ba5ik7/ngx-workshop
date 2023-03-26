@@ -8,7 +8,7 @@
 
 @use './pages/not-found/not-found-theme';
 @use './pages/sidenav/sidenav';
-@use './pages/workshop-editor/workshop-editor';
+@use './pages/sidenav/sidenav-pages/workshop-editor/workshop-editor';
 @use './pages/sidenav/sidenav-pages/chat/chat';
 
 @use './shared/components/footer/footer-theme';
