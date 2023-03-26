@@ -6,12 +6,6 @@ import { RouterModule } from '@angular/router';
 
 @Component({
   standalone: true,
-  imports: [
-    CommonModule,
-    RouterModule,
-    MatButtonModule,
-    MatIconModule
-  ],
   selector: 'ngx-navbar',
   template: `
     <nav class="navbar-header">
@@ -43,6 +37,12 @@ import { RouterModule } from '@angular/router';
       vertical-align: middle;
     }
   `],
+  imports: [
+    CommonModule,
+    RouterModule,
+    MatButtonModule,
+    MatIconModule
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NavbarComponent { }
