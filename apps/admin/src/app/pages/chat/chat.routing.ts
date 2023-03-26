@@ -1,9 +1,8 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../../guards/auth.guard';
 import { ChatComponent } from './chat.component';
+import { Route } from '@angular/router';
 
-const routes: Routes = [
+export const CHAT_ROUTES: Route[] = [
   {
     path: '',
     pathMatch: 'full',
@@ -15,9 +14,3 @@ const routes: Routes = [
     component: ChatComponent
   }
 ]
-
-@NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
-})
-export class ChatRoutingModule { }

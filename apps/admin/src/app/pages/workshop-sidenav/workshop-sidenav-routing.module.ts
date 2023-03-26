@@ -25,7 +25,7 @@ const routes: Routes = [
       },
       {
         canActivate: [AuthGuard],
-        path: 'chat', loadChildren: () => import('../chat/chat.module').then(m => m.ChatModule)
+        path: 'chat', loadChildren: () => import('../chat/chat.routing').then(m => m.CHAT_ROUTES)
       },
       {
         canActivate: [AuthGuard],
