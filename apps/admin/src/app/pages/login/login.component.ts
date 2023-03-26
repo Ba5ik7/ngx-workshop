@@ -1,18 +1,80 @@
 import { HttpStatusCode } from '@angular/common/http';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import {  FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { UserStateService } from '../../shared/services/user-state/user-state.service';
 import { AuthService } from '../../shared/services/auth/auth.service';
-import { IUser } from '../../shared/interfaces/user.interface';
+import { MatLegacyCardModule as MatCardModule } from '@angular/material/legacy-card';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatLegacyFormFieldModule as MatFormFieldModule } from '@angular/material/legacy-form-field';
+import { MatLegacyInputModule as MatInputModule } from '@angular/material/legacy-input';
+import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
 
 @Component({
+  standalone: true,
   selector: 'ngx-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  template: `
+    <mat-card>
+      <div class="form-container">
+        <form [formGroup]="signInForm">
+          <h3>Sign In</h3>
+          <span class="form-level-error-message">{{signInFormLevelMessage}}</span>
+          <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input matInput #signInEmail type="email" placeholder="Email" formControlName="email">
+            <mat-error *ngIf="signInForm.get('email')?.errors">{{signInFormErrorMessages['email']}}</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input matInput type="password" placeholder="Password" formControlName="password">
+            <mat-error *ngIf="signInForm.get('password')?.errors">{{signInFormErrorMessages['password']}}</mat-error>
+          </mat-form-field>
+          <button mat-raised-button color="primary" (click)="signInClick()" [disabled]="signInForm.invalid || formLoading">Sign In</button>
+        </form>
+      </div>
+    </mat-card>
+  `,
+  styles: [`
+    :host {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      width: 100%;
+    }
+    .form-container form {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      width: 300px;
+      .form-level-error-message { color:  #f44336; }
+      button {
+        margin-bottom: 14px;
+        &:nth-last-child(1) {
+          &.mat-button-disabled {
+            background-color: rgba(255, 255, 255, 0);
+          }
+        }
+      }
+    }
+  `],
+  imports: [
+    CommonModule,
+    MatCardModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule
+  ]
 })
 export class LoginComponent implements OnInit {
+  authService = inject(AuthService);
+  userStateService = inject(UserStateService);
+  formBuilder = inject(FormBuilder);
+  router = inject(Router);
 
   @ViewChild('signInEmail') signInEmail!: ElementRef;
 
@@ -38,23 +100,7 @@ export class LoginComponent implements OnInit {
     httpFailure: '😿 Sorry something bad happen. Try again or try refreshing the page.'
   };
 
-  constructor(
-    private authService: AuthService,
-    private userStateService: UserStateService,
-    private formBuilder: FormBuilder,
-    private router: Router,
-  ) { }
-
   ngOnInit(): void {
-    this.initSignForm();
-  }
-
-  signInClick(): void {
-    this.requestInProgress(true);
-    this.authService.signIn(this.signInForm.value);    
-  }
-
-  initSignForm(): void {
     this.signInForm.statusChanges
     .pipe(takeUntil(this.destory))
     .subscribe(() => this.setErrorsMessages(this.signInForm, this.signInFormErrorMessages));
@@ -74,6 +120,11 @@ export class LoginComponent implements OnInit {
     this.authService.signInFormSuccess$
     .pipe(takeUntil(this.destory))
     .subscribe((user) => this.signSuccuessful(user));
+  }
+
+  signInClick(): void {
+    this.requestInProgress(true);
+    this.authService.signIn(this.signInForm.value);    
   }
 
   setErrorsMessages(formGroup: FormGroup, formControlMessages: { [key: string]: string }): void {

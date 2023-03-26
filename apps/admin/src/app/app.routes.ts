@@ -19,7 +19,7 @@ export const appRoutes: Routes = [
   { path: '',   redirectTo: '/login', pathMatch: 'full' },
   {
     path: 'login',
-    loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule)
+    loadChildren: () => import('./pages/login/login.routing').then(m => m.LOGIN_ROUTES)
   },
   {
     path: 'auth',
