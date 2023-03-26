@@ -1,5 +1,6 @@
 import { DOCUMENT } from '@angular/common';
 import { Inject, Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { LocalStorage, WebstorageService } from '../../services/webstorage/webstorage.service';
 
 @Injectable({
@@ -11,7 +12,20 @@ export class ThemePickerService {
   static STRORAGE_KEY = 'theme-picker-current-name';
   static NOT_FOUND = 'NOT_FOUND';
 
-  constructor(@Inject(DOCUMENT) private document: Document, private webstorageService: WebstorageService ) { }
+  currentTheme$ = new BehaviorSubject(this.getStoredThemeName().value ?? ThemePickerService.DEFAULT_THEME);
+
+  constructor(
+    @Inject(DOCUMENT) private document: Document,
+    private webstorageService: WebstorageService
+  ) { }
+
+  init(): void {
+    const themeName = this.getStoredThemeName();
+    const theme = themeName.value !== ThemePickerService.NOT_FOUND ? themeName.value : ThemePickerService.DEFAULT_THEME;
+    this.setStyle('theme', `${theme}.css`);
+    this.storeTheme(theme);
+    this.currentTheme$.next(theme);
+  }
 
   storeTheme(theme: string): void {
     this.webstorageService.setLocalstorageItem({ key: ThemePickerService.STRORAGE_KEY, value: theme });

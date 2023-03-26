@@ -2,6 +2,7 @@ import { RouterModule } from '@angular/router';
 import { Component, ViewEncapsulation } from '@angular/core';
 import { NavigationService } from './shared/services/navigation/navigation.service';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
+import { ThemePickerService } from './shared/services/theme-picker/theme-picker.service';
 
 @Component({
   standalone: true,
@@ -30,7 +31,8 @@ import { NavbarComponent } from './shared/components/navbar/navbar.component';
 })
 export class AppComponent {
 
-  constructor(navigationService: NavigationService) {
+  constructor(navigationService: NavigationService, themePickerService: ThemePickerService) {
     navigationService.initializeAppData();
+    themePickerService.init();
   }
 }
