@@ -8,6 +8,8 @@ import { NavigationService } from '../../../../../../../../shared/services/navig
 import { WorkshopEditorService } from '../../../../../../../../shared/services/workshops/workshops.service';
 import { MatLegacyFormFieldModule as MatFormFieldModule } from '@angular/material/legacy-form-field';
 import { MatLegacyDialogModule as MatDialogModule } from '@angular/material/legacy-dialog';
+import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
+import { MatLegacyInputModule as MatInputModule } from '@angular/material/legacy-input';
 
 @Component({
   standalone: true,
@@ -17,7 +19,9 @@ import { MatLegacyDialogModule as MatDialogModule } from '@angular/material/lega
   imports: [
     MatFormFieldModule,
     MatDialogModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatInputModule,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
