@@ -22,7 +22,6 @@ import { CommonModule } from '@angular/common';
   selector: 'ngx-dynamic-grid-list',
   template: `
     <div class="grid-container">
-      <h1 class="mat-h1">Dashboard</h1>
       <mat-grid-list cols="2" rowHeight="350px">
         <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
           <mat-card class="dashboard-card">
