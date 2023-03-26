@@ -1,4 +1,4 @@
-import { AuthGuard } from '../../guards/auth.guard';
+import { AuthGuard } from '../../shared/guards/auth.guard';
 import { SidenavComponent } from './sidenav.component';
 import { Route } from '@angular/router';
 

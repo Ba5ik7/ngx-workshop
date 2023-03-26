@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
 
-import { UserStateService } from '../shared/services/user-state/user-state.service';
+import { UserStateService } from '../services/user-state/user-state.service';
 import { Router } from '@angular/router';
 
 @Injectable()

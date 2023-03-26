@@ -1,4 +1,4 @@
-import { AuthGuard } from '../../../../guards/auth.guard';
+import { AuthGuard } from '../../../../shared/guards/auth.guard';
 import { ChatComponent } from './chat.component';
 import { Route } from '@angular/router';
 
