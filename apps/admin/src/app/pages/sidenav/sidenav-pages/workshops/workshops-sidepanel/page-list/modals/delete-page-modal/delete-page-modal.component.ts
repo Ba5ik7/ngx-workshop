@@ -11,6 +11,7 @@ import { MatLegacyFormFieldModule as MatFormFieldModule } from '@angular/materia
 import { MatLegacyDialogModule as MatDialogModule } from '@angular/material/legacy-dialog';
 import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
 import { MatLegacyInputModule as MatInputModule } from '@angular/material/legacy-input';
+import { CommonModule } from '@angular/common';
 
 @Component({
   standalone: true,
@@ -18,6 +19,7 @@ import { MatLegacyInputModule as MatInputModule } from '@angular/material/legacy
   templateUrl: './delete-page-modal.component.html',
   styleUrls: ['./delete-page-modal.component.scss'],
   imports: [
+    CommonModule,
     MatFormFieldModule,
     MatDialogModule,
     ReactiveFormsModule,

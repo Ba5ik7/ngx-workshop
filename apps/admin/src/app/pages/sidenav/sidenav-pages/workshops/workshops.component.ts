@@ -49,18 +49,10 @@ import { CategoryListComponent } from './workshops-sidepanel/category-list/categ
   `],
   imports: [
     CommonModule,
-    ReactiveFormsModule,
     RouterModule,
-    DragDropModule,
-    MatListModule,
-    MatIconModule,
-    MatDialogModule,
-    MatButtonModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatSnackBarModule,
     PageListComponent,
-    CategoryListComponent
+    CategoryListComponent,
+    MatSnackBarModule
   ]
 })
 export class WorkshopsComponent implements OnDestroy {
