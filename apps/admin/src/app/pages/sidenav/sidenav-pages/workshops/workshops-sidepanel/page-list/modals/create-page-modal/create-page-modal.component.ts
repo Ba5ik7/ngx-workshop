@@ -1,15 +1,23 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatLegacyDialogRef as MatDialogRef } from '@angular/material/legacy-dialog';
 import { Subject, takeUntil } from 'rxjs';
 import { Category } from '../../../../../../../../shared/interfaces/category.interface';
 import { NavigationService } from '../../../../../../../../shared/services/navigation/navigation.service';
 import { WorkshopEditorService } from '../../../../../../../../shared/services/workshops/workshops.service';
+import { MatLegacyFormFieldModule as MatFormFieldModule } from '@angular/material/legacy-form-field';
+import { MatLegacyDialogModule as MatDialogModule } from '@angular/material/legacy-dialog';
 
 @Component({
+  standalone: true,
   selector: 'ngx-create-page-modal',
   templateUrl: './create-page-modal.component.html',
   styleUrls: ['./create-page-modal.component.scss'],
+  imports: [
+    MatFormFieldModule,
+    MatDialogModule,
+    ReactiveFormsModule
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CreatePageModalComponent implements OnInit, OnDestroy {

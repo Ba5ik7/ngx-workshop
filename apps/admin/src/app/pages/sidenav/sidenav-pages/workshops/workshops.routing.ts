@@ -1,9 +1,8 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../../../../shared/guards/auth.guard';
 import { WorkshopsComponent } from './workshops.component';
+import { Route } from '@angular/router';
 
-const routes: Routes = [
+export const WORKSHOPS_ROUTES: Route[] = [
   {
     path: ':section',
     component: WorkshopsComponent,
@@ -26,9 +25,3 @@ const routes: Routes = [
     ]
   }
 ];
-
-@NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
-})
-export class WorkshopEditorRoutingModule { }

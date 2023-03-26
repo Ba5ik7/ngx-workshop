@@ -1,4 +1,4 @@
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, DragDropModule, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import { MatLegacySnackBar as MatSnackBar, MatLegacySnackBarConfig as MatSnackBarConfig } from '@angular/material/legacy-snack-bar';
@@ -7,11 +7,22 @@ import { WorkshopEditorService } from '../../../../../../shared/services/worksho
 import { CreateCategoryModalComponent } from './modals/create-category-modal/create-category-modal.component';
 import { DeleteCategoryModalComponent } from './modals/delete-category-modal/delete-category-modal.component';
 import { EditCategoryModalComponent } from './modals/edit-category-modal/edit-category-modal.component';
-
+import { MatLegacyListModule as MatListModule } from '@angular/material/legacy-list';
+import { MatIconModule } from '@angular/material/icon';
+import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 @Component({
+  standalone: true,
   selector: 'ngx-category-list',
   templateUrl: './category-list.component.html',
-  styleUrls: ['./category-list.component.scss']
+  styleUrls: ['./category-list.component.scss'],
+  imports: [
+    CommonModule,
+    RouterModule,
+    MatListModule,
+    MatIconModule,
+    DragDropModule
+  ]
 })
 export class CategoryListComponent implements OnInit, OnDestroy {
 

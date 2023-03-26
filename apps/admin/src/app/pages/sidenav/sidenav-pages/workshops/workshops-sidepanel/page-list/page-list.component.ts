@@ -1,17 +1,31 @@
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, DragDropModule, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import { MatLegacySnackBar as MatSnackBar, MatLegacySnackBarConfig as MatSnackBarConfig } from '@angular/material/legacy-snack-bar';
+import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
 import { Subject, takeUntil } from 'rxjs';
 import { WorkshopEditorService } from '../../../../../../shared/services/workshops/workshops.service';
 import { CreatePageModalComponent } from './modals/create-page-modal/create-page-modal.component';
 import { DeletePageModalComponent } from './modals/delete-page-modal/delete-page-modal.component';
 import { EditPageModalComponent } from './modals/edit-page-modal/edit-page-modal.component';
+import { MatLegacyListModule as MatListModule } from '@angular/material/legacy-list';
+import { MatIconModule } from '@angular/material/icon';
+import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
+  standalone: true,
   selector: 'ngx-page-list',
   templateUrl: './page-list.component.html',
   styleUrls: ['./page-list.component.scss'],
+  imports: [
+    CommonModule,
+    RouterModule,
+    MatListModule,
+    MatIconModule,
+    DragDropModule,
+    MatButtonModule
+  ]
 })
 export class PageListComponent implements OnInit, OnDestroy {
 

@@ -1,16 +1,24 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatLegacyDialogRef as MatDialogRef, MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA } from '@angular/material/legacy-dialog';
 import { Subject, take, takeUntil } from 'rxjs';
 import { Category } from '../../../../../../../../shared/interfaces/category.interface';
 import { NavigationService } from '../../../../../../../../shared/services/navigation/navigation.service';
 import { MatchStringValidator } from '../../../../../../../../shared/validators/match-string.validator';
 import { WorkshopEditorService } from '../../../../../../../../shared/services/workshops/workshops.service';
+import { MatLegacyFormFieldModule as MatFormFieldModule } from '@angular/material/legacy-form-field';
+import { MatLegacyDialogModule as MatDialogModule } from '@angular/material/legacy-dialog';
 
 @Component({
+  standalone: true,
   selector: 'ngx-delete-category-modal',
   templateUrl: './delete-category-modal.component.html',
   styleUrls: ['./delete-category-modal.component.scss'],
+  imports: [
+    MatFormFieldModule,
+    MatDialogModule,
+    ReactiveFormsModule
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DeleteCategoryModalComponent implements OnInit {
