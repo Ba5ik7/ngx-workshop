@@ -23,7 +23,7 @@ export const appRoutes: Routes = [
   },
   {
     path: 'auth',
-    loadChildren: () => import('./pages/sidenav/sidenav.module').then(m => m.WorkshopSidenavModule),
+    loadChildren: () => import('./pages/sidenav/sidenav.routing').then(m => m.SIDENAV_ROUTES),
     canActivate: [AuthGuard]
   },
   {

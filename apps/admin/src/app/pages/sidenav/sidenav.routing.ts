@@ -1,9 +1,8 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../../guards/auth.guard';
 import { SidenavComponent } from './sidenav.component';
+import { Route } from '@angular/router';
 
-const routes: Routes = [
+export const SIDENAV_ROUTES: Route[] = [
   {
     path: '',
     component: SidenavComponent,
@@ -35,9 +34,3 @@ const routes: Routes = [
     ]
   }
 ];
-
-@NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
-})
-export class WorkshopSidenavRoutingModule { }
