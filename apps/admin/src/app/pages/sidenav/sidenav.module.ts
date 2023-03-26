@@ -9,7 +9,7 @@ import { MatLegacyListModule as MatListModule } from '@angular/material/legacy-l
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { RouterModule } from '@angular/router';
 import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
-import { WorkshopMenuModule } from './workshop-menu/workshop-menu.module';
+import { WorkshopMenuModule } from './sidenav-menu/sidenav-menu.module';
 import { FooterComponent } from '../../shared/components/footer/footer.component';
 
 

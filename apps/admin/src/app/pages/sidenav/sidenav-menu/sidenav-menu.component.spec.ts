@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { WorkshopMenuComponent } from './workshop-menu.component';
+import { WorkshopMenuComponent } from './sidenav-menu.component';
 
 describe('WorkshopMenuComponent', () => {
   let component: WorkshopMenuComponent;

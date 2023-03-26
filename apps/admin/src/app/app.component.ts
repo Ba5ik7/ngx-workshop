@@ -17,9 +17,9 @@ import { NavbarComponent } from './shared/components/navbar/navbar.component';
       flex-direction: column;
       height: 100vh;
 
-      & > workshop-sidenav { flex: 1; }
+      & > ngx-sidenav { flex: 1; }
       & > router-outlet + .main-content,
-      & > router-outlet + workshop-sidenav {
+      & > router-outlet + ngx-sidenav {
         margin-top: 56px;
         overflow-y: auto;
         -webkit-overflow-scrolling: touch;

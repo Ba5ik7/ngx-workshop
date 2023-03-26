@@ -1,14 +1,13 @@
-<mat-sidenav-container class="workshop-sidenav-container">
-  <div class="workshop-sidenav-content">
-    <header class="primary-header workshop-page-header">
+<mat-sidenav-container class="sidenav-container">
+  <div class="sidenav-content">
+    <header class="primary-header sidenav-page-header">
       <img *ngIf="headerSvgPath | async"
-        class="workshop-page-header-section-img"
         [src]="'/admin' + (headerSvgPath | async)">
       <h1>{{sectionTitle | async}}: {{categoryTitle | async}}</h1>
     </header>
-    <div class="workshop-sidenav-inner-content">
-      <main class="workshop-sidenav-body-content">
-        <workshop-menu [sections]="sections | async"></workshop-menu>
+    <div class="sidenav-inner-content">
+      <main class="sidenav-body-content">
+        <ngx-sidenav-menu [sections]="sections | async"></ngx-sidenav-menu>
         <router-outlet></router-outlet>
       </main>
       <ngx-footer></ngx-footer>

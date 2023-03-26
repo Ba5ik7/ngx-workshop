@@ -1,37 +1,37 @@
-workshop-sidenav {
+ngx-sidenav {
   display: flex;
   flex-direction: column;
   overflow: auto;
 }
 
-.workshop-sidenav-container {
+.sidenav-container {
   flex: 1;
   box-sizing: border-box;
 }
 
-.workshop-sidenav {
+.sidenav {
   overflow: auto;
 }
 
-.workshop-sidenav-content {
+.sidenav-content {
   display: flex;
   flex-direction: column;
   min-height: 100%;
 }
 
-.workshop-sidenav-inner-content {
+.sidenav-inner-content {
   display: flex;
   flex-direction: column;
   flex: 1;
 }
 
-.workshop-sidenav-body-content {
+.sidenav-body-content {
   display: flex;
   flex: 1 1 auto;
 }
 
 // Page Header
-.workshop-page-header {
+.sidenav-page-header {
   display: flex;
   align-items: center;
 
