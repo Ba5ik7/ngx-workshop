@@ -1,8 +1,8 @@
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, shareReplay, Subject, tap } from 'rxjs';
-import { Category } from '../../../../shared/interfaces/category.interface';
-import { WorkshopDocument } from '../../../../shared/interfaces/workshop-document.interface';
+import { Subject } from 'rxjs';
+import { Category } from '../../interfaces/category.interface';
+import { WorkshopDocument } from '../../interfaces/workshop-document.interface';
 
 @Injectable({
   providedIn: 'root'

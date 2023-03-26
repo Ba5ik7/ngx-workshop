@@ -1,15 +1,15 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { distinct, map, mergeMap, Observable, Subject, takeUntil, toArray } from 'rxjs';
+import { distinct, map, Observable, Subject, takeUntil } from 'rxjs';
 import { Category, CategoryWorkshopDocument } from '../../../../shared/interfaces/category.interface';
 import { NavigationService } from '../../../../shared/services/navigation/navigation.service';
 
 @Component({
-  selector: 'app-workshop-editor',
-  templateUrl: './workshop-editor.component.html',
-  styleUrls: ['./workshop-editor.component.scss']
+  selector: 'ngx-workshops',
+  templateUrl: './workshops.component.html',
+  styleUrls: ['./workshops.component.scss']
 })
-export class WorkshopEditorComponent implements OnInit, OnDestroy {
+export class WorkshopsComponent implements OnDestroy {
   destory: Subject<boolean> = new Subject();
 
   categories!: Observable<Category[]>;
@@ -17,7 +17,7 @@ export class WorkshopEditorComponent implements OnInit, OnDestroy {
   
   workshopDocuments!: Observable<CategoryWorkshopDocument[]>;
 
-  routerIsActivate: boolean = false;
+  routerIsActivate = false;
 
   constructor(activatedRoute: ActivatedRoute, navigationService: NavigationService) {
     activatedRoute.params
@@ -31,9 +31,6 @@ export class WorkshopEditorComponent implements OnInit, OnDestroy {
   
     this.currentCategory = navigationService.category$;
     this.workshopDocuments = navigationService.workshopDocuments$; 
-  }
-
-  ngOnInit(): void {
   }
 
   ngOnDestroy(): void {

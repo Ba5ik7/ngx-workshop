@@ -2,13 +2,13 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, OnDestro
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatLegacyDialogRef as MatDialogRef, MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA } from '@angular/material/legacy-dialog';
 import { Subject, takeUntil } from 'rxjs';
-import { Category } from '../../../../../../shared/interfaces/category.interface';
+import { Category } from '../../../../../../../../shared/interfaces/category.interface';
 // import { WorkshopDocument } from '../../../../shared/interfaces/workshop-document.interface';
-import { NavigationService } from '../../../../../../shared/services/navigation/navigation.service';
-import { WorkshopEditorService } from '../../workshop-editor.service';
+import { NavigationService } from '../../../../../../../../shared/services/navigation/navigation.service';
+import { WorkshopEditorService } from '../../../../../../../../shared/services/workshops/workshops.service';
 
 @Component({
-  selector: 'app-edit-page-modal',
+  selector: 'ngx-edit-page-modal',
   templateUrl: './edit-page-modal.component.html',
   styleUrls: ['./edit-page-modal.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -17,7 +17,7 @@ export class EditPageModalComponent implements OnInit, OnDestroy {
 
   destory: Subject<boolean> = new Subject();
 
-  formLoading: boolean = false;
+  formLoading = false;
 
   editPageFormLevelMessage!: string;
 

@@ -29,7 +29,7 @@ export const SIDENAV_ROUTES: Route[] = [
       {
         canActivate: [AuthGuard],
         path: 'workshop-editor',
-        loadChildren: () => import('./sidenav-pages/workshop-editor/workshop-editor.module').then(m => m.WorkshopEditorModule)
+        loadChildren: () => import('./sidenav-pages/workshops/workshops.module').then(m => m.WorkshopEditorModule)
       }
     ]
   }

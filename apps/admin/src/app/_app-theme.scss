@@ -8,7 +8,7 @@
 
 @use './pages/not-found/not-found-theme';
 @use './pages/sidenav/sidenav';
-@use './pages/sidenav/sidenav-pages/workshop-editor/workshop-editor';
+@use './pages/sidenav/sidenav-pages/workshops/workshops';
 @use './pages/sidenav/sidenav-pages/chat/chat';
 
 @use './shared/components/footer/footer-theme';
@@ -66,7 +66,7 @@
   // @include home-theme.theme($theme);
   @include not-found-theme.theme($theme);
   @include sidenav.theme($theme);
-  @include workshop-editor.theme($theme);
+  @include workshops.theme($theme);
   @include chat.theme($theme);
 
   @include footer-theme.theme($theme);

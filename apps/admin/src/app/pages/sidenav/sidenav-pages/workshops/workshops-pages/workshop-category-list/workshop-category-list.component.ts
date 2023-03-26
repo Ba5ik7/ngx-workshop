@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { map, Observable, Subject } from 'rxjs';
-import { Category } from '../../../../../shared/interfaces/category.interface';
-import { NavigationService } from '../../../../../shared/services/navigation/navigation.service';
+import { Category } from '../../../../../../shared/interfaces/category.interface';
+import { NavigationService } from '../../../../../../shared/services/navigation/navigation.service';
 
 @Component({
   selector: 'app-workshop-category-list',

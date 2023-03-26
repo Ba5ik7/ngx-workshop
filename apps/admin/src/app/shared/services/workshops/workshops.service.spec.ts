@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { WorkshopEditorService } from './workshop-editor.service';
+import { WorkshopEditorService } from './workshops.service';
 
 describe('WorkshopEditorService', () => {
   let service: WorkshopEditorService;

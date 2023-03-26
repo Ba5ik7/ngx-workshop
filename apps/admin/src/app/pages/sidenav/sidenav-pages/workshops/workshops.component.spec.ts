@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { WorkshopEditorComponent } from './workshop-editor.component';
+import { WorkshopEditorComponent } from './workshops.component';
 
 describe('WorkshopEditorComponent', () => {
   let component: WorkshopEditorComponent;

@@ -2,7 +2,7 @@
 <h1 *ngIf="!routerIsActivate" class="select-a-category-placeholder">Select a Category</h1>
 <div class="workshop-controls-panel">
   <div class="controls">
-    <category-list [categories]="categories | async"></category-list>
-    <page-list [pages]="workshopDocuments | async" [currentCategory]="currentCategory | async"></page-list>
+    <ngx-category-list [categories]="categories | async"></ngx-category-list>
+    <ngx-page-list [pages]="workshopDocuments | async" [currentCategory]="currentCategory | async"></ngx-page-list>
   </div>
 </div>

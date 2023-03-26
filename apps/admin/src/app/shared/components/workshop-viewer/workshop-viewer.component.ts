@@ -14,7 +14,7 @@ import {
 import { DomSanitizer } from '@angular/platform-browser';
 import { NgxEditorjsOutputBlock } from '@tmdjr/ngx-editorjs';
 import { Subject, takeUntil } from 'rxjs';
-import { WorkshopEditorService } from '../../../pages/sidenav/sidenav-pages/workshop-editor/workshop-editor.service';
+import { WorkshopEditorService } from '../../services/workshops/workshops.service';
 
 import { WorkshopDocument } from '../../interfaces/workshop-document.interface';
 // import { CodeHighlighterComponent } from '../code-highlighter/code-highlighter.component';

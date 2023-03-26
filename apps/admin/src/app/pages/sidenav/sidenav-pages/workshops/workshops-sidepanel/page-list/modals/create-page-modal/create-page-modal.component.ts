@@ -1,13 +1,13 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatLegacyDialogRef as MatDialogRef } from '@angular/material/legacy-dialog';
-import { Subject, take, takeUntil } from 'rxjs';
-import { Category } from '../../../../../../shared/interfaces/category.interface';
-import { NavigationService } from '../../../../../../shared/services/navigation/navigation.service';
-import { WorkshopEditorService } from '../../workshop-editor.service';
+import { Subject, takeUntil } from 'rxjs';
+import { Category } from '../../../../../../../../shared/interfaces/category.interface';
+import { NavigationService } from '../../../../../../../../shared/services/navigation/navigation.service';
+import { WorkshopEditorService } from '../../../../../../../../shared/services/workshops/workshops.service';
 
 @Component({
-  selector: 'app-create-page-modal',
+  selector: 'ngx-create-page-modal',
   templateUrl: './create-page-modal.component.html',
   styleUrls: ['./create-page-modal.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -16,7 +16,7 @@ export class CreatePageModalComponent implements OnInit, OnDestroy {
 
   destory: Subject<boolean> = new Subject();
 
-  formLoading: boolean = false;
+  formLoading = false;
 
   createPageFormLevelMessage!: string;
 

@@ -3,13 +3,13 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import { MatLegacySnackBar as MatSnackBar, MatLegacySnackBarConfig as MatSnackBarConfig } from '@angular/material/legacy-snack-bar';
 import { Subject, takeUntil } from 'rxjs';
-import { WorkshopEditorService } from '../workshop-editor.service';
-import { CreatePageModalComponent } from './create-page-modal/create-page-modal.component';
-import { DeletePageModalComponent } from './delete-page-modal/delete-page-modal.component';
-import { EditPageModalComponent } from './edit-page-modal/edit-page-modal.component';
+import { WorkshopEditorService } from '../../../../../../shared/services/workshops/workshops.service';
+import { CreatePageModalComponent } from './modals/create-page-modal/create-page-modal.component';
+import { DeletePageModalComponent } from './modals/delete-page-modal/delete-page-modal.component';
+import { EditPageModalComponent } from './modals/edit-page-modal/edit-page-modal.component';
 
 @Component({
-  selector: 'page-list',
+  selector: 'ngx-page-list',
   templateUrl: './page-list.component.html',
   styleUrls: ['./page-list.component.scss'],
 })
@@ -17,7 +17,7 @@ export class PageListComponent implements OnInit, OnDestroy {
 
   destory: Subject<boolean> = new Subject();
 
-  cdkDragDisabled: boolean = false;
+  cdkDragDisabled = false;
 
   snackBarOptiions: MatSnackBarConfig = {
     duration: 3000,

@@ -3,13 +3,13 @@ import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import { MatLegacySnackBar as MatSnackBar, MatLegacySnackBarConfig as MatSnackBarConfig } from '@angular/material/legacy-snack-bar';
 import { Subject, takeUntil } from 'rxjs';
-import { WorkshopEditorService } from '../workshop-editor.service';
-import { CreateCategoryModalComponent } from './create-category-modal/create-category-modal.component';
-import { DeleteCategoryModalComponent } from './delete-category-modal/delete-category-modal.component';
-import { EditCategoryModalComponent } from './edit-category-modal/edit-category-modal.component';
+import { WorkshopEditorService } from '../../../../../../shared/services/workshops/workshops.service';
+import { CreateCategoryModalComponent } from './modals/create-category-modal/create-category-modal.component';
+import { DeleteCategoryModalComponent } from './modals/delete-category-modal/delete-category-modal.component';
+import { EditCategoryModalComponent } from './modals/edit-category-modal/edit-category-modal.component';
 
 @Component({
-  selector: 'category-list',
+  selector: 'ngx-category-list',
   templateUrl: './category-list.component.html',
   styleUrls: ['./category-list.component.scss']
 })
@@ -17,7 +17,7 @@ export class CategoryListComponent implements OnInit, OnDestroy {
 
   destory: Subject<boolean> = new Subject();
 
-  cdkDragDisabled: boolean = false;
+  cdkDragDisabled = false;
 
   snackBarOptiions: MatSnackBarConfig = {
     duration: 3000,

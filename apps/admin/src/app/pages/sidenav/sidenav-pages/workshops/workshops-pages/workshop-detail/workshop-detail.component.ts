@@ -2,8 +2,8 @@ import { Component, OnDestroy, ViewChild, ViewEncapsulation } from '@angular/cor
 import { MatLegacyPaginator as MatPaginator, LegacyPageEvent as PageEvent } from '@angular/material/legacy-paginator';
 import { ActivatedRoute, Router } from '@angular/router';
 import { combineLatest, of, Subject, switchMap, takeUntil, tap } from 'rxjs';
-import { Category } from '../../../../../../app/shared/interfaces/category.interface';
-import { NavigationService, filterNullish } from '../../../../../shared/services/navigation/navigation.service';
+import { Category } from '../../../../../../shared/interfaces/category.interface';
+import { NavigationService, filterNullish } from '../../../../../../shared/services/navigation/navigation.service';
 
 @Component({
   selector: 'workshop-detail',

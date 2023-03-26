@@ -3,13 +3,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatLegacyDialogRef as MatDialogRef, MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA } from '@angular/material/legacy-dialog';
 import { Subject, takeUntil } from 'rxjs';
 // import { Category } from '../../../../shared/interfaces/category.interface';
-import { WorkshopDocument } from '../../../../../../shared/interfaces/workshop-document.interface';
-import { NavigationService } from '../../../../../../shared/services/navigation/navigation.service';
-import { MatchStringValidator } from '../../../../../../shared/validators/match-string.validator';
-import { WorkshopEditorService } from '../../workshop-editor.service';
+import { WorkshopDocument } from '../../../../../../../../shared/interfaces/workshop-document.interface';
+import { NavigationService } from '../../../../../../../../shared/services/navigation/navigation.service';
+import { MatchStringValidator } from '../../../../../../../../shared/validators/match-string.validator';
+import { WorkshopEditorService } from '../../../../../../../../shared/services/workshops/workshops.service';
 
 @Component({
-  selector: 'app-delete-page-modal',
+  selector: 'ngx-delete-page-modal',
   templateUrl: './delete-page-modal.component.html',
   styleUrls: ['./delete-page-modal.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -18,7 +18,7 @@ export class DeletePageModalComponent implements OnInit {
 
   destory: Subject<boolean> = new Subject();
 
-  formLoading: boolean = false;
+  formLoading = false;
 
   deletePageFormLevelMessage!: string;
 
