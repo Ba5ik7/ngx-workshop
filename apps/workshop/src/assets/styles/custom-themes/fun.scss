@@ -1,0 +1,26 @@
+@use '@angular/material' as mat;
+@use '../../../app/app-theme';
+
+$primary-fun: mat.define-palette(mat.$pink-palette);
+$accent-fun: mat.define-palette(mat.$orange-palette, A200, A100, A400);
+
+$fun-theme: mat.define-dark-theme((
+  color: (
+    primary: $primary-fun,
+    accent: $accent-fun
+  ),
+  typography: mat.define-typography-config(),
+));
+
+@include mat.all-legacy-component-themes($fun-theme);
+@include app-theme.theme($fun-theme);
+
+
+
+.mat-drawer-content, .mat-sidenav-content {
+  background-color: #AD1457;
+}
+
+.mat-card, .mat-dialog-container {
+  background-color: #C2185B;
+}

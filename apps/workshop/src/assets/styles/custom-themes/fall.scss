@@ -1,0 +1,60 @@
+@use '@angular/material' as mat;
+@use '../../../app/app-theme';
+
+$primary-dark-fall: mat.define-palette(mat.$amber-palette);
+$accent-dark-fall: mat.define-palette((
+  50: #FFEBEE,
+  100: #FFCDD2,
+  200: #EF9A9A,
+  300: #E57373,
+  400: #EF5350,
+  500: #F44336,
+  600: #E53935,
+  700: #D32F2F,
+  800: #C62828,
+  900: #B71C1C,
+  A100: #FF8A80,
+  A200: #FF5252,
+  A400: #FF1744,
+  A700: #D50000,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #000000,
+    500: #FFFFFF,
+    600: #FFFFFF,
+    700: #FFFFFF,
+    800: #FFFFFF,
+    900: #FFFFFF,
+    A100: #000000,
+    A200: #000000,
+    A400: #FFFFFF,
+    A700: #FFFFFF,
+  )
+));
+
+$dark-fall-theme: mat.define-dark-theme((
+  color: (
+    primary: $primary-dark-fall,
+    accent: $accent-dark-fall
+  ),
+  typography: mat.define-typography-config(),
+));
+
+@include mat.all-legacy-component-themes($dark-fall-theme);
+@include app-theme.theme($dark-fall-theme);
+
+
+.mat-drawer-content, .mat-sidenav-content {
+  background-color: #4E3732;
+}
+
+.mat-card, .mat-dialog-container  {
+  background-color: #3E2723;
+}
+
+.workshop-menu-nav, .workshop-controls-panel {
+  background: #5D4842
+}
