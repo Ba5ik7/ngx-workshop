@@ -15,7 +15,7 @@ $prof-theme: mat.define-dark-theme((
 @include mat.all-legacy-component-themes($prof-theme);
 @include app-theme.theme($prof-theme);
 
-.mat-drawer-content, .mat-sidenav-content {
+.mat-drawer-content, .mat-sidenav-content, .app-background {
   background-color: #37474F;
 }
 

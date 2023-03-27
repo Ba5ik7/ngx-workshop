@@ -80,7 +80,7 @@ $synth84-theme: mat.define-dark-theme((
 
 
 
-.mat-drawer-content, .mat-sidenav-content {
+.mat-drawer-content, .mat-sidenav-content, .app-background {
   background-color: #2B213A;
 }
 
@@ -111,7 +111,7 @@ $synth84-theme: mat.define-dark-theme((
 // @include app-theme.theme($synth-theme);
 
 
-// .mat-drawer-content, .mat-sidenav-content {
+// .mat-drawer-content, .mat-sidenav-content, .app-background {
 //   background-color: #2B213A;
 // }
 
@@ -142,7 +142,7 @@ $synth84-theme: mat.define-dark-theme((
 // @include app-theme.theme($synth-theme);
 
 
-// .mat-drawer-content, .mat-sidenav-content {
+// .mat-drawer-content, .mat-sidenav-content, .app-background {
 //   background-color: #512DA8;
 // }
 
@@ -174,7 +174,7 @@ $synth84-theme: mat.define-dark-theme((
 // @include app-theme.theme($synth-theme);
 
 
-// .mat-drawer-content, .mat-sidenav-content {
+// .mat-drawer-content, .mat-sidenav-content, .app-background {
 //   background-color: #6A1B9A;
 // }
 
@@ -207,7 +207,7 @@ $synth84-theme: mat.define-dark-theme((
 // @include app-theme.theme($synth-theme);
 
 
-// .mat-drawer-content, .mat-sidenav-content {
+// .mat-drawer-content, .mat-sidenav-content, .app-background {
 //   background-color: #303F9F;
 // }
 
@@ -238,7 +238,7 @@ $synth84-theme: mat.define-dark-theme((
 // @include app-theme.theme($synth-theme);
 
 
-// .mat-drawer-content, .mat-sidenav-content {
+// .mat-drawer-content, .mat-sidenav-content, .app-background {
 //   background-color: #1E88E5;
 // }
 

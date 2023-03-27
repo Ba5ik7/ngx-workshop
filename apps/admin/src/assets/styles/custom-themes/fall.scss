@@ -47,7 +47,7 @@ $dark-fall-theme: mat.define-dark-theme((
 @include app-theme.theme($dark-fall-theme);
 
 
-.mat-drawer-content, .mat-sidenav-content {
+.mat-drawer-content, .mat-sidenav-content, .app-background {
   background-color: #4E3732;
 }
 

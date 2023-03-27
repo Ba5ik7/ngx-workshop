@@ -15,7 +15,7 @@ $dark-summer-theme: mat.define-dark-theme((
 @include mat.all-legacy-component-themes($dark-summer-theme);
 @include app-theme.theme($dark-summer-theme);
 
-.mat-drawer-content, .mat-sidenav-content {
+.mat-drawer-content, .mat-sidenav-content, .app-background {
   background-color: #2A3C48;
 }
 

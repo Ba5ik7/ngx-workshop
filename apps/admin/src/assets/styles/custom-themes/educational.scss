@@ -16,7 +16,7 @@ $edu-theme: mat.define-dark-theme((
 @include app-theme.theme($edu-theme);
 
 
-.mat-drawer-content, .mat-sidenav-content {
+.mat-drawer-content, .mat-sidenav-content, .app-background {
   background-color: #4527A0;
 }
 
