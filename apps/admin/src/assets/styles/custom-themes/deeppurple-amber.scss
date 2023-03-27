@@ -4,7 +4,7 @@
 // Define the light theme.
 $primary: mat.define-palette(mat.$deep-purple-palette);
 $accent: mat.define-palette(mat.$amber-palette, A200, A100, A400);
-$theme: mat.define-light-theme((
+$theme: mat.define-dark-theme((
   color: (
     primary: $primary,
     accent: $accent

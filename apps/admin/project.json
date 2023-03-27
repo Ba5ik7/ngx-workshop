@@ -45,7 +45,7 @@
           },
           {
             "inject": false,
-            "input": "apps/workshop/src/assets/styles/custom-themes/purple-green.scss",
+            "input": "apps/admin/src/assets/styles/custom-themes/purple-green.scss",
             "bundleName": "purple-green"
           }
         ],
