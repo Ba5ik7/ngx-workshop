@@ -1,0 +1,28 @@
+@use '@angular/material' as mat;
+@use '../../../app/app-theme';
+
+$primary-dark-winter: mat.define-palette(mat.$cyan-palette);
+$accent-dark-winter: mat.define-palette(mat.$light-blue-palette, A200, A100, A400);
+
+$dark-winter-theme: mat.define-dark-theme((
+  color: (
+    primary: $primary-dark-winter,
+    accent: $accent-dark-winter
+  ),
+  typography: mat.define-typography-config(),
+));
+
+@include mat.all-legacy-component-themes($dark-winter-theme);
+@include app-theme.theme($dark-winter-theme);
+
+.mat-drawer-content, .mat-sidenav-content {
+  background-color: #2C3187;
+}
+
+.mat-card, .mat-dialog-container  {
+  background-color: #1A237E;
+}
+
+.workshop-menu-nav, .workshop-controls-panel {
+  background: #3D4091
+}

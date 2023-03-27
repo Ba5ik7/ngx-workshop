@@ -1,0 +1,251 @@
+@use '@angular/material' as mat;
+@use '../../../app/app-theme';
+
+$primary-synth84: mat.define-palette((
+  50: #E1BEE7,
+  100: #BA68C8,
+  200: #9C27B0,
+  300: #7B1FA2,
+  400: #6A1B9A,
+  500: #4A148C,
+  600: #38006B,
+  700: #2B213A,
+  800: #2B213A,
+  900: #1A237E,
+  A100: #8C9EFF,
+  A200: #536DFE,
+  A400: #3D5AFE,
+  A700: #304FFE,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #FFFFFF,
+    300: #FFFFFF,
+    400: #FFFFFF,
+    500: #FFFFFF,
+    600: #FFFFFF,
+    700: #FFFFFF,
+    800: #FFFFFF,
+    900: #FFFFFF,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #000000,
+  )
+));
+
+$accent-synth84: mat.define-palette((
+  50: #E0F7FA,
+  100: #B2EBF2,
+  200: #80DEEA,
+  300: #4DD0E1,
+  400: #26C6DA,
+  500: #00BCD4,
+  600: #00ACC1,
+  700: #0097A7,
+  800: #00838F,
+  900: #006064,
+  A100: #84FFFF,
+  A200: #18FFFF,
+  A400: #00E5FF,
+  A700: #00B8D4,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #000000,
+    500: #000000,
+    600: #000000,
+    700: #000000,
+    800: #000000,
+    900: #000000,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #000000,
+  )
+));
+
+$synth84-theme: mat.define-dark-theme((
+  color: (
+    primary: $primary-synth84,
+    accent: $accent-synth84
+  ),
+  typography: mat.define-typography-config(),
+));
+
+@include mat.all-legacy-component-themes($synth84-theme);
+@include app-theme.theme($synth84-theme);
+
+
+
+.mat-drawer-content, .mat-sidenav-content {
+  background-color: #2B213A;
+}
+
+.mat-card, .mat-dialog-container {
+  background-color: #4C3B64;
+}
+
+.workshop-menu-nav, .workshop-controls-panel {
+  background: #3A2B4D
+}
+
+// Retro
+// @use '@angular/material' as mat;
+// @use '../../../app/app-theme';
+
+// $primary-synth: mat.define-palette(mat.$purple-palette);
+// $accent-synth: mat.define-palette(mat.$cyan-palette, A200, A100, A400);
+
+// $synth-theme: mat.define-dark-theme((
+//   color: (
+//     primary: $primary-synth,
+//     accent: $accent-synth
+//   ),
+//   typography: mat.define-typography-config(),
+// ));
+
+// @include mat.all-legacy-component-themes($synth-theme);
+// @include app-theme.theme($synth-theme);
+
+
+// .mat-drawer-content, .mat-sidenav-content {
+//   background-color: #2B213A;
+// }
+
+// .mat-card, .mat-dialog-container {
+//   background-color: #4C3B64;
+// }
+
+// .workshop-menu-nav {
+//   background: #3A2B4D
+// }
+
+// Retro 1
+// @use '@angular/material' as mat;
+// @use '../../../app/app-theme';
+
+// $primary-synth: mat.define-palette(mat.$deep-purple-palette);
+// $accent-synth: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+// $synth-theme: mat.define-dark-theme((
+//   color: (
+//     primary: $primary-synth,
+//     accent: $accent-synth
+//   ),
+//   typography: mat.define-typography-config(),
+// ));
+
+// @include mat.all-legacy-component-themes($synth-theme);
+// @include app-theme.theme($synth-theme);
+
+
+// .mat-drawer-content, .mat-sidenav-content {
+//   background-color: #512DA8;
+// }
+
+// .mat-card, .mat-dialog-container {
+//   background-color: #673AB7;
+// }
+
+// .workshop-menu-nav {
+//   background: #4527A0
+// }
+
+
+// Retro 2
+// @use '@angular/material' as mat;
+// @use '../../../app/app-theme';
+
+// $primary-synth: mat.define-palette(mat.$purple-palette);
+// $accent-synth: mat.define-palette(mat.$amber-palette, A200, A100, A400);
+
+// $synth-theme: mat.define-dark-theme((
+//   color: (
+//     primary: $primary-synth,
+//     accent: $accent-synth
+//   ),
+//   typography: mat.define-typography-config(),
+// ));
+
+// @include mat.all-legacy-component-themes($synth-theme);
+// @include app-theme.theme($synth-theme);
+
+
+// .mat-drawer-content, .mat-sidenav-content {
+//   background-color: #6A1B9A;
+// }
+
+// .mat-card, .mat-dialog-container {
+//   background-color: #7B1FA2;
+// }
+
+// .workshop-menu-nav {
+//   background: #6A1B9A
+// }
+
+
+
+// Retro 3
+// @use '@angular/material' as mat;
+// @use '../../../app/app-theme';
+
+// $primary-synth: mat.define-palette(mat.$indigo-palette);
+// $accent-synth: mat.define-palette(mat.$orange-palette, A200, A100, A400);
+
+// $synth-theme: mat.define-dark-theme((
+//   color: (
+//     primary: $primary-synth,
+//     accent: $accent-synth
+//   ),
+//   typography: mat.define-typography-config(),
+// ));
+
+// @include mat.all-legacy-component-themes($synth-theme);
+// @include app-theme.theme($synth-theme);
+
+
+// .mat-drawer-content, .mat-sidenav-content {
+//   background-color: #303F9F;
+// }
+
+// .mat-card, .mat-dialog-container {
+//   background-color: #3949AB;
+// }
+
+// .workshop-menu-nav {
+//   background: #3f51b5
+// }
+
+// Retro 4
+// @use '@angular/material' as mat;
+// @use '../../../app/app-theme';
+
+// $primary-synth: mat.define-palette(mat.$blue-palette);
+// $accent-synth: mat.define-palette(mat.$lime-palette, A200, A100, A400);
+
+// $synth-theme: mat.define-dark-theme((
+//   color: (
+//     primary: $primary-synth,
+//     accent: $accent-synth
+//   ),
+//   typography: mat.define-typography-config(),
+// ));
+
+// @include mat.all-legacy-component-themes($synth-theme);
+// @include app-theme.theme($synth-theme);
+
+
+// .mat-drawer-content, .mat-sidenav-content {
+//   background-color: #1E88E5;
+// }
+
+// .mat-card, .mat-dialog-container {
+//   background-color: #2196F3;
+// }
+
+// .workshop-menu-nav {
+//   background: #1976D2
+// }

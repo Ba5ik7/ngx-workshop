@@ -1,7 +1,6 @@
 @use '@angular/material' as mat;
 @use '../../../app/app-theme';
 
-// Define the light theme.
 $primary: mat.define-palette(mat.$indigo-palette);
 $accent: mat.define-palette(mat.$green-palette, A200, A100, A400);
 $theme: mat.define-dark-theme((
