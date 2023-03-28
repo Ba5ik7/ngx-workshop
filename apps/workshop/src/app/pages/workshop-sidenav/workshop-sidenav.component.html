@@ -21,6 +21,7 @@
         <!-- If on large screen, menu resides to left of content -->
         <workshop-menu
           *ngIf="(isScreenSmall | async) === false"
+          [signedIn]="signedIn$"
           [categories]="categories | async"
           [section]="section | async"></workshop-menu>
         <router-outlet></router-outlet>

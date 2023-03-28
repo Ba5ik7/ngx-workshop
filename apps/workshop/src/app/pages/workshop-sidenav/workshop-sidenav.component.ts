@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { distinct, map, Observable, Subject, takeUntil } from 'rxjs';
 import { Category } from '../../shared/interfaces/category.interface';
 import { filterNullish, NavigationService } from '../../shared/services/navigation/navigation.service';
+import { UserStateService } from '../../shared/services/user-state/user-state.service';
 
 const EXTRA_SMALL_WIDTH_BREAKPOINT = 720;
 const SMALL_WIDTH_BREAKPOINT = 959;
@@ -28,8 +29,10 @@ export class WorkshopSidenavComponent implements OnDestroy {
   categoryTitle!: Observable<string>;
   headerSvgPath!: Observable<string>;
   categories!: Observable<Category[]>;
+  signedIn$ = this.userStateService.signedIn$;
 
   constructor(breakpoints: BreakpointObserver,
+              private userStateService: UserStateService,
               activatedRoute: ActivatedRoute,
               navigationService: NavigationService) {
 
