@@ -3,7 +3,7 @@ import { MatLegacyPaginator as MatPaginator, LegacyPageEvent as PageEvent } from
 import { ActivatedRoute, Router } from '@angular/router';
 import { combineLatest, of, Subject, switchMap, takeUntil, tap } from 'rxjs';
 import { Category } from '../../../../../../shared/interfaces/category.interface';
-import { NavigationService, filterNullish } from '../../../../../../shared/services/navigation/navigation.service';
+import { NavigationService } from '../../../../../../shared/services/navigation/navigation.service';
 
 @Component({
   selector: 'workshop-detail',
@@ -28,7 +28,6 @@ export class WorkshopDetailComponent implements OnDestroy {
     private router: Router) {
       this.activatedRoute.params
       .pipe(
-        filterNullish(),
         tap((params) => this.navigationService.categoryRouteSub.next(params['categoryId'])),
         switchMap((params) => (
           combineLatest({

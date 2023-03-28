@@ -9,8 +9,8 @@ import { ThemePickerService } from './shared/services/theme-picker/theme-picker.
   imports: [NavbarComponent, RouterModule],
   selector: 'ngx-admin',
   template: `
-    <ngx-navbar class="mat-elevation-z6"></ngx-navbar>
-    <router-outlet></router-outlet>
+    <!-- <ngx-navbar class="mat-elevation-z6"></ngx-navbar>
+    <router-outlet></router-outlet> -->
   `,
   styles: [`
     ngx-admin {
@@ -32,7 +32,7 @@ import { ThemePickerService } from './shared/services/theme-picker/theme-picker.
 export class AppComponent {
 
   constructor(navigationService: NavigationService, themePickerService: ThemePickerService) {
-    navigationService.initializeAppData();
+    navigationService.fetchSections().subscribe();
     themePickerService.init();
   }
 }
