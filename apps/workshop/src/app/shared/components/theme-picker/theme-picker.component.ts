@@ -23,6 +23,7 @@ export class ThemePickerComponent implements OnInit {
     ['spring', 'Spring'],
     ['summer', 'Summer'],
     ['fall', 'Fall'],
+    ['vanguard', 'Vanguard'],
     // ['fun', 'Fun'],
     // ['pink-bluegrey', 'Pink & Blue-grey'],
     // ['purple-green', 'Purple & Green']

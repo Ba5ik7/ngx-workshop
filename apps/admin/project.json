@@ -87,6 +87,11 @@
             "inject": false,
             "input": "apps/admin/src/assets/styles/custom-themes/winter.scss",
             "bundleName": "winter"
+          },
+          {
+            "inject": false,
+            "input": "apps/admin/src/assets/styles/custom-themes/vanguard.scss",
+            "bundleName": "vanguard"
           }
         ],
         "scripts": []

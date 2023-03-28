@@ -32,7 +32,7 @@ import { MatLegacyDialogModule as MatDialogModule } from '@angular/material/lega
           </a>
           <mat-divider></mat-divider>
           <a mat-list-item routerLinkActive="workshop-menu-nav-item-selected" (click)="createSection()">
-            <mat-icon class="create-icon">note_add</mat-icon>
+            <mat-icon class="create-icon" color="accent">note_add</mat-icon>
             Create Section
           </a>
           <mat-divider></mat-divider>
