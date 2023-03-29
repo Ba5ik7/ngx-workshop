@@ -1,15 +1,12 @@
 import { Component, inject, ViewEncapsulation } from '@angular/core';
-import { combineLatest, map, Observable } from 'rxjs';
+import { combineLatest, map } from 'rxjs';
 import { NavigationService } from '../../shared/services/navigation/navigation.service';
 import { CommonModule } from '@angular/common';
-import { MatIconModule } from '@angular/material/icon';
-import { MatLegacyListModule as MatListModule } from '@angular/material/legacy-list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { RouterModule } from '@angular/router';
-import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
 import { FooterComponent } from '../../shared/components/footer/footer.component';
 import { SidenavMenuComponent } from './sidenav-menu/sidenav-menu.component';
-import { SidenavHeaderComponent, sidenavHeaderData } from './sidenav-header/sidenav-header.component';
+import { SidenavHeaderComponent, SidenavHeaderData } from './sidenav-header/sidenav-header.component';
 
 
 @Component({
@@ -21,13 +18,13 @@ import { SidenavHeaderComponent, sidenavHeaderData } from './sidenav-header/side
         <ngx-sidenav-header [sidenavHeaderData]="cd.sidenavHeaderData"></ngx-sidenav-header>
         <main class="sidenav-body-content">
           <ngx-sidenav-menu [sections]="cd.sections"></ngx-sidenav-menu>
-          <!-- <router-outlet></router-outlet> -->
+          <router-outlet></router-outlet>
         </main>
         <ngx-footer></ngx-footer>
       </mat-sidenav-container>
     </ng-container>
   <ng-template #loading>
-      ...
+      loading...
   </ng-template>
   `,
   styles: [`
@@ -73,9 +70,6 @@ import { SidenavHeaderComponent, sidenavHeaderData } from './sidenav-header/side
     CommonModule,
     RouterModule,
     FooterComponent,
-    MatButtonModule,
-    MatIconModule,
-    MatListModule,
     MatSidenavModule,
     SidenavMenuComponent,
     SidenavHeaderComponent,
@@ -103,7 +97,7 @@ export class SidenavComponent {
         sidenavHeaderData: {
           currentSection: data.currentSection,
           currentWorkshopTitle: data.currentWorkshopTitle,
-        } as sidenavHeaderData,
+        } as SidenavHeaderData,
       };
     })
   );

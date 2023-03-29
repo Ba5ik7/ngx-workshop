@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-export type sidenavHeaderData = {
+export type SidenavHeaderData = {
   currentSection: {
     sectionTitle: string;
     headerSvgPath: string;
@@ -43,7 +43,7 @@ export type sidenavHeaderData = {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SidenavHeaderComponent {
-  @Input() sidenavHeaderData: sidenavHeaderData = {
+  @Input() sidenavHeaderData: SidenavHeaderData = {
     currentSection: { headerSvgPath: 'Default', sectionTitle: '/assets/img/dashboard-color.png' },
     currentWorkshopTitle: 'Default',
   };
