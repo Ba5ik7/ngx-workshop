@@ -24,7 +24,9 @@ function shareReplayWithTTL<T>(bufferSize: number, ttl: number): MonoTypeOperato
 })
 export class NavigationService {
   private sections$ = new BehaviorSubject<Section[]>([]);
+  private currentSection$ = new BehaviorSubject<Section | null>(null);
   private workshops$ = new BehaviorSubject<Workshop[]>([]);
+  private currentWorkshops$ = new BehaviorSubject<Workshop | null>(null);
   private workshopDocument$ = new BehaviorSubject<WorkshopDocument | null>(null);
 
   private sectionCache: { [sectionId: string]: Observable<Workshop[]> } = {};
@@ -73,8 +75,16 @@ export class NavigationService {
     return this.sections$.asObservable();
   }
 
+  getCurrentSection() {
+    return this.currentSection$.asObservable();
+  }
+
   getWorkshops() {
     return this.workshops$.asObservable();
+  }
+
+  getCurrentWorkshop() {
+    return this.currentWorkshops$.asObservable();
   }
 
   getWorkshopDocument() {
