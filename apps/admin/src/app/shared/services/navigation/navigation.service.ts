@@ -11,6 +11,11 @@ const staticSections: Map<string, Partial<Section>> = new Map([
   ['settings', { headerSvgPath: '/assets/img/users-color.png', sectionTitle: 'Settings' }]
 ]);
 
+const staticPages: Map<string, Partial<Workshop>> = new Map([
+  ['overview', { name: 'Overview' }],
+  ['workshops', { name: 'Workshops' }]
+]);
+
 function shareReplayWithTTL<T>(bufferSize: number, ttl: number): MonoTypeOperatorFunction<T> {
   return (source: Observable<T>) => {
     const stop$ = timer(ttl);
@@ -26,8 +31,8 @@ export class NavigationService {
   private sections$ = new BehaviorSubject<Section[]>([]);
   private currentSection$ = new BehaviorSubject<Partial<Section> | undefined>(undefined);
   private workshops$ = new BehaviorSubject<Workshop[]>([]);
-  private currentWorkshops$ = new BehaviorSubject<Workshop | null>(null);
-  private workshopDocument$ = new BehaviorSubject<WorkshopDocument | null>(null);
+  private currentWorkshop$ = new BehaviorSubject<Partial<Workshop> | undefined>(undefined);
+  private workshopDocument$ = new BehaviorSubject<WorkshopDocument | undefined>(undefined);
 
   private sectionWorkshopsCache: { [sectionId: string]: Observable<Workshop[]> } = {};
   private workshopDocumentCache: { [workshopDocumentId: string]: Observable<WorkshopDocument> } = {};
@@ -64,6 +69,11 @@ export class NavigationService {
   }
 
   navigateToWorkshop(workshopDocumentId: string) {
+    const workshop = staticPages.get(workshopDocumentId) ?? this.fetchWorkshopPage(workshopDocumentId);
+    this.currentWorkshop$.next(workshop);
+  }
+
+  private fetchWorkshopPage(workshopDocumentId: string) {
     if (!this.workshopDocumentCache[workshopDocumentId]) {
       this.workshopDocumentCache[workshopDocumentId] = this.http
         .get<WorkshopDocument>(`/api/workshop-document/${workshopDocumentId}`)
@@ -75,6 +85,7 @@ export class NavigationService {
         );
     }
     this.workshopDocumentCache[workshopDocumentId].subscribe();
+    return this.workshops$.getValue().find((workshop) => workshop._id === workshopDocumentId);
   }
 
   getSections() {
@@ -90,7 +101,7 @@ export class NavigationService {
   }
 
   getCurrentWorkshop() {
-    return this.currentWorkshops$.asObservable();
+    return this.currentWorkshop$.asObservable();
   }
 
   getWorkshopDocument() {

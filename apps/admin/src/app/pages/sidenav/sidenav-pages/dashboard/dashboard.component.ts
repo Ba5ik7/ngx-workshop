@@ -15,5 +15,6 @@ export class DashboardComponent implements OnInit {
   
   ngOnInit(): void {
     this.navigationService.navigateToSection('dashboard');
+    this.navigationService.navigateToWorkshop('overview');
   }
 }

@@ -1,5 +1,5 @@
 import { Component, inject, ViewEncapsulation } from '@angular/core';
-import { combineLatest, filter, map } from 'rxjs';
+import { combineLatest, map } from 'rxjs';
 import { NavigationService } from '../../shared/services/navigation/navigation.service';
 import { CommonModule } from '@angular/common';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -13,11 +13,11 @@ import { SidenavHeaderComponent, SidenavHeaderData } from './sidenav-header/side
   standalone: true,
   selector: 'ngx-sidenav',
   template: `
-    <ng-container *ngIf="componentData | async as cd; else loading">
+    <ng-container *ngIf="viewModel | async as vm; else loading">
       <mat-sidenav-container class="sidenav-container">
-        <ngx-sidenav-header [sidenavHeaderData]="cd.sidenavHeaderData"></ngx-sidenav-header>
+        <ngx-sidenav-header [sidenavHeaderData]="vm.sidenavHeaderData"></ngx-sidenav-header>
         <main class="sidenav-body-content">
-          <ngx-sidenav-menu [sections]="cd.sections"></ngx-sidenav-menu>
+          <ngx-sidenav-menu [sections]="vm.sections"></ngx-sidenav-menu>
           <router-outlet></router-outlet>
         </main>
         <ngx-footer></ngx-footer>
@@ -81,11 +81,10 @@ export class SidenavComponent {
 
   sections = this.navigationService.getSections();
   currentSection = this.navigationService.getCurrentSection();
-
   currentWorkshopTitle = this.navigationService.getCurrentWorkshop()
   .pipe(map((workshop) => workshop?.name));
 
-  componentData = combineLatest({
+  viewModel = combineLatest({
     sections: this.sections,
     currentSection: this.currentSection,
     currentWorkshopTitle: this.currentWorkshopTitle,
