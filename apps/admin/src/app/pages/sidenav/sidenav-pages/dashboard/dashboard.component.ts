@@ -1,11 +1,10 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { DynamicGridListComponent } from './dynamic-grid-list/dynamic-grid-list.component';
-import { CommonModule, JsonPipe } from '@angular/common';
 
 @Component({
   standalone: true,
   selector: 'ngx-dashboard',
-  imports: [DynamicGridListComponent, CommonModule, JsonPipe],
+  imports: [DynamicGridListComponent],
   template: `<ngx-dynamic-grid-list></ngx-dynamic-grid-list>`,
   styles: [`:host { width: 100%; }`],
   changeDetection: ChangeDetectionStrategy.OnPush
