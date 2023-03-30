@@ -7,6 +7,7 @@ export const SIDENAV_ROUTES: Route[] = [
   {
     path: '',
     component: SidenavComponent,
+    
     children: [
       {
         canActivate: [AuthGuard],
@@ -14,11 +15,12 @@ export const SIDENAV_ROUTES: Route[] = [
         path: 'dashboard',
         loadChildren: () => import('./sidenav-pages/dashboard/dashboard.routing').then(m => m.DASHBOARD_ROUTES)
       },
-    //   {
-    //     canActivate: [AuthGuard],
-    //     path: 'users',
-    //     loadChildren: () => import('./sidenav-pages/users/users.routing').then(m => m.USERS_ROUTES)
-    //   },
+      {
+        canActivate: [AuthGuard],
+        path: 'users',
+        resolve: { sectionResolver },
+        loadChildren: () => import('./sidenav-pages/users/users.routing').then(m => m.USERS_ROUTES)
+      },
     //   {
     //     canActivate: [AuthGuard],
     //     path: 'settings',
