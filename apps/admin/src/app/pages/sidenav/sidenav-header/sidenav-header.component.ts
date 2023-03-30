@@ -2,10 +2,8 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 export type SidenavHeaderData = {
-  currentSection: {
-    sectionTitle: string;
-    headerSvgPath: string;
-  };
+  sectionTitle: string;
+  headerSvgPath: string;
   currentWorkshopTitle: string;
 };
 @Component({
@@ -13,8 +11,8 @@ export type SidenavHeaderData = {
   standalone: true,
   template: `
     <header class="primary-header sidenav-page-header">
-      <img [src]="'/admin' + sidenavHeaderData.currentSection.headerSvgPath">
-      <h1>{{sidenavHeaderData.currentSection.sectionTitle}}: {{sidenavHeaderData.currentWorkshopTitle}}</h1>
+      <img [src]="'/admin' + sidenavHeaderData.headerSvgPath">
+      <h1>{{sidenavHeaderData.sectionTitle}}: {{sidenavHeaderData.currentWorkshopTitle}}</h1>
     </header>
   `,
   styles: [`
@@ -44,7 +42,8 @@ export type SidenavHeaderData = {
 })
 export class SidenavHeaderComponent {
   @Input() sidenavHeaderData: SidenavHeaderData = {
-    currentSection: { headerSvgPath: 'Default', sectionTitle: '/assets/img/dashboard-color.png' },
+    headerSvgPath: 'Default',
+    sectionTitle: '/assets/img/dashboard-color.png',
     currentWorkshopTitle: 'Default',
   };
 }

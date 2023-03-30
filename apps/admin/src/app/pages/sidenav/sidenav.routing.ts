@@ -7,11 +7,11 @@ export const SIDENAV_ROUTES: Route[] = [
     path: '',
     component: SidenavComponent,
     children: [
-      // {
-      //   canActivate: [AuthGuard],
-      //   path: 'dashboard',
-      //   loadChildren: () => import('./sidenav-pages/dashboard/dashboard.routing').then(m => m.DASHBOARD_ROUTES)
-      // },
+      {
+        canActivate: [AuthGuard],
+        path: 'dashboard',
+        loadChildren: () => import('./sidenav-pages/dashboard/dashboard.routing').then(m => m.DASHBOARD_ROUTES)
+      },
     //   {
     //     canActivate: [AuthGuard],
     //     path: 'users',

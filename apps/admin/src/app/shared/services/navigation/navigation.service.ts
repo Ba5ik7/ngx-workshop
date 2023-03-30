@@ -4,12 +4,12 @@ import { MonoTypeOperatorFunction, BehaviorSubject, Observable, timer } from 'rx
 import { shareReplay, takeUntil, tap } from 'rxjs/operators';
 import { Section, Workshop, WorkshopDocument } from '../../interfaces/category.interface';
 
-// const sectionSelectedHeaderMap: Map<string, { headerSvgPath: string, sectionTitle: string }> = new Map([
-//   ['dashboard', { headerSvgPath: '/assets/img/dashboard-color.png', sectionTitle: 'Dashboard' }],
-//   ['users', { headerSvgPath: '/assets/img/users-color.png', sectionTitle: 'Users' }],
-//   ['chat', { headerSvgPath: '/assets/img/users-color.png', sectionTitle: 'Chat' }],
-//   ['settings', { headerSvgPath: '/assets/img/users-color.png', sectionTitle: 'Settings' }]
-// ]);
+const staticSections: Map<string, Partial<Section>> = new Map([
+  ['dashboard', { headerSvgPath: '/assets/img/dashboard-color.png', sectionTitle: 'Dashboard' }],
+  ['users', { headerSvgPath: '/assets/img/users-color.png', sectionTitle: 'Users' }],
+  ['chat', { headerSvgPath: '/assets/img/users-color.png', sectionTitle: 'Chat' }],
+  ['settings', { headerSvgPath: '/assets/img/users-color.png', sectionTitle: 'Settings' }]
+]);
 
 function shareReplayWithTTL<T>(bufferSize: number, ttl: number): MonoTypeOperatorFunction<T> {
   return (source: Observable<T>) => {
@@ -24,12 +24,12 @@ function shareReplayWithTTL<T>(bufferSize: number, ttl: number): MonoTypeOperato
 })
 export class NavigationService {
   private sections$ = new BehaviorSubject<Section[]>([]);
-  private currentSection$ = new BehaviorSubject<Section | null>(null);
+  private currentSection$ = new BehaviorSubject<Partial<Section> | undefined>(undefined);
   private workshops$ = new BehaviorSubject<Workshop[]>([]);
   private currentWorkshops$ = new BehaviorSubject<Workshop | null>(null);
   private workshopDocument$ = new BehaviorSubject<WorkshopDocument | null>(null);
 
-  private sectionCache: { [sectionId: string]: Observable<Workshop[]> } = {};
+  private sectionWorkshopsCache: { [sectionId: string]: Observable<Workshop[]> } = {};
   private workshopDocumentCache: { [workshopDocumentId: string]: Observable<WorkshopDocument> } = {};
   private cacheTTL = 5 * 60 * 1000; // 5 minutes
 
@@ -44,8 +44,13 @@ export class NavigationService {
   }
 
   navigateToSection(sectionId: string) {
-    if (!this.sectionCache[sectionId]) {
-      this.sectionCache[sectionId] = this.http
+    const section = staticSections.get(sectionId) ?? this.fetchSectionWorkshops(sectionId);
+    this.currentSection$.next(section);
+  }
+
+  private fetchSectionWorkshops(sectionId: string) {
+    if (!this.sectionWorkshopsCache[sectionId]) {
+      this.sectionWorkshopsCache[sectionId] = this.http
         .get<Workshop[]>('/api/navigation/workshops', { params: { section: sectionId } })
         .pipe(
           tap((workshops) => {
@@ -54,7 +59,8 @@ export class NavigationService {
           shareReplayWithTTL(1, this.cacheTTL)
         );
     }
-    this.sectionCache[sectionId].subscribe();
+    this.sectionWorkshopsCache[sectionId].subscribe();
+    return this.sections$.getValue().find((section) => section._id === sectionId);
   }
 
   navigateToWorkshop(workshopDocumentId: string) {

@@ -1,5 +1,5 @@
 import { Component, inject, ViewEncapsulation } from '@angular/core';
-import { combineLatest, map } from 'rxjs';
+import { combineLatest, filter, map } from 'rxjs';
 import { NavigationService } from '../../shared/services/navigation/navigation.service';
 import { CommonModule } from '@angular/common';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -23,9 +23,9 @@ import { SidenavHeaderComponent, SidenavHeaderData } from './sidenav-header/side
         <ngx-footer></ngx-footer>
       </mat-sidenav-container>
     </ng-container>
-  <ng-template #loading>
-      loading...
-  </ng-template>
+    <ng-template #loading>
+        loading...
+    </ng-template>
   `,
   styles: [`
     ngx-sidenav {
@@ -91,12 +91,14 @@ export class SidenavComponent {
     currentWorkshopTitle: this.currentWorkshopTitle,
   })
   .pipe(
-    map((data) => {
+    map(({ currentWorkshopTitle, currentSection, sections }) => {
+      const { headerSvgPath, sectionTitle } = currentSection ?? {};
       return {
-        sections: data.sections,
+        sections,
         sidenavHeaderData: {
-          currentSection: data.currentSection,
-          currentWorkshopTitle: data.currentWorkshopTitle,
+          headerSvgPath,
+          sectionTitle,
+          currentWorkshopTitle,
         } as SidenavHeaderData,
       };
     })
