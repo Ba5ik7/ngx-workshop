@@ -5,5 +5,4 @@ import { Component } from '@angular/core';
   selector: 'ngx-users',
   template: `<h1>Users Overview</h1>`,
 })
-export class UsersComponent {
-}
+export class UsersComponent { }

@@ -21,11 +21,12 @@ export const SIDENAV_ROUTES: Route[] = [
         resolve: { sectionResolver },
         loadChildren: () => import('./sidenav-pages/users/users.routing').then(m => m.USERS_ROUTES)
       },
-    //   {
-    //     canActivate: [AuthGuard],
-    //     path: 'settings',
-    //     loadChildren: () => import('./sidenav-pages/settings/settings.routing').then(m => m.SETTINGS_ROUTES)
-    //   },
+      {
+        canActivate: [AuthGuard],
+        path: 'settings',
+        resolve: { sectionResolver },
+        loadChildren: () => import('./sidenav-pages/settings/settings.routing').then(m => m.SETTINGS_ROUTES)
+      },
     //   {
     //     canActivate: [AuthGuard],
     //     path: 'account',

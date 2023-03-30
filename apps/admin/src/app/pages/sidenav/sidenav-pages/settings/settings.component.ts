@@ -1,5 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { NavigationService } from '../../../../shared/services/navigation/navigation.service';
+import { Component } from '@angular/core';
 import { MatLegacyCardModule as MatCardModule } from '@angular/material/legacy-card';
 import { ThemePickerComponent } from '../../../../shared/components/theme-picker/theme-picker.component';
 @Component({
@@ -33,9 +32,4 @@ import { ThemePickerComponent } from '../../../../shared/components/theme-picker
       ThemePickerComponent
     ]
 })
-export class SettingsComponent implements OnInit {
-  navigationService = inject(NavigationService);
-  ngOnInit(): void {
-    this.navigationService.sectionRouteSub.next('settings');
-  }
-}
+export class SettingsComponent { }
