@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { MonoTypeOperatorFunction, BehaviorSubject, Observable, timer } from 'rxjs';
+import { MonoTypeOperatorFunction, BehaviorSubject, Observable, timer, of } from 'rxjs';
 import { shareReplay, takeUntil, tap } from 'rxjs/operators';
 import { Section, Workshop, WorkshopDocument } from '../../interfaces/category.interface';
 
@@ -51,6 +51,7 @@ export class NavigationService {
   navigateToSection(sectionId: string) {
     const section = staticSections.get(sectionId) ?? this.fetchSectionWorkshops(sectionId);
     this.currentSection$.next(section);
+    return of(section);
   }
 
   private fetchSectionWorkshops(sectionId: string) {
@@ -71,6 +72,7 @@ export class NavigationService {
   navigateToWorkshop(workshopDocumentId: string) {
     const workshop = staticPages.get(workshopDocumentId) ?? this.fetchWorkshopPage(workshopDocumentId);
     this.currentWorkshop$.next(workshop);
+    return of(workshop);
   }
 
   private fetchWorkshopPage(workshopDocumentId: string) {

@@ -1,6 +1,7 @@
 import { AuthGuard } from '../../shared/guards/auth.guard';
 import { SidenavComponent } from './sidenav.component';
 import { Route } from '@angular/router';
+import { sectionResolver } from '../../shared/resolvers/section.resolver';
 
 export const SIDENAV_ROUTES: Route[] = [
   {
@@ -9,6 +10,7 @@ export const SIDENAV_ROUTES: Route[] = [
     children: [
       {
         canActivate: [AuthGuard],
+        resolve: { sectionResolver },
         path: 'dashboard',
         loadChildren: () => import('./sidenav-pages/dashboard/dashboard.routing').then(m => m.DASHBOARD_ROUTES)
       },
