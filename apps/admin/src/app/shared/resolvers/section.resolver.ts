@@ -6,5 +6,7 @@ import { NavigationService } from '../services/navigation/navigation.service';
 
 type SectionResolver = ResolveFn<Observable<Partial<Section> | undefined>>;
 export const sectionResolver: SectionResolver = (route) => {
-  return inject(NavigationService).navigateToSection(route.routeConfig?.path ?? '');
+  const param = route.routeConfig?.path ?? ':';// Path has a `:` prefix and need to remove it
+  const sectionId = route.params[param.substring(1)] ?? route.routeConfig?.path;
+  return inject(NavigationService).navigateToSection(sectionId ?? '');
 };

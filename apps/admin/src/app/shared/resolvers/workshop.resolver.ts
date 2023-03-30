@@ -6,5 +6,7 @@ import { NavigationService } from '../services/navigation/navigation.service';
 
 type WorkshopResolver = ResolveFn<Observable<Partial<Workshop> | undefined>>;
 export const workshopResolver: WorkshopResolver = (route) => {
-  return inject(NavigationService).navigateToWorkshop(route.routeConfig?.path ?? '');
+  const param = route.routeConfig?.path ?? ':';// Path has a `:` prefix and need to remove it
+  const workshopId = route.params[param.substring(1)] ?? route.routeConfig?.path;
+  return inject(NavigationService).navigateToWorkshop(workshopId ?? '');
 };

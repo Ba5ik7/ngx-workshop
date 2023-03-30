@@ -27,15 +27,17 @@ export const SIDENAV_ROUTES: Route[] = [
         resolve: { sectionResolver },
         loadChildren: () => import('./sidenav-pages/settings/settings.routing').then(m => m.SETTINGS_ROUTES)
       },
-    //   {
-    //     canActivate: [AuthGuard],
-    //     path: 'account',
-    //     loadChildren: () => import('./sidenav-pages/settings/settings.routing').then(m => m.SETTINGS_ROUTES)
-    //   },
-    //   {
-    //     canActivate: [AuthGuard],
-    //     path: 'chat', loadChildren: () => import('./sidenav-pages/chat/chat.routing').then(m => m.CHAT_ROUTES)
-    //   },
+      {
+        canActivate: [AuthGuard],
+        path: 'account',
+        resolve: { sectionResolver },
+        loadChildren: () => import('./sidenav-pages/settings/settings.routing').then(m => m.SETTINGS_ROUTES)
+      },
+      {
+        canActivate: [AuthGuard],
+        resolve: { sectionResolver },
+        path: 'chat', loadChildren: () => import('./sidenav-pages/chat/chat.routing').then(m => m.CHAT_ROUTES)
+      },
     //   {
     //     canActivate: [AuthGuard],
     //     path: 'workshop-editor',

@@ -13,7 +13,11 @@ const staticSections: Map<string, Partial<Section>> = new Map([
 
 const staticPages: Map<string, Partial<Workshop>> = new Map([
   ['overview', { name: 'Overview' }],
-  ['workshops', { name: 'Workshops' }]
+  ['workshops', { name: 'Workshops' }],
+  ['General', { name: 'General' }],
+  ['Angular', { name: 'Angular' }],
+  ['NestJS', { name: 'NestJS' }],
+  ['RxJS', { name: 'RxJS' }],
 ]);
 
 function shareReplayWithTTL<T>(bufferSize: number, ttl: number): MonoTypeOperatorFunction<T> {
@@ -48,7 +52,7 @@ export class NavigationService {
     );
   }
 
-  navigateToSection(sectionId: string) {
+  navigateToSection(sectionId: string) {    
     const section = staticSections.get(sectionId) ?? this.fetchSectionWorkshops(sectionId);
     this.currentSection$.next(section);
     return of(section);
