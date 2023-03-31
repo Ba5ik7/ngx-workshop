@@ -11,11 +11,13 @@ import { MatLegacyListModule as MatListModule } from '@angular/material/legacy-l
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+
+
 @Component({
   standalone: true,
-  selector: 'ngx-category-list',
-  templateUrl: './category-list.component.html',
-  styleUrls: ['./category-list.component.scss'],
+  selector: 'ngx-workshop-list',
+  templateUrl: './workshop-list.component.html',
+  styleUrls: ['./workshop-list.component.scss'],
   imports: [
     CommonModule,
     RouterModule,
@@ -24,7 +26,7 @@ import { CommonModule } from '@angular/common';
     DragDropModule
   ]
 })
-export class CategoryListComponent implements OnInit, OnDestroy {
+export class WorkshopListComponent implements OnInit, OnDestroy {
 
   destory: Subject<boolean> = new Subject();
 

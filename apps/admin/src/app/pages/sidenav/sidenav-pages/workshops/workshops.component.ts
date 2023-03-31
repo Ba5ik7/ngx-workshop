@@ -1,36 +1,30 @@
-import { Component, OnDestroy } from '@angular/core';
-import { ActivatedRoute, RouterModule } from '@angular/router';
-import { distinct, map, Observable, Subject, takeUntil } from 'rxjs';
-import { Category, CategoryWorkshopDocument } from '../../../../shared/interfaces/category.interface';
-import { NavigationService } from '../../../../shared/services/navigation/navigation.service';
-
 import { CommonModule } from '@angular/common';
-
-
-import { MatLegacyListModule as MatListModule } from '@angular/material/legacy-list';
-import { MatIconModule } from '@angular/material/icon';
-import { MatLegacyDialogModule as MatDialogModule } from '@angular/material/legacy-dialog';
-import { DragDropModule } from '@angular/cdk/drag-drop';
-import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
-import { MatLegacyInputModule as MatInputModule } from '@angular/material/legacy-input';
-import { MatLegacyFormFieldModule as MatFormFieldModule } from '@angular/material/legacy-form-field';
-import { ReactiveFormsModule } from '@angular/forms';
+import { Component, inject } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { map, } from 'rxjs';
+import { NavigationService } from '../../../../shared/services/navigation/navigation.service';
 import { MatLegacySnackBarModule as MatSnackBarModule } from '@angular/material/legacy-snack-bar';
-import { PageListComponent } from './workshops-sidepanel/page-list/page-list.component';
-import { CategoryListComponent } from './workshops-sidepanel/category-list/category-list.component';
+// import { PageListComponent } from './workshops-sidepanel/page-list/page-list.component';
+// import { WorkshopListComponent } from './workshops-sidepanel/category-list/workshop-list.component';
+import { Workshop } from '../../../../shared/interfaces/category.interface';
 
 @Component({
   standalone: true,
   selector: 'ngx-workshops',
   template: `
+  <ng-container *ngIf="viewModel | async as vm; else loading">
     <router-outlet (activate)="routerIsActivate = true" (deactivate)="routerIsActivate = false"></router-outlet>
     <h1 *ngIf="!routerIsActivate" class="select-a-category-placeholder">Select a Category</h1>
     <div class="workshop-controls-panel">
       <div class="controls">
-        <ngx-category-list [categories]="categories | async"></ngx-category-list>
-        <ngx-page-list [pages]="workshopDocuments | async" [currentCategory]="currentCategory | async"></ngx-page-list>
+        <!-- <ngx-workshop-list [categories]="vm.workshops | async"></ngx-workshop-list> -->
+        <!-- <ngx-page-list [pages]="vm.workshopDocuments | async" [currentCategory]="currentCategory | async"></ngx-page-list> -->
       </div>
     </div>
+  </ng-container>
+  <ng-template #loading>
+    loading...
+  </ng-template>
   `,
   styles: [`
     :host {
@@ -50,36 +44,22 @@ import { CategoryListComponent } from './workshops-sidepanel/category-list/categ
   imports: [
     CommonModule,
     RouterModule,
-    PageListComponent,
-    CategoryListComponent,
+    // PageListComponent,
+    // WorkshopListComponent,
     MatSnackBarModule
   ]
 })
-export class WorkshopsComponent implements OnDestroy {
-  destory: Subject<boolean> = new Subject();
-
-  categories!: Observable<Category[]>;
-  currentCategory!: Observable<any>;
-  
-  workshopDocuments!: Observable<CategoryWorkshopDocument[]>;
-
+export class WorkshopsComponent {
   routerIsActivate = false;
-
-  constructor(activatedRoute: ActivatedRoute, navigationService: NavigationService) {
-    activatedRoute.params
-    .pipe(takeUntil(this.destory), distinct())
-    .subscribe(params => navigationService.sectionRouteSub.next(params['section']));
-
-    this.categories = navigationService.categories$
-    .pipe(
-      map((categories: Category[]) => categories?.sort((a, b) => a.sortId - b.sortId))
-    );
-  
-    this.currentCategory = navigationService.category$;
-    this.workshopDocuments = navigationService.workshopDocuments$; 
-  }
-
-  ngOnDestroy(): void {
-    this.destory.next(true);
-  }
+  viewModel = inject(NavigationService).getWorkshops()
+  .pipe(
+    map((workshops: Workshop[]) => {
+      return {
+        workshops: workshops?.sort((a, b) => a.sortId - b.sortId),
+        workshopDocuments: workshops?.map(workshop => workshop.workshopDocuments)
+          .flat()
+          .sort((a, b) => a.sortId - b.sortId),
+      }
+    })
+  )
 }

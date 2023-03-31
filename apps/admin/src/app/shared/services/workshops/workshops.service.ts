@@ -1,8 +1,7 @@
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { Category } from '../../interfaces/category.interface';
-import { WorkshopDocument } from '../../interfaces/workshop-document.interface';
+import { Workshop, WorkshopDocument } from '../../interfaces/category.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -11,17 +10,17 @@ export class WorkshopEditorService {
 
   constructor(private httpClient: HttpClient) { }
 
-  createCategoryFormErrorSubject = new Subject<number>();
-  createCategoryFormError$ = this.createCategoryFormErrorSubject.asObservable();
+  createWorkshopFormErrorSubject = new Subject<number>();
+  createWorkshopFormError$ = this.createWorkshopFormErrorSubject.asObservable();
 
-  createCategoryFormSuccessSubject = new Subject<Category>();
-  createCategoryFormSuccess$ = this.createCategoryFormSuccessSubject.asObservable();
+  createWorkshopFormSuccessSubject = new Subject<Workshop>();
+  createWorkshopFormSuccess$ = this.createWorkshopFormSuccessSubject.asObservable();
 
-  createCategory(category: Category): void {
-    this.httpClient.post<Category>('/api/navigation/category/create-category', category)
+  createWorkshop(workshop: Workshop): void {
+    this.httpClient.post<Workshop>('/api/navigation/category/create-category', workshop)
     .subscribe({
-      next: (createdCategory) => this.createCategoryFormSuccessSubject.next(createdCategory),
-      error: (httpError: HttpErrorResponse) => this.createCategoryFormErrorSubject.next(httpError.status)
+      next: (workshop) => this.createWorkshopFormSuccessSubject.next(workshop),
+      error: (httpError: HttpErrorResponse) => this.createWorkshopFormErrorSubject.next(httpError.status)
     });
   }
 
