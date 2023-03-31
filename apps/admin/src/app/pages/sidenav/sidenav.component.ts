@@ -78,16 +78,11 @@ import { SidenavHeaderComponent, SidenavHeaderData } from './sidenav-header/side
 })
 export class SidenavComponent {
   navigationService = inject(NavigationService);
-
-  sections = this.navigationService.getSections();
-  currentSection = this.navigationService.getCurrentSection();
-  currentWorkshopTitle = this.navigationService.getCurrentWorkshop()
-  .pipe(map((workshop) => workshop?.name));
-
   viewModel = combineLatest({
-    sections: this.sections,
-    currentSection: this.currentSection,
-    currentWorkshopTitle: this.currentWorkshopTitle,
+    sections: this.navigationService.getSections(),
+    currentSection: this.navigationService.getCurrentSection(),
+    currentWorkshopTitle: this.navigationService.getCurrentWorkshop()
+                            .pipe(map((workshop) => workshop?.name))
   })
   .pipe(
     map(({ currentWorkshopTitle, currentSection, sections }) => {
