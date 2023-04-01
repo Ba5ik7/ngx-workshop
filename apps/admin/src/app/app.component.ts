@@ -1,6 +1,5 @@
 import { RouterModule } from '@angular/router';
 import { Component, inject, OnInit, ViewEncapsulation } from '@angular/core';
-import { NavigationService } from './shared/services/navigation/navigation.service';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { ThemePickerService } from './shared/services/theme-picker/theme-picker.service';
 
