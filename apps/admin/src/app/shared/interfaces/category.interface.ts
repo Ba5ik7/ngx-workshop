@@ -1,3 +1,5 @@
+
+export interface Sections { [key: string]: Section }
 export interface Section {
   // Object id of the section item for mongo db.
   _id: string;

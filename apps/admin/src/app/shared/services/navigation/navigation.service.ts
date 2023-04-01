@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { MonoTypeOperatorFunction, BehaviorSubject, Observable, timer, of } from 'rxjs';
-import { map, shareReplay, switchMap, takeUntil, tap } from 'rxjs/operators';
-import { Section, Workshop, WorkshopDocument } from '../../interfaces/category.interface';
+import { shareReplay, switchMap, takeUntil, tap } from 'rxjs/operators';
+import { Section, Sections, Workshop, WorkshopDocument } from '../../interfaces/category.interface';
 
 const staticSections: Map<string, Partial<Section>> = new Map([
   ['dashboard', { headerSvgPath: '/assets/img/dashboard-color.png', sectionTitle: 'Dashboard' }],
@@ -32,7 +32,7 @@ function shareReplayWithTTL<T>(bufferSize: number, ttl: number): MonoTypeOperato
   providedIn: 'root',
 })
 export class NavigationService {
-  private sections$ = new BehaviorSubject<Section[]>([]);
+  private sections$ = new BehaviorSubject<Sections>({});
   private currentSection$ = new BehaviorSubject<Partial<Section> | undefined>(undefined);
   private workshops$ = new BehaviorSubject<Workshop[]>([]);
   private currentWorkshop$ = new BehaviorSubject<Partial<Workshop> | undefined>(undefined);
@@ -45,7 +45,7 @@ export class NavigationService {
   private http: HttpClient = inject(HttpClient);
 
   fetchSections() {
-    return this.http.get<Section[]>('/api/navigation/sections').pipe(
+    return this.http.get<Sections>('/api/navigation/sections').pipe(
       tap((sections) => {
         this.sections$.next(sections);
       })
@@ -54,6 +54,11 @@ export class NavigationService {
 
   navigateToSection(sectionId: string) {
     return of(sectionId).pipe(
+      tap((id) => {
+        this.currentSection$.next(
+          staticSections.get(id) ?? this.sections$.getValue()[id]
+        );
+      }),
       switchMap((id) => {
         const staticPage = staticPages.get(id);
         return staticPage ? of(staticPage) : this.fetchSectionWorkshops(id);

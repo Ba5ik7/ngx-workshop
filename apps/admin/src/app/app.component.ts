@@ -31,10 +31,7 @@ import { ThemePickerService } from './shared/services/theme-picker/theme-picker.
 })
 export class AppComponent implements OnInit {
   themePickerService = inject(ThemePickerService);
-  navigationService = inject(NavigationService);
-
-  ngOnInit(): void {    
-    this.navigationService.fetchSections().subscribe();
+  ngOnInit(): void {
     this.themePickerService.init();
   }
 }

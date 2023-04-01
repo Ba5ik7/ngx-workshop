@@ -11,6 +11,7 @@ import { MatLegacyListModule as MatListModule } from '@angular/material/legacy-l
 import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatLegacyDialogModule as MatDialogModule } from '@angular/material/legacy-dialog';
+import { Sections } from '../../../shared/interfaces/category.interface';
 @Component({
   standalone: true,
   selector: 'ngx-sidenav-menu',
@@ -95,8 +96,8 @@ import { MatLegacyDialogModule as MatDialogModule } from '@angular/material/lega
   ]
 })
 export class SidenavMenuComponent {
-
-  @Input() sections!: any[] | null;
+  // @TODO - Reactive
+  @Input() sections!: Sections;
 
   constructor(public matDialog: MatDialog) { }
 
