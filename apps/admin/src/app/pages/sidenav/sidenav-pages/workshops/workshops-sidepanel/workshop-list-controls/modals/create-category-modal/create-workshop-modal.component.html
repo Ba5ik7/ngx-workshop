@@ -6,12 +6,12 @@
       <mat-form-field>
         <mat-label>Name</mat-label>
         <input matInput type="text" placeholder="Name" formControlName="name">
-        <mat-error *ngIf="vm.formGroup.get('name')?.errors">{{createWorkshopFormErrorMessages['name']}}</mat-error>
+        <mat-error *ngIf="vm.formGroup.get('name')?.errors">{{createWorkshopControlsErrorMessage['name']}}</mat-error>
       </mat-form-field>
       <mat-form-field>
         <mat-label>Summary</mat-label>
         <textarea matInput placeholder="Summary" formControlName="summary"></textarea>
-        <mat-error *ngIf="vm.formGroup.get('summary')?.errors">{{createWorkshopFormErrorMessages['summary']}}</mat-error>
+        <mat-error *ngIf="vm.formGroup.get('summary')?.errors">{{createWorkshopControlsErrorMessage['summary']}}</mat-error>
       </mat-form-field>
       <mat-dialog-actions align="end">
         <button mat-button mat-dialog-close [disabled]="vm.loading">Cancel</button>
@@ -21,5 +21,5 @@
   </div>
 </ng-container>
 <ng-template #elseTemplate>
-  ... loading ...
+  loading ...
 </ng-template>

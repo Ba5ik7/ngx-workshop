@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatLegacyDialogRef as MatDialogRef } from '@angular/material/legacy-dialog';
-import { BehaviorSubject, combineLatest, concatMap, forkJoin, map, mergeAll, mergeMap, Observable, of, switchMap, take, takeUntil, tap } from 'rxjs';
+import { BehaviorSubject, combineLatest, map, mergeMap, Observable, of, take, takeUntil, tap } from 'rxjs';
 import { NavigationService } from '../../../../../../../../shared/services/navigation/navigation.service';
 import { WorkshopEditorService } from '../../../../../../../../shared/services/workshops/workshops.service';
 import { MatLegacyFormFieldModule as MatFormFieldModule } from '@angular/material/legacy-form-field';
@@ -32,8 +32,11 @@ export class CreateWorkshopModalComponent {
   private formBuilder = inject(FormBuilder);
 
   createWorkshopFormLevelMessage$ = new BehaviorSubject<string | undefined>(undefined);
-  errorMessages: { [key: string]: string } = { required: 'Required', httpFailure: 'Server error'  };
-  createWorkshopFormErrorMessages: { [key: string]: string } = {
+  errorMessages: { [key: string]: string } = {
+    required: 'Required',
+    httpFailure: 'Server error'
+  };
+  createWorkshopControlsErrorMessage: { [key: string]: string } = {
     name: '', summary: ''
   }
 
@@ -55,16 +58,19 @@ export class CreateWorkshopModalComponent {
   viewModel$ = combineLatest({
     formGroup: this.formGroup$.pipe(
       tap((formGroup) => {
-        formGroup.statusChanges.subscribe(() => {
-          this.setErrorsMessages(formGroup, this.createWorkshopFormErrorMessages)
+        formGroup.statusChanges
+        .pipe(takeUntil(this.dialogRef.afterClosed()))
+        .subscribe(() => {
+          this.workshopEditorService.ifErrorsSetMessages(
+            formGroup,
+            this.createWorkshopControlsErrorMessage,
+            this.errorMessages
+          );
         });
       }),
-      takeUntil(this.dialogRef.afterClosed())
     ),
-    loading: this.loading$.pipe(
-      tap((loading) => this.dialogRef.disableClose = loading)
-    ),
-    createWorkshopFormLevelMessage: this.createWorkshopFormLevelMessage$
+    loading: this.loading$.pipe(tap((loading) => this.dialogRef.disableClose = loading)),
+    createWorkshopFormLevelMessage: this.createWorkshopFormLevelMessage$,
   });
 
   onCreateWorkshop(formGroupValue: unknown) {
@@ -86,16 +92,6 @@ export class CreateWorkshopModalComponent {
         this.dialogRef.close();
       },
       error: () => this.createWorkshopFormLevelMessage$.next(this.errorMessages['httpFailure'])
-    });
-  }
-
-  setErrorsMessages(formGroup: FormGroup, formControlMessages: { [key: string]: string }): void {
-    Object.keys(formGroup.controls).forEach(element => {
-      const errors = formGroup.get(element)?.errors;
-      if(errors) {
-        const error = Object.keys(errors)[0];
-        formControlMessages[element] = this.errorMessages[error];
-      }
     });
   }
 }
