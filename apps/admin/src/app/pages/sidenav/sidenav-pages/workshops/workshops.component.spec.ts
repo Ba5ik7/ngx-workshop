@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { WorkshopEditorComponent } from './workshops.component';
+import { WorkshopsComponent } from './workshops.component';
 
-describe('WorkshopEditorComponent', () => {
-  let component: WorkshopEditorComponent;
-  let fixture: ComponentFixture<WorkshopEditorComponent>;
+describe('WorkshopsComponent', () => {
+  let component: WorkshopsComponent;
+  let fixture: ComponentFixture<WorkshopsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ WorkshopEditorComponent ]
+      declarations: [ WorkshopsComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(WorkshopEditorComponent);
+    fixture = TestBed.createComponent(WorkshopsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

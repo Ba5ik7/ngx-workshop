@@ -4,8 +4,8 @@ import { RouterModule } from '@angular/router';
 import { map, } from 'rxjs';
 import { NavigationService } from '../../../../shared/services/navigation/navigation.service';
 import { MatLegacySnackBarModule as MatSnackBarModule } from '@angular/material/legacy-snack-bar';
-// import { PageListComponent } from './workshops-sidepanel/page-list/page-list.component';
-// import { WorkshopListComponent } from './workshops-sidepanel/category-list/workshop-list.component';
+// import { PageListComponent } from './workshops-sidepanel/page-list-controls/page-list.component';
+import { WorkshopListComponent } from './workshops-sidepanel/workshop-list-controls/workshop-list.component';
 import { Workshop } from '../../../../shared/interfaces/category.interface';
 
 @Component({
@@ -13,14 +13,21 @@ import { Workshop } from '../../../../shared/interfaces/category.interface';
   selector: 'ngx-workshops',
   template: `
   <ng-container *ngIf="viewModel | async as vm; else loading">
-    <router-outlet (activate)="routerIsActivate = true" (deactivate)="routerIsActivate = false"></router-outlet>
+
+    <router-outlet
+      (activate)="routerIsActivate = true"
+      (deactivate)="routerIsActivate = false">
+    </router-outlet>
+
     <h1 *ngIf="!routerIsActivate" class="select-a-category-placeholder">Select a Category</h1>
+    
     <div class="workshop-controls-panel">
       <div class="controls">
-        <!-- <ngx-workshop-list [categories]="vm.workshops | async"></ngx-workshop-list> -->
+        <ngx-workshop-list [categories]="vm.workshops"></ngx-workshop-list>
         <!-- <ngx-page-list [pages]="vm.workshopDocuments | async" [currentCategory]="currentCategory | async"></ngx-page-list> -->
       </div>
     </div>
+
   </ng-container>
   <ng-template #loading>
     loading...
@@ -45,7 +52,7 @@ import { Workshop } from '../../../../shared/interfaces/category.interface';
     CommonModule,
     RouterModule,
     // PageListComponent,
-    // WorkshopListComponent,
+    WorkshopListComponent,
     MatSnackBarModule
   ]
 })
