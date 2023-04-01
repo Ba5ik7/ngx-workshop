@@ -57,8 +57,6 @@ export class WorkshopsComponent {
       return {
         workshops: workshops?.sort((a, b) => a.sortId - b.sortId),
         workshopDocuments: workshops?.map(workshop => workshop.workshopDocuments)
-          .flat()
-          .sort((a, b) => a.sortId - b.sortId),
       }
     })
   )

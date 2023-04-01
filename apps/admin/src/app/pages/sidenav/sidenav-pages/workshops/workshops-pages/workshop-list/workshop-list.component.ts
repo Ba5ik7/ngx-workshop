@@ -1,8 +1,9 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Workshop } from '../../../../../../shared/interfaces/category.interface';
 import { RouterModule } from '@angular/router';
 import { MatLegacyCardModule as MatCardModule } from '@angular/material/legacy-card'
+import { NavigationService } from '../../../../../../shared/services/navigation/navigation.service';
 
 @Component({
   selector: 'ngx-workshop-list',
@@ -18,7 +19,7 @@ import { MatLegacyCardModule as MatCardModule } from '@angular/material/legacy-c
     </div>
     <div class="workshop-category-list">
       <mat-card 
-        *ngFor="let workshop of workshops" 
+        *ngFor="let workshop of workshops | async" 
         [routerLink]="'../' + workshop.worshopDocumentGroupId">
         <img mat-card-image src="/admin/assets/img/workshop-placeholder.png">
         <mat-card-title>{{workshop.name}}</mat-card-title>
@@ -70,5 +71,5 @@ import { MatLegacyCardModule as MatCardModule } from '@angular/material/legacy-c
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class WorkshopListComponent {
-  @Input() workshops: Workshop[] = [];
+  workshops = inject(NavigationService).getWorkshops();
 }

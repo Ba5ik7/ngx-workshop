@@ -6,6 +6,7 @@ import { sectionResolver } from '../../../../shared/resolvers/section.resolver';
 export const WORKSHOPS_ROUTES: Route[] = [
   {
     path: ':section',
+    resolve: { sectionResolver },
     component: WorkshopsComponent,
     children: [
       {
@@ -16,12 +17,11 @@ export const WORKSHOPS_ROUTES: Route[] = [
       {
         canActivate: [AuthGuard],
         path: 'workshop-list',
-        loadChildren: () => import('./workshops-pages/workshop-list/workshop-list.component').then(m => m.WorkshopListComponent)
+        loadComponent: () => import('./workshops-pages/workshop-list/workshop-list.component').then(m => m.WorkshopListComponent)
       },
       {
         canActivate: [AuthGuard],
         path: ':categoryId',
-        resolve: { sectionResolver },
         loadChildren: () => import('./workshops-pages/workshop-detail/workshop-detail.module').then(m => m.WorkshopDetailModule)
       },
     ]

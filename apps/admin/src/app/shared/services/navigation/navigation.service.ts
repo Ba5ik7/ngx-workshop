@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { MonoTypeOperatorFunction, BehaviorSubject, Observable, timer, of } from 'rxjs';
-import { shareReplay, takeUntil, tap } from 'rxjs/operators';
+import { map, shareReplay, switchMap, takeUntil, tap } from 'rxjs/operators';
 import { Section, Workshop, WorkshopDocument } from '../../interfaces/category.interface';
 
 const staticSections: Map<string, Partial<Section>> = new Map([
@@ -52,25 +52,23 @@ export class NavigationService {
     );
   }
 
-  navigateToSection(sectionId: string) {    
-    const section = staticSections.get(sectionId) ?? this.fetchSectionWorkshops(sectionId);
-    this.currentSection$.next(section);
-    return of(section);
+  navigateToSection(sectionId: string) {
+    return of(sectionId).pipe(
+      switchMap((id) => {
+        const staticPage = staticPages.get(id);
+        return staticPage ? of(staticPage) : this.fetchSectionWorkshops(id);
+      }),
+      tap((workshops) => Array.isArray(workshops) && this.workshops$.next(workshops)),
+    );
   }
 
   private fetchSectionWorkshops(sectionId: string) {
     if (!this.sectionWorkshopsCache[sectionId]) {
       this.sectionWorkshopsCache[sectionId] = this.http
-        .get<Workshop[]>('/api/navigation/workshops', { params: { section: sectionId } })
-        .pipe(
-          tap((workshops) => {
-            this.workshops$.next(workshops);
-          }),
-          shareReplayWithTTL(1, this.cacheTTL)
-        );
+        .get<Workshop[]>('/api/navigation/categories', { params: { section: sectionId } })
+        .pipe(shareReplayWithTTL(1, this.cacheTTL));
     }
-    this.sectionWorkshopsCache[sectionId].subscribe();
-    return this.sections$.getValue().find((section) => section._id === sectionId);
+    return this.sectionWorkshopsCache[sectionId];
   }
 
   navigateToWorkshop(workshopDocumentId: string) {
