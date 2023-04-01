@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DeleteCategoryModalComponent } from './delete-category-modal.component';
+import { DeleteCategoryModalComponent } from './delete-workshop-modal.component';
 
 describe('DeleteCategoryModalComponent', () => {
   let component: DeleteCategoryModalComponent;

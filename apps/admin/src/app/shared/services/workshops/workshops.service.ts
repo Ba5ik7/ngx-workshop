@@ -10,7 +10,7 @@ export interface Result<T> {
   error?: number;
 }
 
-type KeyValue = { [key: string]: string };
+export type KeyValue = { [key: string]: string };
 
 @Injectable({
   providedIn: 'root'
@@ -48,7 +48,7 @@ export class WorkshopEditorService {
   }
         
   deleteWorkshop(_id: string) {
-    return this.apiCall<Workshop>('/navigation/category/delete-category-and-workshops', { _id });
+    return this.apiCall<{ id: string }>('/navigation/category/delete-category-and-workshops', { _id });
   }
       
   sortCategories(categories: Workshop[]) {

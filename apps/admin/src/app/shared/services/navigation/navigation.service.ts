@@ -63,7 +63,7 @@ export class NavigationService {
         const staticPage = staticPages.get(id);
         return staticPage ? of(staticPage) : this.fetchSectionWorkshops(id);
       }),
-      tap((workshops) => Array.isArray(workshops) && this.workshops$.next(workshops)),
+      tap((workshops) => Array.isArray(workshops) && this.setWorkshops(workshops)),
     );
   }
 

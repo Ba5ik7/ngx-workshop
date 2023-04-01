@@ -5,12 +5,13 @@ import { MatLegacySnackBar as MatSnackBar, MatLegacySnackBarConfig as MatSnackBa
 import { Subject } from 'rxjs';
 import { WorkshopEditorService } from '../../../../../../shared/services/workshops/workshops.service';
 import { CreateWorkshopModalComponent } from './modals/create-category-modal/create-workshop-modal.component';
-// import { DeleteCategoryModalComponent } from './modals/delete-category-modal/delete-category-modal.component';
+import { DeleteWorkshopModalComponent } from './modals/delete-category-modal/delete-workshop-modal.component';
 // import { EditCategoryModalComponent } from './modals/edit-category-modal/edit-category-modal.component';
 import { MatLegacyListModule as MatListModule } from '@angular/material/legacy-list';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { Workshop } from '../../../../../../shared/interfaces/category.interface';
 
 
 @Component({
@@ -59,11 +60,11 @@ export class WorkshopListComponent implements OnInit, OnDestroy {
     this.matDialog.open(CreateWorkshopModalComponent, { width: '400px' });
   }
   
-  // deleteCategory(event: Event, category: any): void {
-  //   event.preventDefault();
-  //   event.stopImmediatePropagation();
-  //   this.matDialog.open(DeleteCategoryModalComponent, { width: '400px', data: { category }});
-  // }
+  deleteCategory(event: Event, workshop: Workshop): void {
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    this.matDialog.open(DeleteWorkshopModalComponent, { width: '400px', data: { workshop }});
+  }
 
   // editCategory(event: Event, category: any): void {
   //   event.preventDefault();

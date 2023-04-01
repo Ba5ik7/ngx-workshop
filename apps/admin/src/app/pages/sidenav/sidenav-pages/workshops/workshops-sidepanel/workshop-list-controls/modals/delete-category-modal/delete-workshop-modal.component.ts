@@ -1,8 +1,9 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, Inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { MatLegacyDialogRef as MatDialogRef } from '@angular/material/legacy-dialog';
-import { BehaviorSubject, combineLatest, map, mergeMap, of, take, takeUntil, tap } from 'rxjs';
+import { MatLegacyDialogRef as MatDialogRef, MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA } from '@angular/material/legacy-dialog';
+import { BehaviorSubject, combineLatest, mergeMap, of, take, takeUntil, tap } from 'rxjs';
 import { NavigationService } from '../../../../../../../../shared/services/navigation/navigation.service';
+import { MatchStringValidator } from '../../../../../../../../shared/validators/match-string.validator';
 import { KeyValue, WorkshopEditorService } from '../../../../../../../../shared/services/workshops/workshops.service';
 import { MatLegacyFormFieldModule as MatFormFieldModule } from '@angular/material/legacy-form-field';
 import { MatLegacyDialogModule as MatDialogModule } from '@angular/material/legacy-dialog';
@@ -13,9 +14,9 @@ import { Workshop } from '../../../../../../../../shared/interfaces/category.int
 
 @Component({
   standalone: true,
-  selector: 'ngx-create-workshop-modal',
-  templateUrl: './create-workshop-modal.component.html',
-  styleUrls: ['./create-workshop-modal.component.scss'],
+  selector: 'ngx-delete-workshop-modal',
+  templateUrl: './delete-workshop-modal.component.html',
+  styleUrls: ['./delete-workshop-modal.component.scss'],
   imports: [
     CommonModule,
     MatFormFieldModule,
@@ -23,37 +24,24 @@ import { Workshop } from '../../../../../../../../shared/interfaces/category.int
     ReactiveFormsModule,
     MatButtonModule,
     MatInputModule,
-  ]
+  ],
 })
-export class CreateWorkshopModalComponent {
-  private workshopEditorService = inject(WorkshopEditorService);
-  private navigationService = inject(NavigationService);
-  private dialogRef = inject(MatDialogRef<CreateWorkshopModalComponent>);
-  private formBuilder = inject(FormBuilder);
-
-  createWorkshopFormLevelMessage$ = new BehaviorSubject<string | undefined>(undefined);
+export class DeleteWorkshopModalComponent {
+  deleteWorkshopFormLevelMessage$ = new BehaviorSubject<string | undefined>(undefined);
   errorMessages: KeyValue = {
     required: 'Required',
+    matchString: 'Name does NOT match.',
     httpFailure: 'Server error'
   };
-  createWorkshopControlsErrorMessage: KeyValue = {
-    name: '', summary: ''
-  }
+  deleteWorkshopControlsErrorMessages: KeyValue = { name: '' }
 
   loading$ = new BehaviorSubject<boolean>(false)
-  formGroup$ = combineLatest({
-    section: inject(NavigationService).getCurrentSection(),
-    workshops: inject(NavigationService).getWorkshops(),
-  }).pipe(
-    map(({ section, workshops }) => {
-      return this.formBuilder.group({
-        sectionId:[section?._id],
-        sortId:[workshops.length],
-        name: ['', [Validators.required]],
-        summary: ['', [Validators.required]]
-      })
-    })
-  );
+  formGroup$ = of(
+      inject(FormBuilder).group(
+      { name: ['', [Validators.required]] },
+      { validators: MatchStringValidator('name', this.data.workshop.name) }
+    )
+  )
 
   viewModel$ = combineLatest({
     formGroup: this.formGroup$.pipe(
@@ -63,35 +51,43 @@ export class CreateWorkshopModalComponent {
         .subscribe(() => {
           this.workshopEditorService.ifErrorsSetMessages(
             formGroup,
-            this.createWorkshopControlsErrorMessage,
+            this.deleteWorkshopControlsErrorMessages,
             this.errorMessages
           );
         });
       }),
     ),
     loading: this.loading$.pipe(tap((loading) => this.dialogRef.disableClose = loading)),
-    createWorkshopFormLevelMessage: this.createWorkshopFormLevelMessage$,
+    deleteWorkshopFormLevelMessage: this.deleteWorkshopFormLevelMessage$,
   });
 
-  onCreateWorkshop(formGroupValue: unknown) {
-    this.workshopEditorService.createWorkshop(formGroupValue as Workshop)
+
+  private dialogRef = inject(MatDialogRef<DeleteWorkshopModalComponent>);
+  private workshopEditorService = inject(WorkshopEditorService);
+  private navigationService = inject(NavigationService);
+  constructor(@Inject(MAT_DIALOG_DATA) public data: { workshop: Workshop }) { }
+
+  onDeleteWorkshop() {
+    this.workshopEditorService.deleteWorkshop(this.data.workshop._id)
     .pipe(
       tap(() => this.loading$.next(true)),
       mergeMap((result) => {
         return combineLatest({
-          workshop: of(result.success),
+          data: of(result.success),
           workshops: this.navigationService.getWorkshops()
         }).pipe(take(1));
       }),
     )
     .subscribe({
-      next: ({ workshop, workshops }) => {
-        const newWorkshops = workshops.slice(0);
-        workshop && newWorkshops.push(workshop);
+      next: ({ workshops, data }) => {
+        const newWorkshops = workshops.filter((workshop) => {                    
+          return workshop._id !== data?.id;
+        });
+        
         this.navigationService.setWorkshops(newWorkshops);
         this.dialogRef.close();
       },
-      error: () => this.createWorkshopFormLevelMessage$.next(this.errorMessages['httpFailure'])
+      error: () => this.deleteWorkshopFormLevelMessage$.next(this.errorMessages['httpFailure'])
     });
   }
 }

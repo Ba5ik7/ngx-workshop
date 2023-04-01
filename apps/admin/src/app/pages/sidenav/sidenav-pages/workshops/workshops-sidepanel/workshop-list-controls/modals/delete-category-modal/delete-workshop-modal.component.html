@@ -1,0 +1,21 @@
+<ng-container *ngIf="viewModel$ | async as vm; else elseTemplate">
+  <div class="form-container">
+    <form [formGroup]="vm.formGroup">
+      <h2 mat-dialog-title>Delete {{data.workshop.name}}?</h2>
+      <p class="warn">Deletes the Workshop and All associated Pages.<br>This action cannot be undone.</p>
+      <span class="form-level-error-message">{{vm.deleteWorkshopFormLevelMessage}}</span>
+      <mat-form-field color="accent">
+        <mat-label>Name</mat-label>
+        <input matInput type="text" placeholder="Type in the category name to continue." formControlName="name">
+        <mat-error *ngIf="vm.formGroup.get('name')?.errors">{{deleteWorkshopControlsErrorMessages['name']}}</mat-error>
+      </mat-form-field>
+      <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close [disabled]="vm.loading">Cancel</button>
+        <button mat-raised-button color="warn" (click)="onDeleteWorkshop()" [disabled]="vm.formGroup.invalid || vm.loading">Delete</button>
+      </mat-dialog-actions>
+    </form>
+  </div>
+</ng-container>
+<ng-template #elseTemplate>
+  loading ...
+</ng-template>

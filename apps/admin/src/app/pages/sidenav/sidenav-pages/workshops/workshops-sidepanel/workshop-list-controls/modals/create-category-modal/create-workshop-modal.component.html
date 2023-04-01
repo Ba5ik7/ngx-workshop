@@ -3,12 +3,12 @@
     <form [formGroup]="vm.formGroup">
       <h2 mat-dialog-title>Create a New Workshop?</h2>
       <span class="form-level-error-message">{{vm.createWorkshopFormLevelMessage}}</span>
-      <mat-form-field>
+      <mat-form-field color="accent">
         <mat-label>Name</mat-label>
         <input matInput type="text" placeholder="Name" formControlName="name">
         <mat-error *ngIf="vm.formGroup.get('name')?.errors">{{createWorkshopControlsErrorMessage['name']}}</mat-error>
       </mat-form-field>
-      <mat-form-field>
+      <mat-form-field color="accent">
         <mat-label>Summary</mat-label>
         <textarea matInput placeholder="Summary" formControlName="summary"></textarea>
         <mat-error *ngIf="vm.formGroup.get('summary')?.errors">{{createWorkshopControlsErrorMessage['summary']}}</mat-error>

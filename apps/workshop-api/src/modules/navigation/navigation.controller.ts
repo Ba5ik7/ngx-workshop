@@ -45,8 +45,9 @@ export class NavigationController {
   @Post('category/delete-category-and-workshops')
   async deleteCategoryAndWorkshops(
     @Body() body: { _id: string },
-  ): Promise<{ acknowledged: boolean; deletedCount: number }> {
-    return await this.navigationService.deleteCategoryAndWorkshops(body._id);
+  ): Promise<{id: string}> {
+    await this.navigationService.deleteCategoryAndWorkshops(body._id);
+    return { id: body._id };
   }
 
   @Roles(Role.Admin)
