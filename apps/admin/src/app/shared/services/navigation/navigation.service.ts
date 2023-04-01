@@ -97,6 +97,10 @@ export class NavigationService {
     return this.workshops$.getValue().find((workshop) => workshop._id === workshopDocumentId);
   }
 
+  setWorkshops(workshops: Workshop[]) {
+    this.workshops$.next(workshops);
+  }
+
   getSections() {
     return this.sections$.asObservable();
   }

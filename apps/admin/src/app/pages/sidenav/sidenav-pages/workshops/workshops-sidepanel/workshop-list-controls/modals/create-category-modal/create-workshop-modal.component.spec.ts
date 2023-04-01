@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CreateCategoryModalComponent } from './create-category-modal.component';
+import { CreateCategoryModalComponent } from './create-workshop-modal.component';
 
 describe('CreateCategoryModalComponent', () => {
   let component: CreateCategoryModalComponent;

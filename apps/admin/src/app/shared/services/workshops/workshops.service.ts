@@ -145,10 +145,10 @@
 
 
 
-import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Subject, throwError } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Workshop, WorkshopDocument } from '../../interfaces/category.interface';
 
 export interface Result<T> {
@@ -176,7 +176,6 @@ export class WorkshopEditorService {
 
     return request.pipe(
       map((data: T) => ({ success: data } as Result<T>)),
-      catchError((error: HttpErrorResponse) => throwError({ error: error.status } as Result<T>))
     );
   }
         
