@@ -6,12 +6,13 @@ import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/lega
 import { Subject, takeUntil } from 'rxjs';
 import { WorkshopEditorService } from '../../../../../../shared/services/workshops/workshops.service';
 import { CreatePageModalComponent } from './modals/create-page-modal/create-page-modal.component';
-import { DeletePageModalComponent } from './modals/delete-page-modal/delete-page-modal.component';
-import { EditPageModalComponent } from './modals/edit-page-modal/edit-page-modal.component';
+// import { DeletePageModalComponent } from './modals/delete-page-modal/delete-page-modal.component';
+// import { EditPageModalComponent } from './modals/edit-page-modal/edit-page-modal.component';
 import { MatLegacyListModule as MatListModule } from '@angular/material/legacy-list';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { WorkshopDocument, WorkshopDocumentIdentifier } from '../../../../../../shared/interfaces/category.interface';
 
 @Component({
   standalone: true,
@@ -39,8 +40,7 @@ export class PageListComponent implements OnInit, OnDestroy {
     verticalPosition: 'top'
   }
 
-  @Input() pages!: any[] | null;
-  @Input() currentCategory!: any | null;
+  @Input() documents: WorkshopDocumentIdentifier[] = [];
 
   constructor(
     public matDialog: MatDialog,
@@ -65,51 +65,51 @@ export class PageListComponent implements OnInit, OnDestroy {
   }
 
   editPage(event: Event, page: any): void {
-    event.preventDefault();
-    event.stopImmediatePropagation();
-    this.matDialog.open(EditPageModalComponent, { width: '400px', data: { page }});
+    // event.preventDefault();
+    // event.stopImmediatePropagation();
+    // this.matDialog.open(EditPageModalComponent, { width: '400px', data: { page }});
   }
 
   deletePage(event: Event, page: any): void {
-    event.preventDefault();
-    event.stopImmediatePropagation();
-    this.matDialog.open(DeletePageModalComponent, { width: '400px', data: { page }});
+    // event.preventDefault();
+    // event.stopImmediatePropagation();
+    // this.matDialog.open(DeletePageModalComponent, { width: '400px', data: { page }});
   }
 
 
   drop(event: CdkDragDrop<any[]>) {
-    this.cdkDragDisabled = true;
-    const pages = this.pages ?? []; 
-    moveItemInArray(pages, event.previousIndex, event.currentIndex);
-    this.pages?.map((page, index) => page.sortId = index);
-    this.workshopEditorService.sortPages(pages, this.currentCategory._id);
+    // this.cdkDragDisabled = true;
+    // const pages = this.pages ?? []; 
+    // moveItemInArray(pages, event.previousIndex, event.currentIndex);
+    // this.pages?.map((page, index) => page.sortId = index);
+    // this.workshopEditorService.sortPages(pages, this.currentCategory._id);
   }
 
   initSortPages(): void {
-    this.workshopEditorService.sortPagesFormError$
-    .pipe(takeUntil(this.destory))
-    .subscribe((error) => {
-      this.snackBar.open('😿 Error updating the categories new order', undefined, this.snackBarOptiions);
-      this.cdkDragDisabled = false;
-    });
+    // this.workshopEditorService.sortPagesFormError$
+    // .pipe(takeUntil(this.destory))
+    // .subscribe((error) => {
+    //   this.snackBar.open('😿 Error updating the categories new order', undefined, this.snackBarOptiions);
+    //   this.cdkDragDisabled = false;
+    // });
     
-    this.workshopEditorService.sortPagesFormSuccess$
-    .pipe(takeUntil(this.destory))
-    .subscribe((category) => {
-      this.snackBar.open('😸 Categories new order updated', undefined, this.snackBarOptiions);
-      this.cdkDragDisabled = false;      
-    });
+    // this.workshopEditorService.sortPagesFormSuccess$
+    // .pipe(takeUntil(this.destory))
+    // .subscribe((category) => {
+    //   this.snackBar.open('😸 Categories new order updated', undefined, this.snackBarOptiions);
+    //   this.cdkDragDisabled = false;      
+    // });
 
-    this.workshopEditorService.savePageHTMLError$
-    .pipe(takeUntil(this.destory))
-    .subscribe((error) => {
-      this.snackBar.open('😿 Error saving workshop', undefined, this.snackBarOptiions);
-    });
+    // this.workshopEditorService.savePageHTMLError$
+    // .pipe(takeUntil(this.destory))
+    // .subscribe((error) => {
+    //   this.snackBar.open('😿 Error saving workshop', undefined, this.snackBarOptiions);
+    // });
 
-    this.workshopEditorService.savePageHTMLSuccess$
-    .pipe(takeUntil(this.destory))
-    .subscribe((page) => {
-      this.snackBar.open('😸 Workshop was saved', undefined, this.snackBarOptiions);
-    });
+    // this.workshopEditorService.savePageHTMLSuccess$
+    // .pipe(takeUntil(this.destory))
+    // .subscribe((page) => {
+    //   this.snackBar.open('😸 Workshop was saved', undefined, this.snackBarOptiions);
+    // });
   }
 }

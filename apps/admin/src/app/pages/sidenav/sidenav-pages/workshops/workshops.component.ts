@@ -1,12 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { map, } from 'rxjs';
+import { combineLatest, map, of, switchMap, } from 'rxjs';
 import { NavigationService } from '../../../../shared/services/navigation/navigation.service';
 import { MatLegacySnackBarModule as MatSnackBarModule } from '@angular/material/legacy-snack-bar';
-// import { PageListComponent } from './workshops-sidepanel/page-list-controls/page-list.component';
+import { PageListComponent } from './workshops-sidepanel/page-list-controls/page-list.component';
 import { WorkshopListComponent } from './workshops-sidepanel/workshop-list-controls/workshop-list.component';
-import { Workshop } from '../../../../shared/interfaces/category.interface';
 
 @Component({
   standalone: true,
@@ -24,7 +23,7 @@ import { Workshop } from '../../../../shared/interfaces/category.interface';
     <div class="workshop-controls-panel">
       <div class="controls">
         <ngx-workshop-list [workshops]="vm.workshops"></ngx-workshop-list>
-        <!-- <ngx-page-list [pages]="vm.workshopDocuments | async" [currentCategory]="currentCategory | async"></ngx-page-list> -->
+        <ngx-page-list [documents]="vm.documents"></ngx-page-list>
       </div>
     </div>
 
@@ -51,20 +50,26 @@ import { Workshop } from '../../../../shared/interfaces/category.interface';
   imports: [
     CommonModule,
     RouterModule,
-    // PageListComponent,
+    PageListComponent,
     WorkshopListComponent,
     MatSnackBarModule
   ]
 })
 export class WorkshopsComponent {
   routerIsActivate = false;
-  viewModel = inject(NavigationService).getWorkshops()
+  navigationService = inject(NavigationService);
+  viewModel = combineLatest({
+    workshops: this.navigationService.getWorkshops(),
+    workshop: this.navigationService.getCurrentWorkshop()  
+  })
   .pipe(
-    map((workshops: Workshop[]) => {
+    map(({ workshops, workshop }) => {
+      console.log('workshop', workshop);
+
       return {
         workshops: workshops?.sort((a, b) => a.sortId - b.sortId),
-        workshopDocuments: workshops?.map(workshop => workshop.workshopDocuments)
-      }
+        documents: workshop?.workshopDocuments || []
+      };
     })
   )
 }

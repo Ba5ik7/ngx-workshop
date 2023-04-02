@@ -1,15 +1,15 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatLegacyDialogRef as MatDialogRef } from '@angular/material/legacy-dialog';
-import { Subject, takeUntil } from 'rxjs';
-import { Category } from '../../../../../../../../shared/interfaces/category.interface';
+import { BehaviorSubject, combineLatest, map, mergeMap, Subject, take, takeUntil, tap } from 'rxjs';
 import { NavigationService } from '../../../../../../../../shared/services/navigation/navigation.service';
-import { WorkshopEditorService } from '../../../../../../../../shared/services/workshops/workshops.service';
+import { KeyValue, WorkshopEditorService } from '../../../../../../../../shared/services/workshops/workshops.service';
 import { MatLegacyFormFieldModule as MatFormFieldModule } from '@angular/material/legacy-form-field';
 import { MatLegacyDialogModule as MatDialogModule } from '@angular/material/legacy-dialog';
 import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
 import { MatLegacyInputModule as MatInputModule } from '@angular/material/legacy-input';
 import { CommonModule } from '@angular/common';
+import { Workshop, WorkshopDocument } from '../../../../../../../../shared/interfaces/category.interface';
 
 @Component({
   standalone: true,
@@ -26,89 +26,65 @@ import { CommonModule } from '@angular/common';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CreatePageModalComponent implements OnInit, OnDestroy {
-
-  destory: Subject<boolean> = new Subject();
-
-  formLoading = false;
-
-  createPageFormLevelMessage!: string;
-
-  errorMessages: { [key: string]: string } = {
+export class CreatePageModalComponent {
+  private workshopEditorService = inject(WorkshopEditorService);
+  private navigationService = inject(NavigationService);
+  private dialogRef = inject(MatDialogRef<CreatePageModalComponent>);
+  private formBuilder = inject(FormBuilder);
+  
+  createPageFormLevelMessage$ = new BehaviorSubject<string | undefined>(undefined);
+  errorMessages: KeyValue = {
     required: 'Required',
   };
 
-  createPageFormErrorMessages: { [key: string]: string } = {
+  createPageControlsErrorMessages: KeyValue = {
     name: ''
   }
 
-  createPageForm: FormGroup = this.formBuilder.group({
-    id: [this.navigationService.category.id],
-    category:[this.navigationService.category],
-    sortId:[this.navigationService.workshopDocuments.length],
-    name: ['', [Validators.required]],
+  loading$ = new BehaviorSubject<boolean>(false)
+  formGroup$ = this.navigationService.getCurrentWorkshop().pipe(
+    map((workshop) => {
+      return this.formBuilder.group({
+        workshopGroupId: [workshop?.workshopDocumentGroupId],
+        category:[workshop],
+        sortId:[workshop?.workshopDocuments?.length],
+        name: ['', [Validators.required]],
+      })
+    })
+  );
+
+  viewModel$ = combineLatest({
+    formGroup: this.formGroup$.pipe(
+      tap((formGroup) => {
+        formGroup.statusChanges
+        .pipe(takeUntil(this.dialogRef.afterClosed()))
+        .subscribe(() => {
+          this.workshopEditorService.ifErrorsSetMessages(
+            formGroup,
+            this.createPageControlsErrorMessages,
+            this.errorMessages
+          );
+        });
+      }),
+    ),
+    loading: this.loading$.pipe(tap((loading) => this.dialogRef.disableClose = loading)),
+    createPageFormLevelMessage: this.createPageFormLevelMessage$,
   });
 
-  constructor(
-    private changeDetectorRef: ChangeDetectorRef,
-    private workshopEditorService: WorkshopEditorService,
-    private navigationService: NavigationService,
-    private dialogRef: MatDialogRef<CreatePageModalComponent>,
-    private formBuilder: FormBuilder
-    ) { }
-
-  ngOnInit(): void {
-    this.initCreatePage();
-  }
-
-  ngOnDestroy(): void {
-    this.destory.next(true);
-  }
-
-  initCreatePage(): void {
-    this.createPageForm.statusChanges
-    .pipe(takeUntil(this.destory))
-    .subscribe(() => this.setErrorsMessages(this.createPageForm, this.createPageFormErrorMessages));
-  
-    this.workshopEditorService.createPageFormError$
-    .pipe(takeUntil(this.destory))
-    .subscribe((error) => {
-      this.requestInProgress();
-      this.createPageFormLevelMessage = this.errorMessages['httpFailure'];
-      this.changeDetectorRef.markForCheck();
-    });
-    
-    this.workshopEditorService.createPageFormSuccess$
-    .pipe(takeUntil(this.destory))
-    .subscribe((category) => this.createPageSuccuessful(category));
-  }
-
-  createPageSuccuessful(category: Category): void {
-    const newCategories = this.navigationService.categories.filter(({ id }) => id !== category.id);
-    newCategories.push(category);
-    this.navigationService.setCategories(newCategories);
-    this.requestInProgress();
-    this.dialogRef.close();
-  }
-
-  createPage() {
-    this.requestInProgress(true);
-    this.workshopEditorService.createPage(this.createPageForm.value);
-  }
-
-  requestInProgress(predicate: boolean = false) {
-    this.formLoading = predicate;
-    this.dialogRef.disableClose = predicate;
-  }
-
-  setErrorsMessages(formGroup: FormGroup, formControlMessages: { [key: string]: string }): void {
-    Object.keys(formGroup.controls).forEach(element => {
-      const errors = formGroup.get(element)?.errors;
-      if(errors) {         
-        const error = Object.keys(errors)[0];
-        formControlMessages[element] = this.errorMessages[error];
-      }
+  onCreatePage(formGroupValue: unknown) {
+    this.workshopEditorService.createPage(formGroupValue as WorkshopDocument)
+    .pipe(
+      tap(() => this.loading$.next(true)),
+      mergeMap(() => this.navigationService.getCurrentWorkshop().pipe(take(1))),
+    )
+    .subscribe({
+      next: (workshop) => {
+        this.loading$.next(false);
+        this.navigationService.navigateToWorkshop(workshop?._id ?? '')
+        .pipe(take(1), tap(() => this.dialogRef.close()),
+        ).subscribe();
+      },
+      error: () => this.createPageFormLevelMessage$.next(this.errorMessages['httpFailure'])
     });
   }
-
 }

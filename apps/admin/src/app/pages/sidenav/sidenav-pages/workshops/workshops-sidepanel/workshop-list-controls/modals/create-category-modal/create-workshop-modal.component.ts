@@ -77,7 +77,7 @@ export class CreateWorkshopModalComponent {
     this.workshopEditorService.createWorkshop(formGroupValue as Workshop)
     .pipe(
       tap(() => this.loading$.next(true)),
-      mergeMap (() => this.navigationService.getCurrentSection().pipe(take(1))),
+      mergeMap(() => this.navigationService.getCurrentSection().pipe(take(1))),
     )
     .subscribe({
       next: (section) => {

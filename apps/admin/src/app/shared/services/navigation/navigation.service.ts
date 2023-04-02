@@ -91,6 +91,8 @@ export class NavigationService {
         .get<WorkshopDocument>(`/api/workshop/${workshopDocumentId}`)
         .pipe(
           tap((workshopDocument) => {
+            console.log('workshopDocument', workshopDocument);
+            
             this.workshopDocument$.next(workshopDocument);
           }),
           shareReplayWithTTL(1, this.cacheTTL)
