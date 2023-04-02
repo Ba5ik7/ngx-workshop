@@ -23,11 +23,7 @@ export class UserStateService {
   isUserLoggedIn(): Observable<boolean> {
     return this.httpClient.get('/api/authentication/is-user-logged-in')
     .pipe(
-      tap(() => {
-        console.log('isUserLoggedIn()');
-        
-        this.signedIn.next(true)
-      }),
+      tap(() => this.signedIn.next(true)),
       map(() => true),
       catchError((error) => {
         this.signedIn.next(false)
