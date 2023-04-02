@@ -1,8 +1,8 @@
 import { CdkDragDrop, DragDropModule, moveItemInArray } from '@angular/cdk/drag-drop';
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, inject } from '@angular/core';
 import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import { MatLegacySnackBar as MatSnackBar, MatLegacySnackBarConfig as MatSnackBarConfig } from '@angular/material/legacy-snack-bar';
-import { Subject, takeUntil } from 'rxjs';
+import { from, of, Subject, switchMap, take, takeUntil } from 'rxjs';
 import { WorkshopEditorService } from '../../../../../../shared/services/workshops/workshops.service';
 import { CreateWorkshopModalComponent } from './modals/create-category-modal/create-workshop-modal.component';
 import { DeleteWorkshopModalComponent } from './modals/delete-category-modal/delete-workshop-modal.component';
@@ -12,6 +12,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Workshop } from '../../../../../../shared/interfaces/category.interface';
+import { NavigationService } from '../../../../../../shared/services/navigation/navigation.service';
 
 
 @Component({
@@ -44,6 +45,7 @@ export class WorkshopListComponent implements OnInit, OnDestroy {
 
   @Input() workshops: Workshop[] = [];
 
+  navigationService = inject(NavigationService);
   constructor(
     public matDialog: MatDialog,
     private snackBar: MatSnackBar,
@@ -75,14 +77,28 @@ export class WorkshopListComponent implements OnInit, OnDestroy {
     this.matDialog.open(EditWorkshopModalComponent, { width: '400px', data: { workshop }});
   }
 
-  onDrop(event: CdkDragDrop<any[]>) {
+  onDrop(event: CdkDragDrop<{ previousIndex: number, currentIndex: number }[]>) {
     this.cdkDragDisabled = true;
     const workshops = this.workshops ?? []; 
     moveItemInArray(workshops, event.previousIndex, event.currentIndex);
     this.workshops?.map((workshop, index) => workshop.sortId = index);
     this.workshopEditorService.sortWorkshop(workshops).subscribe({
-      error: () => this.sortWorkshopFormError$.next(true),
-      complete: () => this.sortWorkshopFormSuccess$.next(true)
+      error: () => {
+        this.sortWorkshopFormError$.next(true)
+      },
+      complete: () => {
+        from(this.navigationService.getCurrentSection().pipe(take(1)))
+        .pipe(
+          switchMap((section) => {
+            if (section && section._id) {
+              return this.navigationService.navigateToSection(section._id, true);
+            }
+            return of(null);
+          }),
+          take(1)
+        ).subscribe();
+        this.sortWorkshopFormSuccess$.next(true)
+      }
     });
   }
 
