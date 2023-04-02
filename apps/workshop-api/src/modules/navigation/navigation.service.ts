@@ -33,13 +33,9 @@ export class NavigationService {
   }
 
   async createWorkshop(workshop: IWorkshop): Promise<IWorkshop> {
-    console.log('1 Create workshop');
-    
     const newWorkshop: IWorkshop = await this.workshopModel.create(workshop);
-    console.log('2 Create workshop', newWorkshop);
     const workshopDocument: IWorkshopDocument =
       await this.workshopDocumentService.createWorkshopDocument({ workshopGroupId: newWorkshop.workshopDocumentGroupId });
-    console.log('3 Create workshop');
     const updatedWorkshop =
       await this.workshopModel.findByIdAndUpdate<IWorkshop>(
         newWorkshop._id,
