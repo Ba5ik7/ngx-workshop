@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { WorkshopDetailRoutingModule } from './workshop-detail-routing.module';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatLegacyPaginatorModule as MatPaginatorModule } from '@angular/material/legacy-paginator';
+import { NgxEditorjsModule } from '@tmdjr/ngx-editorjs';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { MatLegacyPaginatorModule as MatPaginatorModule } from '@angular/materia
     WorkshopDetailRoutingModule,
     WorkshopViewerModule,
     MatDividerModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    NgxEditorjsModule
   ]
 })
 export class WorkshopDetailModule { }

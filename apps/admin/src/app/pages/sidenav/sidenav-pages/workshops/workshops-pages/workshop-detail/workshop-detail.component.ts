@@ -1,9 +1,12 @@
 import { Component, inject, OnDestroy, ViewChild, ViewEncapsulation } from '@angular/core';
 import { MatLegacyPaginator as MatPaginator, LegacyPageEvent as PageEvent } from '@angular/material/legacy-paginator';
 import { ActivatedRoute, Router } from '@angular/router';
-import { combineLatest, of, Subject, switchMap, takeUntil, tap } from 'rxjs';
+import { WorkshopDocument } from '../../../../../../shared/interfaces/workshop-document.interface';
+import { combineLatest, map, of, Subject, switchMap, take, takeUntil, tap } from 'rxjs';
 import { Workshop } from '../../../../../../shared/interfaces/category.interface';
 import { NavigationService } from '../../../../../../shared/services/navigation/navigation.service';
+import { NgxEditorjsOutputBlock } from '@tmdjr/ngx-editorjs';
+import { WorkshopEditorService } from '../../../../../../shared/services/workshops/workshops.service';
 
 @Component({
   selector: 'ngx-workshop-detail',
@@ -13,16 +16,25 @@ import { NavigationService } from '../../../../../../shared/services/navigation/
 })
 export class WorkshopDetailComponent {
 
-  destory: Subject<boolean> = new Subject();
-  workshopDocument = '';
-  workshopDocumentsLength = 0;
-  hasMoreThanOneDocument = false;
-  workshopDocuments: Workshop[] = [];
-  hasWorkshopId = false;
+  // destory: Subject<boolean> = new Subject();
+  // workshopDocument = '';
+  // workshopDocumentsLength = 0;
+  // hasMoreThanOneDocument = false;
+  // workshopDocuments: Workshop[] = [];
+  // hasWorkshopId = false;
 
-  private route = inject(ActivatedRoute).data.subscribe((data) => {
-    console.log('WorkshopDetailComponent', data);
-  });
+  private workshopEditorService = inject(WorkshopEditorService);
+  ngxEditorjsOutputBlock = inject(ActivatedRoute).data.pipe(
+    map((data) => data['documentResolver']),
+    map((data) => JSON.parse(data.html) as NgxEditorjsOutputBlock[])
+  );
+
+  requestValue = this.workshopEditorService.saveEditorDataSubject;
+
+  valueRequested(value: unknown): void {
+    console.log({ value });
+    // this.workshopEditorService.savePageHTML(JSON.stringify(value), this.currentDocument);
+  }
 
   // @ViewChild('paginator') paginator!: MatPaginator;
 
