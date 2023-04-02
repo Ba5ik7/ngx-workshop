@@ -52,7 +52,7 @@ export class NavigationService {
     );
   }
 
-  navigateToSection(sectionId: string) {
+  navigateToSection(sectionId: string,  force=false) {
     return of(sectionId).pipe(
       tap((id) => {
         this.currentSection$.next(
@@ -61,14 +61,14 @@ export class NavigationService {
       }),
       switchMap((id) => {
         const staticPage = staticPages.get(id);
-        return staticPage ? of(staticPage) : this.fetchSectionWorkshops(id);
+        return staticPage ? of(staticPage) : this.fetchSectionWorkshops(id, force);
       }),
-      tap((workshops) => Array.isArray(workshops) && this.setWorkshops(workshops)),
+      tap((workshops) => Array.isArray(workshops) && this.workshops$.next(workshops)),
     );
   }
 
-  private fetchSectionWorkshops(sectionId: string) {
-    if (!this.sectionWorkshopsCache[sectionId]) {
+  private fetchSectionWorkshops(sectionId: string, force=false) {
+    if (force || !this.sectionWorkshopsCache[sectionId]) {
       this.sectionWorkshopsCache[sectionId] = this.http
         .get<Workshop[]>('/api/navigation/categories', { params: { section: sectionId } })
         .pipe(shareReplayWithTTL(1, this.cacheTTL));
@@ -82,8 +82,8 @@ export class NavigationService {
     return of(workshop);
   }
 
-  private fetchWorkshopPage(workshopDocumentId: string) {
-    if (!this.workshopDocumentCache[workshopDocumentId]) {
+  private fetchWorkshopPage(workshopDocumentId: string, force = false) {
+    if (force || !this.workshopDocumentCache[workshopDocumentId]) {
       this.workshopDocumentCache[workshopDocumentId] = this.http
         .get<WorkshopDocument>(`/api/workshop-document/${workshopDocumentId}`)
         .pipe(
@@ -95,10 +95,6 @@ export class NavigationService {
     }
     this.workshopDocumentCache[workshopDocumentId].subscribe();
     return this.workshops$.getValue().find((workshop) => workshop._id === workshopDocumentId);
-  }
-
-  setWorkshops(workshops: Workshop[]) {
-    this.workshops$.next(workshops);
   }
 
   getSections() {

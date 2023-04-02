@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatLegacyDialogRef as MatDialogRef } from '@angular/material/legacy-dialog';
-import { BehaviorSubject, combineLatest, map, mergeMap, of, take, takeUntil, tap } from 'rxjs';
+import { BehaviorSubject, combineLatest, map, mergeMap, take, takeUntil, tap } from 'rxjs';
 import { NavigationService } from '../../../../../../../../shared/services/navigation/navigation.service';
 import { KeyValue, WorkshopEditorService } from '../../../../../../../../shared/services/workshops/workshops.service';
 import { MatLegacyFormFieldModule as MatFormFieldModule } from '@angular/material/legacy-form-field';
@@ -77,19 +77,14 @@ export class CreateWorkshopModalComponent {
     this.workshopEditorService.createWorkshop(formGroupValue as Workshop)
     .pipe(
       tap(() => this.loading$.next(true)),
-      mergeMap((result) => {
-        return combineLatest({
-          workshop: of(result.success),
-          workshops: this.navigationService.getWorkshops()
-        }).pipe(take(1));
-      }),
+      mergeMap (() => this.navigationService.getCurrentSection().pipe(take(1))),
     )
     .subscribe({
-      next: ({ workshop, workshops }) => {
-        const newWorkshops = workshops.slice(0);
-        workshop && newWorkshops.push(workshop);
-        this.navigationService.setWorkshops(newWorkshops);
-        this.dialogRef.close();
+      next: (section) => {
+        this.loading$.next(false);
+        this.navigationService.navigateToSection(section?._id ?? '', true)
+        .pipe(take(1), tap(() => this.dialogRef.close()),
+        ).subscribe();
       },
       error: () => this.createWorkshopFormLevelMessage$.next(this.errorMessages['httpFailure'])
     });

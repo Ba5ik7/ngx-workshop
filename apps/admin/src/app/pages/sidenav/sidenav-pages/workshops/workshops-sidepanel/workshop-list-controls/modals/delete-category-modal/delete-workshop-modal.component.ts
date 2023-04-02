@@ -71,21 +71,14 @@ export class DeleteWorkshopModalComponent {
     this.workshopEditorService.deleteWorkshop(this.data.workshop._id)
     .pipe(
       tap(() => this.loading$.next(true)),
-      mergeMap((result) => {
-        return combineLatest({
-          data: of(result.success),
-          workshops: this.navigationService.getWorkshops()
-        }).pipe(take(1));
-      }),
-    )
+      mergeMap (() => this.navigationService.getCurrentSection().pipe(take(1))),
+      )
     .subscribe({
-      next: ({ workshops, data }) => {
-        const newWorkshops = workshops.filter((workshop) => {                    
-          return workshop._id !== data?.id;
-        });
-        
-        this.navigationService.setWorkshops(newWorkshops);
-        this.dialogRef.close();
+      next: (section) => {
+        this.loading$.next(false);
+        this.navigationService.navigateToSection(section?._id ?? '', true)
+        .pipe(take(1), tap(() => this.dialogRef.close()),
+        ).subscribe();
       },
       error: () => this.deleteWorkshopFormLevelMessage$.next(this.errorMessages['httpFailure'])
     });
