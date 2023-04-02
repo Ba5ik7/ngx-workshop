@@ -47,7 +47,6 @@ export class NavigationService {
         },
         { returnDocument: 'after' },
       );
-    console.log('4 Create workshop');
     return updatedWorkshop;
   }
 

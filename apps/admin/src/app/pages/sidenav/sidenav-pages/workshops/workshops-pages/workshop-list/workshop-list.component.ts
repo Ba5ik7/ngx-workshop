@@ -16,7 +16,7 @@ import { NavigationService } from '../../../../../../shared/services/navigation/
     <div class="workshop-list">
       <mat-card 
         *ngFor="let workshop of workshops | async" 
-        [routerLink]="'../' + workshop._id">
+        [routerLink]="'../' + workshop.workshopDocumentGroupId + '/' + workshop.workshopDocuments[0]._id">
         <img mat-card-image src="/admin/assets/img/workshop-placeholder.png">
         <mat-card-title>{{workshop.name}}</mat-card-title>
         <mat-card-subtitle>{{workshop.summary}}</mat-card-subtitle>
