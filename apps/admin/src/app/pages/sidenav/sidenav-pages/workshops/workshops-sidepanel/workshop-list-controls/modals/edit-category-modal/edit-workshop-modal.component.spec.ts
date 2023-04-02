@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EditCategoryModalComponent } from './edit-category-modal.component';
+import { EditCategoryModalComponent } from './edit-workshop-modal.component';
 
 describe('EditCategoryModalComponent', () => {
   let component: EditCategoryModalComponent;

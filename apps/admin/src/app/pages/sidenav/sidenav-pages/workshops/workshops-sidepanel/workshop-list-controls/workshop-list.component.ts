@@ -6,7 +6,7 @@ import { Subject } from 'rxjs';
 import { WorkshopEditorService } from '../../../../../../shared/services/workshops/workshops.service';
 import { CreateWorkshopModalComponent } from './modals/create-category-modal/create-workshop-modal.component';
 import { DeleteWorkshopModalComponent } from './modals/delete-category-modal/delete-workshop-modal.component';
-// import { EditCategoryModalComponent } from './modals/edit-category-modal/edit-category-modal.component';
+import { EditWorkshopModalComponent } from './modals/edit-category-modal/edit-workshop-modal.component';
 import { MatLegacyListModule as MatListModule } from '@angular/material/legacy-list';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
@@ -66,11 +66,11 @@ export class WorkshopListComponent implements OnInit, OnDestroy {
     this.matDialog.open(DeleteWorkshopModalComponent, { width: '400px', data: { workshop }});
   }
 
-  // editCategory(event: Event, category: any): void {
-  //   event.preventDefault();
-  //   event.stopImmediatePropagation();
-  //   this.matDialog.open(EditCategoryModalComponent, { width: '400px', data: { category }});
-  // }
+  editCategory(event: Event, workshop: any): void {
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    this.matDialog.open(EditWorkshopModalComponent, { width: '400px', data: { workshop }});
+  }
 
   drop(event: CdkDragDrop<any[]>) {
     this.cdkDragDisabled = true;
