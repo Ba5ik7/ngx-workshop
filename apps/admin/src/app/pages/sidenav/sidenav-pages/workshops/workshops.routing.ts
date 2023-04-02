@@ -2,6 +2,7 @@ import { AuthGuard } from '../../../../shared/guards/auth.guard';
 import { WorkshopsComponent } from './workshops.component';
 import { Route } from '@angular/router';
 import { sectionResolver } from '../../../../shared/resolvers/section.resolver';
+import { workshopResolver } from '../../../../shared/resolvers/workshop.resolver';
 
 export const WORKSHOPS_ROUTES: Route[] = [
   {
@@ -17,6 +18,7 @@ export const WORKSHOPS_ROUTES: Route[] = [
       {
         canActivate: [AuthGuard],
         path: 'workshop-list',
+        resolve: { workshopResolver },
         loadComponent: () => import('./workshops-pages/workshop-list/workshop-list.component').then(m => m.WorkshopListComponent)
       },
       {

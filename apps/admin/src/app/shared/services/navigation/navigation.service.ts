@@ -13,7 +13,7 @@ const staticSections: Map<string, Partial<Section>> = new Map([
 
 const staticPages: Map<string, Partial<Workshop>> = new Map([
   ['overview', { name: 'Overview' }],
-  ['workshops', { name: 'Workshops' }],
+  ['workshop-list', { name: 'Workshops' }],
   ['General', { name: 'General' }],
   ['Angular', { name: 'Angular' }],
   ['NestJS', { name: 'NestJS' }],
@@ -60,6 +60,7 @@ export class NavigationService {
         );
       }),
       switchMap((id) => {
+
         const staticPage = staticPages.get(id);
         return staticPage ? of(staticPage) : this.fetchSectionWorkshops(id, force);
       }),
