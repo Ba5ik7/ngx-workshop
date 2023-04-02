@@ -1,9 +1,8 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { documentResolver } from '../../../../../../../app/shared/resolvers/document.resolver';
+import { Route } from '@angular/router';
+import { documentResolver } from '../../../../../../shared/resolvers/document.resolver';
 import { WorkshopDetailComponent } from './workshop-detail.component';
 
-const routes: Routes = [
+export const WORKSHOPS_DETAIL_ROUTES: Route[] = [
   { 
     path: '',
     data: { alwaysRefresh: true },
@@ -18,9 +17,3 @@ const routes: Routes = [
   },
   { path: '**', redirectTo: '/404' }
 ];
-
-@NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
-})
-export class WorkshopDetailRoutingModule { }

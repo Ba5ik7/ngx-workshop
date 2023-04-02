@@ -1,28 +1,68 @@
-import { Component, inject, OnDestroy, ViewChild, ViewEncapsulation } from '@angular/core';
-import { MatLegacyPaginator as MatPaginator, LegacyPageEvent as PageEvent } from '@angular/material/legacy-paginator';
-import { ActivatedRoute, Router } from '@angular/router';
-import { WorkshopDocument } from '../../../../../../shared/interfaces/workshop-document.interface';
-import { combineLatest, map, of, Subject, switchMap, take, takeUntil, tap } from 'rxjs';
-import { Workshop } from '../../../../../../shared/interfaces/category.interface';
-import { NavigationService } from '../../../../../../shared/services/navigation/navigation.service';
-import { NgxEditorjsOutputBlock } from '@tmdjr/ngx-editorjs';
+import { Component, inject, ViewEncapsulation } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { map } from 'rxjs';
+import { NgxEditorjsModule, NgxEditorjsOutputBlock } from '@tmdjr/ngx-editorjs';
 import { WorkshopEditorService } from '../../../../../../shared/services/workshops/workshops.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
+  standalone: true,
   selector: 'ngx-workshop-detail',
-  templateUrl: './workshop-detail.component.html',
-  styleUrls: ['./workshop-detail.component.scss'],
+  template: `
+    <ng-container *ngIf="ngxEditorjsOutputBlock | async as blocks; else elseTemplate">
+      <div class="workshop-detail-content">
+        <div class="page">
+          <section class="workshop-viewer-container">
+            <div class="mat-card">
+              <ngx-editorjs
+                [inputData]="blocks"
+                [requestValue]="requestValue"
+                (valueRequested)="valueRequested($event)"
+              ></ngx-editorjs>
+            </div>
+          </section>
+        </div>
+      </div>
+    </ng-container>
+    <ng-template #elseTemplate>
+      LOADING!!!
+    </ng-template>
+  `,
+  styles: [`
+    .workshop-viewer-container {
+      display: block;
+      padding: 20px 60px;
+      .mat-card {
+        max-width: 650px;
+        padding: 16px 56px 36px 56px;
+      }
+      h1 {
+        padding: 0.6em 0 3px
+      }
+      p {
+        line-height: 1.6em;
+      }
+    }
+    workshop-detail {
+      font-weight: 400;
+      @media (max-width: 599px) {
+        padding-left: 15px;
+        padding-right: 15px;
+      }
+      .paginator {
+        position: sticky;
+        top: 0;
+        z-index: 2;
+      }
+    }
+  `],
   encapsulation: ViewEncapsulation.None,
+  imports: [
+    CommonModule,
+    NgxEditorjsModule
+  ]
 })
 export class WorkshopDetailComponent {
-
-  // destory: Subject<boolean> = new Subject();
-  // workshopDocument = '';
-  // workshopDocumentsLength = 0;
-  // hasMoreThanOneDocument = false;
-  // workshopDocuments: Workshop[] = [];
-  // hasWorkshopId = false;
-
   private workshopEditorService = inject(WorkshopEditorService);
   ngxEditorjsOutputBlock = inject(ActivatedRoute).data.pipe(
     map((data) => data['documentResolver']),
@@ -30,57 +70,8 @@ export class WorkshopDetailComponent {
   );
 
   requestValue = this.workshopEditorService.saveEditorDataSubject;
-
   valueRequested(value: unknown): void {
     console.log({ value });
     // this.workshopEditorService.savePageHTML(JSON.stringify(value), this.currentDocument);
   }
-
-  // @ViewChild('paginator') paginator!: MatPaginator;
-
-  // constructor(
-  //   private activatedRoute: ActivatedRoute,
-  //   private navigationService: NavigationService,
-  //   private router: Router) {
-  //     this.activatedRoute.params
-  //     .pipe(
-  //       tap((params) => this.navigationService.categoryRouteSub.next(params['categoryId'])),
-  //       switchMap((params) => (
-  //         combineLatest({
-  //           params: of(params),
-  //           workshopDocuments: this.navigationService.workshopDocuments$
-  //         })
-  //       )),
-  //       takeUntil(this.destory),
-  //     )
-  //     .subscribe(({ params, workshopDocuments }) => {
-  //       if(!workshopDocuments) return;
-  
-  //       this.workshopDocuments = workshopDocuments;
-  //       if(params['workshopId']) {
-  //         this.workshopDocument = params['workshopId'];
-  //         this.setPaginatorIndex();
-  //       } else { 
-  //         this.workshopDocument = workshopDocuments[0]._id!;
-  //       }
-  
-  //       this.hasMoreThanOneDocument = workshopDocuments.length > 1;
-  //       this.workshopDocumentsLength = workshopDocuments.length;
-  //     });
-  // }
-
-  // ngOnDestroy(): void {
-  //   this.destory.next(true);
-  // }
-
-  // pageEventChange({ pageIndex }: PageEvent) {
-  //   this.router.navigate([this.hasWorkshopId ? '../': './', this.workshopDocuments[pageIndex]._id], { relativeTo: this.activatedRoute });
-  // }
-
-  // setPaginatorIndex() {
-  //   requestAnimationFrame(() => {
-  //     this.hasWorkshopId = true;
-  //     this.paginator.pageIndex = this.workshopDocuments.findIndex((workshopDocument) => workshopDocument._id === this.workshopDocument);
-  //   });
-  // }
 }
