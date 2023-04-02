@@ -60,7 +60,7 @@ describe('NavigationService', () => {
           "sortId": 0
         }
       ],
-      "worshopDocumentGroupId": "content-projection-artist",
+      "workshopDocumentGroupId": "content-projection-artist",
     }];
 
     service.navigateToSection(sectionId);
@@ -91,7 +91,7 @@ describe('NavigationService', () => {
           "sortId": 0
         }
       ],
-      "worshopDocumentGroupId": "content-projection-artist",
+      "workshopDocumentGroupId": "content-projection-artist",
     }];
 
     // Navigate to section for the first time

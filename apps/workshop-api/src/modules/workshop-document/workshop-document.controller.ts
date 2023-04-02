@@ -3,12 +3,12 @@ import { Roles } from '../../decorators/role.decorator';
 import { Role } from '../../enums/role.enum';
 import { Auth } from '../../decorators/auth.decorator';
 import { AuthType } from '../../enums/auth-type.enum';
-import { IWorkshopDocument } from '../../interfaces/workshop.interface';
-import { WorkshopService } from './workshop.service';
+import { IWorkshopDocument } from '../../interfaces/workshop-document.interface';
+import { WorkshopDocumentService } from './workshop-document.service';
 
 @Controller('workshop')
 export class WorkshopController {
-  constructor(private workshopService: WorkshopService) {}
+  constructor(private workshopService: WorkshopDocumentService) {}
 
   @Auth(AuthType.None)
   @Get('workshops')

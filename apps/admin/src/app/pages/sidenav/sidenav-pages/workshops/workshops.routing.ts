@@ -23,7 +23,7 @@ export const WORKSHOPS_ROUTES: Route[] = [
       },
       {
         canActivate: [AuthGuard],
-        path: ':categoryId',
+        path: ':workshopId',
         loadChildren: () => import('./workshops-pages/workshop-detail/workshop-detail.module').then(m => m.WorkshopDetailModule)
       },
     ]

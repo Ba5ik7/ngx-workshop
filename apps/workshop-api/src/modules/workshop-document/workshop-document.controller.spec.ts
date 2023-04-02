@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { WorkshopController } from './workshop.controller';
+import { WorkshopController } from './workshop-document.controller';
 
 describe('WorkshopController', () => {
   let controller: WorkshopController;

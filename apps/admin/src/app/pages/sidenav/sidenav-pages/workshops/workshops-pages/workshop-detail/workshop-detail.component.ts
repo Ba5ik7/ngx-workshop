@@ -1,4 +1,4 @@
-import { Component, OnDestroy, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, inject, OnDestroy, ViewChild, ViewEncapsulation } from '@angular/core';
 import { MatLegacyPaginator as MatPaginator, LegacyPageEvent as PageEvent } from '@angular/material/legacy-paginator';
 import { ActivatedRoute, Router } from '@angular/router';
 import { combineLatest, of, Subject, switchMap, takeUntil, tap } from 'rxjs';
@@ -19,6 +19,10 @@ export class WorkshopDetailComponent {
   hasMoreThanOneDocument = false;
   workshopDocuments: Workshop[] = [];
   hasWorkshopId = false;
+
+  private route = inject(ActivatedRoute).data.subscribe((data) => {
+    console.log('WorkshopDetailComponent', data);
+  });
 
   // @ViewChild('paginator') paginator!: MatPaginator;
 

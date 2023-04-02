@@ -19,7 +19,7 @@ export interface Workshop {
   // Used to group to the sections
   sectionId: string;
   // Used to group all the workshop-documents
-  worshopDocumentGroupId: string;
+  workshopDocumentGroupId: string;
   // Postion of the doc item in the section's list
   sortId: number;
   // Display name of the category item.
@@ -44,7 +44,7 @@ export interface WorkshopDocument {
   // Object id of the document.
   _id: string,
   // Used to group all the workshop-documents to a workshop
-  worshopGroupId: string,
+  workshopGroupId: string,
   // Postion of the workshop-document item in the workshop's list
   sortId: number,
   // Display name of the workshop-document.

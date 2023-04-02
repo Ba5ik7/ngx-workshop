@@ -1,14 +1,14 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
-import { CategoryWorkshopDocument } from '../../../interfaces/category.interface';
+import { IWorkshopDocumentIdentifier } from '../../../interfaces/workshop.interface';
 
-export type CategoryDocument = Category & Document;
+export type TWorkshopDocument = Workshop & Document;
 
 @Schema()
-export class Category {
+export class Workshop {
   // todo this needs to be unique and handle FE errors
   @Prop()
-  id: string;
+  workshopDocumentGroupId: string;
 
   @Prop({ required: true })
   sectionId: string;
@@ -25,33 +25,15 @@ export class Category {
   summary: string;
 
   @Prop()
-  packageName: string;
-
-  @Prop()
-  exampleSpecs: string;
-
-  @Prop()
-  examples: string[];
-
-  @Prop()
-  apiDocId: string;
-
-  @Prop()
-  overviewPath: string;
-
-  @Prop()
-  additionalApiDocs: string;
-
-  @Prop()
-  workshopDocuments: CategoryWorkshopDocument[];
+  workshopDocuments: IWorkshopDocumentIdentifier[];
 
   @Prop()
   workshopDocumentsLastUpdated: Date;
 }
 
-export const CategorySchema = SchemaFactory.createForClass(Category);
+export const WorkshopSchema = SchemaFactory.createForClass(Workshop);
 
-CategorySchema.pre('save', async function () {
+WorkshopSchema.pre('save', async function () {
   if (this.isNew) {
     this.id = toSpinalCase(this.name);
   }

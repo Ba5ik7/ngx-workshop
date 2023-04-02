@@ -1,12 +1,12 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
-export type WorkshopDocument = Workshop & Document;
+export type TWorkshopDocument = WorkshopDocument & Document;
 
 @Schema()
-export class Workshop {
+export class WorkshopDocument {
   @Prop({ required: true })
-  id: string;
+  workshopGroupId: string;
 
   @Prop({ default: () => 'Page' })
   name: string;
@@ -18,14 +18,14 @@ export class Workshop {
   lastUpdated: Date;
 
   @Prop({
-    default: () => JSON.stringify(defaultWorkshopHtml),
+    default: () => JSON.stringify(defaultWorkshopDocumentHtml),
   })
   html: string;
 }
 
-export const WorkshopSchema = SchemaFactory.createForClass(Workshop);
+export const WorkshopDocumentSchema = SchemaFactory.createForClass(WorkshopDocument);
 
-const defaultWorkshopHtml = [
+const defaultWorkshopDocumentHtml = [
   {
     blockId: 'eftkta822ke',
     sortIndex: 0,

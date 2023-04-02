@@ -86,7 +86,7 @@ export class NavigationService {
   private fetchWorkshopPage(workshopDocumentId: string, force = false) {
     if (force || !this.workshopDocumentCache[workshopDocumentId]) {
       this.workshopDocumentCache[workshopDocumentId] = this.http
-        .get<WorkshopDocument>(`/api/workshop-document/${workshopDocumentId}`)
+        .get<WorkshopDocument>(`/api/workshop/${workshopDocumentId}`)
         .pipe(
           tap((workshopDocument) => {
             this.workshopDocument$.next(workshopDocument);
@@ -96,6 +96,11 @@ export class NavigationService {
     }
     this.workshopDocumentCache[workshopDocumentId].subscribe();
     return this.workshops$.getValue().find((workshop) => workshop._id === workshopDocumentId);
+  }
+
+  navigateToDocument(workshopDocumentId: string) {
+    return this.http
+    .get<WorkshopDocument>(`/api/workshop/${workshopDocumentId}`)
   }
 
   getSections() {
