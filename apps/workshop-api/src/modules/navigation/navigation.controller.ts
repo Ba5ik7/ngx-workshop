@@ -42,18 +42,18 @@ export class NavigationController {
   }
 
   @Roles(Role.Admin)
-  @Post('workshop/delete-workshop-and-workshops')
+  @Post('workshop/delete-workshop-and-workshop-documents')
   async deleteWorkshopAndWorkshops(
     @Body() body: { _id: string },
   ): Promise<{id: string}> {
-    await this.navigationService.deleteWorkshopAndWorkshops(body._id);
+    await this.navigationService.deleteWorkshopAndWorkshopDocuments(body._id);
     return { id: body._id };
   }
 
   @Roles(Role.Admin)
-  @Post('workshop/sort-categories')
-  async sortWorkshops(@Body() categories: IWorkshop[]): Promise<any> {
-    return await this.navigationService.sortWorkshops(categories);
+  @Post('workshop/sort-workshops')
+  async sortWorkshops(@Body() workshops: IWorkshop[]): Promise<any> {
+    return await this.navigationService.sortWorkshops(workshops);
   }
 
   @Roles(Role.Admin)

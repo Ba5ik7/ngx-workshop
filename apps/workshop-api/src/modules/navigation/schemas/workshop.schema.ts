@@ -35,11 +35,11 @@ export const WorkshopSchema = SchemaFactory.createForClass(Workshop);
 
 WorkshopSchema.pre('save', async function () {
   if (this.isNew) {
-    this.id = toSpinalCase(this.name);
+    this.workshopDocumentGroupId = toSpinalCase(this.name);
   }
 });
 // todo: move this to a utils file
-function toSpinalCase(str: string): string {
+export function toSpinalCase(str: string): string {
   return str
     .replace(/^[\W_]+|[\W_]+$|([\W_]+)/g, ($0, $1) => {
       return $1 ? '-' : '';

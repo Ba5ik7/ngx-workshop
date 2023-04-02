@@ -8,7 +8,7 @@ import {
   IWorkshop,
 } from '../../interfaces/workshop.interface';
 import { ISection } from '../../interfaces/section.interface';
-import { Workshop, TWorkshopDocument } from './schemas/workshop.schema';
+import { Workshop, TWorkshopDocument, toSpinalCase } from './schemas/workshop.schema';
 import { Section, SectionDocument } from './schemas/section.schema';
 
 @Injectable()
@@ -33,9 +33,13 @@ export class NavigationService {
   }
 
   async createWorkshop(workshop: IWorkshop): Promise<IWorkshop> {
+    console.log('1 Create workshop');
+    
     const newWorkshop: IWorkshop = await this.workshopModel.create(workshop);
+    console.log('2 Create workshop', newWorkshop);
     const workshopDocument: IWorkshopDocument =
-      await this.workshopDocumentService.createWorkshop({ workshopGroupId: newWorkshop.workshopDocumentGroupId });
+      await this.workshopDocumentService.createWorkshopDocument({ workshopGroupId: newWorkshop.workshopDocumentGroupId });
+    console.log('3 Create workshop');
     const updatedWorkshop =
       await this.workshopModel.findByIdAndUpdate<IWorkshop>(
         newWorkshop._id,
@@ -47,23 +51,32 @@ export class NavigationService {
         },
         { returnDocument: 'after' },
       );
+    console.log('4 Create workshop');
     return updatedWorkshop;
   }
 
   async editWorkshopNameAndSummary(workshop: IWorkshop): Promise<IWorkshop> {
-    const updatedWorkshop =
-      await this.workshopModel.findByIdAndUpdate<IWorkshop>(
-        workshop._id,
-        {
-          name: workshop.name,
-          summary: workshop.summary,
-        },
-        { returnDocument: 'after' },
-      );
-    return updatedWorkshop;
+    const { workshopDocumentGroupId } = await this.workshopModel.findOne({ _id: workshop._id });
+    const newWorkshopDocumentGroupId = toSpinalCase(workshop.name);
+    const updateStatus = 
+      await this.workshopDocumentService.updateWorkshopDocumentsByWorkshopGroupId(workshopDocumentGroupId, newWorkshopDocumentGroupId);
+    if (updateStatus) {
+      const updatedWorkshop =
+        await this.workshopModel.findByIdAndUpdate<IWorkshop>(
+          workshop._id,
+          {
+            name: workshop.name,
+            summary: workshop.summary,
+            workshopDocumentGroupId: newWorkshopDocumentGroupId,
+          },
+          { returnDocument: 'after' },
+        );
+      return updatedWorkshop;
+    }
+    return null;
   }
 
-  async deleteWorkshopAndWorkshops(
+  async deleteWorkshopAndWorkshopDocuments(
     _id: string,
   ): Promise<{ acknowledged: boolean; deletedCount: number }> {
     const workshopToDelete = await this.workshopModel.findOne({ _id });
@@ -91,7 +104,7 @@ export class NavigationService {
 
   async createPage(page: IWorkshopDocument, workshopGroupId: string): Promise<IWorkshop> {
     const workshop: IWorkshopDocument =
-      await this.workshopDocumentService.createWorkshop(page);
+      await this.workshopDocumentService.createWorkshopDocument(page);
     const updatedWorkshop =
       await this.workshopModel.findByIdAndUpdate<IWorkshop>(
         workshopGroupId,

@@ -40,19 +40,19 @@ export class WorkshopEditorService {
   }
         
   createWorkshop(workshop: Workshop) {
-    return this.apiCall<Workshop>('/navigation/category/create-category', workshop);
+    return this.apiCall<Workshop>('/navigation/workshop/create-workshop', workshop);
   }
         
   editWorkshopNameAndSummary(workshop: Workshop) {
-    return this.apiCall<Workshop>('/navigation/category/edit-category-name-and-summary', workshop);
+    return this.apiCall<Workshop>('/navigation/workshop/edit-workshop-name-and-summary', workshop);
   }
         
   deleteWorkshop(_id: string) {
-    return this.apiCall<{ id: string }>('/navigation/category/delete-category-and-workshops', { _id });
+    return this.apiCall<{ id: string }>('/navigation/workshop/delete-workshop-and-workshop-documents', { _id });
   }
       
   sortWorkshop(workshop: Workshop[]) {
-    return this.apiCall<Workshop[]>('/navigation/category/sort-categories', workshop);
+    return this.apiCall<Workshop[]>('/navigation/workshop/sort-workshops', workshop);
   }
       
   createPage(page: WorkshopDocument) {
@@ -60,15 +60,15 @@ export class WorkshopEditorService {
   }
       
   deletePage(page: WorkshopDocument) {
-    return this.apiCall<WorkshopDocument>('/navigation/page/delete-page-and-update-category', page);
+    return this.apiCall<WorkshopDocument>('/navigation/page/delete-page-and-update-workshop', page);
   }
       
   editPageNameAndSummary(page: WorkshopDocument) {
-    return this.apiCall<Workshop>('/navigation/page/edit-page-name-update-category', page);
+    return this.apiCall<Workshop>('/navigation/page/edit-page-name-update-workshop', page);
   }
       
-  sortPages(pages: WorkshopDocument[], categoryId: string = '') {
-  const params = new HttpParams().set('categoryId', categoryId);
+  sortPages(pages: WorkshopDocument[], workshopId: string = '') {
+  const params = new HttpParams().set('workshopId', workshopId);
     return this.apiCall<WorkshopDocument[]>('/navigation/page/sort-pages', pages, 'post', params);
   }
 

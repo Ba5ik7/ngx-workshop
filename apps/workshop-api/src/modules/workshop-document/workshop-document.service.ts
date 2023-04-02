@@ -16,7 +16,15 @@ export class WorkshopDocumentService {
     return this.workshopDocumentModel.findById(new Types.ObjectId(objectId)).exec();
   }
 
-  async createWorkshop(
+  async getWorkshopDocumentsByWorkshopGroupId(workshopGroupId: string): Promise<IWorkshopDocument[]> {
+    return this.workshopDocumentModel.find({ workshopGroupId }).exec();
+  }
+
+  async updateWorkshopDocumentsByWorkshopGroupId(workshopGroupId: string, newWorkshopGroupId: string): Promise<{ acknowledged: boolean }> {
+    return this.workshopDocumentModel.updateMany({ workshopGroupId }, { workshopGroupId: newWorkshopGroupId }).exec();
+  }
+
+  async createWorkshopDocument(
     workshop: Partial<IWorkshopDocument>,
   ): Promise<IWorkshopDocument> {
     return this.workshopDocumentModel.create(workshop);

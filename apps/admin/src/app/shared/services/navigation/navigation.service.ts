@@ -60,9 +60,11 @@ export class NavigationService {
         );
       }),
       switchMap((id) => {
-
-        const staticPage = staticPages.get(id);
-        return staticPage ? of(staticPage) : this.fetchSectionWorkshops(id, force);
+        if(!staticSections.get(id)) {
+          const staticPage = staticPages.get(id);
+          return staticPage ? of(staticPage) : this.fetchSectionWorkshops(id, force);
+        }
+        return of([]);
       }),
       tap((workshops) => Array.isArray(workshops) && this.workshops$.next(workshops)),
     );
@@ -71,7 +73,7 @@ export class NavigationService {
   private fetchSectionWorkshops(sectionId: string, force=false) {
     if (force || !this.sectionWorkshopsCache[sectionId]) {
       this.sectionWorkshopsCache[sectionId] = this.http
-        .get<Workshop[]>('/api/navigation/categories', { params: { section: sectionId } })
+        .get<Workshop[]>('/api/navigation/workshops', { params: { section: sectionId } })
         .pipe(shareReplayWithTTL(1, this.cacheTTL));
     }
     return this.sectionWorkshopsCache[sectionId];
