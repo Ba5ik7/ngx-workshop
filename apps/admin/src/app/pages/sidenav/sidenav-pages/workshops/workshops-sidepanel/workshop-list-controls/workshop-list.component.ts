@@ -2,7 +2,7 @@ import { CdkDragDrop, DragDropModule, moveItemInArray } from '@angular/cdk/drag-
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import { MatLegacySnackBar as MatSnackBar, MatLegacySnackBarConfig as MatSnackBarConfig } from '@angular/material/legacy-snack-bar';
-import { Subject } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 import { WorkshopEditorService } from '../../../../../../shared/services/workshops/workshops.service';
 import { CreateWorkshopModalComponent } from './modals/create-category-modal/create-workshop-modal.component';
 import { DeleteWorkshopModalComponent } from './modals/delete-category-modal/delete-workshop-modal.component';
@@ -28,7 +28,7 @@ import { Workshop } from '../../../../../../shared/interfaces/category.interface
   ]
 })
 export class WorkshopListComponent implements OnInit, OnDestroy {
-
+  // TODO: Reactive
   destory: Subject<boolean> = new Subject();
 
   cdkDragDisabled = false;
@@ -39,7 +39,10 @@ export class WorkshopListComponent implements OnInit, OnDestroy {
     verticalPosition: 'top'
   }
 
-  @Input() categories!: any[] | null;
+  sortWorkshopFormError$ = new Subject<boolean>();
+  sortWorkshopFormSuccess$ = new Subject<boolean>();
+
+  @Input() workshops: Workshop[] = [];
 
   constructor(
     public matDialog: MatDialog,
@@ -56,43 +59,46 @@ export class WorkshopListComponent implements OnInit, OnDestroy {
     this.destory.next(true);
   }
 
-  createCategory(): void {
+  createWorkshop(): void {
     this.matDialog.open(CreateWorkshopModalComponent, { width: '400px' });
   }
   
-  deleteCategory(event: Event, workshop: Workshop): void {
+  deleteWorkshop(event: Event, workshop: Workshop): void {
     event.preventDefault();
     event.stopImmediatePropagation();
     this.matDialog.open(DeleteWorkshopModalComponent, { width: '400px', data: { workshop }});
   }
 
-  editCategory(event: Event, workshop: any): void {
+  editWorkshop(event: Event, workshop: Workshop): void {
     event.preventDefault();
     event.stopImmediatePropagation();
     this.matDialog.open(EditWorkshopModalComponent, { width: '400px', data: { workshop }});
   }
 
-  drop(event: CdkDragDrop<any[]>) {
+  onDrop(event: CdkDragDrop<any[]>) {
     this.cdkDragDisabled = true;
-    const categories = this.categories ?? []; 
-    moveItemInArray(categories, event.previousIndex, event.currentIndex);
-    this.categories?.map((category, index) => category.sortId = index);
-    this.workshopEditorService.sortCategories(categories);
+    const workshops = this.workshops ?? []; 
+    moveItemInArray(workshops, event.previousIndex, event.currentIndex);
+    this.workshops?.map((workshop, index) => workshop.sortId = index);
+    this.workshopEditorService.sortWorkshop(workshops).subscribe({
+      error: () => this.sortWorkshopFormError$.next(true),
+      complete: () => this.sortWorkshopFormSuccess$.next(true)
+    });
   }
 
   initSortCategories(): void {
-    // this.workshopEditorService.sortCategoryFormError$
-    // .pipe(takeUntil(this.destory))
-    // .subscribe((error) => {
-    //   this.snackBar.open('😿 Error updating the categories new order', undefined, this.snackBarOptiions);
-    //   this.cdkDragDisabled = false;
-    // });
+    this.sortWorkshopFormError$
+    .pipe(takeUntil(this.destory))
+    .subscribe(() => {
+      this.snackBar.open('😿 Error updating the workshops new order', undefined, this.snackBarOptiions);
+      this.cdkDragDisabled = false;
+    });
     
-    // this.workshopEditorService.sortCategoryFormSuccess$
-    // .pipe(takeUntil(this.destory))
-    // .subscribe((category) => {
-    //   this.snackBar.open('😸 Categories new order updated', undefined, this.snackBarOptiions);
-    //   this.cdkDragDisabled = false;
-    // });
+    this.sortWorkshopFormSuccess$
+    .pipe(takeUntil(this.destory))
+    .subscribe(() => {
+      this.snackBar.open('😸 Categories new order updated', undefined, this.snackBarOptiions);
+      this.cdkDragDisabled = false;
+    });
   }
 }

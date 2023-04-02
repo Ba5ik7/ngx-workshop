@@ -51,8 +51,8 @@ export class WorkshopEditorService {
     return this.apiCall<{ id: string }>('/navigation/category/delete-category-and-workshops', { _id });
   }
       
-  sortCategories(categories: Workshop[]) {
-    return this.apiCall<Workshop[]>('/navigation/category/sort-categories', categories);
+  sortWorkshop(workshop: Workshop[]) {
+    return this.apiCall<Workshop[]>('/navigation/category/sort-categories', workshop);
   }
       
   createPage(page: WorkshopDocument) {

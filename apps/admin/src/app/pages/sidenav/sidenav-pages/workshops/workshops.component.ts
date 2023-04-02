@@ -23,7 +23,7 @@ import { Workshop } from '../../../../shared/interfaces/category.interface';
     
     <div class="workshop-controls-panel">
       <div class="controls">
-        <ngx-workshop-list [categories]="vm.workshops"></ngx-workshop-list>
+        <ngx-workshop-list [workshops]="vm.workshops"></ngx-workshop-list>
         <!-- <ngx-page-list [pages]="vm.workshopDocuments | async" [currentCategory]="currentCategory | async"></ngx-page-list> -->
       </div>
     </div>
