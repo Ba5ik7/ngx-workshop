@@ -1,7 +1,7 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ChangeDetectionStrategy, Component, inject, Inject } from '@angular/core';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatLegacyDialogRef as MatDialogRef, MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA } from '@angular/material/legacy-dialog';
-import { BehaviorSubject, combineLatest, map, mergeMap, Subject, switchMap, take, takeUntil, tap } from 'rxjs';
+import { BehaviorSubject, combineLatest, map, mergeMap, switchMap, take, takeUntil, tap } from 'rxjs';
 // import { Category } from '../../../../shared/interfaces/category.interface';
 import { WorkshopDocument } from '../../../../../../../../shared/interfaces/category.interface';
 import { NavigationService } from '../../../../../../../../shared/services/navigation/navigation.service';
