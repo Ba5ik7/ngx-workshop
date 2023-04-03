@@ -64,8 +64,6 @@ export class WorkshopsComponent {
   })
   .pipe(
     map(({ workshops, workshop }) => {
-      console.log('workshop', workshop);
-
       return {
         workshops: workshops?.sort((a, b) => a.sortId - b.sortId),
         documents: workshop?.workshopDocuments || []

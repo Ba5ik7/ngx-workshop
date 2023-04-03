@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { MonoTypeOperatorFunction, BehaviorSubject, Observable, timer, of } from 'rxjs';
-import { shareReplay, switchMap, takeUntil, tap } from 'rxjs/operators';
+import { map, shareReplay, switchMap, takeUntil, tap } from 'rxjs/operators';
 import { Section, Sections, Workshop, WorkshopDocument } from '../../interfaces/category.interface';
 
 const staticSections: Map<string, Partial<Section>> = new Map([
@@ -80,28 +80,15 @@ export class NavigationService {
   }
 
   navigateToWorkshop(workshopDocumentId: string) {
-    const workshop = staticPages.get(workshopDocumentId) ?? this.fetchWorkshopPage(workshopDocumentId);
-    this.currentWorkshop$.next(workshop);
-    return of(workshop);
-  }
-
-  private fetchWorkshopPage(workshopDocumentId: string, force = false) {
-    if (force || !this.workshopDocumentCache[workshopDocumentId]) {
-      this.workshopDocumentCache[workshopDocumentId] = this.http
-        .get<WorkshopDocument>(`/api/workshop/${workshopDocumentId}`)
-        .pipe(
-          tap((workshopDocument) => {
-            console.log('workshopDocument', workshopDocument);
-            
-            this.workshopDocument$.next(workshopDocument);
-          }),
-          shareReplayWithTTL(1, this.cacheTTL)
+    return of(workshopDocumentId).pipe(
+      tap((id) => {
+        this.currentWorkshop$.next(
+          staticPages.get(id) ?? this.workshops$.getValue().find((workshop) => workshop.workshopDocumentGroupId === id)
         );
-    }
-    this.workshopDocumentCache[workshopDocumentId].subscribe();
-    return this.workshops$.getValue().find((workshop) => workshop._id === workshopDocumentId);
+      }),
+      map(() => this.currentWorkshop$.getValue())
+    );
   }
-
   navigateToDocument(workshopDocumentId: string) {
     return this.http
     .get<WorkshopDocument>(`/api/workshop/${workshopDocumentId}`)

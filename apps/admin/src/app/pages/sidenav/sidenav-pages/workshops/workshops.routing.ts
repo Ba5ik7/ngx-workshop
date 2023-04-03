@@ -24,6 +24,7 @@ export const WORKSHOPS_ROUTES: Route[] = [
       {
         canActivate: [AuthGuard],
         path: ':workshopId',
+        resolve: { workshopResolver },
         loadChildren: () => import('./workshops-pages/workshop-detail/workshop-detail.routing').then(m => m.WORKSHOPS_DETAIL_ROUTES)
       },
     ]
