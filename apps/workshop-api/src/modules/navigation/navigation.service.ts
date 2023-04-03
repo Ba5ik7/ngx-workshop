@@ -81,7 +81,7 @@ export class NavigationService {
     return await this.workshopModel.deleteOne({ _id });
   }
 
-  async sortWorkshops(workshops: IWorkshop[]): Promise<any> {
+  async sortWorkshops(workshops: IWorkshop[]): Promise<IWorkshop[]> {
     const newWorkshops = [];
     await Promise.all(
       workshops.map(async (workshop) => {

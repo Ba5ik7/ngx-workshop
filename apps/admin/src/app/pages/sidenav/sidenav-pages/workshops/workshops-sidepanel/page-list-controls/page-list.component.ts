@@ -1,9 +1,9 @@
-import { CdkDragDrop, DragDropModule, moveItemInArray } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, DragDropModule } from '@angular/cdk/drag-drop';
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import { MatLegacySnackBar as MatSnackBar, MatLegacySnackBarConfig as MatSnackBarConfig } from '@angular/material/legacy-snack-bar';
 import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
-import { Subject, takeUntil } from 'rxjs';
+import { Subject } from 'rxjs';
 import { WorkshopEditorService } from '../../../../../../shared/services/workshops/workshops.service';
 import { CreatePageModalComponent } from './modals/create-page-modal/create-page-modal.component';
 import { DeletePageModalComponent } from './modals/delete-page-modal/delete-page-modal.component';
@@ -12,7 +12,7 @@ import { MatLegacyListModule as MatListModule } from '@angular/material/legacy-l
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { WorkshopDocument, WorkshopDocumentIdentifier } from '../../../../../../shared/interfaces/category.interface';
+import { WorkshopDocumentIdentifier } from '../../../../../../shared/interfaces/category.interface';
 
 @Component({
   standalone: true,

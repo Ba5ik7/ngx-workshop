@@ -52,7 +52,7 @@ export class NavigationController {
 
   @Roles(Role.Admin)
   @Post('workshop/sort-workshops')
-  async sortWorkshops(@Body() workshops: IWorkshop[]): Promise<any> {
+  async sortWorkshops(@Body() workshops: IWorkshop[]): Promise<IWorkshop[]> {
     return await this.navigationService.sortWorkshops(workshops);
   }
 
