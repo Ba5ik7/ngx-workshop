@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { combineLatest, map, of, switchMap, } from 'rxjs';
+import { combineLatest, map } from 'rxjs';
 import { NavigationService } from '../../../../shared/services/navigation/navigation.service';
 import { MatLegacySnackBarModule as MatSnackBarModule } from '@angular/material/legacy-snack-bar';
 import { PageListComponent } from './workshops-sidepanel/page-list-controls/page-list.component';
