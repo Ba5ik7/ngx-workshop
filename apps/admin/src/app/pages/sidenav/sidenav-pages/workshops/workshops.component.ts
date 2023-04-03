@@ -23,7 +23,10 @@ import { WorkshopListComponent } from './workshops-sidepanel/workshop-list-contr
     <div class="workshop-controls-panel">
       <div class="controls">
         <ngx-workshop-list [workshops]="vm.workshops"></ngx-workshop-list>
-        <ngx-page-list *ngIf="vm.documents.length > 0" [documents]="vm.documents"></ngx-page-list>
+        <ngx-page-list 
+          *ngIf="vm.documents.length > 0"
+          [workshopDocumentGroupId]="vm.workshopDocumentGroupId"
+          [documents]="vm.documents"></ngx-page-list>
       </div>
     </div>
 
@@ -66,7 +69,8 @@ export class WorkshopsComponent {
     map(({ workshops, workshop }) => {
       return {
         workshops: workshops?.sort((a, b) => a.sortId - b.sortId),
-        documents: workshop?.workshopDocuments || []
+        documents: workshop?.workshopDocuments || [],
+        workshopDocumentGroupId: workshop?.workshopDocumentGroupId || ''
       };
     })
   )

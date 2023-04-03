@@ -41,6 +41,7 @@ export class PageListComponent implements OnInit, OnDestroy {
   }
 
   @Input() documents: WorkshopDocumentIdentifier[] = [];
+  @Input() workshopDocumentGroupId = '';
 
   constructor(
     public matDialog: MatDialog,
