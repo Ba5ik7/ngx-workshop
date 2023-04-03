@@ -6,7 +6,7 @@ import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/lega
 import { Subject, takeUntil } from 'rxjs';
 import { WorkshopEditorService } from '../../../../../../shared/services/workshops/workshops.service';
 import { CreatePageModalComponent } from './modals/create-page-modal/create-page-modal.component';
-// import { DeletePageModalComponent } from './modals/delete-page-modal/delete-page-modal.component';
+import { DeletePageModalComponent } from './modals/delete-page-modal/delete-page-modal.component';
 // import { EditPageModalComponent } from './modals/edit-page-modal/edit-page-modal.component';
 import { MatLegacyListModule as MatListModule } from '@angular/material/legacy-list';
 import { MatIconModule } from '@angular/material/icon';
@@ -70,10 +70,10 @@ export class PageListComponent implements OnInit, OnDestroy {
     // this.matDialog.open(EditPageModalComponent, { width: '400px', data: { page }});
   }
 
-  deletePage(event: Event, page: any): void {
-    // event.preventDefault();
-    // event.stopImmediatePropagation();
-    // this.matDialog.open(DeletePageModalComponent, { width: '400px', data: { page }});
+  deletePage(event: Event, workshopDocument: unknown): void {
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    this.matDialog.open(DeletePageModalComponent, { width: '400px', data: { workshopDocument }});
   }
 
 

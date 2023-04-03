@@ -27,6 +27,11 @@ import { Workshop } from '../../../../../../../../shared/interfaces/category.int
   ],
 })
 export class DeleteWorkshopModalComponent {
+  private dialogRef = inject(MatDialogRef<DeleteWorkshopModalComponent>);
+  private workshopEditorService = inject(WorkshopEditorService);
+  private navigationService = inject(NavigationService);
+  constructor(@Inject(MAT_DIALOG_DATA) public data: { workshop: Workshop }) { }
+
   deleteWorkshopFormLevelMessage$ = new BehaviorSubject<string | undefined>(undefined);
   errorMessages: KeyValue = {
     required: 'Required',
@@ -61,17 +66,11 @@ export class DeleteWorkshopModalComponent {
     deleteWorkshopFormLevelMessage: this.deleteWorkshopFormLevelMessage$,
   });
 
-
-  private dialogRef = inject(MatDialogRef<DeleteWorkshopModalComponent>);
-  private workshopEditorService = inject(WorkshopEditorService);
-  private navigationService = inject(NavigationService);
-  constructor(@Inject(MAT_DIALOG_DATA) public data: { workshop: Workshop }) { }
-
   onDeleteWorkshop() {
     this.workshopEditorService.deleteWorkshop(this.data.workshop._id)
     .pipe(
       tap(() => this.loading$.next(true)),
-      mergeMap (() => this.navigationService.getCurrentSection().pipe(take(1))),
+      mergeMap(() => this.navigationService.getCurrentSection().pipe(take(1))),
       )
     .subscribe({
       next: (section) => {

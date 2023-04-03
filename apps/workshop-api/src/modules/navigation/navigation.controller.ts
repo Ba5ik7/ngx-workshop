@@ -67,11 +67,11 @@ export class NavigationController {
   @Roles(Role.Admin)
   @Post('page/delete-page-and-update-workshop')
   async deletePageAndUpdateWorkshop(
-    @Body() page: IWorkshopDocument,
+    @Body() { page, workshopId }: { page: IWorkshopDocument, workshopId: string },
   ): Promise<{ acknowledged: boolean; deletedCount: number }> {
     return await this.navigationService.deletePageAndUpdateWorkshop(
       page._id,
-      page.workshopGroupId,
+      workshopId
     );
   }
 

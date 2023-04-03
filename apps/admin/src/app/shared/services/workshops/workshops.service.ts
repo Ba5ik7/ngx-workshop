@@ -59,8 +59,8 @@ export class WorkshopEditorService {
     return this.apiCall<WorkshopDocument>('/navigation/page/create-page', { page, workshopId });
   }
       
-  deletePage(page: WorkshopDocument) {
-    return this.apiCall<WorkshopDocument>('/navigation/page/delete-page-and-update-workshop', page);
+  deletePage(page: WorkshopDocument, workshopId: string) {
+    return this.apiCall<WorkshopDocument>('/navigation/page/delete-page-and-update-workshop', { page, workshopId });
   }
       
   editPageNameAndSummary(page: WorkshopDocument) {
@@ -68,7 +68,7 @@ export class WorkshopEditorService {
   }
       
   sortPages(pages: WorkshopDocument[], workshopId: string = '') {
-  const params = new HttpParams().set('workshopId', workshopId);
+    const params = new HttpParams().set('workshopId', workshopId);
     return this.apiCall<WorkshopDocument[]>('/navigation/page/sort-pages', pages, 'post', params);
   }
 
