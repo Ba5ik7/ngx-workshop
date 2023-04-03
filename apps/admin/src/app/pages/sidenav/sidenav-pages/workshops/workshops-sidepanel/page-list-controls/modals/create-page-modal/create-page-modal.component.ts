@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatLegacyDialogRef as MatDialogRef } from '@angular/material/legacy-dialog';
-import { BehaviorSubject, combineLatest, map, mergeMap, Subject, take, takeUntil, tap } from 'rxjs';
+import { BehaviorSubject, combineLatest, map, mergeMap, Subject, switchMap, take, takeUntil, tap } from 'rxjs';
 import { NavigationService } from '../../../../../../../../shared/services/navigation/navigation.service';
 import { KeyValue, WorkshopEditorService } from '../../../../../../../../shared/services/workshops/workshops.service';
 import { MatLegacyFormFieldModule as MatFormFieldModule } from '@angular/material/legacy-form-field';
@@ -46,7 +46,7 @@ export class CreatePageModalComponent {
     map((workshop) => {
       return this.formBuilder.group({
         workshopGroupId: [workshop?.workshopDocumentGroupId],
-        category:[workshop],
+        workshopId:[workshop?._id],
         sortId:[workshop?.workshopDocuments?.length],
         name: ['', [Validators.required]],
       })
@@ -72,16 +72,19 @@ export class CreatePageModalComponent {
   });
 
   onCreatePage(formGroupValue: unknown) {
-    this.workshopEditorService.createPage(formGroupValue as WorkshopDocument)
+    const { workshopId } = formGroupValue as { workshopId: string };
+    this.workshopEditorService.createPage(formGroupValue as WorkshopDocument, workshopId)
     .pipe(
       tap(() => this.loading$.next(true)),
       mergeMap(() => this.navigationService.getCurrentWorkshop().pipe(take(1))),
     )
     .subscribe({
-      next: (workshop) => {
-        this.loading$.next(false);
-        this.navigationService.navigateToWorkshop(workshop?._id ?? '')
-        .pipe(take(1), tap(() => this.dialogRef.close()),
+      next: (workshop) => {        
+        this.navigationService.navigateToSection(workshop?.sectionId ?? '', true)
+        .pipe(
+          take(1),
+          switchMap(() => this.navigationService.navigateToWorkshop(workshop?.workshopDocumentGroupId ?? '')),
+          tap(() => this.dialogRef.close())
         ).subscribe();
       },
       error: () => this.createPageFormLevelMessage$.next(this.errorMessages['httpFailure'])

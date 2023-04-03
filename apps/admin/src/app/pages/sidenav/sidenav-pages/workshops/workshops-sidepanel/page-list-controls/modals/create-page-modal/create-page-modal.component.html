@@ -3,7 +3,7 @@
     <form [formGroup]="vm.formGroup">
       <h2 mat-dialog-title>Create a New Page?</h2>
       <span class="form-level-error-message">{{vm.createPageFormLevelMessage}}</span>
-      <mat-form-field>
+      <mat-form-field color="accent">
         <mat-label>Name</mat-label>
         <input matInput type="text" placeholder="Name" formControlName="name">
         <mat-error *ngIf="vm.formGroup.get('name')?.errors">{{createPageControlsErrorMessages['name']}}</mat-error>

@@ -55,8 +55,8 @@ export class WorkshopEditorService {
     return this.apiCall<Workshop[]>('/navigation/workshop/sort-workshops', workshop);
   }
       
-  createPage(page: WorkshopDocument) {
-    return this.apiCall<WorkshopDocument>('/navigation/page/create-page', page);
+  createPage(page: WorkshopDocument, workshopId: string) {
+    return this.apiCall<WorkshopDocument>('/navigation/page/create-page', { page, workshopId });
   }
       
   deletePage(page: WorkshopDocument) {

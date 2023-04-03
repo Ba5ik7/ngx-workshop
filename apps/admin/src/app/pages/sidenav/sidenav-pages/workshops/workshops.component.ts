@@ -23,7 +23,7 @@ import { WorkshopListComponent } from './workshops-sidepanel/workshop-list-contr
     <div class="workshop-controls-panel">
       <div class="controls">
         <ngx-workshop-list [workshops]="vm.workshops"></ngx-workshop-list>
-        <ngx-page-list [documents]="vm.documents"></ngx-page-list>
+        <ngx-page-list *ngIf="vm.documents.length > 0" [documents]="vm.documents"></ngx-page-list>
       </div>
     </div>
 
@@ -60,7 +60,7 @@ export class WorkshopsComponent {
   navigationService = inject(NavigationService);
   viewModel = combineLatest({
     workshops: this.navigationService.getWorkshops(),
-    workshop: this.navigationService.getCurrentWorkshop()  
+    workshop: this.navigationService.getCurrentWorkshop() 
   })
   .pipe(
     map(({ workshops, workshop }) => {

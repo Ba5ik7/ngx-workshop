@@ -97,12 +97,12 @@ export class NavigationService {
     return newWorkshops;
   }
 
-  async createPage(page: IWorkshopDocument, workshopGroupId: string): Promise<IWorkshop> {
+  async createPage(page: IWorkshopDocument, workshopId: string): Promise<IWorkshop> {
     const workshop: IWorkshopDocument =
       await this.workshopDocumentService.createWorkshopDocument(page);
     const updatedWorkshop =
       await this.workshopModel.findByIdAndUpdate<IWorkshop>(
-        workshopGroupId,
+        workshopId,
         {
           $push: {
             workshopDocuments: {
