@@ -65,7 +65,7 @@ export class WorkshopEditorService {
     return this.apiCall<Workshop>('/navigation/page/edit-page-name-update-workshop', page);
   }
 
-  sortDocuments(pages: WorkshopDocumentIdentifier[], workshopId: string = '') {
+  sortDocuments(pages: WorkshopDocumentIdentifier[], workshopId: string) {
     const params = new HttpParams().set('workshopId', workshopId);
     return this.apiCall<WorkshopDocument[]>('/navigation/page/sort-pages', pages, 'post', params);
   }

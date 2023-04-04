@@ -142,7 +142,8 @@ export class LoginComponent implements OnInit {
     this.formLoading = predicate;
   }
 
-  signSuccuessful(whatever: any): void {
+  signSuccuessful(user: unknown): void {
+    console.log('user', user);
     this.requestInProgress();
     this.userStateService.signedIn.next(true);
     this.router.navigate(['auth', 'dashboard']);

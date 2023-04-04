@@ -47,6 +47,7 @@ export class PageListComponent implements OnInit, OnDestroy {
 
   @Input() documents: WorkshopDocumentIdentifier[] = [];
   @Input() workshopDocumentGroupId = '';
+  @Input() workshopDocumentId = '';
 
   navigationService = inject(NavigationService);
   constructor(
@@ -90,7 +91,7 @@ export class PageListComponent implements OnInit, OnDestroy {
     const documents = this.documents ?? []; 
     moveItemInArray(documents, event.previousIndex, event.currentIndex);
     this.documents?.map((document, index) => document.sortId = index);
-    this.workshopEditorService.sortDocuments(documents).subscribe({
+    this.workshopEditorService.sortDocuments(documents, this.workshopDocumentId).subscribe({
       error: () => {
         this.sortDocumentFormError$.next(true)
       },

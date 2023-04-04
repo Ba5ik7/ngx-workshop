@@ -26,6 +26,7 @@ import { WorkshopListComponent } from './workshops-sidepanel/workshop-list-contr
         <ngx-page-list 
           *ngIf="vm.documents.length > 0"
           [workshopDocumentGroupId]="vm.workshopDocumentGroupId"
+          [workshopDocumentId]="vm.workshopDocumentId"
           [documents]="vm.documents"></ngx-page-list>
       </div>
     </div>
@@ -70,7 +71,8 @@ export class WorkshopsComponent {
       return {
         workshops: workshops?.sort((a, b) => a.sortId - b.sortId),
         documents: workshop?.workshopDocuments || [],
-        workshopDocumentGroupId: workshop?.workshopDocumentGroupId || ''
+        workshopDocumentGroupId: workshop?.workshopDocumentGroupId || '',
+        workshopDocumentId: workshop?._id || ''
       };
     })
   )
