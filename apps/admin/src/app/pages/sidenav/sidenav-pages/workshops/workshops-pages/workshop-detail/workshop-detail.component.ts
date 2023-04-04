@@ -1,24 +1,57 @@
-import { Component, inject, ViewEncapsulation } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { map, tap } from 'rxjs';
-import { NgxEditorjsModule, NgxEditorjsOutputBlock } from '@tmdjr/ngx-editorjs';
+import { Component, inject, ViewChild, ViewEncapsulation } from '@angular/core';
+import {
+  MatLegacyPaginatorModule as MatPaginatorModule,
+  MatLegacyPaginator as MatPaginator,
+  LegacyPageEvent as PageEvent
+} from '@angular/material/legacy-paginator';
+import { ActivatedRoute, Router } from '@angular/router';
+import { combineLatest, map } from 'rxjs';
+import { NgxEditorjsModule } from '@tmdjr/ngx-editorjs';
 import { WorkshopEditorService } from '../../../../../../shared/services/workshops/workshops.service';
+import { NavigationService } from '../../../../../../shared/services/navigation/navigation.service';
 import { CommonModule } from '@angular/common';
 import { WorkshopDocument } from '../../../../../../shared/interfaces/category.interface';
 
+
+const safeParse = (json: string) => {
+  try {
+    return JSON.parse(json);
+  } catch (error) {
+    throw new Error('Error parsing JSON');
+  }
+}
+
+const safeStringify = (value: unknown) => {
+  try {
+    return JSON.stringify(value);
+  } catch (error) {
+    throw new Error('Error stringify JSON');
+  }
+}
 @Component({
   standalone: true,
   selector: 'ngx-workshop-detail',
   template: `
-    <ng-container *ngIf="ngxEditorjsOutputBlock | async as blocks; else elseTemplate">
+    <ng-container *ngIf="viewModel | async as vm; else elseTemplate">
+      <mat-paginator
+        *ngIf="vm.hasMoreThanOneDocument"
+        #paginator
+        class="paginator"
+        [length]="vm.workshopDocumentsLength"
+        [showFirstLastButtons]="true"
+        [hidePageSize]="true"
+        [pageSize]="1"
+        (page)="vm.pageEventChange($event)"
+        aria-label="Select page">
+      </mat-paginator>
       <div class="workshop-detail-content">
         <div class="page">
           <section class="workshop-viewer-container">
             <div class="mat-card">
               <ngx-editorjs
-                [inputData]="blocks"
+                [inputData]="vm.ngxEditorjsBlocks"
                 [requestValue]="requestValue"
-                (valueRequested)="valueRequested($event)"
+                (valueRequested)="vm.valueRequested($event)"
               ></ngx-editorjs>
             </div>
           </section>
@@ -60,31 +93,51 @@ import { WorkshopDocument } from '../../../../../../shared/interfaces/category.i
   encapsulation: ViewEncapsulation.None,
   imports: [
     CommonModule,
-    NgxEditorjsModule
+    NgxEditorjsModule,
+    MatPaginatorModule
   ]
 })
 export class WorkshopDetailComponent {
-  workshopDocumentId!: string;
-  private workshopEditorService = inject(WorkshopEditorService);
-  ngxEditorjsOutputBlock = inject(ActivatedRoute).data.pipe(
-    map((data) => data['documentResolver'] as WorkshopDocument),
-    // TODO: Make it Reactive
-    tap((data) => this.workshopDocumentId = data._id),
-    map((data) => JSON.parse(data.html) as NgxEditorjsOutputBlock[])
-  );
+  @ViewChild('paginator') paginator!: MatPaginator;
 
-  // ! Worst place to put this, it saves the HTML of the editor
+  private workshopEditorService = inject(WorkshopEditorService);
+  private router = inject(Router);
+  private activatedRoute = inject(ActivatedRoute);
+
   requestValue = this.workshopEditorService.saveEditorDataSubject;
-  valueRequested(value: unknown): void {
-    try {
-      const blocks = JSON.stringify(value);
-      this.workshopEditorService.savePageHTML(blocks, this.workshopDocumentId)
-      .subscribe({
-        next: () => this.workshopEditorService.savePageHTMLSuccessSubject.next(true),
-        error: () => this.workshopEditorService.savePageHTMLErrorSubject.next(true)
-      });
-    } catch (error) {
-      throw new Error('Error parsing JSON');
-    }
-  }
+
+  viewModel = combineLatest([
+    inject(ActivatedRoute).data,
+    inject(NavigationService).getCurrentWorkshop()
+  ]).pipe(
+    map(([blocks, workshop]) => {
+      return {
+        document: blocks['documentResolver'] as WorkshopDocument,
+        documents: workshop?.workshopDocuments
+      }
+    }),
+    map(({ document, documents = [] }) => {
+      return {
+        ngxEditorjsBlocks: safeParse(document.html),
+        hasMoreThanOneDocument: documents.length > 1,
+        workshopDocumentsLength: documents.length,
+        pageIndex: documents.findIndex((workshopDocument) => workshopDocument._id === document._id),
+        pageEventChange: ({ pageIndex }: PageEvent) => {
+          this.router.navigate(['../', documents[pageIndex]._id], { relativeTo: this.activatedRoute });
+        },
+        valueRequested: (value: unknown) => {
+          try {
+            const blocks = safeStringify(value);
+            this.workshopEditorService.savePageHTML(blocks, document._id)
+            .subscribe({
+              next: () => this.workshopEditorService.savePageHTMLSuccessSubject.next(true),
+              error: () => this.workshopEditorService.savePageHTMLErrorSubject.next(true)
+            });
+          } catch (error) {
+            throw new Error('Error parsing JSON');
+          }
+        }
+      };
+    })
+  );
 }
