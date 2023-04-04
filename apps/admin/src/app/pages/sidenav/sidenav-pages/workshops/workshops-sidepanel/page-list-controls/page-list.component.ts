@@ -56,7 +56,7 @@ export class PageListComponent implements OnInit, OnDestroy {
     public workshopEditorService: WorkshopEditorService
   ) { }
 
-  // ! Worst place to this, it saves the HTML of the editor
+  // ! Worst place to put this, it saves the HTML of the editor
   saveEditorData(): void {
     this.workshopEditorService.saveEditorDataSubject.next(true);
   }
@@ -126,16 +126,15 @@ export class PageListComponent implements OnInit, OnDestroy {
       this.cdkDragDisabled = false;      
     });
 
-    // this.savePageHTMLError$
-    // .pipe(takeUntil(this.destory))
-    // .subscribe(() => {
-    //   this.snackBar.open('😿 Error saving workshop', undefined, this.snackBarOptiions);
-    // });
-
-    // this.savePageHTMLSuccess$
-    // .pipe(takeUntil(this.destory))
-    // .subscribe(() => {
-    //   this.snackBar.open('😸 Workshop was saved', undefined, this.snackBarOptiions);
-    // });
+    this.workshopEditorService.savePageHTMLErrorSubject
+    .pipe(takeUntil(this.destory))
+    .subscribe(() => {
+      this.snackBar.open('😿 Error saving workshop', undefined, this.snackBarOptiions);
+    });
+    this.workshopEditorService.savePageHTMLSuccessSubject
+    .pipe(takeUntil(this.destory))
+    .subscribe(() => {
+      this.snackBar.open('😸 Workshop was saved', undefined, this.snackBarOptiions);
+    });
   }
 }

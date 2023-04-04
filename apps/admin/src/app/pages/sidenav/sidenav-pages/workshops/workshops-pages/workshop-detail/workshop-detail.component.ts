@@ -73,8 +73,18 @@ export class WorkshopDetailComponent {
     map((data) => JSON.parse(data.html) as NgxEditorjsOutputBlock[])
   );
 
+  // ! Worst place to put this, it saves the HTML of the editor
   requestValue = this.workshopEditorService.saveEditorDataSubject;
   valueRequested(value: unknown): void {
-    this.workshopEditorService.savePageHTML(JSON.stringify(value), this.workshopDocumentId);
+    try {
+      const blocks = JSON.stringify(value);
+      this.workshopEditorService.savePageHTML(blocks, this.workshopDocumentId)
+      .subscribe({
+        next: () => this.workshopEditorService.savePageHTMLSuccessSubject.next(true),
+        error: () => this.workshopEditorService.savePageHTMLErrorSubject.next(true)
+      });
+    } catch (error) {
+      throw new Error('Error parsing JSON');
+    }
   }
 }
