@@ -3,7 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Workshop, WorkshopDocument } from '../../interfaces/category.interface';
+import { Workshop, WorkshopDocument, WorkshopDocumentIdentifier } from '../../interfaces/category.interface';
 
 export interface Result<T> {
   success?: T;
@@ -19,10 +19,12 @@ export class WorkshopEditorService {
   private readonly baseUrl = '/api';
   private httpClient = inject(HttpClient);
 
-
+  // ! Worst place to this, it saves the HTML of the editor
   saveEditorDataSubject = new Subject<boolean>();
   saveEditorData$ = this.saveEditorDataSubject.asObservable();
-
+  savePageHTML(html: string, _id: string) {
+    return this.apiCall<WorkshopDocument>('/workshop/update-workshop-html', { _id, html });
+  }
 
   private apiCall<T>(url: string, body: unknown, method: 'post' | 'get' = 'post', params?: HttpParams) {
     const request = this.httpClient.request<T>(method, this.baseUrl + url, {
@@ -34,40 +36,36 @@ export class WorkshopEditorService {
       map((data: T) => ({ success: data } as Result<T>)),
     );
   }
-        
-  savePageHTML(html: string, _id: string) {
-    return this.apiCall<WorkshopDocument>('/workshop/update-workshop-html', { _id, html });
-  }
-        
+
   createWorkshop(workshop: Workshop) {
     return this.apiCall<Workshop>('/navigation/workshop/create-workshop', workshop);
   }
-        
+
   editWorkshopNameAndSummary(workshop: Workshop) {
     return this.apiCall<Workshop>('/navigation/workshop/edit-workshop-name-and-summary', workshop);
   }
-        
+
   deleteWorkshop(_id: string) {
     return this.apiCall<{ id: string }>('/navigation/workshop/delete-workshop-and-workshop-documents', { _id });
   }
-      
-  sortWorkshop(workshop: Workshop[]) {
+
+  sortWorkshops(workshop: Workshop[]) {
     return this.apiCall<Workshop[]>('/navigation/workshop/sort-workshops', workshop);
   }
-      
+
   createPage(page: WorkshopDocument, workshopId: string) {
     return this.apiCall<WorkshopDocument>('/navigation/page/create-page', { page, workshopId });
   }
-      
+
   deletePage(page: WorkshopDocument, workshopId: string) {
     return this.apiCall<WorkshopDocument>('/navigation/page/delete-page-and-update-workshop', { page, workshopId });
   }
-      
+
   editPageName(page: WorkshopDocument) {
     return this.apiCall<Workshop>('/navigation/page/edit-page-name-update-workshop', page);
   }
-      
-  sortPages(pages: WorkshopDocument[], workshopId: string = '') {
+
+  sortDocuments(pages: WorkshopDocumentIdentifier[], workshopId: string = '') {
     const params = new HttpParams().set('workshopId', workshopId);
     return this.apiCall<WorkshopDocument[]>('/navigation/page/sort-pages', pages, 'post', params);
   }

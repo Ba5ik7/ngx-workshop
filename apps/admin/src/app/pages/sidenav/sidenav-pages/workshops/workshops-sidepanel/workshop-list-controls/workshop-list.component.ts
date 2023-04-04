@@ -29,7 +29,8 @@ import { NavigationService } from '../../../../../../shared/services/navigation/
   ]
 })
 export class WorkshopListComponent implements OnInit, OnDestroy {
-  // TODO: Reactive
+  // TODO: Make it Reactive
+  // ! Make this more generic so that it can be used for other components
   destory: Subject<boolean> = new Subject();
 
   cdkDragDisabled = false;
@@ -82,7 +83,7 @@ export class WorkshopListComponent implements OnInit, OnDestroy {
     const workshops = this.workshops ?? []; 
     moveItemInArray(workshops, event.previousIndex, event.currentIndex);
     this.workshops?.map((workshop, index) => workshop.sortId = index);
-    this.workshopEditorService.sortWorkshop(workshops).subscribe({
+    this.workshopEditorService.sortWorkshops(workshops).subscribe({
       error: () => {
         this.sortWorkshopFormError$.next(true)
       },

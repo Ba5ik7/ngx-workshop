@@ -1,9 +1,10 @@
 import { Component, inject, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { map } from 'rxjs';
+import { map, tap } from 'rxjs';
 import { NgxEditorjsModule, NgxEditorjsOutputBlock } from '@tmdjr/ngx-editorjs';
 import { WorkshopEditorService } from '../../../../../../shared/services/workshops/workshops.service';
 import { CommonModule } from '@angular/common';
+import { WorkshopDocument } from '../../../../../../shared/interfaces/category.interface';
 
 @Component({
   standalone: true,
@@ -63,15 +64,17 @@ import { CommonModule } from '@angular/common';
   ]
 })
 export class WorkshopDetailComponent {
+  workshopDocumentId!: string;
   private workshopEditorService = inject(WorkshopEditorService);
   ngxEditorjsOutputBlock = inject(ActivatedRoute).data.pipe(
-    map((data) => data['documentResolver']),
+    map((data) => data['documentResolver'] as WorkshopDocument),
+    // TODO: Make it Reactive
+    tap((data) => this.workshopDocumentId = data._id),
     map((data) => JSON.parse(data.html) as NgxEditorjsOutputBlock[])
   );
 
   requestValue = this.workshopEditorService.saveEditorDataSubject;
   valueRequested(value: unknown): void {
-    console.log({ value });
-    // this.workshopEditorService.savePageHTML(JSON.stringify(value), this.currentDocument);
+    this.workshopEditorService.savePageHTML(JSON.stringify(value), this.workshopDocumentId);
   }
 }

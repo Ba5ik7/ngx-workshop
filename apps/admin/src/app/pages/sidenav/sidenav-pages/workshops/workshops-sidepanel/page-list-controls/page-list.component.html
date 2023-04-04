@@ -5,7 +5,7 @@
   </a>
   <mat-divider></mat-divider>
 </mat-nav-list>
-<mat-nav-list cdkDropList class="page-list" (cdkDropListDropped)="drop($event)">
+<mat-nav-list cdkDropList class="page-list" (cdkDropListDropped)="onDrop($event)">
   <a mat-list-item cdkDrag *ngFor="let document of documents"
     class="page-item"
     [cdkDragDisabled]="cdkDragDisabled"

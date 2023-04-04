@@ -83,12 +83,15 @@ export class NavigationService {
     return of(workshopDocumentId).pipe(
       tap((id) => {
         this.currentWorkshop$.next(
-          staticPages.get(id) ?? this.workshops$.getValue().find((workshop) => workshop.workshopDocumentGroupId === id)
+          staticPages.get(id) ?? 
+          this.workshops$.getValue()
+            .find((workshop) => workshop.workshopDocumentGroupId === id)
         );
       }),
       map(() => this.currentWorkshop$.getValue())
     );
   }
+
   navigateToDocument(workshopDocumentId: string) {
     return this.http
     .get<WorkshopDocument>(`/api/workshop/${workshopDocumentId}`)
