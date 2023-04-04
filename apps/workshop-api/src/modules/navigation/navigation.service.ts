@@ -1,22 +1,22 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
-import { IWorkshopDocument } from '../../interfaces/workshop.interface';
-import { WorkshopService } from '../workshop/workshop.service';
+import { IWorkshopDocument } from '../../interfaces/workshop-document.interface';
+import { WorkshopDocumentService } from '../workshop-document/workshop-document.service';
 import {
-  CategoryWorkshopDocument,
-  ICategory,
-} from '../../interfaces/category.interface';
+  IWorkshopDocumentIdentifier,
+  IWorkshop,
+} from '../../interfaces/workshop.interface';
 import { ISection } from '../../interfaces/section.interface';
-import { Category, CategoryDocument } from './schemas/category.schema';
+import { Workshop, TWorkshopDocument, toSpinalCase } from './schemas/workshop.schema';
 import { Section, SectionDocument } from './schemas/section.schema';
 
 @Injectable()
 export class NavigationService {
   constructor(
     @InjectModel(Section.name) private sectionModel: Model<SectionDocument>,
-    @InjectModel(Category.name) private categoryModel: Model<CategoryDocument>,
-    private workshopService: WorkshopService,
+    @InjectModel(Workshop.name) private workshopModel: Model<TWorkshopDocument>,
+    private workshopDocumentService: WorkshopDocumentService,
   ) {}
 
   async findAllSections(): Promise<{ [key: string]: ISection }> {
@@ -28,73 +28,81 @@ export class NavigationService {
     return Promise.resolve(sectionFormatToObject);
   }
 
-  async findAllCategoriesInSection(section: string): Promise<Category[]> {
-    return this.categoryModel.where('sectionId').equals(section);
+  async findAllWorkshopsInSection(section: string): Promise<IWorkshop[]> {
+    return this.workshopModel.where('sectionId').equals(section);
   }
 
-  async createCategory(category: ICategory): Promise<ICategory> {
-    const newCategory: ICategory = await this.categoryModel.create(category);
-    const workshop: IWorkshopDocument =
-      await this.workshopService.createWorkshop({ id: newCategory.id });
-    const updatedCategory =
-      await this.categoryModel.findByIdAndUpdate<ICategory>(
-        newCategory._id,
+  async createWorkshop(workshop: IWorkshop): Promise<IWorkshop> {
+    const newWorkshop: IWorkshop = await this.workshopModel.create(workshop);
+    const workshopDocument: IWorkshopDocument =
+      await this.workshopDocumentService.createWorkshopDocument({ workshopGroupId: newWorkshop.workshopDocumentGroupId });
+    const updatedWorkshop =
+      await this.workshopModel.findByIdAndUpdate<IWorkshop>(
+        newWorkshop._id,
         {
           workshopDocuments: [
-            { _id: workshop._id, name: workshop.name, sortId: workshop.sortId },
+            { _id: workshopDocument._id, name: workshopDocument.name, sortId: workshop.sortId },
           ],
           workshopDocumentsLastUpdated: Date.now(),
         },
         { returnDocument: 'after' },
       );
-    return updatedCategory;
+    return updatedWorkshop;
   }
 
-  async editCategoryNameAndSummary(category: ICategory): Promise<ICategory> {
-    const updatedCategory =
-      await this.categoryModel.findByIdAndUpdate<ICategory>(
-        category._id,
-        {
-          name: category.name,
-          summary: category.summary,
-        },
-        { returnDocument: 'after' },
-      );
-    return updatedCategory;
+  async editWorkshopNameAndSummary(workshop: IWorkshop): Promise<IWorkshop> {
+    const { workshopDocumentGroupId } = await this.workshopModel.findOne({ _id: workshop._id });
+    const newWorkshopDocumentGroupId = toSpinalCase(workshop.name);
+    const updateStatus = 
+      await this.workshopDocumentService.updateWorkshopDocumentsByWorkshopGroupId(workshopDocumentGroupId, newWorkshopDocumentGroupId);
+    if (updateStatus) {
+      const updatedWorkshop =
+        await this.workshopModel.findByIdAndUpdate<IWorkshop>(
+          workshop._id,
+          {
+            name: workshop.name,
+            summary: workshop.summary,
+            workshopDocumentGroupId: newWorkshopDocumentGroupId,
+          },
+          { returnDocument: 'after' },
+        );
+      return updatedWorkshop;
+    }
+    return null;
   }
 
-  async deleteCategoryAndWorkshops(
+  async deleteWorkshopAndWorkshopDocuments(
     _id: string,
   ): Promise<{ acknowledged: boolean; deletedCount: number }> {
-    const categoryToDelete = await this.categoryModel.findOne({ _id });
-    if (categoryToDelete.workshopDocuments.length > 0) {
-      await this.workshopService.deleteMany(categoryToDelete.workshopDocuments);
+    const workshopToDelete = await this.workshopModel.findOne({ _id });
+    if (workshopToDelete.workshopDocuments.length > 0) {
+      await this.workshopDocumentService.deleteMany(workshopToDelete.workshopDocuments);
     }
-    return await this.categoryModel.deleteOne({ _id });
+    return await this.workshopModel.deleteOne({ _id });
   }
 
-  async sortCategories(categories: ICategory[]): Promise<any> {
-    const newCategories = [];
+  async sortWorkshops(workshops: IWorkshop[]): Promise<IWorkshop[]> {
+    const newWorkshops = [];
     await Promise.all(
-      categories.map(async (category) => {
-        const newCatgory =
-          await this.categoryModel.findByIdAndUpdate<ICategory>(
-            category._id,
-            { sortId: category.sortId },
+      workshops.map(async (workshop) => {
+        const newWorkshop =
+          await this.workshopModel.findByIdAndUpdate<IWorkshop>(
+            workshop._id,
+            { sortId: workshop.sortId },
             { returnDocument: 'after' },
           );
-        newCategories.push(newCatgory);
+        newWorkshops.push(newWorkshop);
       }),
     );
-    return newCategories;
+    return newWorkshops;
   }
 
-  async createPage(page: IWorkshopDocument): Promise<IWorkshopDocument> {
+  async createPage(page: IWorkshopDocument, workshopId: string): Promise<IWorkshop> {
     const workshop: IWorkshopDocument =
-      await this.workshopService.createWorkshop(page);
-    const updatedCategory =
-      await this.categoryModel.findByIdAndUpdate<ICategory>(
-        page.category._id,
+      await this.workshopDocumentService.createWorkshopDocument(page);
+    const updatedWorkshop =
+      await this.workshopModel.findByIdAndUpdate<IWorkshop>(
+        workshopId,
         {
           $push: {
             workshopDocuments: {
@@ -107,45 +115,30 @@ export class NavigationService {
         },
         { returnDocument: 'after' },
       );
-    return updatedCategory;
+    return updatedWorkshop;
   }
 
-  async deletePageAndUpdateCategory(
+  async deletePageAndUpdateWorkshop(
     _id: string,
-    categoryIdToUpdate: string,
+    workshopIdToUpdate: string,
   ): Promise<{ acknowledged: boolean; deletedCount: number }> {
-    await this.categoryModel.findByIdAndUpdate<ICategory>(categoryIdToUpdate, {
+    await this.workshopModel.findByIdAndUpdate<IWorkshop>(workshopIdToUpdate, {
       $pull: { workshopDocuments: { _id: new Types.ObjectId(_id) } },
       workshopDocumentsLastUpdated: Date.now(),
     });
-    return await this.workshopService.deleteOne(_id);
+    return await this.workshopDocumentService.deleteOne(_id);
   }
 
-  async editPageNameUpdateCategory({
-    _id,
-    name,
-    category,
-  }: IWorkshopDocument): Promise<IWorkshopDocument> {
-    const oldWorkshop = await this.workshopService.updateWorkshopName(
-      _id,
-      name,
-    );
+  async editPageNameUpdateWorkshop({ _id, name, workshopGroupId }: IWorkshopDocument): Promise<IWorkshop> {
+    const workshopDocumentBeforeUpdate = await this.workshopDocumentService.updateWorkshopName(_id, name);
     const id = new Types.ObjectId(_id);
-    const newCategoryWorkshopDocument = {
-      _id: id,
-      name,
-      sortId: oldWorkshop.sortId,
-    };
-    const oldCategoryWorkshopDocument = {
-      _id: id,
-      name: oldWorkshop.name,
-      sortId: oldWorkshop.sortId,
-    };
-    return await this.categoryModel.findByIdAndUpdate<ICategory>(
-      category._id,
-      { $set: { 'workshopDocuments.$[elem]': newCategoryWorkshopDocument } },
+    const newWorkshopDocument = { _id: id, name, sortId: workshopDocumentBeforeUpdate.sortId };
+    const oldWorkshopDocument = { _id: id, name: workshopDocumentBeforeUpdate.name, sortId: workshopDocumentBeforeUpdate.sortId };
+    return await this.workshopModel.findByIdAndUpdate<IWorkshop>(
+      workshopGroupId,
+      { $set: { 'workshopDocuments.$[elem]': newWorkshopDocument } },
       {
-        arrayFilters: [{ elem: { $eq: oldCategoryWorkshopDocument } }],
+        arrayFilters: [{ elem: { $eq: oldWorkshopDocument } }],
         multi: true,
         returnDocument: 'after',
       },
@@ -153,11 +146,11 @@ export class NavigationService {
   }
 
   async sortPages(
-    pages: CategoryWorkshopDocument[],
-    categoryId: string,
-  ): Promise<ICategory> {
-    return await this.categoryModel.findByIdAndUpdate<ICategory>(
-      categoryId,
+    pages: IWorkshopDocumentIdentifier[],
+    workshopId: string,
+  ): Promise<IWorkshop> {
+    return await this.workshopModel.findByIdAndUpdate<IWorkshop>(
+      workshopId,
       {
         workshopDocuments: pages,
         workshopDocumentsLastUpdated: Date.now(),

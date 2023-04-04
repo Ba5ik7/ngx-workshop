@@ -3,19 +3,19 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { NavigationController } from './navigation.controller';
 import { NavigationService } from './navigation.service';
 import { Section, SectionSchema } from './schemas/section.schema';
-import { Category, CategorySchema } from './schemas/category.schema';
-import { WorkshopService } from '../workshop/workshop.service';
-import { Workshop, WorkshopSchema } from '../workshop/schemas/workshop.schema';
+import { Workshop, WorkshopSchema } from './schemas/workshop.schema';
+import { WorkshopDocumentService } from '../workshop-document/workshop-document.service';
+import { WorkshopDocument, WorkshopDocumentSchema } from '../workshop-document/schemas/workshop-document.schema';
 
 @Module({
   imports: [
     MongooseModule.forFeature([
       { name: Section.name, schema: SectionSchema },
-      { name: Category.name, schema: CategorySchema },
       { name: Workshop.name, schema: WorkshopSchema },
+      { name: WorkshopDocument.name, schema: WorkshopDocumentSchema },
     ]),
   ],
   controllers: [NavigationController],
-  providers: [NavigationService, WorkshopService],
+  providers: [NavigationService, WorkshopDocumentService],
 })
 export class NavigationModule {}

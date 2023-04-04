@@ -1,6 +1,5 @@
 import { RouterModule } from '@angular/router';
-import { Component, ViewEncapsulation } from '@angular/core';
-import { NavigationService } from './shared/services/navigation/navigation.service';
+import { Component, inject, OnInit, ViewEncapsulation } from '@angular/core';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { ThemePickerService } from './shared/services/theme-picker/theme-picker.service';
 
@@ -9,7 +8,7 @@ import { ThemePickerService } from './shared/services/theme-picker/theme-picker.
   imports: [NavbarComponent, RouterModule],
   selector: 'ngx-admin',
   template: `
-    <ngx-navbar class="mat-elevation-z6"></ngx-navbar>
+    <ngx-navbar></ngx-navbar>
     <router-outlet></router-outlet>
   `,
   styles: [`
@@ -29,10 +28,9 @@ import { ThemePickerService } from './shared/services/theme-picker/theme-picker.
   `],
   encapsulation: ViewEncapsulation.None,
 })
-export class AppComponent {
-
-  constructor(navigationService: NavigationService, themePickerService: ThemePickerService) {
-    navigationService.initializeAppData();
-    themePickerService.init();
+export class AppComponent implements OnInit {
+  themePickerService = inject(ThemePickerService);
+  ngOnInit(): void {
+    this.themePickerService.init();
   }
 }

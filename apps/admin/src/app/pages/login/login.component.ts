@@ -31,7 +31,7 @@ import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/lega
             <input matInput type="password" placeholder="Password" formControlName="password">
             <mat-error *ngIf="signInForm.get('password')?.errors">{{signInFormErrorMessages['password']}}</mat-error>
           </mat-form-field>
-          <button mat-raised-button color="primary" (click)="signInClick()" [disabled]="signInForm.invalid || formLoading">Sign In</button>
+          <button mat-raised-button color="accent" (click)="signInClick()" [disabled]="signInForm.invalid || formLoading">Sign In</button>
         </form>
       </div>
     </mat-card>
@@ -71,6 +71,7 @@ import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/lega
   ]
 })
 export class LoginComponent implements OnInit {
+  // ! @TODO Make this reactive
   authService = inject(AuthService);
   userStateService = inject(UserStateService);
   formBuilder = inject(FormBuilder);
@@ -141,7 +142,8 @@ export class LoginComponent implements OnInit {
     this.formLoading = predicate;
   }
 
-  signSuccuessful(whatever: any): void {
+  signSuccuessful(user: unknown): void {
+    console.log('user', user);
     this.requestInProgress();
     this.userStateService.signedIn.next(true);
     this.router.navigate(['auth', 'dashboard']);

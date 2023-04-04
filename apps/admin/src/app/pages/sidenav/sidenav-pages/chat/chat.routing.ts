@@ -1,4 +1,5 @@
 import { AuthGuard } from '../../../../shared/guards/auth.guard';
+import { workshopResolver } from '../../../../shared/resolvers/workshop.resolver';
 import { ChatComponent } from './chat.component';
 import { Route } from '@angular/router';
 
@@ -10,7 +11,8 @@ export const CHAT_ROUTES: Route[] = [
   },
   {
     canActivate: [AuthGuard],
-    path: ':categoryId',
+    resolve: { workshopResolver },
+    path: ':chatRoom',
     component: ChatComponent
   }
-]
+];

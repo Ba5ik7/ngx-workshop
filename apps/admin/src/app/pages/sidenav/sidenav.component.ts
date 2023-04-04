@@ -1,32 +1,31 @@
-import { Component, ViewEncapsulation } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, inject, ViewEncapsulation } from '@angular/core';
+import { combineLatest, map } from 'rxjs';
 import { NavigationService } from '../../shared/services/navigation/navigation.service';
 import { CommonModule } from '@angular/common';
-import { MatIconModule } from '@angular/material/icon';
-import { MatLegacyListModule as MatListModule } from '@angular/material/legacy-list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { RouterModule } from '@angular/router';
-import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
 import { FooterComponent } from '../../shared/components/footer/footer.component';
 import { SidenavMenuComponent } from './sidenav-menu/sidenav-menu.component';
+import { SidenavHeaderComponent, SidenavHeaderData } from './sidenav-header/sidenav-header.component';
 
 
 @Component({
   standalone: true,
   selector: 'ngx-sidenav',
   template: `
-    <mat-sidenav-container class="sidenav-container">
-      <header class="primary-header sidenav-page-header">
-        <img *ngIf="headerSvgPath | async"
-          [src]="'/admin' + (headerSvgPath | async)">
-        <h1>{{sectionTitle | async}}: {{categoryTitle | async}}</h1>
-      </header>
-      <main class="sidenav-body-content">
-        <ngx-sidenav-menu [sections]="sections | async"></ngx-sidenav-menu>
-        <router-outlet></router-outlet>
-      </main>
-      <ngx-footer></ngx-footer>
-    </mat-sidenav-container>
+    <ng-container *ngIf="viewModel | async as vm; else loading">
+      <mat-sidenav-container class="sidenav-container">
+        <ngx-sidenav-header [sidenavHeaderData]="vm.sidenavHeaderData"></ngx-sidenav-header>
+        <main class="sidenav-body-content">
+          <ngx-sidenav-menu [sections]="vm.sections"></ngx-sidenav-menu>
+          <router-outlet></router-outlet>
+        </main>
+        <ngx-footer></ngx-footer>
+      </mat-sidenav-container>
+    </ng-container>
+    <ng-template #loading>
+        loading...
+    </ng-template>
   `,
   styles: [`
     ngx-sidenav {
@@ -34,35 +33,9 @@ import { SidenavMenuComponent } from './sidenav-menu/sidenav-menu.component';
       flex-direction: column;
       overflow: auto;
     }
-
     .sidenav-body-content {
       display: flex;
       flex: 1 1 auto;
-    }
-
-    .sidenav-page-header {
-      display: flex;
-      align-items: center;
-
-      h1 {
-        font-weight: 300;
-        margin: 0;
-        padding: 28px 8px;
-
-        @media (max-width: 959px) {
-          padding: 24px 8px;
-          font-size: 20px;
-        }
-      }
-
-      img {
-        width: 50px;
-        margin: 0 10px;
-      }
-
-      @media (max-width: 959px) {
-        padding-left: 0;
-      }
     }
     .sidenav-toggle {
       padding: 0;
@@ -78,7 +51,6 @@ import { SidenavMenuComponent } from './sidenav-menu/sidenav-menu.component';
     .workshop-menu-nav {
       position: sticky;
       top: 0;
-
       .workshop-menu-nav-content {
         width: 240px;
         height: calc(100vh - 56px);
@@ -89,7 +61,6 @@ import { SidenavMenuComponent } from './sidenav-menu/sidenav-menu.component';
           width: 4px;
         }
       }
-
       .workshop-menu-nav-content .mat-nav-list .mat-list-item .mat-list-item-content {
         padding-left: 25px;
       }
@@ -99,26 +70,31 @@ import { SidenavMenuComponent } from './sidenav-menu/sidenav-menu.component';
     CommonModule,
     RouterModule,
     FooterComponent,
-    MatButtonModule,
-    MatIconModule,
-    MatListModule,
     MatSidenavModule,
     SidenavMenuComponent,
+    SidenavHeaderComponent,
   ],
   encapsulation: ViewEncapsulation.None
 })
 export class SidenavComponent {
-
-  sections!: Observable<any[]>;
-  sectionTitle!: Observable<string>;
-  categoryTitle!: Observable<string>;
-  headerSvgPath!: Observable<string>;
-
-
-  constructor(navigationService: NavigationService) {
-    this.sections = navigationService.sections$;
-    this.sectionTitle = navigationService.sectionTitle$;
-    this.headerSvgPath = navigationService.headerSvgPath$;
-    this.categoryTitle = navigationService.categoryTitle$;
-  }
+  navigationService = inject(NavigationService);
+  viewModel = combineLatest({
+    sections: this.navigationService.getSections(),
+    currentSection: this.navigationService.getCurrentSection(),
+    currentWorkshopTitle: this.navigationService.getCurrentWorkshop()
+                            .pipe(map((workshop) => workshop?.name))
+  })
+  .pipe(
+    map(({ currentWorkshopTitle, currentSection, sections }) => {
+      const { headerSvgPath, sectionTitle } = currentSection ?? {};
+      return {
+        sections,
+        sidenavHeaderData: {
+          headerSvgPath,
+          sectionTitle,
+          currentWorkshopTitle,
+        } as SidenavHeaderData,
+      };
+    })
+  );
 }

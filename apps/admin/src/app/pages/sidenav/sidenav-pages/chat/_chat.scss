@@ -4,6 +4,7 @@
 
 @mixin theme($theme) {
   $primary: map.get($theme, primary);
+  $accent: map.get($theme, accent);
   $background: map.get($theme, background);
   $foreground: map.get($theme, foreground);
   $is-dark-theme: map.get($theme, is-dark);
@@ -25,9 +26,9 @@
       }
 
       &.workshop-menu-nav-item-selected {
-        background: rgba(mat.get-color-from-palette($primary, default), 0.15);
+        background: rgba(mat.get-color-from-palette($accent, default), 0.15);
         color: color.adjust(
-          mat.get-color-from-palette($primary, default),
+          mat.get-color-from-palette($accent, default),
           $lightness: if($is-dark-theme, 25%, 0%)
         );
       }

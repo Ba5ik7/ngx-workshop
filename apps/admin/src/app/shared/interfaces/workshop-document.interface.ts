@@ -1,9 +1,9 @@
-import { Category } from "./category.interface";
+import { Workshop } from "./category.interface";
 
 export interface WorkshopDocument {
   _id: string,
   id: string,
-  category?: Category;
+  category?: Workshop;
   sortId: number,
   name: string,
   lastUpdated: Date,

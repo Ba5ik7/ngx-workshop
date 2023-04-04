@@ -7,7 +7,6 @@ import { MatLegacyFormFieldModule as MatFormFieldModule } from '@angular/materia
 import { MatIconModule } from '@angular/material/icon';
 import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
 import { Observable } from 'rxjs';
-import { NavigationService } from '../../../../shared/services/navigation/navigation.service';
 
 import { RouterModule } from '@angular/router';
 import { ChatAppData, ChatService } from '../../../../shared/services/chat/chat.service';
@@ -99,7 +98,6 @@ import { ChatAppData, ChatService } from '../../../../shared/services/chat/chat.
   ]
 })
 export class ChatComponent implements OnInit {
-  navigationService = inject(NavigationService);
   chatService = inject(ChatService);
 
   message = '';
@@ -107,7 +105,6 @@ export class ChatComponent implements OnInit {
   chatAppData$!: Observable<ChatAppData>;
 
   ngOnInit(): void {
-    this.navigationService.sectionRouteSub.next('chat');
     this.chatAppData$ = this.chatService.getChatAppData();
   }
 

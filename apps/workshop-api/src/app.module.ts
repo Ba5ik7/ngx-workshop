@@ -1,7 +1,7 @@
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { NavigationModule } from './modules/navigation/navigation.module';
-import { WorkshopModule } from './modules/workshop/workshop.module';
+import { WorkshopModule } from './modules/workshop-document/workshop-document.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ChatModule } from './modules/chat/chat.module';
 import { IamModule } from './modules/iam/iam.module';

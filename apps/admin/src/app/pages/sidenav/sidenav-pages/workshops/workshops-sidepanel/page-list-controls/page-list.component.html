@@ -1,0 +1,25 @@
+<mat-nav-list>
+  <a mat-list-item (click)="createPage()">
+    <mat-icon class="create-icon" color="accent">note_add</mat-icon>
+    Create Page
+  </a>
+  <mat-divider></mat-divider>
+</mat-nav-list>
+<mat-nav-list cdkDropList class="page-list" (cdkDropListDropped)="onDrop($event)">
+  <a mat-list-item cdkDrag *ngFor="let document of documents"
+    class="page-item"
+    [cdkDragDisabled]="cdkDragDisabled"
+    [routerLink]="'./' + workshopDocumentGroupId + '/' + document._id"
+    routerLinkActive="workshop-menu-nav-item-selected">
+    <mat-icon>drag_indicator</mat-icon>
+    {{document.name}}
+    <div class="flex-spacer"></div>
+    <mat-icon class="edit-icon" (click)="editPage($event, document)">edit</mat-icon>
+    <mat-icon class="delete-icon" (click)="deletePage($event, document)">delete</mat-icon>
+  </a>
+</mat-nav-list>
+<mat-divider></mat-divider>
+<div class="publish-actions">
+  <a mat-stroked-button color="accent" (click)="saveEditorData()">Save</a>
+  <a mat-button color="accent">Publish</a>
+</div>
