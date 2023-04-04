@@ -1,15 +1,20 @@
-<div class="form-container">
-  <form [formGroup]="editPageForm">
-    <h2 mat-dialog-title>Edit {{data.page.name}}?</h2>
-    <span class="form-level-error-message">{{editPageFormLevelMessage}}</span>
-    <mat-form-field>
-      <mat-label>Name</mat-label>
-      <input matInput type="text" placeholder="Name" formControlName="name">
-      <mat-error *ngIf="editPageForm.get('password')?.errors">{{editPageFormErrorMessages['password']}}</mat-error>
-    </mat-form-field>
-    <mat-dialog-actions align="end">
-      <button mat-button mat-dialog-close [disabled]="formLoading">Cancel</button>
-      <button mat-raised-button color="primary" (click)="editPageNameAndSummary()" [disabled]="editPageForm.invalid || formLoading">Edit</button>
-    </mat-dialog-actions>
-  </form>
-</div>
+<ng-container *ngIf="viewModel$ | async as vm; else elseTemplate">
+  <div class="form-container">
+    <form [formGroup]="vm.formGroup">
+      <h2 mat-dialog-title>Edit {{data.workshopDocument.name}}?</h2>
+      <span class="form-level-error-message">{{vm.editPageFormLevelMessage}}</span>
+      <mat-form-field color="accent">
+        <mat-label>Name</mat-label>
+        <input matInput type="text" placeholder="Name" formControlName="name">
+        <mat-error *ngIf="vm.formGroup.get('password')?.errors">{{editPageControlsErrorMessages['password']}}</mat-error>
+      </mat-form-field>
+      <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close [disabled]="vm.loading">Cancel</button>
+        <button mat-raised-button color="primary" (click)="onEditPage(vm.formGroup.value)" [disabled]="vm.formGroup.invalid || vm.loading">Edit</button>
+      </mat-dialog-actions>
+    </form>
+  </div>
+</ng-container>
+<ng-template #elseTemplate>
+  loading ...
+</ng-template>

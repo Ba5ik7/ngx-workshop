@@ -129,29 +129,13 @@ export class NavigationService {
     return await this.workshopDocumentService.deleteOne(_id);
   }
 
-  async editPageNameUpdateWorkshop({
-    _id,
-    name,
-    workshopGroupId,
-  }: IWorkshopDocument): Promise<IWorkshop> {
-    const oldWorkshop = await this.workshopDocumentService.updateWorkshopName(
-      _id,
-      name,
-    );
+  async editPageNameUpdateWorkshop({ _id, name, workshopGroupId }: IWorkshopDocument): Promise<IWorkshop> {
+    const workshopDocumentBeforeUpdate = await this.workshopDocumentService.updateWorkshopName(_id, name);
     const id = new Types.ObjectId(_id);
-    const newWorkshopDocument = {
-      _id: id,
-      name,
-      sortId: oldWorkshop.sortId,
-    };
-    const oldWorkshopDocument = {
-      _id: id,
-      name: oldWorkshop.name,
-      sortId: oldWorkshop.sortId,
-    };
-    const pagesWorkshopId = this.workshopModel.find({workshopDocumentGroupId: workshopGroupId}).select('_id').exec();
+    const newWorkshopDocument = { _id: id, name, sortId: workshopDocumentBeforeUpdate.sortId };
+    const oldWorkshopDocument = { _id: id, name: workshopDocumentBeforeUpdate.name, sortId: workshopDocumentBeforeUpdate.sortId };
     return await this.workshopModel.findByIdAndUpdate<IWorkshop>(
-      pagesWorkshopId,
+      workshopGroupId,
       { $set: { 'workshopDocuments.$[elem]': newWorkshopDocument } },
       {
         arrayFilters: [{ elem: { $eq: oldWorkshopDocument } }],

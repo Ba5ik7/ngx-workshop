@@ -63,7 +63,7 @@ export class WorkshopEditorService {
     return this.apiCall<WorkshopDocument>('/navigation/page/delete-page-and-update-workshop', { page, workshopId });
   }
       
-  editPageNameAndSummary(page: WorkshopDocument) {
+  editPageName(page: WorkshopDocument) {
     return this.apiCall<Workshop>('/navigation/page/edit-page-name-update-workshop', page);
   }
       

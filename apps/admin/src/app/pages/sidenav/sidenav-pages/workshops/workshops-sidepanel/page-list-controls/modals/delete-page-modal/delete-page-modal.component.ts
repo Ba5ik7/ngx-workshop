@@ -2,7 +2,6 @@ import { ChangeDetectionStrategy, Component, inject, Inject } from '@angular/cor
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatLegacyDialogRef as MatDialogRef, MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA } from '@angular/material/legacy-dialog';
 import { BehaviorSubject, combineLatest, map, mergeMap, switchMap, take, takeUntil, tap } from 'rxjs';
-// import { Category } from '../../../../shared/interfaces/category.interface';
 import { WorkshopDocument } from '../../../../../../../../shared/interfaces/category.interface';
 import { NavigationService } from '../../../../../../../../shared/services/navigation/navigation.service';
 import { MatchStringValidator } from '../../../../../../../../shared/validators/match-string.validator';
@@ -48,7 +47,7 @@ export class DeletePageModalComponent {
     map((workshop) => {
       return this.formBuilder.group({
         _id: [this.data.workshopDocument._id],
-        workshopId:[workshop?._id],
+        workshopId: [workshop?._id],
         name: ['', [Validators.required]]
       }, { validators: MatchStringValidator('name', this.data.workshopDocument.name) });
     })
@@ -91,5 +90,4 @@ export class DeletePageModalComponent {
       error: () => this.deletePageFormLevelMessage$.next(this.errorMessages['httpFailure'])
     });
   }
-
 }

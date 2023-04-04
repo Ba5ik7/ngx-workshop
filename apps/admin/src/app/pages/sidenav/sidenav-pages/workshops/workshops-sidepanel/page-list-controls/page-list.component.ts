@@ -7,7 +7,7 @@ import { Subject } from 'rxjs';
 import { WorkshopEditorService } from '../../../../../../shared/services/workshops/workshops.service';
 import { CreatePageModalComponent } from './modals/create-page-modal/create-page-modal.component';
 import { DeletePageModalComponent } from './modals/delete-page-modal/delete-page-modal.component';
-// import { EditPageModalComponent } from './modals/edit-page-modal/edit-page-modal.component';
+import { EditPageModalComponent } from './modals/edit-page-modal/edit-page-modal.component';
 import { MatLegacyListModule as MatListModule } from '@angular/material/legacy-list';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
@@ -65,10 +65,10 @@ export class PageListComponent implements OnInit, OnDestroy {
     this.matDialog.open(CreatePageModalComponent, { width: '400px' });
   }
 
-  editPage(event: Event, page: any): void {
-    // event.preventDefault();
-    // event.stopImmediatePropagation();
-    // this.matDialog.open(EditPageModalComponent, { width: '400px', data: { page }});
+  editPage(event: Event, workshopDocument: unknown): void {
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    this.matDialog.open(EditPageModalComponent, { width: '400px', data: { workshopDocument }});
   }
 
   deletePage(event: Event, workshopDocument: unknown): void {

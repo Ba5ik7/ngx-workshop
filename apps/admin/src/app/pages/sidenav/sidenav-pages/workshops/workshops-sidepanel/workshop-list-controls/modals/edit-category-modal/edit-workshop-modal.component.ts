@@ -3,7 +3,6 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatLegacyDialogRef as MatDialogRef, MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA } from '@angular/material/legacy-dialog';
 import { BehaviorSubject, combineLatest, mergeMap, of, take, takeUntil, tap } from 'rxjs';
 import { NavigationService } from '../../../../../../../../shared/services/navigation/navigation.service';
-import { MatchStringValidator } from '../../../../../../../../shared/validators/match-string.validator';
 import { KeyValue, WorkshopEditorService } from '../../../../../../../../shared/services/workshops/workshops.service';
 import { MatLegacyFormFieldModule as MatFormFieldModule } from '@angular/material/legacy-form-field';
 import { MatLegacyDialogModule as MatDialogModule } from '@angular/material/legacy-dialog';
@@ -34,17 +33,17 @@ export class EditWorkshopModalComponent {
   private formBuilder = inject(FormBuilder);
 
   editWorkshopFormLevelMessage$ = new BehaviorSubject<string | undefined>(undefined);
-  errorMessages: { [key: string]: string } = {
+  errorMessages: KeyValue = {
     required: 'Required',
   };
-  editWorkshopControlsErrorMessages: { [key: string]: string } = {
+  editWorkshopControlsErrorMessages: KeyValue = {
     name: '', summary: ''
   }
 
   loading$ = new BehaviorSubject<boolean>(false)
   formGroup$ = of(
       inject(FormBuilder).group({
-      _id: [this.data.workshop?._id, [Validators.required]],
+      _id: [this.data.workshop?._id],
       name: [this.data.workshop?.name, [Validators.required]],
       summary: [this.data.workshop?.summary, [Validators.required]]
     })
