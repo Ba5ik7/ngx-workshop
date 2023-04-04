@@ -77,16 +77,16 @@ const safeStringify = (value: unknown) => {
         line-height: 1.6em;
       }
     }
+    .paginator {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+    }
     workshop-detail {
       font-weight: 400;
       @media (max-width: 599px) {
         padding-left: 15px;
         padding-right: 15px;
-      }
-      .paginator {
-        position: sticky;
-        top: 0;
-        z-index: 2;
       }
     }
   `],
