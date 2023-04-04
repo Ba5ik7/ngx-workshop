@@ -71,6 +71,7 @@ import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/lega
   ]
 })
 export class LoginComponent implements OnInit {
+  // ! @TODO Make this reactive
   authService = inject(AuthService);
   userStateService = inject(UserStateService);
   formBuilder = inject(FormBuilder);
