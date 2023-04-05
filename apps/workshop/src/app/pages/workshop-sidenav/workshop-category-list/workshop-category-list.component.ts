@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Category } from '../../../shared/interfaces/navigation.interface';
+import { Workshop } from '../../../shared/interfaces/navigation.interface';
 import { NavigationService } from '../../../shared/services/navigation/navigation.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { NavigationService } from '../../../shared/services/navigation/navigatio
 })
 export class WorkshopCategoryListComponent {
 
-  categories!: Observable<Category[]>;
+  categories!: Observable<Workshop[]>;
 
   constructor(navigationService: NavigationService) {
     navigationService.categoryRouteSub.next('categories');
