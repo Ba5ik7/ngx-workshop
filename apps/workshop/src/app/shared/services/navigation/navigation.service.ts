@@ -13,7 +13,7 @@ import {
   Subject,
   UnaryFunction
 } from 'rxjs';
-import { Category } from '../../interfaces/category.interface';
+import { Category } from '../../interfaces/navigation.interface';
 import { Section } from '../../interfaces/section.interface';
 
 // RXJS Doesn't have something to filter out null and undefined values

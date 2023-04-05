@@ -3,7 +3,7 @@ import { Component, OnDestroy, ViewChild, ViewEncapsulation } from '@angular/cor
 import { MatSidenav } from '@angular/material/sidenav';
 import { ActivatedRoute } from '@angular/router';
 import { distinct, map, Observable, Subject, takeUntil } from 'rxjs';
-import { Category } from '../../shared/interfaces/category.interface';
+import { Category } from '../../shared/interfaces/navigation.interface';
 import { filterNullish, NavigationService } from '../../shared/services/navigation/navigation.service';
 import { UserStateService } from '../../shared/services/user-state/user-state.service';
 
