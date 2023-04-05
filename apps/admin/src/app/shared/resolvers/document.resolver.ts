@@ -1,7 +1,7 @@
 import { inject } from '@angular/core';
 import { ResolveFn } from '@angular/router';
 import { Observable, of, switchMap } from 'rxjs';
-import { Workshop } from '../interfaces/category.interface';
+import { Workshop } from '../interfaces/navigation.interface';
 import { NavigationService } from '../services/navigation/navigation.service';
 
 type DocumentResolver = ResolveFn<Observable<Partial<Workshop> | undefined>>;

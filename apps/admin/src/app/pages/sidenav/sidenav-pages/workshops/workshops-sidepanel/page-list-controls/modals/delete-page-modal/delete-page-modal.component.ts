@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, inject, Inject } from '@angular/cor
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatLegacyDialogRef as MatDialogRef, MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA } from '@angular/material/legacy-dialog';
 import { BehaviorSubject, combineLatest, map, mergeMap, switchMap, take, takeUntil, tap } from 'rxjs';
-import { WorkshopDocument } from '../../../../../../../../shared/interfaces/category.interface';
+import { WorkshopDocument } from '../../../../../../../../shared/interfaces/navigation.interface';
 import { NavigationService } from '../../../../../../../../shared/services/navigation/navigation.service';
 import { MatchStringValidator } from '../../../../../../../../shared/validators/match-string.validator';
 import { KeyValue, WorkshopEditorService } from '../../../../../../../../shared/services/workshops/workshops.service';

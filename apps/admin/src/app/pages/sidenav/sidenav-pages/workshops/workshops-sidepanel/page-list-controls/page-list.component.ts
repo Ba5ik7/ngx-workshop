@@ -12,7 +12,7 @@ import { MatLegacyListModule as MatListModule } from '@angular/material/legacy-l
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { WorkshopDocumentIdentifier } from '../../../../../../shared/interfaces/category.interface';
+import { WorkshopDocumentIdentifier } from '../../../../../../shared/interfaces/navigation.interface';
 import { NavigationService } from '../../../../../../shared/services/navigation/navigation.service';
 
 @Component({

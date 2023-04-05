@@ -17,7 +17,7 @@ export class AuthService {
   signInFormSuccess$ = this.signInFormSuccessSubject.asObservable();
 
   signIn(user: IUser) {
-    this.httpClient.post<unknown>('/api/authentication/sign-in', user)
+    this.httpClient.post<IUser>('/api/authentication/sign-in', user)
     .subscribe({
       next: (token) => this.signInFormSuccessSubject.next(token),
       error: (httpError: HttpErrorResponse) => this.signInFormErrorSubject.next(httpError.status)

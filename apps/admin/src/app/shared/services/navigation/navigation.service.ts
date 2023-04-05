@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { MonoTypeOperatorFunction, BehaviorSubject, Observable, timer, of } from 'rxjs';
 import { map, shareReplay, switchMap, takeUntil, tap } from 'rxjs/operators';
-import { Section, Sections, Workshop, WorkshopDocument } from '../../interfaces/category.interface';
+import { Section, Sections, Workshop, WorkshopDocument } from '../../interfaces/navigation.interface';
 
 const staticSections: Map<string, Partial<Section>> = new Map([
   ['dashboard', { headerSvgPath: '/assets/img/dashboard-color.png', sectionTitle: 'Dashboard' }],

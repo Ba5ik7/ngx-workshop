@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { NavigationService } from './navigation.service';
-import { Section, Workshop, WorkshopDocument } from '../../interfaces/category.interface';
+import { Section, Workshop, WorkshopDocument } from '../../interfaces/navigation.interface';
 
 describe('NavigationService', () => {
   let service: NavigationService;

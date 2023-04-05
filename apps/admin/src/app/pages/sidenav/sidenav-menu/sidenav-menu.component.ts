@@ -11,7 +11,7 @@ import { MatLegacyListModule as MatListModule } from '@angular/material/legacy-l
 import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatLegacyDialogModule as MatDialogModule } from '@angular/material/legacy-dialog';
-import { Sections } from '../../../shared/interfaces/category.interface';
+import { Sections } from '../../../shared/interfaces/navigation.interface';
 @Component({
   standalone: true,
   selector: 'ngx-sidenav-menu',

@@ -9,7 +9,7 @@ import { MatLegacyDialogModule as MatDialogModule } from '@angular/material/lega
 import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
 import { MatLegacyInputModule as MatInputModule } from '@angular/material/legacy-input';
 import { CommonModule } from '@angular/common';
-import { WorkshopDocument } from '../../../../../../../../shared/interfaces/category.interface';
+import { WorkshopDocument } from '../../../../../../../../shared/interfaces/navigation.interface';
 
 @Component({
   standalone: true,

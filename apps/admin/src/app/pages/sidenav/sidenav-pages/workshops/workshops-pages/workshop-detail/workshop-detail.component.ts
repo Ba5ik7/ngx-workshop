@@ -10,7 +10,7 @@ import { NgxEditorjsModule } from '@tmdjr/ngx-editorjs';
 import { WorkshopEditorService } from '../../../../../../shared/services/workshops/workshops.service';
 import { NavigationService } from '../../../../../../shared/services/navigation/navigation.service';
 import { CommonModule } from '@angular/common';
-import { WorkshopDocument } from '../../../../../../shared/interfaces/category.interface';
+import { WorkshopDocument } from '../../../../../../shared/interfaces/navigation.interface';
 
 
 const safeParse = (json: string) => {

@@ -3,7 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Workshop, WorkshopDocument, WorkshopDocumentIdentifier } from '../../interfaces/category.interface';
+import { Workshop, WorkshopDocument, WorkshopDocumentIdentifier } from '../../interfaces/navigation.interface';
 
 export interface Result<T> {
   success?: T;
