@@ -22,7 +22,7 @@ import { AuthenticationService } from './authentication.service';
 
 @Component({
   standalone: true,
-  selector: 'sign-in-modal',
+  selector: 'ngx-sign-in-modal',
   templateUrl: './sign-in-modal.component.html',
   styleUrls: ['./sign-in-modal.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -72,8 +72,8 @@ export class SignInModalComponent implements OnInit, OnDestroy {
     email: '', password: '', confirmPassword: ''
   }
 
-  showCreateAccount: boolean = false;
-  formLoading: boolean = false;
+  showCreateAccount = false;
+  formLoading = false;
 
   signInForm: FormGroup = this.formBuilder.group({
     email: ['', [Validators.required, Validators.email]],

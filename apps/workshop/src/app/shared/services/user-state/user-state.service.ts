@@ -25,9 +25,9 @@ export class UserStateService {
     .pipe(
       tap(() => this.signedIn.next(true)),
       map(() => true),
-      catchError((error) => {
+      catchError(() => {
         this.signedIn.next(false)
-        return throwError(() => error)
+        return of(false)
       })
     );
   }
