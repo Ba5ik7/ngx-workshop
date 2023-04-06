@@ -12,13 +12,16 @@ import {
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
 import { MatLegacyDialogRef as MatDialogRef } from '@angular/material/legacy-dialog';
-import { MatLegacyFormFieldModule as MatFormFieldModule, MAT_LEGACY_FORM_FIELD_DEFAULT_OPTIONS as MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/legacy-form-field';
-import { MatLegacyInput as MatInput, MatLegacyInputModule as MatInputModule } from '@angular/material/legacy-input';
+import {
+  MatLegacyFormFieldModule as MatFormFieldModule,
+  MAT_LEGACY_FORM_FIELD_DEFAULT_OPTIONS as MAT_FORM_FIELD_DEFAULT_OPTIONS
+} from '@angular/material/legacy-form-field';
+import { MatLegacyInputModule as MatInputModule } from '@angular/material/legacy-input';
 import { Subject, takeUntil } from 'rxjs';
 import { UserStateService } from '../../services/user-state/user-state.service';
 import { MatchPasswordValidator } from '../../validators/match-passwords.validator';
 import { PasswordValidator } from '../../validators/password.validator';
-import { AuthenticationService } from './authentication.service';
+import { AuthenticationService } from '../../services/authentication/authentication.service';
 
 @Component({
   standalone: true,
@@ -115,7 +118,7 @@ export class SignInModalComponent implements OnInit, OnDestroy {
     
     this.authenticationService.signInFormSuccess$
     .pipe(takeUntil(this.destory))
-    .subscribe((user) => this.signSuccuessful(user));
+    .subscribe(() => this.signSuccuessful());
   }
 
   initCreateAccountForm() {
@@ -138,7 +141,7 @@ export class SignInModalComponent implements OnInit, OnDestroy {
 
     this.authenticationService.createAccountFormSuccess$
     .pipe(takeUntil(this.destory))
-    .subscribe((user) => this.signSuccuessful(user));
+    .subscribe(() => this.signSuccuessful());
   }
 
   signInClick(): void {
@@ -151,7 +154,7 @@ export class SignInModalComponent implements OnInit, OnDestroy {
     this.authenticationService.createAccount(this.createAccountForm.value);
   }
 
-  signSuccuessful(whatever: any): void {
+  signSuccuessful(): void {
     this.requestInProgress();
     this.userStateService.signedIn.next(true);
     this.dialogRef.close();
