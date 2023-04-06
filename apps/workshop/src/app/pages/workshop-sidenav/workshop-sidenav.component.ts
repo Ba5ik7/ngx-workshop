@@ -4,67 +4,68 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { ActivatedRoute } from '@angular/router';
 import { distinct, map, Observable, Subject, takeUntil } from 'rxjs';
 import { Workshop } from '../../shared/interfaces/navigation.interface';
-import { filterNullish, NavigationService } from '../../shared/services/navigation/navigation.service';
+import { NavigationService } from '../../shared/services/navigation/navigation.service';
 import { UserStateService } from '../../shared/services/user-state/user-state.service';
 
 const EXTRA_SMALL_WIDTH_BREAKPOINT = 720;
 const SMALL_WIDTH_BREAKPOINT = 959;
 
 @Component({
-  selector: 'workshop-sidenav',
-  templateUrl: './workshop-sidenav.component.html',
+  standalone: true,
+  selector: 'ngx-sidenav',
+  template: ``,
   styleUrls: ['./workshop-sidenav.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class WorkshopSidenavComponent implements OnDestroy {
+export class WorkshopSidenavComponent {
 
-  @ViewChild('sidenav') sidenav!: MatSidenav;
+  // @ViewChild('sidenav') sidenav!: MatSidenav;
 
-  isScreenSmall: Observable<boolean>;
-  isExtraScreenSmall: Observable<boolean>;
-  destory: Subject<boolean> = new Subject();
+  // isScreenSmall: Observable<boolean>;
+  // isExtraScreenSmall: Observable<boolean>;
+  // destory: Subject<boolean> = new Subject();
 
-  section!: Observable<string>;
-  sectionTitle!: Observable<string>;
-  categoryTitle!: Observable<string>;
-  headerSvgPath!: Observable<string>;
-  categories!: Observable<Workshop[]>;
-  signedIn$ = this.userStateService.signedIn$;
+  // section!: Observable<string>;
+  // sectionTitle!: Observable<string>;
+  // categoryTitle!: Observable<string>;
+  // headerSvgPath!: Observable<string>;
+  // categories!: Observable<Workshop[]>;
+  // signedIn$ = this.userStateService.signedIn$;
 
-  constructor(breakpoints: BreakpointObserver,
-              private userStateService: UserStateService,
-              activatedRoute: ActivatedRoute,
-              navigationService: NavigationService) {
+  // constructor(breakpoints: BreakpointObserver,
+  //             private userStateService: UserStateService,
+  //             activatedRoute: ActivatedRoute,
+  //             navigationService: NavigationService) {
 
-    this.isExtraScreenSmall =
-    breakpoints
-    .observe(`(max-width: ${EXTRA_SMALL_WIDTH_BREAKPOINT}px)`)
-    .pipe(map(breakpoint => breakpoint.matches));
+  //   this.isExtraScreenSmall =
+  //   breakpoints
+  //   .observe(`(max-width: ${EXTRA_SMALL_WIDTH_BREAKPOINT}px)`)
+  //   .pipe(map(breakpoint => breakpoint.matches));
 
-    this.isScreenSmall = breakpoints
-    .observe(`(max-width: ${SMALL_WIDTH_BREAKPOINT}px)`)
-    .pipe(map(breakpoint => breakpoint.matches));
+  //   this.isScreenSmall = breakpoints
+  //   .observe(`(max-width: ${SMALL_WIDTH_BREAKPOINT}px)`)
+  //   .pipe(map(breakpoint => breakpoint.matches));
 
-    activatedRoute.params
-    .pipe(takeUntil(this.destory), distinct())
-    .subscribe(params => navigationService.sectionRouteSub.next(params['section']));
+  //   activatedRoute.params
+  //   .pipe(takeUntil(this.destory), distinct())
+  //   .subscribe(params => navigationService.sectionRouteSub.next(params['section']));
 
-    this.section = navigationService.sectionRoute$;
-    this.categories = navigationService.categories$
-    .pipe(
-      filterNullish(),
-      map((categories: Workshop[]) => categories.sort((a, b) => a.sortId - b.sortId))
-    );
-    this.sectionTitle = navigationService.sectionTitle$;
-    this.headerSvgPath = navigationService.headerSvgPath$;
-    this.categoryTitle = navigationService.categoryTitle$;
-  }
+  //   this.section = navigationService.sectionRoute$;
+  //   this.categories = navigationService.categories$
+  //   .pipe(
+  //     filterNullish(),
+  //     map((categories: Workshop[]) => categories.sort((a, b) => a.sortId - b.sortId))
+  //   );
+  //   this.sectionTitle = navigationService.sectionTitle$;
+  //   this.headerSvgPath = navigationService.headerSvgPath$;
+  //   this.categoryTitle = navigationService.categoryTitle$;
+  // }
 
-  ngOnDestroy(): void {
-    this.destory.next(true);
-  }
+  // ngOnDestroy(): void {
+  //   this.destory.next(true);
+  // }
 
-  toggleSideNav() {
-    this.sidenav.toggle();
-  }
+  // toggleSideNav() {
+  //   this.sidenav.toggle();
+  // }
 }

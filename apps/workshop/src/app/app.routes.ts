@@ -46,14 +46,14 @@ export const appRoutes: Routes = [
       //   path: 'settings',
       //   loadChildren: () => import('./pages/settings/settings.module').then(m => m.SettingsModule)
       // },
-      // {
-      //   path: ':section',
-      //   loadChildren: () => import('./pages/workshop-sidenav/workshop-sidenav.module').then(m => m.WorkshopSidenavModule)
-      // },
-      { 
+      {
         path: '404',
         loadChildren: () => import('./pages/not-found/not-found.module').then(m => m.NotFoundModule)
       },
+      // {
+      //   path: ':section',
+      //   loadChildren: () => import('./pages/workshop-sidenav/sidenav.routing').then(m => m.)
+      // },
       {
         path: '**', redirectTo: '/404'
       },
