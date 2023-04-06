@@ -52,7 +52,7 @@ export const appRoutes: Routes = [
       },
       {
         path: 'sidenav',
-        loadChildren: () => import('./pages/workshop-sidenav/sidenav.routing').then(m => m.SIDENAV_ROUTES)
+        loadChildren: () => import('./pages/sidenav/sidenav.routing').then(m => m.SIDENAV_ROUTES)
       },
       {
         path: '**', redirectTo: '/404'

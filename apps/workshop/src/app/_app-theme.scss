@@ -41,7 +41,7 @@
 
   @include home-theme.theme($theme);
   @include not-found-theme.theme($theme);
-  @include workshop-sidenav.theme($theme);
+  @include sidenav.theme($theme);
 
   @include footer-theme.theme($theme);
   @include navbar-theme.theme($theme);

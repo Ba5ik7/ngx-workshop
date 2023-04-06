@@ -21,7 +21,7 @@ import { ThemePickerComponent } from '../theme-picker/theme-picker.component';
         </a>
         <a mat-button class="docs-navbar-hide-small docs-button"
             *ngFor="let section of mv.sections | keyvalue;"
-            [routerLink]="section.key"
+            [routerLink]="'/sidenav/workshops/' + section.key"
             routerLinkActive="navbar-menu-item-selected">
           <img class="workshop-logo" [src]="section.value.menuSvgPath">
           <span>{{section.value.sectionTitle}}</span>
@@ -38,7 +38,7 @@ import { ThemePickerComponent } from '../theme-picker/theme-picker.component';
       <nav class="docs-navbar docs-navbar-show-small" aria-label="Section Nav Bar">
         <a mat-button class="docs-navbar-link"
             *ngFor="let section of mv.sections | keyvalue;"
-            [routerLink]="section.key"
+            [routerLink]="'/sidenav/workshops/' +section.key"
             routerLinkActive="navbar-menu-item-selected">
             <img class="workshop-logo" [src]="section.value.menuSvgPath">
           <span>{{section.value.sectionTitle}}</span>
@@ -111,7 +111,6 @@ export class NavbarComponent {
     sections: this.navigationService.getSections(),
     signedIn: this.userStateService.signedIn$
   }).pipe(
-    tap((sections) => console.log('navbar view model', sections)),
     map(({ sections, signedIn }) => ({ 
       sections,
       signedIn,

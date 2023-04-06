@@ -23,14 +23,6 @@ import { Sections } from '../../../shared/interfaces/navigation.interface';
             <mat-icon>dashboard</mat-icon>
             Dashboard
           </a>
-          <a mat-list-item routerLink="users" routerLinkActive="workshop-menu-nav-item-selected">
-            <mat-icon>supervisor_account</mat-icon>
-            Users
-          </a>
-          <a mat-list-item routerLink="chat" routerLinkActive="workshop-menu-nav-item-selected">
-            <mat-icon>chat</mat-icon>
-            Chat
-          </a>
           <mat-divider></mat-divider>
           <a mat-list-item routerLinkActive="workshop-menu-nav-item-selected" (click)="createSection()">
             <mat-icon class="create-icon" color="accent">note_add</mat-icon>

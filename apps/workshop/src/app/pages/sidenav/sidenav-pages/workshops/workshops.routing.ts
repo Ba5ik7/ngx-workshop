@@ -1,4 +1,3 @@
-import { AuthGuard } from '../../../../shared/guards/auth.guard';
 import { WorkshopsComponent } from './workshops.component';
 import { Route } from '@angular/router';
 import { sectionResolver } from '../../../../shared/resolvers/section.resolver';
@@ -16,13 +15,11 @@ export const WORKSHOPS_ROUTES: Route[] = [
         redirectTo: 'workshop-list'
       },
       {
-        canActivate: [AuthGuard],
         path: 'workshop-list',
         resolve: { workshopResolver },
         loadComponent: () => import('./workshops-pages/workshop-list/workshop-list.component').then(m => m.WorkshopListComponent)
       },
       {
-        canActivate: [AuthGuard],
         path: ':workshopId',
         resolve: { workshopResolver },
         loadChildren: () => import('./workshops-pages/workshop-detail/workshop-detail.routing').then(m => m.WORKSHOPS_DETAIL_ROUTES)

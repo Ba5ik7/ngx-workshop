@@ -7,10 +7,10 @@ import {
 import { ActivatedRoute, Router } from '@angular/router';
 import { combineLatest, map } from 'rxjs';
 import { NgxEditorjsModule } from '@tmdjr/ngx-editorjs';
-import { WorkshopEditorService } from '../../../../../../shared/services/workshops/workshops.service';
 import { NavigationService } from '../../../../../../shared/services/navigation/navigation.service';
 import { CommonModule } from '@angular/common';
 import { WorkshopDocument } from '../../../../../../shared/interfaces/navigation.interface';
+import { NgxEditorjsClientModule } from '@tmdjr/ngx-editorjs-client';
 
 
 const safeParse = (json: string) => {
@@ -18,14 +18,6 @@ const safeParse = (json: string) => {
     return JSON.parse(json);
   } catch (error) {
     throw new Error('Error parsing JSON');
-  }
-}
-
-const safeStringify = (value: unknown) => {
-  try {
-    return JSON.stringify(value);
-  } catch (error) {
-    throw new Error('Error stringify JSON');
   }
 }
 @Component({
@@ -47,13 +39,9 @@ const safeStringify = (value: unknown) => {
       <div class="workshop-detail-content">
         <div class="page">
           <section class="workshop-viewer-container">
-            <div class="mat-card">
-              <ngx-editorjs
-                [inputData]="vm.ngxEditorjsBlocks"
-                [requestValue]="requestValue"
-                (valueRequested)="vm.valueRequested($event)"
-              ></ngx-editorjs>
-            </div>
+          <div class="mat-card">
+            <ngx-editorjs-client [inputData]="vm.ngxEditorjsBlocks"></ngx-editorjs-client>
+          </div>
           </section>
         </div>
       </div>
@@ -94,17 +82,15 @@ const safeStringify = (value: unknown) => {
   imports: [
     CommonModule,
     NgxEditorjsModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    NgxEditorjsClientModule
   ]
 })
 export class WorkshopDetailComponent {
   @ViewChild('paginator') paginator!: MatPaginator;
 
-  private workshopEditorService = inject(WorkshopEditorService);
   private router = inject(Router);
   private activatedRoute = inject(ActivatedRoute);
-
-  requestValue = this.workshopEditorService.saveEditorDataSubject;
 
   viewModel = combineLatest([
     inject(ActivatedRoute).data,
@@ -124,18 +110,6 @@ export class WorkshopDetailComponent {
         pageIndex: documents.findIndex((workshopDocument) => workshopDocument._id === document._id),
         pageEventChange: ({ pageIndex }: PageEvent) => {
           this.router.navigate(['../', documents[pageIndex]._id], { relativeTo: this.activatedRoute });
-        },
-        valueRequested: (value: unknown) => {
-          try {
-            const blocks = safeStringify(value);
-            this.workshopEditorService.savePageHTML(blocks, document._id)
-            .subscribe({
-              next: () => this.workshopEditorService.savePageHTMLSuccessSubject.next(true),
-              error: () => this.workshopEditorService.savePageHTMLErrorSubject.next(true)
-            });
-          } catch (error) {
-            throw new Error('Error parsing JSON');
-          }
         }
       };
     })
