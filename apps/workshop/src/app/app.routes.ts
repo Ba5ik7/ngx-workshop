@@ -7,6 +7,7 @@ import {
 import { NavigationService } from './shared/services/navigation/navigation.service';
 import { inject } from '@angular/core';
 import { UserStateService } from './shared/services/user-state/user-state.service';
+import { ThemePickerService } from './shared/services/theme-picker/theme-picker.service';
 
 export class WorkshopReuseStrategy extends RouteReuseStrategy {
   retrieve(): DetachedRouteHandle | null { return null; }
@@ -28,7 +29,8 @@ export const appRoutes: Routes = [
     path: '',   
     resolve: { 
       sections: () => inject(NavigationService).fetchSections(),
-      isLoggedIn: () => inject(UserStateService).isUserLoggedIn()
+      isLoggedIn: () => inject(UserStateService).isUserLoggedIn(),
+      theme: () => inject(ThemePickerService).init()
     },
     children: [
       { 

@@ -7,14 +7,13 @@ import { UserStateService } from '../../services/user-state/user-state.service';
 import { ProfileFabComponent } from '../profile-fab/profile-fab.component';
 import { combineLatest, map, tap } from 'rxjs';
 import { NavigationService } from '../../services/navigation/navigation.service';
-import { ThemePickerComponent } from '../theme-picker/theme-picker.component';
 
 @Component({
   standalone: true,
   selector: 'ngx-navbar',
   template: `
     <ng-container *ngIf="viewModel$ | async as mv; else loading">
-      <nav class="navbar-header">
+      <nav class="navbar-header mat-elevation-z6">
         <a mat-button routerLink="/" class="docs-navbar--workshop-logo">
           <mat-icon class="workshop-logo">tips_and_updates</mat-icon>
           <span>Ngx-Workshop</span>
@@ -26,14 +25,11 @@ import { ThemePickerComponent } from '../theme-picker/theme-picker.component';
           <img class="workshop-logo" [src]="section.value.menuSvgPath">
           <span>{{section.value.sectionTitle}}</span>
         </a>
-
         <div class="flex-spacer"></div>
-
         <ng-container *ngIf="mv.signedIn; else authentication">
           <ngx-profile-fab></ngx-profile-fab>
         </ng-container>
         <ng-template #authentication>
-          <ngx-theme-picker></ngx-theme-picker>
           <a mat-button (click)="mv.openDialog()">Sign In</a>
         </ng-template>
       </nav>
@@ -100,8 +96,7 @@ import { ThemePickerComponent } from '../theme-picker/theme-picker.component';
     RouterModule,
     MatButtonModule,
     MatIconModule,
-    ProfileFabComponent,
-    ThemePickerComponent
+    ProfileFabComponent
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
