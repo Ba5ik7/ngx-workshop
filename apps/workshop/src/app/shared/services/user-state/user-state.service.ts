@@ -1,5 +1,5 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { BehaviorSubject, catchError, map, Observable, of, tap, throwError } from 'rxjs';
 import { IUserMetadata } from '../../interfaces/user-metadata.interface';
 
@@ -8,7 +8,7 @@ import { IUserMetadata } from '../../interfaces/user-metadata.interface';
 })
 export class UserStateService {
 
-  constructor(private httpClient: HttpClient) { }
+  httpClient = inject(HttpClient);
 
   signedIn = new BehaviorSubject<boolean>(false);
   signedIn$ = this.signedIn.asObservable();
