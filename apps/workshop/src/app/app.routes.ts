@@ -48,12 +48,12 @@ export const appRoutes: Routes = [
       // },
       {
         path: '404',
-        loadChildren: () => import('./pages/not-found/not-found.module').then(m => m.NotFoundModule)
+        loadChildren: () => import('./pages/not-found/not-found.routing').then(m => m.NOT_FOUND_ROUTES)
       },
-      // {
-      //   path: ':section',
-      //   loadChildren: () => import('./pages/workshop-sidenav/sidenav.routing').then(m => m.)
-      // },
+      {
+        path: 'sidenav',
+        loadChildren: () => import('./pages/workshop-sidenav/sidenav.routing').then(m => m.SIDENAV_ROUTES)
+      },
       {
         path: '**', redirectTo: '/404'
       },
