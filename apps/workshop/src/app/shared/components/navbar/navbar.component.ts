@@ -7,6 +7,7 @@ import { UserStateService } from '../../services/user-state/user-state.service';
 import { ProfileFabComponent } from '../profile-fab/profile-fab.component';
 import { combineLatest, map, tap } from 'rxjs';
 import { NavigationService } from '../../services/navigation/navigation.service';
+import { ThemePickerComponent } from '../theme-picker/theme-picker.component';
 
 @Component({
   standalone: true,
@@ -26,6 +27,7 @@ import { NavigationService } from '../../services/navigation/navigation.service'
           <span>{{section.value.sectionTitle}}</span>
         </a>
         <div class="flex-spacer"></div>
+        <ngx-theme-picker></ngx-theme-picker>
         <ng-container *ngIf="mv.signedIn; else authentication">
           <ngx-profile-fab></ngx-profile-fab>
         </ng-container>
@@ -96,7 +98,8 @@ import { NavigationService } from '../../services/navigation/navigation.service'
     RouterModule,
     MatButtonModule,
     MatIconModule,
-    ProfileFabComponent
+    ProfileFabComponent,
+    ThemePickerComponent
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })

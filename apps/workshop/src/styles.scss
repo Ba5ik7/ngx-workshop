@@ -3,6 +3,7 @@
 @use './assets/styles/general';
 @use './assets/styles/custom-themes/synthwave';
 
+@include mat.all-legacy-component-typographies();
 @include mat.legacy-core();
 
 // Define the light theme.

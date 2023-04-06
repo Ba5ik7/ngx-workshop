@@ -45,10 +45,11 @@ export class AppComponent {
     pairwise()
   ).subscribe(() => resetScrollPosition());
 
+  matDialog = inject(MatDialog);
   openSignInModal = inject(UserStateService).openSignInModal$
   .pipe(filter(open => open))
   .subscribe(() => {
-    inject(MatDialog).open(SignInModalComponent, { width: '300px' });
+    this.matDialog.open(SignInModalComponent, { width: '300px' });
   });
 }
 

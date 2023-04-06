@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { ThemePickerService } from '../../services/theme-picker/theme-picker.service';
 
@@ -22,7 +22,7 @@ import { DomSanitizer } from '@angular/platform-browser';
   template: `
     <ng-container *ngIf="currentTheme$ | async as currentTheme">
       <button mat-button [mat-menu-trigger-for]="themeMenu" [matTooltip]="matTooltipTest">
-        {{ currentTheme | uppercase }}
+        <ng-container *ngIf="showText">{{ currentTheme | uppercase }}</ng-container>
         <mat-icon class="dropdown-icon">format_color_fill</mat-icon>
       </button>
     
@@ -45,6 +45,7 @@ import { DomSanitizer } from '@angular/platform-browser';
   encapsulation: ViewEncapsulation.None
 })
 export class ThemePickerComponent {
+  @Input() showText = false;
 
   matTooltipTest = 'Select a theme for the documentation';
   currentTheme$ = this.themePickerService.currentTheme$;

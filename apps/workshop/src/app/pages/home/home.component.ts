@@ -1,4 +1,4 @@
-import { Component, HostBinding, OnInit } from '@angular/core';
+import { Component, HostBinding } from '@angular/core';
 import { FooterComponent } from '../../shared/components/footer/footer.component';
 
 @Component({
