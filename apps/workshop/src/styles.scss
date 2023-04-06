@@ -1,34 +1,8 @@
 @use '@angular/material' as mat;
 @use './app/app-theme';
 @use './assets/styles/general';
+@use './assets/styles/custom-themes/synthwave';
 
-// Define the light theme.
-$primary: mat.define-palette(mat.$indigo-palette);
-$accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
-$theme: mat.define-light-theme((
-  color: (
-    primary: $primary,
-    accent: $accent
-  ),
-  typography: mat.define-typography-config(),
-));
-
-// Include material core styles.
-// TODO(v15): As of v15 mat.legacy-core no longer includes default typography styles.
-//  The following line adds:
-//    1. Default typography styles for all components
-//    2. Styles for typography hierarchy classes (e.g. .mat-headline-1)
-//  If you specify typography styles for the components you use elsewhere, you should delete this line.
-//  If you don't need the default component typographies but still want the hierarchy styles,
-//  you can delete this line and instead use:
-//    `@include mat.legacy-typography-hierarchy(mat.define-legacy-typography-config());`
-@include mat.all-legacy-component-typographies();
-@include mat.legacy-core();
-
-@include mat.all-legacy-component-themes($theme);
-@include app-theme.theme($theme);
-
-// It's only been a week since IE has die and now this on Edge
 input:-webkit-autofill,
 input:-webkit-autofill:focus {
   transition: background-color 600000s 0s, color 600000s 0s;
@@ -38,34 +12,5 @@ html {
   font-size: 62.5%;
 }
 
-// .md-sidenav-backdrop {
-//   opacity: 0 !important;
-// }
-
-// md-sidenav.md-closed-add,
-// md-sidenav.md-closed-remove {
-//   -webkit-transition: all .4s cubic-bezier(0.25, .8, .25, 1) !important;
-//   transition: all .4s cubic-bezier(0.25, .8, .25, 1) !important;
-// }
-
-/**
-* fix md-sidenav lag by removing animation
-**/
-
-// .md-sidenav-backdrop {
-//   opacity: 0 !important;
-// }
-
-// md-sidenav.md-closed-add,
-// md-sidenav.md-closed-remove,
-// md-sidenav.md-closed-add.md-closed-add-active, 
-// md-sidenav.md-closed-remove.md-closed-remove-active,
-// md-sidenav.md-locked-open-remove-active,
-// md-sidenav.md-closed.md-locked-open-add-active
-
-// {
-//   -webkit-transition: all .4s cubic-bezier(0.25, .8, .25, 1) !important;
-//   transition: all .4s cubic-bezier(0.25, .8, .25, 1) !important;
-// }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
