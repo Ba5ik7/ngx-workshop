@@ -36,7 +36,7 @@ export const appRoutes: Routes = [
       { 
         path: '',
         pathMatch: 'full',
-        loadChildren: () => import('./pages/home/home.module').then(m => m.HomeModule)
+        loadComponent: () => import('./pages/home/home.component').then(m => m.HomeComponent)
       },
       // {
       //   path: 'account',
