@@ -5,7 +5,7 @@ import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/lega
 import { RouterModule } from '@angular/router';
 import { UserStateService } from '../../services/user-state/user-state.service';
 import { ProfileFabComponent } from '../profile-fab/profile-fab.component';
-import { combineLatest, map, tap } from 'rxjs';
+import { combineLatest, map } from 'rxjs';
 import { NavigationService } from '../../services/navigation/navigation.service';
 import { ThemePickerComponent } from '../theme-picker/theme-picker.component';
 
