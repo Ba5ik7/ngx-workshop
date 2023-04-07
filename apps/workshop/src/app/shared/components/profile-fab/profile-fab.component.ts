@@ -13,11 +13,11 @@ import { MatLegacyMenuModule as MatMenuModule } from '@angular/material/legacy-m
       <mat-icon>account_circle</mat-icon>
     </button>
     <mat-menu #menu xPosition="before">
-    <button mat-menu-item routerLink="/auth/account">
+    <button mat-menu-item routerLink="/sidenav/account">
       <mat-icon>manage_accounts</mat-icon>
         <span>Account</span>
       </button>
-      <button mat-menu-item routerLink="/auth/settings">
+      <button mat-menu-item routerLink="/sidenav/settings">
         <mat-icon>settings</mat-icon>
         <span>Settings</span>
       </button>

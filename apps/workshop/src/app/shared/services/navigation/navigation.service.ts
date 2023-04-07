@@ -6,8 +6,7 @@ import { Section, Sections, Workshop, WorkshopDocument } from '../../interfaces/
 
 const staticSections: Map<string, Partial<Section>> = new Map([
   ['dashboard', { headerSvgPath: '/assets/img/dashboard-color.png', sectionTitle: 'Dashboard' }],
-  ['users', { headerSvgPath: '/assets/img/users-color.png', sectionTitle: 'Users' }],
-  ['chat', { headerSvgPath: '/assets/img/users-color.png', sectionTitle: 'Chat' }],
+  ['account', { headerSvgPath: '/assets/img/users-color.png', sectionTitle: 'Chat' }],
   ['settings', { headerSvgPath: '/assets/img/users-color.png', sectionTitle: 'Settings' }]
 ]);
 

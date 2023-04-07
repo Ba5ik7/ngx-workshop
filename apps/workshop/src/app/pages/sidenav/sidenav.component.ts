@@ -5,8 +5,9 @@ import { CommonModule } from '@angular/common';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { RouterModule } from '@angular/router';
 import { FooterComponent } from '../../shared/components/footer/footer.component';
-import { SidenavMenuComponent } from './sidenav-menu/sidenav-menu.component';
+import { SidenavMenuComponent, SidenavMenuData } from './sidenav-menu/sidenav-menu.component';
 import { SidenavHeaderComponent, SidenavHeaderData } from './sidenav-header/sidenav-header.component';
+import { UserStateService } from '../../shared/services/user-state/user-state.service';
 
 
 @Component({
@@ -17,7 +18,7 @@ import { SidenavHeaderComponent, SidenavHeaderData } from './sidenav-header/side
       <mat-sidenav-container class="sidenav-container">
         <ngx-sidenav-header [sidenavHeaderData]="vm.sidenavHeaderData"></ngx-sidenav-header>
         <main class="sidenav-body-content">
-          <ngx-sidenav-menu [sections]="vm.sections"></ngx-sidenav-menu>
+          <ngx-sidenav-menu [vm]="vm.sidenavMenuData"></ngx-sidenav-menu>
           <router-outlet></router-outlet>
         </main>
         <ngx-footer></ngx-footer>
@@ -79,16 +80,28 @@ import { SidenavHeaderComponent, SidenavHeaderData } from './sidenav-header/side
 export class SidenavComponent {
   navigationService = inject(NavigationService);
   viewModel = combineLatest({
+    signedIn: inject(UserStateService).signedIn$,
+    workshops: this.navigationService.getWorkshops(),
     sections: this.navigationService.getSections(),
     currentSection: this.navigationService.getCurrentSection(),
     currentWorkshopTitle: this.navigationService.getCurrentWorkshop()
                             .pipe(map((workshop) => workshop?.name))
   })
   .pipe(
-    map(({ currentWorkshopTitle, currentSection, sections }) => {
+    map(({
+      currentWorkshopTitle,
+      currentSection,
+      workshops,
+      sections,
+      signedIn
+    }) => {
       const { headerSvgPath, sectionTitle } = currentSection ?? {};
       return {
-        sections,
+        sidenavMenuData: {
+          sections,
+          workshops,
+          signedIn,
+        } as SidenavMenuData,
         sidenavHeaderData: {
           headerSvgPath,
           sectionTitle,

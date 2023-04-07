@@ -27,11 +27,11 @@ import { ThemePickerComponent } from '../theme-picker/theme-picker.component';
           <span>{{section.value.sectionTitle}}</span>
         </a>
         <div class="flex-spacer"></div>
-        <ngx-theme-picker></ngx-theme-picker>
         <ng-container *ngIf="mv.signedIn; else authentication">
           <ngx-profile-fab></ngx-profile-fab>
         </ng-container>
         <ng-template #authentication>
+          <ngx-theme-picker></ngx-theme-picker>
           <a mat-button (click)="mv.openDialog()">Sign In</a>
         </ng-template>
       </nav>
