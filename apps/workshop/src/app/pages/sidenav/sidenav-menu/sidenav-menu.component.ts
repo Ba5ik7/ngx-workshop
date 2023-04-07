@@ -26,8 +26,6 @@ export type SidenavMenuData = {
             </a>
             <mat-divider></mat-divider>
           </ng-container>
-
-
           <ng-container *ngIf="vm.workshops.length > 0; else elseTemplate">
             <a mat-list-item *ngFor="let workshop of vm.workshops"
                 [routerLink]="'./workshops/' + workshop.sectionId + '/' + workshop.workshopDocumentGroupId + '/' + workshop.workshopDocuments[0]._id"
@@ -44,15 +42,17 @@ export type SidenavMenuData = {
               {{section.value.sectionTitle}}
             </a>
           </ng-template>
-          
-
-
         </mat-nav-list>
       </div>
     </div>
   `,
   styles: [`
-
+    :host {
+      mat-icon {
+        margin: 0 10px 3px 0;
+        vertical-align: middle;
+      }
+    }
   `],
   imports: [
     CommonModule,
