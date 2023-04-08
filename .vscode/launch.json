@@ -1,0 +1,34 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+      {
+          "name": "Debug workshop-api",
+          "type": "node",
+          "request": "launch",
+          "args": [
+            "apps/workshop-api/src/main.ts"
+          ],
+          "runtimeArgs": [
+            "--require",
+            "ts-node/register",
+            "--require",
+            "tsconfig-paths/register",
+          ],
+          "cwd": "${workspaceRoot}",
+          "internalConsoleOptions": "openOnSessionStart",
+          "envFile": "${workspaceFolder}/apps/workshop-api/.env",
+          "env": {
+            "NODE_ENV": "local",
+            "NODE_PORT": "8000",
+            "TS_NODE_PROJECT": "apps/workshop-api/tsconfig.app.json", // Specify the tsconfig to use
+          },
+          "sourceMaps": true,
+          "console": "internalConsole",
+          "outputCapture": "std",
+          "resolveSourceMapLocations": [
+            "${workspaceFolder}/**",
+            "!**/node_modules/**" // Disable the "could not read source map" error for node_modules
+          ]
+        }
+  ]
+}

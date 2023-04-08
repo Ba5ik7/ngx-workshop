@@ -131,9 +131,8 @@ export class NavigationService {
 
   async editPageNameUpdateWorkshop({ _id, name, workshopGroupId }: IWorkshopDocument): Promise<IWorkshop> {
     const workshopDocumentBeforeUpdate = await this.workshopDocumentService.updateWorkshopName(_id, name);
-    const id = new Types.ObjectId(_id);
-    const newWorkshopDocument = { _id: id, name, sortId: workshopDocumentBeforeUpdate.sortId };
-    const oldWorkshopDocument = { _id: id, name: workshopDocumentBeforeUpdate.name, sortId: workshopDocumentBeforeUpdate.sortId };
+    const newWorkshopDocument = { _id, name, sortId: workshopDocumentBeforeUpdate.sortId };
+    const oldWorkshopDocument = { _id, name: workshopDocumentBeforeUpdate.name, sortId: workshopDocumentBeforeUpdate.sortId };
     return await this.workshopModel.findByIdAndUpdate<IWorkshop>(
       workshopGroupId,
       { $set: { 'workshopDocuments.$[elem]': newWorkshopDocument } },
