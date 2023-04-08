@@ -1,4 +1,4 @@
-import { inject } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import {
   ActivatedRouteSnapshot,
   DetachedRouteHandle,
@@ -8,6 +8,7 @@ import {
 import { AuthGuard } from './shared/guards/auth.guard';
 import { NavigationService } from './shared/services/navigation/navigation.service';
 
+@Injectable()
 export class WorkshopReuseStrategy extends RouteReuseStrategy {
   retrieve(): DetachedRouteHandle | null { return null; }
   shouldAttach(): boolean { return false; }

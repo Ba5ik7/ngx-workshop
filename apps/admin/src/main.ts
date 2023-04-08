@@ -4,11 +4,12 @@ import 'codemirror/mode/xml/xml';
 
 import { bootstrapApplication } from '@angular/platform-browser';
 import {
+  RouteReuseStrategy,
   provideRouter,
   withEnabledBlockingInitialNavigation,
 } from '@angular/router';
 import { AppComponent } from './app/app.component';
-import { appRoutes } from './app/app.routes';
+import { WorkshopReuseStrategy, appRoutes } from './app/app.routes';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { importProvidersFrom } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -29,6 +30,7 @@ bootstrapApplication(AppComponent, {
     importProvidersFrom(BrowserAnimationsModule),
     importProvidersFrom(HttpClientModule),
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: RouteReuseStrategy, useClass: WorkshopReuseStrategy },
     {
       provide: NGX_EDITORJS_OPTIONS,
       useValue: {
