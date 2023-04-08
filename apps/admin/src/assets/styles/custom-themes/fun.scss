@@ -24,3 +24,18 @@ $fun-theme: mat.define-dark-theme((
 .mat-card, .mat-dialog-container {
   background-color: #C2185B;
 }
+
+
+.successful-text {
+  color: #43A047;
+}
+.failure-text {
+  color: #F44336;
+}
+
+// TODO - Add this to a ngx-editorjs-client theme file
+ngx-editorjs-client {
+  a, a:visited, a:hover, a:active {
+    color: #E1BEE7;
+  }
+}

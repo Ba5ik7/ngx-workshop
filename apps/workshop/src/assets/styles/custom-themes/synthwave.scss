@@ -92,7 +92,43 @@ $synth84-theme: mat.define-dark-theme((
   background: #3A2B4D
 }
 
-// Retro
+
+
+.successful-text {
+  color: #66BB6A;
+}
+.failure-text {
+  color: #EF5350;
+}
+
+// TODO - Add this to a ngx-editorjs-client theme file
+ngx-editorjs-client {
+  a, a:visited, a:hover, a:active {
+    color: #00BCD4;
+  }
+}
+// 80s retro synthwave theme: #7E57C2 (Deep Purple 400)
+// Synthwave Dark Theme 1: #80DEEA (Cyan 200)
+// Synthwave Dark Theme 2: #4DD0E1 (Cyan 300)
+// Synthwave Dark Theme 3: #26C6DA (Cyan 400)
+// Synthwave Dark Theme 4: #00BCD4 (Cyan 500)
+
+// !.successful-text 
+// Synthwave Dark Theme 1: #66BB6A (500)
+// Synthwave Dark Theme 2: #81C784 (300)
+// Synthwave Dark Theme 3: #A5D6A7 (200)
+// Synthwave Dark Theme 4: #C8E6C9 (100)
+// 80s retro synthwave theme: #689F38 (700)
+
+// !.failure-text
+// Synthwave Dark Theme 1: #EF5350 (400)
+// Synthwave Dark Theme 2: #E53935 (600)
+// Synthwave Dark Theme 3: #D32F2F (700)
+// Synthwave Dark Theme 4: #C62828 (800)
+// 80s retro synthwave theme: #FF1744 (A400)
+
+
+//! Retro
 // @use '@angular/material' as mat;
 // @use '../../../app/app-theme';
 
@@ -123,7 +159,7 @@ $synth84-theme: mat.define-dark-theme((
 //   background: #3A2B4D
 // }
 
-// Retro 1
+//! Retro 1
 // @use '@angular/material' as mat;
 // @use '../../../app/app-theme';
 
@@ -155,7 +191,7 @@ $synth84-theme: mat.define-dark-theme((
 // }
 
 
-// Retro 2
+//! Retro 2
 // @use '@angular/material' as mat;
 // @use '../../../app/app-theme';
 
@@ -188,7 +224,7 @@ $synth84-theme: mat.define-dark-theme((
 
 
 
-// Retro 3
+//! Retro 3
 // @use '@angular/material' as mat;
 // @use '../../../app/app-theme';
 
@@ -219,7 +255,7 @@ $synth84-theme: mat.define-dark-theme((
 //   background: #3f51b5
 // }
 
-// Retro 4
+//! Retro 4
 // @use '@angular/material' as mat;
 // @use '../../../app/app-theme';
 

@@ -27,3 +27,17 @@ $edu-theme: mat.define-dark-theme((
 .workshop-menu-nav, .workshop-controls-panel, .paginator, .paginator, .paginator, .paginator {
   background: #5E35B1
 }
+
+.successful-text {
+  color: #1B5E20;
+}
+.failure-text {
+  color: #D50000;
+}
+
+// TODO - Add this to a ngx-editorjs-client theme file
+ngx-editorjs-client {
+  a, a:visited, a:hover, a:active {
+    color: #9FA8DA;
+  }
+}

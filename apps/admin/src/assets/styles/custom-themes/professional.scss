@@ -23,6 +23,30 @@ $prof-theme: mat.define-dark-theme((
   background-color: #455A64;
 }
 
-.workshop-menu-nav, .workshop-controls-panel, .paginator {
+.workshop-menu-nav, .workshop-controls-panel, .paginator, .paginator {
   background: #455A64
+}
+
+.successful-text {
+  color: #C8E6C9;
+}
+.failure-text {
+  color: #FFCDD2;
+}
+// Success: #A5D6A7 (Green 200)
+// Failure: #EF9A9A (Red 200)
+// Option 2:
+
+// Success: #C8E6C9 (Green 100)
+// Failure: #FFCDD2 (Red 100)
+// Option 3:
+
+// Success: #DCEDC8 (Green 50)
+// Failure: #FFEBEE (Red 50)
+
+// TODO - Add this to a ngx-editorjs-client theme file
+ngx-editorjs-client {
+  a, a:visited, a:hover, a:active {
+    color: #90CAF9;
+  }
 }

@@ -59,3 +59,17 @@ $vanguard-theme: mat.define-dark-theme((
 .workshop-menu-nav, .workshop-controls-panel, .paginator, .paginator {
   background: #3B4C5E
 }
+
+.successful-text {
+  color: #4CAF50;
+}
+.failure-text {
+  color: #F44336;
+}
+
+// TODO - Add this to a ngx-editorjs-client theme file
+ngx-editorjs-client {
+  a, a:visited, a:hover, a:active {
+    color: #039BE5;
+  }
+}

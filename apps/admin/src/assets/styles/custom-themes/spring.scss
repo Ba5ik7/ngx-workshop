@@ -25,6 +25,20 @@ $dark-spring-theme: mat.define-dark-theme((
   background-color: #2F4F4F;
 }
 
-.workshop-menu-nav, .workshop-controls-panel, .paginator {
+.workshop-menu-nav, .workshop-controls-panel, .paginator, .paginator {
   background: #5B6A70
+}
+
+.successful-text {
+  color: #81C784;
+}
+.failure-text {
+  color: #E57373;
+}
+
+// TODO - Add this to a ngx-editorjs-client theme file
+ngx-editorjs-client {
+  a, a:visited, a:hover, a:active {
+    color: #66BB6A;
+  }
 }

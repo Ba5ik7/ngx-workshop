@@ -55,6 +55,20 @@ $dark-fall-theme: mat.define-dark-theme((
   background-color: #3E2723;
 }
 
-.workshop-menu-nav, .workshop-controls-panel, .paginator {
+.workshop-menu-nav, .workshop-controls-panel, .paginator, .paginator {
   background: #5D4842
+}
+
+.successful-text {
+  color: #43A047;
+}
+.failure-text {
+  color: #D32F2F;
+}
+
+// TODO - Add this to a ngx-editorjs-client theme file
+ngx-editorjs-client {
+  a, a:visited, a:hover, a:active {
+    color: #FFA726;
+  }
 }

@@ -20,6 +20,8 @@ import { NgxEditorjsParagraphBlockMediator } from '@tmdjr/ngx-editorjs-paragraph
 import { NgxEditorjsBlockquotesBlockMediator } from '@tmdjr/ngx-editorjs-blockquotes-block';
 import { NgxEditorjsImageBlockMediator } from '@tmdjr/ngx-editorjs-image-block';
 import { NgxEditorjsCodeBlockMediator } from '@tmdjr/ngx-editorjs-code-block';
+import { NgxEditorjsQuizBlockMediator } from '@tmdjr/ngx-editorjs-quiz-block';
+
 
 bootstrapApplication(AppComponent, {
   providers: [
@@ -50,6 +52,11 @@ bootstrapApplication(AppComponent, {
             name: 'Code',
             component: NgxEditorjsCodeBlockMediator,
             componentInstanceName: 'NgxEditorjsCodeBlockMediator'
+          },
+          {
+            name: 'Quiz',
+            component: NgxEditorjsQuizBlockMediator,
+            componentInstanceName: 'NgxEditorjsQuizBlockMediator'
           }
         ]
       }
