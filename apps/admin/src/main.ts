@@ -22,6 +22,7 @@ import { NgxEditorjsBlockquotesBlockMediator } from '@tmdjr/ngx-editorjs-blockqu
 import { NgxEditorjsImageBlockMediator } from '@tmdjr/ngx-editorjs-image-block';
 import { NgxEditorjsCodeBlockMediator } from '@tmdjr/ngx-editorjs-code-block';
 import { NgxEditorjsQuizBlockMediator } from '@tmdjr/ngx-editorjs-quiz-block';
+import { NgxEditorjsMermaidBlockMediator } from '@tmdjr/ngx-editorjs-mermaid-block';
 
 
 bootstrapApplication(AppComponent, {
@@ -59,6 +60,11 @@ bootstrapApplication(AppComponent, {
             name: 'Quiz',
             component: NgxEditorjsQuizBlockMediator,
             componentInstanceName: 'NgxEditorjsQuizBlockMediator'
+          },
+          {
+            name: 'Mermaid',
+            component: NgxEditorjsMermaidBlockMediator,
+            componentInstanceName: 'NgxEditorjsMermaidBlockMediator'
           }
         ]
       }

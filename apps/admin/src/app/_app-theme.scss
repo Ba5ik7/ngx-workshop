@@ -5,6 +5,7 @@
 @use '@tmdjr/ngx-editorjs' as ngx-editorjs;
 @use '@tmdjr/ngx-editorjs-blockquotes-block' as ngx-editorjs-blockquotes-block;
 @use '@tmdjr/ngx-editorjs-code-block' as ngx-editorjs-code-block;
+@use '@tmdjr/ngx-editorjs-mermaid-block' as ngx-editorjs-mermaid-block;
 
 @use './pages/not-found/not-found-theme';
 @use './pages/sidenav/sidenav';
@@ -61,6 +62,7 @@
   @include ngx-editorjs.theme($theme);
   @include ngx-editorjs-blockquotes-block.theme($theme);
   @include ngx-editorjs-code-block.theme($theme);
+  @include ngx-editorjs-mermaid-block.theme($theme);
 
   // @include home-theme.theme($theme);
   @include not-found-theme.theme($theme);
