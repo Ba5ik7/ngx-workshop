@@ -21,12 +21,12 @@ import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/lega
         <form [formGroup]="signInForm">
           <h3>Sign In</h3>
           <span class="form-level-error-message">{{signInFormLevelMessage}}</span>
-          <mat-form-field>
+          <mat-form-field color="accent">
             <mat-label>Email</mat-label>
             <input matInput #signInEmail type="email" placeholder="Email" formControlName="email">
             <mat-error *ngIf="signInForm.get('email')?.errors">{{signInFormErrorMessages['email']}}</mat-error>
           </mat-form-field>
-          <mat-form-field>
+          <mat-form-field color="accent">
             <mat-label>Password</mat-label>
             <input matInput type="password" placeholder="Password" formControlName="password">
             <mat-error *ngIf="signInForm.get('password')?.errors">{{signInFormErrorMessages['password']}}</mat-error>
