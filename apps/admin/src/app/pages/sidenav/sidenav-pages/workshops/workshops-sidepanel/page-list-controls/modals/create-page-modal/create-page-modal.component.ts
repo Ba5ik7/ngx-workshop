@@ -8,8 +8,14 @@ import { MatLegacyFormFieldModule as MatFormFieldModule } from '@angular/materia
 import { MatLegacyDialogModule as MatDialogModule } from '@angular/material/legacy-dialog';
 import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
 import { MatLegacyInputModule as MatInputModule } from '@angular/material/legacy-input';
+import { MatLegacySelectModule as MatSelectModule} from '@angular/material/legacy-select';
 import { CommonModule } from '@angular/common';
 import { WorkshopDocument } from '../../../../../../../../shared/interfaces/navigation.interface';
+
+interface PageType {
+  value: string;
+  viewValue: string;
+}
 
 @Component({
   standalone: true,
@@ -23,6 +29,7 @@ import { WorkshopDocument } from '../../../../../../../../shared/interfaces/navi
     ReactiveFormsModule,
     MatButtonModule,
     MatInputModule,
+    MatSelectModule
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -31,6 +38,11 @@ export class CreatePageModalComponent {
   private navigationService = inject(NavigationService);
   private dialogRef = inject(MatDialogRef<CreatePageModalComponent>);
   private formBuilder = inject(FormBuilder);
+
+  pageTypes: PageType[] = [
+    { value: 'workshop-page', viewValue: 'Workshop Page' },
+    { value: 'workshop-exam', viewValue: 'Workshop Exam' },
+  ];
   
   createPageFormLevelMessage$ = new BehaviorSubject<string | undefined>(undefined);
   errorMessages: KeyValue = {
@@ -49,6 +61,7 @@ export class CreatePageModalComponent {
         workshopId:[workshop?._id],
         sortId:[workshop?.workshopDocuments?.length],
         name: ['', [Validators.required]],
+        pageType: ['workshop-page', [Validators.required]],
       })
     })
   );
