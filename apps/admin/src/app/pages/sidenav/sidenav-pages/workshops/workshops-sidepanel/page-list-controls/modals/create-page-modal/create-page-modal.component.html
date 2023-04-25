@@ -18,7 +18,7 @@
       </mat-form-field>
       <mat-dialog-actions align="end">
         <button mat-button mat-dialog-close [disabled]="vm.loading">Cancel</button>
-        <button mat-raised-button color="primary" (click)="onCreatePage(vm.formGroup.value)" [disabled]="vm.formGroup.invalid || vm.loading">Create</button>
+        <button mat-raised-button color="accent" (click)="onCreatePage(vm.formGroup.value)" [disabled]="vm.formGroup.invalid || vm.loading">Create</button>
       </mat-dialog-actions>
     </form>
   </div>

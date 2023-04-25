@@ -10,7 +10,7 @@
       </mat-form-field>
       <mat-dialog-actions align="end">
         <button mat-button mat-dialog-close [disabled]="vm.loading">Cancel</button>
-        <button mat-raised-button color="primary" (click)="onEditPage(vm.formGroup.value)" [disabled]="vm.formGroup.invalid || vm.loading">Edit</button>
+        <button mat-raised-button color="accent" (click)="onEditPage(vm.formGroup.value)" [disabled]="vm.formGroup.invalid || vm.loading">Edit</button>
       </mat-dialog-actions>
     </form>
   </div>
