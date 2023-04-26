@@ -106,7 +106,7 @@ export class NavigationService {
         {
           $push: {
             workshopDocuments: {
-              _id: workshop._id,
+              _id: workshop._id.toString(),
               name: workshop.name,
               sortId: workshop.sortId,
             },
@@ -122,10 +122,15 @@ export class NavigationService {
     _id: string,
     workshopIdToUpdate: string,
   ): Promise<{ acknowledged: boolean; deletedCount: number }> {
-    await this.workshopModel.findByIdAndUpdate<IWorkshop>(workshopIdToUpdate, {
-      $pull: { workshopDocuments: { _id: new Types.ObjectId(_id) } },
+    const foo = await this.workshopModel.findByIdAndUpdate<IWorkshop>(workshopIdToUpdate, {
+      $pull: {
+        workshopDocuments: {
+          _id,
+        },
+      },
       workshopDocumentsLastUpdated: Date.now(),
     });
+    console.log(foo);
     return await this.workshopDocumentService.deleteOne(_id);
   }
 
