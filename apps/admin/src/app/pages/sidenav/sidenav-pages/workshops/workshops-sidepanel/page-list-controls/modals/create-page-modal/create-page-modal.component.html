@@ -8,14 +8,9 @@
         <input matInput type="text" placeholder="Name" formControlName="name">
         <mat-error *ngIf="vm.formGroup.get('name')?.errors">{{createPageControlsErrorMessages['name']}}</mat-error>
       </mat-form-field>
-      <mat-form-field color="accent">
-        <mat-label>Page Type</mat-label>
-        <mat-select formControlName="pageType">
-          <mat-option *ngFor="let pageType of pageTypes" [value]="pageType.value">
-            {{pageType.viewValue}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+      <mat-radio-group class="page-type-ratio-group" formControlName="pageType">
+        <mat-radio-button *ngFor="let pageType of pageTypes" [value]="pageType.value">{{ pageType.viewValue }}</mat-radio-button>
+      </mat-radio-group>
       <mat-dialog-actions align="end">
         <button mat-button mat-dialog-close [disabled]="vm.loading">Cancel</button>
         <button mat-raised-button color="accent" (click)="onCreatePage(vm.formGroup.value)" [disabled]="vm.formGroup.invalid || vm.loading">Create</button>

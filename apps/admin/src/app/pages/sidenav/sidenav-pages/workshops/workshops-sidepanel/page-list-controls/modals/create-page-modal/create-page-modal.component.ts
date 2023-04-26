@@ -8,7 +8,7 @@ import { MatLegacyFormFieldModule as MatFormFieldModule } from '@angular/materia
 import { MatLegacyDialogModule as MatDialogModule } from '@angular/material/legacy-dialog';
 import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
 import { MatLegacyInputModule as MatInputModule } from '@angular/material/legacy-input';
-import { MatLegacySelectModule as MatSelectModule} from '@angular/material/legacy-select';
+import { MatLegacyRadioModule as MatRatioModule } from '@angular/material/legacy-radio';
 import { CommonModule } from '@angular/common';
 import { WorkshopDocument } from '../../../../../../../../shared/interfaces/navigation.interface';
 
@@ -29,7 +29,7 @@ interface PageType {
     ReactiveFormsModule,
     MatButtonModule,
     MatInputModule,
-    MatSelectModule
+    MatRatioModule
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
