@@ -42,9 +42,11 @@ import { Sections } from '../../../shared/interfaces/navigation.interface';
               routerLinkActive="workshop-menu-nav-item-selected"
               class="section-item">
             <!-- <img [src]="'/admin' + section.value.menuSvgPath"> -->
-            {{section.value.sectionTitle}}
-            <div class="flex-spacer"></div>
-            <mat-icon class="delete-icon" (click)="deleteSection($event, section.value)">delete</mat-icon>
+            <span class="mat-list-item-content">
+              {{section.value.sectionTitle}}
+              <div class="flex-spacer"></div>
+              <mat-icon class="delete-icon" (click)="deleteSection($event, section.value)">delete</mat-icon>
+            </span>
           </a>
         </mat-nav-list>
       </div>
@@ -52,36 +54,31 @@ import { Sections } from '../../../shared/interfaces/navigation.interface';
   `,
   styles: [`
     :host {
-      mat-icon {
-          margin: 0 10px 3px 0;
-          vertical-align: middle;
-        }
+      .mat-icon {
+        margin: 0 10px 3px 0;
+        vertical-align: middle;
+      }
 
+      .section-item {
+        opacity: .65;
         .delete-icon {
-          opacity: 0.45;
-          &:hover {
-            opacity: 1;
-          }
-        }
-
-        .section-item {
-          .delete-icon {
-            margin: 0 0 0 10px;
-            opacity: 0;
-          }
-          &:hover {
-            .delete-icon {
-              opacity: 0.45;
-            }
-          }
-        }
-
-        .delete-icon {
+          margin: 0 0 0 10px;
+          opacity: 0;
           &:hover {
             opacity: 1!important;
           }
         }
+        .mat-list-item-content {
+          display: flex;
+        }
+        &:hover {
+          opacity: 1;
+          .delete-icon {
+            opacity: 0.45;
+          }
+        }
       }
+    }
   `],
   imports: [
     CommonModule,
