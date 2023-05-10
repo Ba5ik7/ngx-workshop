@@ -20,30 +20,23 @@
 
     a {
       color: map.get($foreground, secondary-text);
-
       &:hover {
         color: mat.get-color-from-palette($foreground, text);
-        // img {
-        //   opacity: 1;
-        // }
       }
 
       &.workshop-menu-nav-item-selected {
         background: rgba(mat.get-color-from-palette($accent, default), 0.15);
-        color: color.adjust(
-          mat.get-color-from-palette($accent, default),
-          $lightness: if($is-dark-theme, 25%, 0%)
-        );
+        .mat-list-item-content {
+          color: color.adjust(
+            mat.get-color-from-palette($accent, default),
+            $lightness: if($is-dark-theme, 25%, 0%)
+          )!important;
+        }
       }
     }
 
     .mat-mdc-list-item {
       color: rgba(mat.get-color-from-palette($foreground, secondary-text), 0.65);
-      
-      // img {
-      //   filter: brightness(if($is-dark-theme, 100%, 0)) saturate(100%);
-      //   opacity: .65;
-      // }
     }
   }
 }

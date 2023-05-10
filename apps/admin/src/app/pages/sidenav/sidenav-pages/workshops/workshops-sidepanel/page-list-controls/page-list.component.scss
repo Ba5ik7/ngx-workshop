@@ -22,7 +22,10 @@
   }
 
   .page-item {
-    display: flex;
+    opacity: .65;
+    .mat-list-item-content {
+      display: flex;
+    }
     .edit-icon, .delete-icon {
       margin: 0 0 0 10px;
       opacity: 0;
@@ -33,8 +36,11 @@
     .mat-list-item-content {
       display: flex;
     }
-
+    &.workshop-menu-nav-item-selected {
+      opacity: 1;
+    }
     &:hover {
+      opacity: 1;
       .edit-icon, .delete-icon {
         opacity: 0.45;
       }
