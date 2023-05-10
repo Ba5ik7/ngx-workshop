@@ -12,7 +12,7 @@ $fun-theme: mat.define-dark-theme((
   typography: mat.define-typography-config(),
 ));
 
-@include mat.all-legacy-component-themes($fun-theme);
+@include mat.all-component-themes($fun-theme);
 @include app-theme.theme($fun-theme);
 
 
@@ -21,7 +21,7 @@ $fun-theme: mat.define-dark-theme((
   background-color: #AD1457;
 }
 
-.mat-card, .mat-dialog-container {
+.mat-mdc-card, .mat-mdc-dialog-container {
   background-color: #C2185B;
 }
 

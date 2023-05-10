@@ -17,6 +17,7 @@
     button {
       margin-bottom: 14px;
       &:nth-last-child(1) {
+        /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version. */
         &.mat-button-disabled {
           background-color: rgba(255, 255, 255, 0);
         }

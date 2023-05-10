@@ -62,7 +62,8 @@ import { UserStateService } from '../../shared/services/user-state/user-state.se
           width: 4px;
         }
       }
-      .workshop-menu-nav-content .mat-nav-list .mat-list-item .mat-list-item-content {
+      /* TODO(mdc-migration): The following rule targets internal classes of list that may no longer apply for the MDC version. */
+      .workshop-menu-nav-content .mat-nav-list .mat-mdc-list-item .mat-list-item-content {
         padding-left: 25px;
       }
     }

@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { MatLegacyCardModule as MatCardModule } from '@angular/material/legacy-card';
+import { MatCardModule } from '@angular/material/card';
 import { ThemePickerComponent } from '../../../../shared/components/theme-picker/theme-picker.component';
 @Component({
   standalone: true,
   selector: 'ngx-settings',
   template: `
     <main class="wrapper">
-      <mat-card class="card-content">
+      <mat-card appearance="outlined" class="card-content">
         <h2>Settings</h2>
         <mat-card-content>
           <h3>Set theme: <ngx-theme-picker></ngx-theme-picker></h3>

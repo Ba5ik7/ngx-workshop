@@ -1,11 +1,11 @@
 import { RouterModule } from '@angular/router';
 import { Component, ViewEncapsulation, inject } from '@angular/core';
-import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { Event, NavigationEnd, Router } from '@angular/router';
 import { filter, map, pairwise, startWith } from 'rxjs';
 import { SignInModalComponent } from './shared/components/sign-in-modal/sign-in-modal.component';
 import { UserStateService } from './shared/services/user-state/user-state.service';
-import { MatLegacyDialogModule as MatDialogModule } from '@angular/material/legacy-dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
 
 @Component({

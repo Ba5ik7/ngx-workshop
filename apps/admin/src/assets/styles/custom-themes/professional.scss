@@ -12,14 +12,14 @@ $prof-theme: mat.define-dark-theme((
   typography: mat.define-typography-config(),
 ));
 
-@include mat.all-legacy-component-themes($prof-theme);
+@include mat.all-component-themes($prof-theme);
 @include app-theme.theme($prof-theme);
 
 .mat-drawer-content, .mat-sidenav-content, .app-background {
   background-color: #37474F;
 }
 
-.mat-card, .mat-dialog-container  {
+.mat-mdc-card, .mat-mdc-dialog-container  {
   background-color: #455A64;
 }
 

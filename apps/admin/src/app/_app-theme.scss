@@ -8,6 +8,7 @@
 @use '@tmdjr/ngx-editorjs-mermaid-block' as ngx-editorjs-mermaid-block;
 
 @use './pages/not-found/not-found-theme';
+@use './pages/login/login';
 @use './pages/sidenav/sidenav';
 @use './pages/sidenav/sidenav-pages/workshops/workshops';
 @use './pages/sidenav/sidenav-pages/chat/chat';
@@ -25,6 +26,7 @@
   $next-theme: mat.define-palette(mat.$red-palette);
   $is-dark-theme: map.get($theme, is-dark);
 
+
   ::-webkit-scrollbar-thumb {
     background: rgba(mat.get-color-from-palette($primary, default), .45);
   }
@@ -32,6 +34,17 @@
   ::selection {
     background-color: rgba(mat.get-color-from-palette($primary, default), .4);
   }
+
+  // It's only been a week since IE has die and now this on Edge
+  // input:-webkit-autofill,
+  // input:-webkit-autofill:focus {
+  //   -webkit-box-shadow: 0 0 0 1000px rgba(mat.get-color-from-palette($primary, default), .45) inset !important;
+  //   -webkit-text-fill-color: mat.get-color-from-palette($foreground, text) !important;
+  // }
+  // .mdc-text-field, .mdc-text-field--filled {
+  //   background-color: red;
+  //   border: 1px solid yellow;
+  // }
 
   .app-background {
     background: mat.get-color-from-palette($background, background);
@@ -69,6 +82,7 @@
   @include sidenav.theme($theme);
   @include workshops.theme($theme);
   @include chat.theme($theme);
+  @include login.theme($theme);
 
   @include footer-theme.theme($theme);
   @include navbar-theme.theme($theme);

@@ -12,7 +12,7 @@ $dark-spring-theme: mat.define-dark-theme((
   typography: mat.define-typography-config(),
 ));
 
-@include mat.all-legacy-component-themes($dark-spring-theme);
+@include mat.all-component-themes($dark-spring-theme);
 @include app-theme.theme($dark-spring-theme);
 
 
@@ -21,7 +21,7 @@ $dark-spring-theme: mat.define-dark-theme((
   background-color: #465A61;
 }
 
-.mat-card, .mat-dialog-container  {
+.mat-mdc-card, .mat-mdc-dialog-container  {
   background-color: #2F4F4F;
 }
 

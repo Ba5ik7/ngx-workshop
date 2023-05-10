@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { MatLegacyCardModule as MatCardModule } from '@angular/material/legacy-card'
+import { MatCardModule } from '@angular/material/card'
 import { NavigationService } from '../../../../../../shared/services/navigation/navigation.service';
 
 @Component({
@@ -15,6 +15,7 @@ import { NavigationService } from '../../../../../../shared/services/navigation/
   template: `
     <div class="workshop-list">
       <mat-card 
+        appearance="outlined" 
         *ngFor="let workshop of workshops | async" 
         [routerLink]="'../' + workshop.workshopDocumentGroupId + '/' + workshop.workshopDocuments[0]._id">
         <img mat-card-image src="/admin/assets/img/workshop-placeholder.png">
@@ -34,6 +35,7 @@ import { NavigationService } from '../../../../../../shared/services/navigation/
         padding: 20px;
         justify-content: center;
       }
+      /* TODO(mdc-migration): The following rule targets internal classes of card that may no longer apply for the MDC version. */
       mat-card {
         cursor: pointer;
         width: 280px;

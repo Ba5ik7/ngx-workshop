@@ -1,9 +1,9 @@
 import { Component, inject, ViewChild, ViewEncapsulation } from '@angular/core';
 import {
-  MatLegacyPaginatorModule as MatPaginatorModule,
-  MatLegacyPaginator as MatPaginator,
-  LegacyPageEvent as PageEvent
-} from '@angular/material/legacy-paginator';
+  MatPaginatorModule,
+  MatPaginator,
+  PageEvent
+} from '@angular/material/paginator';
 import { ActivatedRoute, Router } from '@angular/router';
 import { combineLatest, map } from 'rxjs';
 import { NgxEditorjsModule } from '@tmdjr/ngx-editorjs';
@@ -54,7 +54,7 @@ const safeParse = (json: string) => {
     .workshop-viewer-container {
       display: block;
       padding: 20px 60px;
-      .mat-card {
+      .mat-mdc-card {
         max-width: 650px;
         padding: 16px 56px 36px 56px;
       }

@@ -3,8 +3,8 @@
 @use './assets/styles/general';
 @use './assets/styles/custom-themes/synthwave';
 
-@include mat.all-legacy-component-typographies();
-@include mat.legacy-core();
+@include mat.all-component-typographies();
+@include mat.core();
 
 // Define the light theme.
 // $primary: mat.define-palette(mat.$indigo-palette);

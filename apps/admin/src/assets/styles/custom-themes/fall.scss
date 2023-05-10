@@ -43,7 +43,7 @@ $dark-fall-theme: mat.define-dark-theme((
   typography: mat.define-typography-config(),
 ));
 
-@include mat.all-legacy-component-themes($dark-fall-theme);
+@include mat.all-component-themes($dark-fall-theme);
 @include app-theme.theme($dark-fall-theme);
 
 
@@ -51,7 +51,7 @@ $dark-fall-theme: mat.define-dark-theme((
   background-color: #4E3732;
 }
 
-.mat-card, .mat-dialog-container  {
+.mat-mdc-card, .mat-mdc-dialog-container  {
   background-color: #3E2723;
 }
 

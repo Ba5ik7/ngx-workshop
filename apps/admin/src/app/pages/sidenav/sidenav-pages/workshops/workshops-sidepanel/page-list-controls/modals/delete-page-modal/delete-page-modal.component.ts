@@ -1,15 +1,15 @@
 import { ChangeDetectionStrategy, Component, inject, Inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { MatLegacyDialogRef as MatDialogRef, MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA } from '@angular/material/legacy-dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { BehaviorSubject, combineLatest, map, mergeMap, switchMap, take, takeUntil, tap } from 'rxjs';
 import { WorkshopDocument } from '../../../../../../../../shared/interfaces/navigation.interface';
 import { NavigationService } from '../../../../../../../../shared/services/navigation/navigation.service';
 import { MatchStringValidator } from '../../../../../../../../shared/validators/match-string.validator';
 import { KeyValue, WorkshopEditorService } from '../../../../../../../../shared/services/workshops/workshops.service';
-import { MatLegacyFormFieldModule as MatFormFieldModule } from '@angular/material/legacy-form-field';
-import { MatLegacyDialogModule as MatDialogModule } from '@angular/material/legacy-dialog';
-import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
-import { MatLegacyInputModule as MatInputModule } from '@angular/material/legacy-input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
 import { CommonModule } from '@angular/common';
 
 @Component({

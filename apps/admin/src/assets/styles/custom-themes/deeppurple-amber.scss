@@ -12,5 +12,5 @@ $theme: mat.define-light-theme((
   typography: mat.define-typography-config(),
 ));
 
-@include mat.all-legacy-component-themes($theme);
+@include mat.all-component-themes($theme);
 @include app-theme.theme($theme);

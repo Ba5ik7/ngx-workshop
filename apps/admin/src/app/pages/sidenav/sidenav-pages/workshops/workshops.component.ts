@@ -3,7 +3,7 @@ import { Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { combineLatest, map } from 'rxjs';
 import { NavigationService } from '../../../../shared/services/navigation/navigation.service';
-import { MatLegacySnackBarModule as MatSnackBarModule } from '@angular/material/legacy-snack-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { PageListComponent } from './workshops-sidepanel/page-list-controls/page-list.component';
 import { WorkshopListComponent } from './workshops-sidepanel/workshop-list-controls/workshop-list.component';
 

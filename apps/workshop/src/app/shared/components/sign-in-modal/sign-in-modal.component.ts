@@ -10,13 +10,13 @@ import {
   ViewChild
 } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
-import { MatLegacyDialogRef as MatDialogRef } from '@angular/material/legacy-dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogRef } from '@angular/material/dialog';
 import {
-  MatLegacyFormFieldModule as MatFormFieldModule,
-  MAT_LEGACY_FORM_FIELD_DEFAULT_OPTIONS as MAT_FORM_FIELD_DEFAULT_OPTIONS
-} from '@angular/material/legacy-form-field';
-import { MatLegacyInputModule as MatInputModule } from '@angular/material/legacy-input';
+  MatFormFieldModule,
+  MAT_FORM_FIELD_DEFAULT_OPTIONS
+} from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { Subject, takeUntil } from 'rxjs';
 import { UserStateService } from '../../services/user-state/user-state.service';
 import { MatchPasswordValidator } from '../../validators/match-passwords.validator';

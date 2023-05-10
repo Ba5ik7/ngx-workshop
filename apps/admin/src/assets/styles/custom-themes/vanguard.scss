@@ -44,7 +44,7 @@ $vanguard-theme: mat.define-dark-theme((
   typography: mat.define-typography-config(),
 ));
 
-@include mat.all-legacy-component-themes($vanguard-theme);
+@include mat.all-component-themes($vanguard-theme);
 @include app-theme.theme($vanguard-theme);
 
 
@@ -52,7 +52,7 @@ $vanguard-theme: mat.define-dark-theme((
   background-color: #2C3E50;
 }
 
-.mat-card, .mat-dialog-container  {
+.mat-mdc-card, .mat-mdc-dialog-container  {
   background-color: #4A5B6D;
 }
 

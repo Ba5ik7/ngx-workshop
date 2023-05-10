@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
+import { MatDialog } from '@angular/material/dialog';
 
 import { CreateSectionModalComponent } from './modals/create-section/create-section.component';
 import { DeleteSectionModalComponent } from './modals/delete-section/delete-section-modal.component';
@@ -7,10 +7,10 @@ import { DeleteSectionModalComponent } from './modals/delete-section/delete-sect
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
-import { MatLegacyListModule as MatListModule } from '@angular/material/legacy-list';
-import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
+import { MatListModule } from '@angular/material/list';
+import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
-import { MatLegacyDialogModule as MatDialogModule } from '@angular/material/legacy-dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { Sections } from '../../../shared/interfaces/navigation.interface';
 @Component({
   standalone: true,

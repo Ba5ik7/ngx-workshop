@@ -75,7 +75,7 @@ $synth84-theme: mat.define-dark-theme((
   typography: mat.define-typography-config(),
 ));
 
-@include mat.all-legacy-component-themes($synth84-theme);
+@include mat.all-component-themes($synth84-theme);
 @include app-theme.theme($synth84-theme);
 
 
@@ -84,7 +84,7 @@ $synth84-theme: mat.define-dark-theme((
   background-color: #2B213A;
 }
 
-.mat-card, .mat-dialog-container {
+.mat-mdc-card, .mat-mdc-dialog-container {
   background-color: #4C3B64;
 }
 

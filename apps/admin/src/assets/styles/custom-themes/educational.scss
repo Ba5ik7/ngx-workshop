@@ -12,7 +12,7 @@ $edu-theme: mat.define-dark-theme((
   typography: mat.define-typography-config(),
 ));
 
-@include mat.all-legacy-component-themes($edu-theme);
+@include mat.all-component-themes($edu-theme);
 @include app-theme.theme($edu-theme);
 
 
@@ -20,7 +20,7 @@ $edu-theme: mat.define-dark-theme((
   background-color: #4527A0;
 }
 
-.mat-card, .mat-dialog-container  {
+.mat-mdc-card, .mat-mdc-dialog-container  {
   background-color: #512DA8;
 }
 
