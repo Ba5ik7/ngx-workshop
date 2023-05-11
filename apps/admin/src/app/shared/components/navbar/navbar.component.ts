@@ -34,9 +34,11 @@ import { ProfileFabComponent } from '../profile-fab/profile-fab.component';
       padding: 8px 16px;
     }
 
-    .workshop-logo {
+    mat-icon.workshop-logo {
+      font-size: 1.625rem;
+      width: 26px;
       height: 26px;
-      margin: 0 4px 3px 0;
+      /* margin: 0 4px 3px 0; */
       vertical-align: middle;
     }
   `],
