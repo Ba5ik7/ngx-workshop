@@ -20,21 +20,29 @@ import { Sections } from '../../../shared/interfaces/navigation.interface';
       <div class="workshop-menu-nav-content">
         <mat-nav-list>
           <a mat-list-item routerLink="dashboard" routerLinkActive="workshop-menu-nav-item-selected" class="section-item">
+            <span class="mat-list-item-content">  
             <mat-icon>dashboard</mat-icon>
-            Dashboard
+              Dashboard
+            </span>
           </a>
           <a mat-list-item routerLink="users" routerLinkActive="workshop-menu-nav-item-selected" class="section-item">
-            <mat-icon>supervisor_account</mat-icon>
-            Users
+            <span class="mat-list-item-content">  
+              <mat-icon>supervisor_account</mat-icon>
+              Users
+            </span>
           </a>
           <a mat-list-item routerLink="chat" routerLinkActive="workshop-menu-nav-item-selected" class="section-item">
-            <mat-icon>chat</mat-icon>
-            Chat
+            <span class="mat-list-item-content">
+              <mat-icon>chat</mat-icon>
+              Chat
+            </span>
           </a>
           <mat-divider></mat-divider>
           <a mat-list-item (click)="createSection()" class="section-item">
-            <mat-icon class="create-icon" color="accent">note_add</mat-icon>
-            Create Section
+            <span class="mat-list-item-content">
+              <mat-icon class="create-icon" color="accent">note_add</mat-icon>
+              Create Section
+            </span>
           </a>
           <mat-divider></mat-divider>
           <a mat-list-item *ngFor="let section of sections | keyvalue"

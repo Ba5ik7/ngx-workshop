@@ -30,7 +30,7 @@
           color: color.adjust(
             mat.get-color-from-palette($accent, default),
             $lightness: if($is-dark-theme, 25%, 0%)
-          )!important;
+          );
         }
       }
     }

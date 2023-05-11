@@ -9,9 +9,13 @@
   <a mat-list-item routerLink="./workshop-list"
     class="category-item"
     routerLinkActive="workshop-menu-nav-item-selected">
+    <span class="mat-list-item-content">
+
+
     <mat-icon>view_module</mat-icon>
     Workshop List
-  </a>  
+    </span>
+  </a>
   <a mat-list-item cdkDrag *ngFor="let workshop of workshops"
     class="category-item"
     [cdkDragDisabled]="cdkDragDisabled"

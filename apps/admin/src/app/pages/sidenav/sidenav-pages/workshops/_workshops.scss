@@ -65,10 +65,12 @@
 
       &.workshop-menu-nav-item-selected {
         background: rgba(mat.get-color-from-palette($accent, default), 0.15);
-        color: color.adjust(
-          mat.get-color-from-palette($accent, default),
-          $lightness: if($is-dark-theme, 25%, 0%)
-        );
+        .mat-list-item-content {
+          color: color.adjust(
+            mat.get-color-from-palette($accent, default),
+            $lightness: if($is-dark-theme, 25%, 0%)
+          );
+        }
       }
     }
 
