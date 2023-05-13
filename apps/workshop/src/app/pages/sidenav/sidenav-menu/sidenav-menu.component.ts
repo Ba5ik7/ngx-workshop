@@ -48,10 +48,13 @@ export type SidenavMenuData = {
   `,
   styles: [`
     :host {
-      /* mat-icon {
+      .mat-icon {
         margin: 0 10px 3px 0;
         vertical-align: middle;
-      } */
+      }
+      .mdc-list {
+        padding: 0;
+      }
     }
   `],
   imports: [

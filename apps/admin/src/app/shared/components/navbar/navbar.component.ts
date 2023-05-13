@@ -16,7 +16,6 @@ import { ProfileFabComponent } from '../profile-fab/profile-fab.component';
         <span>Ngx-Admin</span>
       </a>
       <div class="flex-spacer"></div>
-      wesley
       <ngx-profile-fab *ngIf="userStateServices.signedIn$ | async"></ngx-profile-fab>
     </nav>
   `,
