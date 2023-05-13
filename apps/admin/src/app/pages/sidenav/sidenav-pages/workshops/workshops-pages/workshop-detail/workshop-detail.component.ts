@@ -11,6 +11,7 @@ import { WorkshopEditorService } from '../../../../../../shared/services/worksho
 import { NavigationService } from '../../../../../../shared/services/navigation/navigation.service';
 import { CommonModule } from '@angular/common';
 import { WorkshopDocument } from '../../../../../../shared/interfaces/navigation.interface';
+import { MatCardModule } from '@angular/material/card';
 
 
 const safeParse = (json: string) => {
@@ -47,13 +48,16 @@ const safeStringify = (value: unknown) => {
       <div class="workshop-detail-content">
         <div class="page">
           <section class="workshop-viewer-container">
-            <div class="workshop-detail-card mat-mdc-card">
-              <ngx-editorjs
-                [inputData]="vm.ngxEditorjsBlocks"
-                [requestValue]="requestValue"
-                (valueRequested)="vm.valueRequested($event)"
-              ></ngx-editorjs>
-            </div>
+            <mat-card
+              appearance="raised">
+              <div class="workshop-detail-card">
+                <ngx-editorjs
+                  [inputData]="vm.ngxEditorjsBlocks"
+                  [requestValue]="requestValue"
+                  (valueRequested)="vm.valueRequested($event)"
+                ></ngx-editorjs>
+              </div>
+            </mat-card>
           </section>
         </div>
       </div>
@@ -96,11 +100,11 @@ const safeStringify = (value: unknown) => {
       }
     }
   `],
-  encapsulation: ViewEncapsulation.None,
   imports: [
     CommonModule,
     NgxEditorjsModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatCardModule
   ]
 })
 export class WorkshopDetailComponent {
