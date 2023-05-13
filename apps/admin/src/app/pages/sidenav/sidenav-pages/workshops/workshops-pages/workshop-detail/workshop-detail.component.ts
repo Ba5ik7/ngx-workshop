@@ -47,7 +47,7 @@ const safeStringify = (value: unknown) => {
       <div class="workshop-detail-content">
         <div class="page">
           <section class="workshop-viewer-container">
-            <div class="mat-card">
+            <div class="workshop-detail-card mat-mdc-card">
               <ngx-editorjs
                 [inputData]="vm.ngxEditorjsBlocks"
                 [requestValue]="requestValue"
@@ -66,9 +66,15 @@ const safeStringify = (value: unknown) => {
     .workshop-viewer-container {
       display: block;
       padding: 20px 60px;
-      .mat-mdc-card {
+
+      .workshop-detail-card {
         max-width: 650px;
         padding: 16px 56px 36px 56px;
+        transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
+        display: block;
+        position: relative;
+        border-radius: 4px;
+        margin-bottom: 22px;
       }
       h1 {
         padding: 0.6em 0 3px
