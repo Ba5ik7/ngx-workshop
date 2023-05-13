@@ -1,4 +1,4 @@
-import { Component, inject, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, inject, ViewChild } from '@angular/core';
 import {
   MatPaginatorModule,
   MatPaginator,

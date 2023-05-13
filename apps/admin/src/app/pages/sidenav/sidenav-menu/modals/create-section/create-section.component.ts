@@ -14,7 +14,7 @@ import { Subject, takeUntil } from 'rxjs';
   template: `
     <div class="form-container">
       <h2 mat-dialog-title>Create a Section</h2>
-      <form [formGroup]="createSectionForm">
+      <form [formGroup]="createSectionForm" mat-dialog-content>
         <span class="form-level-error-message">{{createSectionFormLevelMessage}}</span>
         <mat-form-field color="accent">
           <mat-label>Title</mat-label>

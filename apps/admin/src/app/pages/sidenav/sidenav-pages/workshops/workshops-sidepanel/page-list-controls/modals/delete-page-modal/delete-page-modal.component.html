@@ -1,8 +1,7 @@
 <ng-container *ngIf="viewModel$ | async as vm; else elseTemplate">
   <div class="form-container">
-    <form [formGroup]="vm.formGroup">
-      <h2 mat-dialog-title>Delete {{data.workshopDocument.name}}?</h2>
-      <p class="warn">This action cannot be undone.</p>
+    <h2 mat-dialog-title>Delete {{data.workshopDocument.name}}?</h2>
+    <form [formGroup]="vm.formGroup" mat-dialog-content>
       <p>Type in the page name to continue.</p>
       <span class="form-level-error-message">{{vm.deletePageFormLevelMessage}}</span>
       <mat-form-field color="accent">

@@ -18,7 +18,9 @@ $theme: mat.define-light-theme((
   background-color: #fafafa;
 }
 
-.mat-mdc-card, .mat-mdc-dialog-container, .mat-mdc-card-outlined {
+.mat-mdc-card,
+.mat-mdc-card-outlined,
+mat-card.mat-mdc-card.mdc-card {
   background-color: #ffffff;
 }
 

@@ -19,7 +19,9 @@ $dark-summer-theme: mat.define-dark-theme((
   background-color: #2A3C48;
 }
 
-.mat-mdc-card, .mat-mdc-dialog-container, .mat-mdc-card-outlined {
+.mat-mdc-card,
+.mat-mdc-card-outlined,
+mat-card.mat-mdc-card.mdc-card {
   background-color: #1C313A;
 }
 

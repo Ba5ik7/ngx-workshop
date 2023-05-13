@@ -52,7 +52,9 @@ $vanguard-theme: mat.define-dark-theme((
   background-color: #2C3E50;
 }
 
-.mat-mdc-card, .mat-mdc-dialog-container, .mat-mdc-card-outlined {
+.mat-mdc-card,
+.mat-mdc-card-outlined,
+mat-card.mat-mdc-card.mdc-card {
   background-color: #4A5B6D;
 }
 

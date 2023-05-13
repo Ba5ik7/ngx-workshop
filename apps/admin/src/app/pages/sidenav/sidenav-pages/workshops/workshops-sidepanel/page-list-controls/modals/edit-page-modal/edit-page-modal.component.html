@@ -1,7 +1,7 @@
 <ng-container *ngIf="viewModel$ | async as vm; else elseTemplate">
   <div class="form-container">
-    <form [formGroup]="vm.formGroup">
-      <h2 mat-dialog-title>Edit {{data.workshopDocument.name}}?</h2>
+    <h2 mat-dialog-title>Edit {{data.workshopDocument.name}}?</h2>
+    <form [formGroup]="vm.formGroup" mat-dialog-content>
       <span class="form-level-error-message">{{vm.editPageFormLevelMessage}}</span>
       <mat-form-field color="accent">
         <mat-label>Name</mat-label>

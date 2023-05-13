@@ -8,7 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
   selector: 'ngx-delete-section-modal',
   template: `
     <h2 mat-dialog-title>Delete the {{data.navItem.name}} Section?</h2>
-    <h3 class="warn">This action cannot be undone.</h3>
+    <h3 class="warn" mat-dialog-content>This action cannot be undone.</h3>
     <mat-dialog-actions align="end">
       <button mat-button mat-dialog-close>Cancel</button>
       <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
