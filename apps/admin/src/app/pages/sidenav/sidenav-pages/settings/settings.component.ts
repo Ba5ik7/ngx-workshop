@@ -6,9 +6,9 @@ import { ThemePickerComponent } from '../../../../shared/components/theme-picker
   selector: 'ngx-settings',
   template: `
     <main class="wrapper">
-      <mat-card appearance="outlined" class="card-content">
-        <h2>Settings</h2>
+      <mat-card appearance="raised" class="card-content">
         <mat-card-content>
+          <h2>Settings</h2>
           <h3>Set theme: <ngx-theme-picker></ngx-theme-picker></h3>
         </mat-card-content>
       </mat-card>

@@ -1,7 +1,7 @@
 <ng-container *ngIf="viewModel$ | async as vm; else elseTemplate">
   <div class="form-container">
+    <h2 mat-dialog-title>Create a New Page?</h2>
     <form [formGroup]="vm.formGroup" mat-dialog-content>
-      <h2 mat-dialog-title>Create a New Page?</h2>
       <span class="form-level-error-message">{{vm.createPageFormLevelMessage}}</span>
       <mat-form-field color="accent">
         <mat-label>Name</mat-label>

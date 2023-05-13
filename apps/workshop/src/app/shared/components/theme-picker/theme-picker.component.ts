@@ -21,7 +21,7 @@ import { DomSanitizer } from '@angular/platform-browser';
   ],
   template: `
     <ng-container *ngIf="currentTheme$ | async as currentTheme">
-      <button mat-button [mat-menu-trigger-for]="themeMenu" [matTooltip]="matTooltipTest">
+      <button mat-icon-button [mat-menu-trigger-for]="themeMenu" [matTooltip]="matTooltipTest">
         <ng-container *ngIf="showText">{{ currentTheme | uppercase }}</ng-container>
         <mat-icon class="dropdown-icon">format_color_fill</mat-icon>
       </button>
