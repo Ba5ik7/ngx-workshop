@@ -31,12 +31,12 @@ import { Sections } from '../../../shared/interfaces/navigation.interface';
               Users
             </span>
           </a>
-          <a mat-list-item routerLink="chat" routerLinkActive="workshop-menu-nav-item-selected" class="section-item">
+          <!-- <a mat-list-item routerLink="chat" routerLinkActive="workshop-menu-nav-item-selected" class="section-item">
             <span class="mat-list-item-content">
               <mat-icon>chat</mat-icon>
               Chat
             </span>
-          </a>
+          </a> -->
           <mat-divider></mat-divider>
           <a mat-list-item (click)="createSection()" class="section-item">
             <span class="mat-list-item-content">

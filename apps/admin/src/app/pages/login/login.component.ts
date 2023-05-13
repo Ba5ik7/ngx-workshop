@@ -16,23 +16,28 @@ import { MatButtonModule } from '@angular/material/button';
   standalone: true,
   selector: 'ngx-login',
   template: `
-    <mat-card>
+    <mat-card
+    appearance="raised">
       <div class="form-container">
+        <mat-card-header>
+          <h3 mat-card-title>Sign In</h3>
+        </mat-card-header>
+        <mat-card-content>
         <form [formGroup]="signInForm">
-          <h3>Sign In</h3>
           <span class="form-level-error-message">{{signInFormLevelMessage}}</span>
-          <mat-form-field color="accent" appearance="outline">
+          <mat-form-field color="accent" appearance="fill">
             <mat-label>Email</mat-label>
             <input matInput #signInEmail type="email" placeholder="Email" formControlName="email">
             <mat-error *ngIf="signInForm.get('email')?.errors">{{signInFormErrorMessages['email']}}</mat-error>
           </mat-form-field>
-          <mat-form-field color="accent" appearance="outline">
+          <mat-form-field color="accent" appearance="fill"> 
             <mat-label>Password</mat-label>
             <input matInput type="password" placeholder="Password" formControlName="password">
             <mat-error *ngIf="signInForm.get('password')?.errors">{{signInFormErrorMessages['password']}}</mat-error>
           </mat-form-field>
           <button mat-raised-button color="accent" (click)="signInClick()" [disabled]="signInForm.invalid || formLoading">Sign In</button>
         </form>
+        </mat-card-content>
       </div>
     </mat-card>
   `,

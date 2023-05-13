@@ -49,14 +49,15 @@ const safeStringify = (value: unknown) => {
         <div class="page">
           <section class="workshop-viewer-container">
             <mat-card
+              class="workshop-detail-card"
               appearance="raised">
-              <div class="workshop-detail-card">
+
                 <ngx-editorjs
                   [inputData]="vm.ngxEditorjsBlocks"
                   [requestValue]="requestValue"
                   (valueRequested)="vm.valueRequested($event)"
                 ></ngx-editorjs>
-              </div>
+
             </mat-card>
           </section>
         </div>
@@ -72,8 +73,8 @@ const safeStringify = (value: unknown) => {
       padding: 20px 60px;
 
       .workshop-detail-card {
-        max-width: 650px;
-        padding: 16px 56px 36px 56px;
+        max-width: 750px;
+        padding: 16px 56px 36px;
         transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
         display: block;
         position: relative;
