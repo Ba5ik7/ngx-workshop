@@ -42,6 +42,7 @@ const safeStringify = (value: unknown) => {
         [showFirstLastButtons]="true"
         [hidePageSize]="true"
         [pageSize]="1"
+        [pageIndex]="vm.pageIndex"
         (page)="vm.pageEventChange($event)"
         aria-label="Select page">
       </mat-paginator>
