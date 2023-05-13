@@ -15,7 +15,7 @@ import { ThemePickerComponent } from '../theme-picker/theme-picker.component';
   template: `
     <ng-container *ngIf="viewModel$ | async as mv; else loading">
       <nav class="navbar-header mat-elevation-z6">
-        <a mat-button routerLink="/" class="docs-navbar--workshop-logo">
+        <a mat-button routerLink="/">
           <mat-icon class="workshop-logo">tips_and_updates</mat-icon>
           <span>Ngx-Workshop</span>
         </a>
@@ -23,7 +23,7 @@ import { ThemePickerComponent } from '../theme-picker/theme-picker.component';
             *ngFor="let section of mv.sections | keyvalue;"
             [routerLink]="'/sidenav/workshops/' + section.key"
             routerLinkActive="navbar-menu-item-selected">
-          <img class="workshop-logo" [src]="section.value.menuSvgPath">
+          <img mat-fab-image class="section-logo" [src]="section.value.menuSvgPath">
           <span>{{section.value.sectionTitle}}</span>
         </a>
         <div class="flex-spacer"></div>
@@ -40,7 +40,7 @@ import { ThemePickerComponent } from '../theme-picker/theme-picker.component';
             *ngFor="let section of mv.sections | keyvalue;"
             [routerLink]="'/sidenav/workshops/' +section.key"
             routerLinkActive="navbar-menu-item-selected">
-            <img class="workshop-logo" [src]="section.value.menuSvgPath">
+            <img mat-fab-image class="section-logo" [src]="section.value.menuSvgPath">
           <span>{{section.value.sectionTitle}}</span>
         </a>
       </nav>
@@ -61,12 +61,19 @@ import { ThemePickerComponent } from '../theme-picker/theme-picker.component';
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      padding: 8px 16px;
+      padding: 4px 16px;
     }
 
-    .workshop-logo {
+    mat-icon.workshop-logo {
+      font-size: 1.625rem;
+      width: 26px;
       height: 26px;
-      margin: 0 4px 3px 0;
+      vertical-align: middle;
+    }
+    .section-logo {
+      width: 24px;
+      height: 24px;
+      margin: 0 8px 4px 0;
       vertical-align: middle;
     }
     .docs-navbar { display: none; }
@@ -80,9 +87,6 @@ import { ThemePickerComponent } from '../theme-picker/theme-picker.component';
       }
       .docs-navbar {
         display: flex;
-      }
-      .docs-navbar--workshop-logo {
-        padding: 0;
       }
     }
 

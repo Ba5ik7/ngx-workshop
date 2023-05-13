@@ -16,7 +16,6 @@ import { ThemePickerService } from './shared/services/theme-picker/theme-picker.
       display: flex;
       flex-direction: column;
       height: 100vh;
-
       & > ngx-sidenav { flex: 1; }
       & > router-outlet + .main-content,
       & > router-outlet + ngx-sidenav {
