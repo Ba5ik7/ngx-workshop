@@ -31,7 +31,7 @@ import { ProfileFabComponent } from '../profile-fab/profile-fab.component';
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      padding: 8px 16px;
+      padding: 4px 16px;
     }
 
     mat-icon.workshop-logo {
