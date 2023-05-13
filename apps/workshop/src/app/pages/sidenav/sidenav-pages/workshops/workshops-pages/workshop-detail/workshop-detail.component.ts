@@ -11,6 +11,7 @@ import { NavigationService } from '../../../../../../shared/services/navigation/
 import { CommonModule } from '@angular/common';
 import { WorkshopDocument } from '../../../../../../shared/interfaces/navigation.interface';
 import { NgxEditorjsClientModule } from '@tmdjr/ngx-editorjs-client';
+import { MatCardModule } from '@angular/material/card';
 
 
 const safeParse = (json: string) => {
@@ -39,9 +40,11 @@ const safeParse = (json: string) => {
       <div class="workshop-detail-content">
         <div class="page">
           <section class="workshop-viewer-container">
-          <div class="mat-card">
-            <ngx-editorjs-client [inputData]="vm.ngxEditorjsBlocks"></ngx-editorjs-client>
-          </div>
+            <mat-card
+              class="workshop-detail-card"
+              appearance="raised">
+              <ngx-editorjs-client [inputData]="vm.ngxEditorjsBlocks"></ngx-editorjs-client>
+            </mat-card>
           </section>
         </div>
       </div>
@@ -54,9 +57,14 @@ const safeParse = (json: string) => {
     .workshop-viewer-container {
       display: block;
       padding: 20px 60px;
-      .mat-mdc-card {
-        max-width: 650px;
-        padding: 16px 56px 36px 56px;
+      .workshop-detail-card {
+        max-width: 750px;
+        padding: 16px 56px 36px;
+        transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
+        display: block;
+        position: relative;
+        border-radius: 4px;
+        margin-bottom: 22px;
       }
       h1 {
         padding: 0.6em 0 3px
@@ -83,6 +91,7 @@ const safeParse = (json: string) => {
     CommonModule,
     NgxEditorjsModule,
     MatPaginatorModule,
+    MatCardModule,
     NgxEditorjsClientModule
   ]
 })
