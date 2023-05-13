@@ -49,6 +49,8 @@ export interface WorkshopDocument {
   sortId: number,
   // Display name of the workshop-document.
   name: string,
+  // EXAM or PAGE
+  pageType: string,
   // Last time the workshop-document was updated.
   lastUpdated: Date,
   // HTML content of the workshop-document.

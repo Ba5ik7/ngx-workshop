@@ -14,6 +14,9 @@ export class WorkshopDocument {
   @Prop({ default: () => 0 })
   sortId: number;
 
+  @Prop({ default: () => 'PAGE' })
+  pageType: string;
+
   @Prop({ default: () => Date.now() })
   lastUpdated: Date;
 

@@ -40,8 +40,8 @@ export class CreatePageModalComponent {
   private formBuilder = inject(FormBuilder);
 
   pageTypes: PageType[] = [
-    { value: 'workshop-page', viewValue: 'Workshop Page' },
-    { value: 'workshop-exam', viewValue: 'Workshop Exam' },
+    { value: 'PAGE', viewValue: 'Workshop Page' },
+    { value: 'EXAM', viewValue: 'Workshop Exam' },
   ];
   
   createPageFormLevelMessage$ = new BehaviorSubject<string | undefined>(undefined);
@@ -61,7 +61,7 @@ export class CreatePageModalComponent {
         workshopId:[workshop?._id],
         sortId:[workshop?.workshopDocuments?.length],
         name: ['', [Validators.required]],
-        pageType: ['workshop-page', [Validators.required]],
+        pageType: ['PAGE', [Validators.required]],
       })
     })
   );

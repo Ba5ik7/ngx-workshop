@@ -51,7 +51,7 @@ const safeStringify = (value: unknown) => {
             <mat-card
               class="workshop-detail-card"
               appearance="raised">
-
+                {{ vm.isExam ? 'Exam' : 'Page' }}
                 <ngx-editorjs
                   [inputData]="vm.ngxEditorjsBlocks"
                   [requestValue]="requestValue"
@@ -132,6 +132,7 @@ export class WorkshopDetailComponent {
         ngxEditorjsBlocks: safeParse(document.html),
         hasMoreThanOneDocument: documents.length > 1,
         workshopDocumentsLength: documents.length,
+        isExam: document.pageType === 'EXAM',
         pageIndex: documents.findIndex((workshopDocument) => workshopDocument._id === document._id),
         pageEventChange: ({ pageIndex }: PageEvent) => {
           this.router.navigate(['../', documents[pageIndex]._id], { relativeTo: this.activatedRoute });
