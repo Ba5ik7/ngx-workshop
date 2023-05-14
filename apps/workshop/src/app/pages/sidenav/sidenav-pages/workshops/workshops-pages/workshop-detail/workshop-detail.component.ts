@@ -32,6 +32,24 @@ export class RouterAnimations {
         ])
       ]),
     ]);
+
+  static routeCubeRotation =
+    trigger('routeCubeRotation', [
+      transition('* <=> *', [
+        group([
+          query(':enter', [
+            style({transform: 'translateX({{offsetEnter}}%) rotateY(-90deg)', transformOrigin: 'left', position: 'absolute', width: '100%'}),
+            animate('0.4s ease-in-out', style({transform: 'translateX(0%) rotateY(0deg)'})),
+            style({position: 'relative' }),
+          ], {optional: true}),
+          query(':leave', [
+            style({transform: 'translateX(0%) rotateY(0deg)', transformOrigin: 'right', position: 'absolute', width: '100%'}),
+            animate('0.4s ease-in-out', style({transform: 'translateX({{offsetLeave}}%) rotateY(90deg)'})),
+            style({position: 'relative' }),
+          ], {optional: true}),
+        ])
+      ]),
+    ]);
 }
 
 
@@ -106,7 +124,7 @@ export class WorkshopDetailComponent {
 @Component({
   standalone: true,
   selector: 'ngx-workshop-detail-animation',
-  animations: [ RouterAnimations.routeSlide ],
+  animations: [ RouterAnimations.routeSlide, RouterAnimations.routeCubeRotation ],
   imports: [
     RouterModule,
     CommonModule,
@@ -126,7 +144,7 @@ export class WorkshopDetailComponent {
         (page)="vm.pageEventChange($event)"
         aria-label="Select page">
       </mat-paginator>
-      <div [@routeSlide]="routeTrigger$ | async" class="container">
+      <div [@routeCubeRotation]="routeTrigger$ | async" class="container">
         <router-outlet></router-outlet>
       </div>
     </ng-container>
@@ -137,6 +155,7 @@ export class WorkshopDetailComponent {
   styles: [`
     .container {
       position: relative;
+      perspective: 2500px;
       overflow: hidden;
       width: 100%;
       height: 100%;
