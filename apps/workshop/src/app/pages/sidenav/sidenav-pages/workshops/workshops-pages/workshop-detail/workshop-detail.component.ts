@@ -20,12 +20,14 @@ export class RouterAnimations {
       transition('* <=> *', [
         group([
           query(':enter', [
-            style({transform: 'translateX({{offsetEnter}}%)'}),
-            animate('0.4s ease-in-out', style({transform: 'translateX(0%)'}))
+            style({transform: 'translateX({{offsetEnter}}%)', position: 'absolute', width: '100%'}),
+            animate('0.4s ease-in-out', style({transform: 'translateX(0%)'})),
+            style({position: 'relative' }),
           ], {optional: true}),
           query(':leave', [
-            style({transform: 'translateX(0%)'}),
-            animate('0.4s ease-in-out', style({transform: 'translateX({{offsetLeave}}%)'}))
+            style({transform: 'translateX(0%)', position: 'absolute', width: '100%'}),
+            animate('0.4s ease-in-out', style({transform: 'translateX({{offsetLeave}}%)'})),
+            style({position: 'relative' }),
           ], {optional: true}),
         ])
       ]),
@@ -69,29 +71,16 @@ const safeParse = (json: string) => {
     </ng-template>
   `,
   styles: [`
-    :host {
-      display: block;
-    }
+    :host { display: block; }
     .workshop-viewer-container {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      display: block;
       padding: 20px 60px;
       .workshop-detail-card {
-        max-width: 750px;
-        padding: 16px 56px 36px;
-        transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
         display: block;
         position: relative;
+        max-width: 750px;
+        padding: 16px 56px 36px;
         border-radius: 4px;
         margin-bottom: 22px;
-      }
-      h1 {
-        padding: 0.6em 0 3px
-      }
-      p {
-        line-height: 1.6em;
       }
     }
   `]
@@ -147,10 +136,10 @@ export class WorkshopDetailComponent {
   `,
   styles: [`
     .container {
+      position: relative;
       overflow: hidden;
       width: 100%;
       height: 100%;
-      position: relative;
     }
     .paginator {
       position: sticky;
