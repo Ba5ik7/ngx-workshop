@@ -172,8 +172,8 @@ export class WorkshopDetailAnimationComponent {
       map(([prev, curr]) => ({
         value: curr,
         params: {
-          offsetEnter: prev > curr ? 100 : -100,
-          offsetLeave: prev > curr ? -100 : 100
+          offsetEnter: prev > curr ? -100 : 100,
+          offsetLeave: prev > curr ? 100 : -100
         }
       })),
     );
