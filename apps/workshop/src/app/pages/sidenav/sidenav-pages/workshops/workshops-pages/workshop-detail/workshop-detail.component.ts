@@ -5,7 +5,7 @@ import {
   PageEvent
 } from '@angular/material/paginator';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { combineLatest, map } from 'rxjs';
+import { BehaviorSubject, combineLatest, map, pairwise, startWith, Subject, tap } from 'rxjs';
 import { NgxEditorjsModule } from '@tmdjr/ngx-editorjs';
 import { NavigationService } from '../../../../../../shared/services/navigation/navigation.service';
 import { CommonModule } from '@angular/common';
@@ -17,15 +17,15 @@ import { trigger, transition, group, query, style, animate } from '@angular/anim
 export class RouterAnimations {
   static routeSlide =
     trigger('routeSlide', [
-      transition('* => *', [
+      transition('* <=> *', [
         group([
           query(':enter', [
-            style({transform: 'translateX(100%)'}),
-            animate('.4s ease-in-out', style({transform: 'translateX(0%)'}))
+            style({transform: 'translateX({{offsetEnter}}%)'}),
+            animate('0.4s ease-in-out', style({transform: 'translateX(0%)'}))
           ], {optional: true}),
           query(':leave', [
             style({transform: 'translateX(0%)'}),
-            animate('.4s ease-in-out', style({transform: 'translateX(-100%)'}))
+            animate('0.4s ease-in-out', style({transform: 'translateX({{offsetLeave}}%)'}))
           ], {optional: true}),
         ])
       ]),
@@ -137,7 +137,7 @@ export class WorkshopDetailComponent {
         (page)="vm.pageEventChange($event)"
         aria-label="Select page">
       </mat-paginator>
-      <div [@routeSlide]="vm.document" class="container">
+      <div [@routeSlide]="routeTrigger$ | async" class="container">
         <router-outlet></router-outlet>
       </div>
     </ng-container>
@@ -164,6 +164,19 @@ export class WorkshopDetailAnimationComponent {
 
   private router = inject(Router);
   private activatedRoute = inject(ActivatedRoute);
+  routeTrigger = new BehaviorSubject<number>(0);
+  routeTrigger$ = this.routeTrigger.asObservable()
+    .pipe(
+      startWith(0),
+      pairwise(),
+      map(([prev, curr]) => ({
+        value: curr,
+        params: {
+          offsetEnter: prev > curr ? 100 : -100,
+          offsetLeave: prev > curr ? -100 : 100
+        }
+      })),
+    );
 
   viewModel = combineLatest([
     inject(NavigationService).getWorkshopDocument(),
@@ -185,6 +198,7 @@ export class WorkshopDetailAnimationComponent {
           this.router.navigate(['./', documents[pageIndex]._id], { relativeTo: this.activatedRoute });
         }
       };
-    })
+    }),
+    tap(({ pageIndex }) => this.routeTrigger.next(pageIndex))
   );
 }
