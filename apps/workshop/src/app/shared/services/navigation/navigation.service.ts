@@ -94,6 +94,11 @@ export class NavigationService {
   navigateToDocument(workshopDocumentId: string) {
     return this.http
     .get<WorkshopDocument>(`/api/workshop/${workshopDocumentId}`)
+    .pipe(
+      tap((workshopDocument) => {
+        this.workshopDocument$.next(workshopDocument);
+      }
+    ));
   }
 
   getSections() {

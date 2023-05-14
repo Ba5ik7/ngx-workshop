@@ -5,10 +5,11 @@ import {
   Routes
 } from '@angular/router';
 import { NavigationService } from './shared/services/navigation/navigation.service';
-import { inject } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { UserStateService } from './shared/services/user-state/user-state.service';
 import { ThemePickerService } from './shared/services/theme-picker/theme-picker.service';
 
+@Injectable({ providedIn: 'root' })
 export class WorkshopReuseStrategy extends RouteReuseStrategy {
   retrieve(): DetachedRouteHandle | null { return null; }
   shouldAttach(): boolean { return false; }
