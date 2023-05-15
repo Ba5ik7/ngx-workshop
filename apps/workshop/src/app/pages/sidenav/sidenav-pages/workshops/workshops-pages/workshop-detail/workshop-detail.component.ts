@@ -20,12 +20,12 @@ export class RouterAnimations {
       transition('* <=> *', [
         group([
           query(':enter', [
-            style({transform: 'translateX({{offsetEnter}}%)', position: 'absolute', width: '100%'}),
+            style({transform: 'translateX({{offsetEnter}}%)', width: '100%'}),
             animate('0.4s ease-in-out', style({transform: 'translateX(0%)'})),
             style({position: 'relative' }),
           ], {optional: true}),
           query(':leave', [
-            style({transform: 'translateX(0%)', position: 'absolute', width: '100%'}),
+            style({transform: 'translateX(0%)', width: '100%'}),
             animate('0.4s ease-in-out', style({transform: 'translateX({{offsetLeave}}%)'})),
             style({position: 'relative' }),
           ], {optional: true}),
@@ -154,7 +154,7 @@ export class WorkshopDetailComponent {
   `,
   styles: [`
     .container {
-      position: relative;
+      /* position: relative; */
       perspective: 2500px;
       overflow: hidden;
       width: 100%;
