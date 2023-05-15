@@ -5,7 +5,7 @@ import {
   PageEvent
 } from '@angular/material/paginator';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { BehaviorSubject, combineLatest, map, pairwise, startWith, Subject, tap } from 'rxjs';
+import { BehaviorSubject, combineLatest, map, pairwise, startWith, tap } from 'rxjs';
 import { NgxEditorjsModule } from '@tmdjr/ngx-editorjs';
 import { NavigationService } from '../../../../../../shared/services/navigation/navigation.service';
 import { CommonModule } from '@angular/common';
