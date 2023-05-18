@@ -41,7 +41,7 @@ export class NavigationService {
         newWorkshop._id,
         {
           workshopDocuments: [
-            { _id: workshopDocument._id, name: workshopDocument.name, sortId: workshop.sortId },
+            { _id: workshopDocument._id.toString(), name: workshopDocument.name, sortId: workshop.sortId },
           ],
           workshopDocumentsLastUpdated: Date.now(),
         },
