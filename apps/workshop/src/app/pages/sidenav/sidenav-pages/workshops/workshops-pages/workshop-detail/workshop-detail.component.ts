@@ -92,6 +92,9 @@ const safeParse = (json: string) => {
     :host { display: block; }
     .workshop-viewer-container {
       padding: 20px 60px;
+      @media (max-width: 720px) {
+        padding: 15px 10px;
+      }
       .workshop-detail-card {
         display: block;
         position: relative;
@@ -99,6 +102,9 @@ const safeParse = (json: string) => {
         padding: 16px 56px 36px;
         border-radius: 4px;
         margin-bottom: 22px;
+        @media (max-width: 720px) {
+          padding: 15px;
+        }
       }
     }
   `]
@@ -164,6 +170,9 @@ export class WorkshopDetailComponent {
       position: sticky;
       top: 0;
       z-index: 2;
+    }
+    ::ng-deep .mat-mdc-paginator-container {
+      min-height: 48px;
     }
   `]
 })

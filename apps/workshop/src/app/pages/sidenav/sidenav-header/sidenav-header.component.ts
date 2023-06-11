@@ -34,6 +34,7 @@ export type SidenavHeaderData = {
           height: 64px;
           width: 64px;
           line-height: 64px;
+          margin: 0;
         }
       }
       h1 {
@@ -42,12 +43,16 @@ export type SidenavHeaderData = {
         padding: 28px 8px;
         @media (max-width: 959px) {
           padding: 24px 8px;
-          font-size: 20px;
+          font-size: 18px;
         }
       }
       img {
         width: 50px;
         margin: 0 10px;
+        @media (max-width: 959px) {
+          width: 35px;
+          margin: 0;
+        }
       }
     }
   `],

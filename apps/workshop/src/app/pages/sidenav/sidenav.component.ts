@@ -29,7 +29,7 @@ const SMALL_WIDTH_BREAKPOINT = 959;
       </mat-sidenav>
         <ngx-sidenav-header [sidenavHeaderData]="vm.sidenavHeaderData" (toggleSideNav)="sidenav.toggle()"></ngx-sidenav-header>
         <main class="sidenav-body-content">
-          <ngx-sidenav-menu *ngIf="(vm.isScreenSmall) === false" [vm]="vm.sidenavMenuData"></ngx-sidenav-menu>
+          <ngx-sidenav-menu *ngIf="vm.isScreenSmall === false" [vm]="vm.sidenavMenuData"></ngx-sidenav-menu>
           <router-outlet></router-outlet>
         </main>
         <ngx-footer></ngx-footer>
@@ -48,11 +48,11 @@ const SMALL_WIDTH_BREAKPOINT = 959;
     .sidenav-body-content {
       display: flex;
       flex: 1 1 auto;
+      @media (max-width: 959px) {
+        min-height: 100vh;
+      }
     }
     .sidenav-toggle {
-      padding: 0;
-      margin: 8px;
-      min-width: 64px;
       display: none;
       @media (max-width: 959px) {
         display: flex;
