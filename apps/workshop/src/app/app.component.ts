@@ -27,6 +27,12 @@ import { NavbarComponent } from './shared/components/navbar/navbar.component';
         overflow-y: auto;
         -webkit-overflow-scrolling: touch;
       }
+      @media (max-width: 720px) {
+          & > router-outlet + .main-content,
+          & > router-outlet + ngx-sidenav {
+          margin-top: 92px;
+        }
+      }
     }
   `],
   encapsulation: ViewEncapsulation.None,

@@ -87,6 +87,7 @@ import { ThemePickerComponent } from '../theme-picker/theme-picker.component';
       }
       .docs-navbar {
         display: flex;
+        justify-content: space-around;
       }
     }
 
