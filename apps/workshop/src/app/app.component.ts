@@ -23,7 +23,8 @@ import { NavbarComponent } from './shared/components/navbar/navbar.component';
       & > ngx-sidenav { flex: 1; }
       & > router-outlet + .main-content,
       & > router-outlet + ngx-sidenav {
-        margin-top: 56px;
+        // margin-top: 56px;
+        margin-left: 110px;
         overflow-y: auto;
         -webkit-overflow-scrolling: touch;
       }

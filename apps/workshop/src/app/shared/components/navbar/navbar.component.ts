@@ -15,34 +15,34 @@ import { ThemePickerComponent } from '../theme-picker/theme-picker.component';
   template: `
     <ng-container *ngIf="viewModel$ | async as mv; else loading">
       <nav class="navbar-header mat-elevation-z6">
-        <a mat-button routerLink="/">
+        <button type="button" routerLink="/">
           <mat-icon class="workshop-logo">tips_and_updates</mat-icon>
-          <span>Ngx-Workshop</span>
-        </a>
-        <a mat-button class="docs-navbar-hide-small docs-button"
+          <p>Ngx-Workshop</p>
+        </button>
+        <button type="button" class="docs-navbar-hide-small docs-button"
             *ngFor="let section of mv.sections | keyvalue;"
             [routerLink]="'/sidenav/workshops/' + section.key"
             routerLinkActive="navbar-menu-item-selected">
           <img mat-fab-image class="section-logo" [src]="section.value.menuSvgPath">
-          <span>{{section.value.sectionTitle}}</span>
-        </a>
+          <p>{{section.value.sectionTitle}}</p>
+        </button>
         <div class="flex-spacer"></div>
         <ng-container *ngIf="mv.signedIn; else authentication">
           <ngx-profile-fab></ngx-profile-fab>
         </ng-container>
         <ng-template #authentication>
           <ngx-theme-picker></ngx-theme-picker>
-          <a mat-button (click)="mv.openDialog()">Sign In</a>
+          <button type="button" (click)="mv.openDialog()">Sign In</button>
         </ng-template>
       </nav>
       <nav class="docs-navbar docs-navbar-show-small" aria-label="Section Nav Bar">
-        <a mat-button class="docs-navbar-link"
+        <button type="button" class="docs-navbar-link"
             *ngFor="let section of mv.sections | keyvalue;"
             [routerLink]="'/sidenav/workshops/' +section.key"
             routerLinkActive="navbar-menu-item-selected">
             <img mat-fab-image class="section-logo" [src]="section.value.menuSvgPath">
-          <span>{{section.value.sectionTitle}}</span>
-        </a>
+          <p>{{section.value.sectionTitle}}</p>
+        </button>
       </nav>
     </ng-container>
     <ng-template #loading>
@@ -52,16 +52,39 @@ import { ThemePickerComponent } from '../theme-picker/theme-picker.component';
   styles: [`
     :host {
       position: fixed;
+      width: 110px; // NEW
       left: 0;
       right: 0;
       z-index: 2;
+
+      button {
+        display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: .75rem;
+    padding-block: 1.25rem;
+    text-decoration: none;
+    fill: var(--quaternary-contrast);
+    color: inherit;
+    cursor: pointer;
+    transition: fill .3s ease;
+    background: transparent;
+    -webkit-appearance: none;
+    border: 0;
+      }
     }
 
     .navbar-header {
+      // display: flex;
+      // flex-wrap: wrap;
+      // align-items: center;
+      // padding: 4px 16px;
       display: flex;
+      height: 100svh;
       flex-wrap: wrap;
       align-items: center;
-      padding: 4px 16px;
+      flex-direction: column;
     }
 
     mat-icon.workshop-logo {
