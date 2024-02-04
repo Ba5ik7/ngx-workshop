@@ -7,22 +7,15 @@
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/workshop",
         "index": "apps/workshop/src/index.html",
         "main": "apps/workshop/src/main.ts",
-        "polyfills": [
-          "zone.js"
-        ],
+        "polyfills": ["zone.js"],
         "tsConfig": "apps/workshop/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
-        "assets": [
-          "apps/workshop/src/favicon.ico",
-          "apps/workshop/src/assets"
-        ],
+        "assets": ["apps/workshop/src/favicon.ico", "apps/workshop/src/assets"],
         "styles": [
           {
             "input": "apps/workshop/src/styles.scss"
@@ -126,10 +119,10 @@
       "executor": "@angular-devkit/build-angular:dev-server",
       "configurations": {
         "production": {
-          "browserTarget": "workshop:build:production"
+          "buildTarget": "workshop:build:production"
         },
         "development": {
-          "browserTarget": "workshop:build:development"
+          "buildTarget": "workshop:build:development"
         }
       },
       "defaultConfiguration": "development"
@@ -137,35 +130,18 @@
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
       "options": {
-        "browserTarget": "workshop:build"
+        "buildTarget": "workshop:build"
       }
     },
     "lint": {
-      "executor": "@nrwl/linter:eslint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
-      "options": {
-        "lintFilePatterns": [
-          "apps/workshop/**/*.ts",
-          "apps/workshop/**/*.html"
-        ]
-      }
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
     },
     "test": {
-      "executor": "@nrwl/jest:jest",
-      "outputs": [
-        "{workspaceRoot}/coverage/{projectRoot}"
-      ],
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "apps/workshop/jest.config.ts",
-        "passWithNoTests": true
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
+        "jestConfig": "apps/workshop/jest.config.ts"
       }
     }
   },
