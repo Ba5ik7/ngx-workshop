@@ -65,7 +65,7 @@ const SMALL_WIDTH_BREAKPOINT = 959;
       top: 0;
       .workshop-menu-nav-content {
         width: 240px;
-        height: calc(100vh - 56px);
+        height: 100svh;
         overflow: auto;
 
         &::-webkit-scrollbar {

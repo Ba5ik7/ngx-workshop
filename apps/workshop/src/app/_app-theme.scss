@@ -8,6 +8,7 @@
 @use './pages/not-found/not-found-theme';
 @use './pages/home/home-theme';
 @use './pages/sidenav/sidenav';
+@use './pages/sidenav/sidenav-pages/workshops/workshops';
 
 @use './shared/components/footer/footer-theme';
 @use './shared/components/navbar/navbar-theme';
@@ -43,6 +44,7 @@
 
   @include home-theme.theme($theme);
   @include not-found-theme.theme($theme);
+  @include workshops.theme($theme);
   @include sidenav.theme($theme);
 
   @include footer-theme.theme($theme);

@@ -15,34 +15,34 @@ import { ThemePickerComponent } from '../theme-picker/theme-picker.component';
   template: `
     <ng-container *ngIf="viewModel$ | async as mv; else loading">
       <nav class="navbar-header mat-elevation-z6">
-        <button type="button" routerLink="/">
-          <mat-icon class="workshop-logo">tips_and_updates</mat-icon>
+        <a routerLink="/" class="workshop-logo">
+          <mat-icon>tips_and_updates</mat-icon>
           <p>Ngx-Workshop</p>
-        </button>
-        <button type="button" class="docs-navbar-hide-small docs-button"
+        </a>
+        <a class="docs-navbar-hide-small docs-button"
             *ngFor="let section of mv.sections | keyvalue;"
             [routerLink]="'/sidenav/workshops/' + section.key"
             routerLinkActive="navbar-menu-item-selected">
           <img mat-fab-image class="section-logo" [src]="section.value.menuSvgPath">
           <p>{{section.value.sectionTitle}}</p>
-        </button>
+        </a>
         <div class="flex-spacer"></div>
         <ng-container *ngIf="mv.signedIn; else authentication">
           <ngx-profile-fab></ngx-profile-fab>
         </ng-container>
         <ng-template #authentication>
           <ngx-theme-picker></ngx-theme-picker>
-          <button type="button" (click)="mv.openDialog()">Sign In</button>
+          <a (click)="mv.openDialog()">Sign In</a>
         </ng-template>
       </nav>
       <nav class="docs-navbar docs-navbar-show-small" aria-label="Section Nav Bar">
-        <button type="button" class="docs-navbar-link"
+        <a class="docs-navbar-link"
             *ngFor="let section of mv.sections | keyvalue;"
             [routerLink]="'/sidenav/workshops/' +section.key"
             routerLinkActive="navbar-menu-item-selected">
             <img mat-fab-image class="section-logo" [src]="section.value.menuSvgPath">
           <p>{{section.value.sectionTitle}}</p>
-        </button>
+        </a>
       </nav>
     </ng-container>
     <ng-template #loading>
@@ -52,26 +52,24 @@ import { ThemePickerComponent } from '../theme-picker/theme-picker.component';
   styles: [`
     :host {
       position: fixed;
-      width: 110px; // NEW
+      width: 110px;
       left: 0;
       right: 0;
       z-index: 2;
 
-      button {
+      a {
+        width: 100%;
         display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: .75rem;
-    padding-block: 1.25rem;
-    text-decoration: none;
-    fill: var(--quaternary-contrast);
-    color: inherit;
-    cursor: pointer;
-    transition: fill .3s ease;
-    background: transparent;
-    -webkit-appearance: none;
-    border: 0;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: .75rem;
+        padding-block: 1.25rem;
+        text-decoration: none;
+        fill: var(--quaternary-contrast);
+        color: inherit;
+        cursor: pointer;
+        transition: fill .3s ease;
       }
     }
 
@@ -87,17 +85,18 @@ import { ThemePickerComponent } from '../theme-picker/theme-picker.component';
       flex-direction: column;
     }
 
-    mat-icon.workshop-logo {
-      font-size: 1.625rem;
-      width: 26px;
-      height: 26px;
-      vertical-align: middle;
+    .workshop-logo {
+      font-weight: 100;
+      mat-icon {
+        font-size: 3.18rem;
+        width: 50px;
+        height: 50px;
+        vertical-align: middle;
+      }
     }
     .section-logo {
       width: 24px;
       height: 24px;
-      margin: 0 8px 4px 0;
-      vertical-align: middle;
     }
     .docs-navbar { display: none; }
     .docs-navbar-show-small { display: none; }
