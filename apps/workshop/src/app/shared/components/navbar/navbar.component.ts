@@ -31,8 +31,8 @@ import { ThemePickerComponent } from '../theme-picker/theme-picker.component';
           <ngx-profile-fab></ngx-profile-fab>
         </ng-container>
         <ng-template #authentication>
-          <ngx-theme-picker></ngx-theme-picker>
-          <a (click)="mv.openDialog()">Sign In</a>
+          <ngx-theme-picker class="docs-button"></ngx-theme-picker>
+          <a class="docs-button" (click)="mv.openDialog()">Sign In</a>
         </ng-template>
       </nav>
 
@@ -69,11 +69,11 @@ import { ThemePickerComponent } from '../theme-picker/theme-picker.component';
       left: 0;
       right: 0;
       z-index: 2;
+      width: 110px;
     }
 
     .navbar-header {
       display: flex;
-      width: 110px;
       height: 100svh;
       flex-wrap: wrap;
       align-items: center;
@@ -133,6 +133,9 @@ import { ThemePickerComponent } from '../theme-picker/theme-picker.component';
     .docs-navbar { display: none; }
     .docs-navbar-show-small { display: none; }
     @media (max-width: 720px) {
+      :host {
+        width: 100%;
+      }
       .docs-navbar-hide-small {
         display: none;
       }

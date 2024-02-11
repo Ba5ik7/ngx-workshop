@@ -62,7 +62,7 @@ import { NavigationService } from '../../../../../../shared/services/navigation/
       .mat-card-new {
         display: flex;
         flex-direction: column;
-        max-width: 325px;
+        width: 325px;
         height: 375px;
         overflow: auto;
         border-radius: 24px;
