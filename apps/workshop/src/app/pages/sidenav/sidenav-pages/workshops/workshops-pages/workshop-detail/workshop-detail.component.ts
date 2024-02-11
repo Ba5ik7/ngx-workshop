@@ -75,11 +75,9 @@ const safeParse = (json: string) => {
       <div class="workshop-detail-content">
         <div class="page">
           <section class="workshop-viewer-container">
-            <mat-card
-              class="workshop-detail-card"
-              appearance="raised">
+            <div class="workshop-detail-card mat-mdc-card">
               <ngx-editorjs-client [inputData]="vm.ngxEditorjsBlocks"></ngx-editorjs-client>
-            </mat-card>
+            </div>
           </section>
         </div>
       </div>
@@ -89,6 +87,7 @@ const safeParse = (json: string) => {
     </ng-template>
   `,
   styles: [`
+    @use '@angular/material' as mat;
     :host { display: block; }
     .workshop-viewer-container {
       padding: 20px 60px;
@@ -100,8 +99,9 @@ const safeParse = (json: string) => {
         position: relative;
         max-width: 750px;
         padding: 16px 56px 36px;
-        border-radius: 4px;
         margin-bottom: 22px;
+        border-radius: 24px;
+        @include mat.elevation(6);
         @media (max-width: 720px) {
           padding: 15px;
         }

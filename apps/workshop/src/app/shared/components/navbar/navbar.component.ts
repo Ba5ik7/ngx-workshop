@@ -14,12 +14,12 @@ import { ThemePickerComponent } from '../theme-picker/theme-picker.component';
   selector: 'ngx-navbar',
   template: `
     <ng-container *ngIf="viewModel$ | async as mv; else loading">
-      <nav class="navbar-header mat-elevation-z6">
-        <a routerLink="/" class="workshop-logo">
+      <nav class="navbar-header mat-elevation-z6 docs-navbar-hide-small">
+        <a routerLink="/" class="workshop-logo docs-button">
           <mat-icon>tips_and_updates</mat-icon>
           <p>Ngx-Workshop</p>
         </a>
-        <a class="docs-navbar-hide-small docs-button"
+        <a class="docs-button"
             *ngFor="let section of mv.sections | keyvalue;"
             [routerLink]="'/sidenav/workshops/' + section.key"
             routerLinkActive="navbar-menu-item-selected">
@@ -35,13 +35,27 @@ import { ThemePickerComponent } from '../theme-picker/theme-picker.component';
           <a (click)="mv.openDialog()">Sign In</a>
         </ng-template>
       </nav>
+
+      <nav class="navbar-header-mobile mat-elevation-z6">
+        <a mat-button routerLink="/">
+          <mat-icon class="workshop-logo-mobile">tips_and_updates</mat-icon>
+          <span>Ngx-Workshop</span>
+        </a>
+        <div class="flex-spacer"></div>
+        <ng-container *ngIf="mv.signedIn; else authentication">
+          <ngx-profile-fab></ngx-profile-fab>
+        </ng-container>
+        <ng-template #authentication>
+          <ngx-theme-picker></ngx-theme-picker>
+          <a mat-button (click)="mv.openDialog()">Sign In</a>
+        </ng-template>
+      </nav>
       <nav class="docs-navbar docs-navbar-show-small" aria-label="Section Nav Bar">
-        <a class="docs-navbar-link"
-            *ngFor="let section of mv.sections | keyvalue;"
+        <a mat-button *ngFor="let section of mv.sections | keyvalue;"
             [routerLink]="'/sidenav/workshops/' +section.key"
             routerLinkActive="navbar-menu-item-selected">
-            <img mat-fab-image class="section-logo" [src]="section.value.menuSvgPath">
-          <p>{{section.value.sectionTitle}}</p>
+            <img mat-fab-image class="section-logo-mobile" [src]="section.value.menuSvgPath">
+          {{section.value.sectionTitle}}
         </a>
       </nav>
     </ng-container>
@@ -52,12 +66,20 @@ import { ThemePickerComponent } from '../theme-picker/theme-picker.component';
   styles: [`
     :host {
       position: fixed;
-      width: 110px;
       left: 0;
       right: 0;
       z-index: 2;
+    }
 
-      a {
+    .navbar-header {
+      display: flex;
+      width: 110px;
+      height: 100svh;
+      flex-wrap: wrap;
+      align-items: center;
+      flex-direction: column;
+
+    .docs-button {
         width: 100%;
         display: flex;
         flex-direction: column;
@@ -73,18 +95,6 @@ import { ThemePickerComponent } from '../theme-picker/theme-picker.component';
       }
     }
 
-    .navbar-header {
-      // display: flex;
-      // flex-wrap: wrap;
-      // align-items: center;
-      // padding: 4px 16px;
-      display: flex;
-      height: 100svh;
-      flex-wrap: wrap;
-      align-items: center;
-      flex-direction: column;
-    }
-
     .workshop-logo {
       font-weight: 100;
       mat-icon {
@@ -98,6 +108,28 @@ import { ThemePickerComponent } from '../theme-picker/theme-picker.component';
       width: 24px;
       height: 24px;
     }
+
+    .navbar-header-mobile {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      padding: 4px 16px;
+    }
+
+    mat-icon.workshop-logo-mobile {
+      font-size: 1.625rem;
+      width: 26px;
+      height: 26px;
+      vertical-align: middle;
+    }
+
+    .section-logo-mobile {
+      width: 24px;
+      height: 24px;
+      margin: 0 8px 4px 0;
+      vertical-align: middle;
+    }
+
     .docs-navbar { display: none; }
     .docs-navbar-show-small { display: none; }
     @media (max-width: 720px) {

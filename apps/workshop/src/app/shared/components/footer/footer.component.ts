@@ -19,7 +19,7 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
   `,
   styles: [`
     footer {
-      height: 44px;
+      // height: 44px;
       padding: 6px;
       text-align: right;
       .docs-footer-greeting {
