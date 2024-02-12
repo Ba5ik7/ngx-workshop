@@ -20,7 +20,7 @@ import { DomSanitizer } from '@angular/platform-browser';
     MatTooltipModule
   ],
   template: `
-    <ng-container *ngIf="currentTheme$ | async as currentTheme">
+    <!-- <ng-container *ngIf="currentTheme$ | async as currentTheme">
       <button mat-icon-button [mat-menu-trigger-for]="themeMenu" [matTooltip]="matTooltipTest">
         <ng-container *ngIf="showText">{{ currentTheme | uppercase }}</ng-container>
         <mat-icon class="dropdown-icon">format_color_fill</mat-icon>
@@ -37,7 +37,7 @@ import { DomSanitizer } from '@angular/platform-browser';
           <mat-icon [class]="'theme-example-icon ' + theme.key" svgIcon="theme-example"></mat-icon>
         </button>
       </mat-menu>
-    </ng-container>
+    </ng-container> -->
     
   `,
   styleUrls: ['./theme-picker.component.scss'],

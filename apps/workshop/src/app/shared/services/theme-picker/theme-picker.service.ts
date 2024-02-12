@@ -20,11 +20,12 @@ export class ThemePickerService {
   ) { }
 
   init(): void {
-    const themeName = this.getStoredThemeName();
-    const theme = themeName.value !== ThemePickerService.NOT_FOUND ? themeName.value : ThemePickerService.DEFAULT_THEME;
-    this.setStyle('theme', `${theme}.css`);
-    this.storeTheme(theme);
-    this.currentTheme$.next(theme);
+    // !TODO: Uncomment this code
+    // const themeName = this.getStoredThemeName();
+    // const theme = themeName.value !== ThemePickerService.NOT_FOUND ? themeName.value : ThemePickerService.DEFAULT_THEME;
+    // this.setStyle('theme', `${theme}.css`);
+    // this.storeTheme(theme);
+    // this.currentTheme$.next(theme);
   }
 
   storeTheme(theme: string): void {

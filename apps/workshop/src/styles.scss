@@ -1,7 +1,8 @@
 @use '@angular/material' as mat;
 @use './app/app-theme';
 @use './assets/styles/general';
-@use './assets/styles/custom-themes/synthwave';
+// @use './assets/styles/custom-themes/synthwave';
+@use './assets/styles/custom-themes/professional';
 
 @include mat.all-component-typographies();
 @include mat.core();

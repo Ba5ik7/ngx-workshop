@@ -31,7 +31,7 @@ import { ThemePickerComponent } from '../theme-picker/theme-picker.component';
           <ngx-profile-fab></ngx-profile-fab>
         </ng-container>
         <ng-template #authentication>
-          <ngx-theme-picker class="docs-button"></ngx-theme-picker>
+          <ngx-theme-picker></ngx-theme-picker>
           <a class="docs-button" (click)="mv.openDialog()">Sign In</a>
         </ng-template>
       </nav>
@@ -114,6 +114,7 @@ import { ThemePickerComponent } from '../theme-picker/theme-picker.component';
       flex-wrap: wrap;
       align-items: center;
       padding: 4px 16px;
+      height: 56px;
     }
 
     mat-icon.workshop-logo-mobile {
@@ -145,6 +146,17 @@ import { ThemePickerComponent } from '../theme-picker/theme-picker.component';
       .docs-navbar {
         display: flex;
         justify-content: space-around;
+      }
+    }
+
+    @media (max-height: 440px) {
+      .navbar-header {
+        .docs-button {
+          font-size: .9rem;
+          font-weight: 100;
+          gap: 3px;
+          padding-block: .6rem;
+        }
       }
     }
 
