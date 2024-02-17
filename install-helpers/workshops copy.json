@@ -1,0 +1,43 @@
+[{
+  "_id": {
+    "$oid": "65cadf2d8fb422ed7b83a089"
+  },
+  "sectionId": "angular",
+  "sortId": 2,
+  "name": "Idiomatic Reactive Data Streams",
+  "summary": "placeholder",
+  "workshopDocuments": [
+    {
+      "_id": {
+        "$oid": "65cadf2d8fb422ed7b83a08b"
+      },
+      "name": "Page",
+      "sortId": 2
+    },
+    {
+      "_id": "65caefa58fb422ed7b83a0a8",
+      "name": "Page 2",
+      "sortId": 1
+    },
+    {
+      "_id": "65cb02798fb422ed7b83a136",
+      "name": "Page 3",
+      "sortId": 2
+    },
+    {
+      "_id": "65cb04ea8fb422ed7b83a13f",
+      "name": "Page 4",
+      "sortId": 3
+    },
+    {
+      "_id": "65cb06248fb422ed7b83a146",
+      "name": "Page 5",
+      "sortId": 4
+    }
+  ],
+  "workshopDocumentGroupId": "idiomatic-reactive-data-streams",
+  "__v": 0,
+  "workshopDocumentsLastUpdated": {
+    "$date": "2024-02-13T06:03:16.489Z"
+  }
+}]
