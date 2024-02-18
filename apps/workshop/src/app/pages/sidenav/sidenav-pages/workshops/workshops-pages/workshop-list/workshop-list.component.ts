@@ -31,7 +31,7 @@ import { NavigationService } from '../../../../../../shared/services/navigation/
           workshop.workshopDocuments[0]._id
         "
       >
-        <img mat-card-image src="/admin/assets/img/workshop-placeholder.png" />
+        <img mat-card-image src="/assets/img/thumbnail_1.webp" />
         <h2>{{ workshop.name }}</h2>
         <p>{{ workshop.summary }}</p>
       </div>
