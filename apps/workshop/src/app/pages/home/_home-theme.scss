@@ -11,6 +11,10 @@
   ngx-home {
     color: mat.get-color-from-palette($foreground, text);
 
+    .home-row-column {
+      color: mat.get-color-from-palette($foreground, secondary-text);
+    }
+
     .header-background {
       background: mat.get-color-from-palette($primary);
     }

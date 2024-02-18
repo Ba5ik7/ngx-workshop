@@ -31,7 +31,7 @@ import { NavigationService } from '../../../../../../shared/services/navigation/
           workshop.workshopDocuments[0]._id
         "
       >
-        <img mat-card-image src="/assets/img/thumbnail_1.webp" />
+        <img mat-card-image [src]="workshop.thumbnail ?? '/assets/img/workshop-placeholder.png'" />
         <h2>{{ workshop.name }}</h2>
         <p>{{ workshop.summary }}</p>
       </div>
@@ -90,5 +90,5 @@ import { NavigationService } from '../../../../../../shared/services/navigation/
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class WorkshopListComponent {
-  workshops = inject(NavigationService).getWorkshops();
+  workshops = inject(NavigationService).getWorkshops()
 }

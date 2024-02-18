@@ -55,6 +55,9 @@ export type SidenavMenuData = {
       .mdc-list {
         padding: 0;
       }
+      .workshop-item {
+        height: 57px;
+      }
     }
   `],
   imports: [

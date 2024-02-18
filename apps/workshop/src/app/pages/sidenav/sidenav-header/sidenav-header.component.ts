@@ -16,7 +16,7 @@ export type SidenavHeaderData = {
       <button mat-button class="sidenav-toggle" (click)="toggleSideNav.emit()">
         <mat-icon>menu</mat-icon>
       </button>
-      <img [src]="'/admin' + sidenavHeaderData.headerSvgPath">
+      <img [src]="sidenavHeaderData.headerSvgPath">
       <h1>{{sidenavHeaderData.sectionTitle}}: {{sidenavHeaderData.currentWorkshopTitle}}</h1>
     </header>
   `,

@@ -4,28 +4,28 @@
       <h1>Ngx-Workshop</h1>
       <h2>Workshops for Angular, RxJS, and Nest</h2>
     </div>
-    <div class="header-start">
+    <!-- <div class="header-start">
       <a mat-raised-button color="accent" routerLink="/404">Get started</a>
-    </div>
+    </div> -->
   </div>
 </header>
 <main class="home-promo">
   <div class="home-row home-introduction">
-    <div class="home-row-column">
+    <a class="home-row-column" routerLink="/sidenav/workshops/nestjs/workshop-list">
       <img src="../../../assets/img/nestjs2.svg">
       <h2>NestJs</h2>
       <p>A progressive Node.js framework for building efficient, reliable and scalable server-side applications.</p>
-    </div>
-    <div class="home-row-column home-row-column--angular-section">
+    </a>
+    <a class="home-row-column home-row-column--angular-section" routerLink="/sidenav/workshops/angular/workshop-list">
       <img src="../../../assets/img/angular_nav_gradient.gif">
       <h2>Angular</h2>
       <p>Angular is an application framework and a development platform for creating single-page apps.</p>
-    </div>
-    <div class="home-row-column">
-      <img src="../../../assets/img/rxjs1.svg">
+    </a>
+    <a class="home-row-column">
+      <img src="../../../assets/img/rxjs1.svg" routerLink="/sidenav/workshops/rxjs/workshop-list">
       <h2>RxJS</h2>
       <p>RxJS is a library for reactive programming, to help compose asynchronous or callback code.</p>
-    </div>
+    </a>
   </div>
 </main>
 <ngx-footer></ngx-footer>
