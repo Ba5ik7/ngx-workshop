@@ -3,25 +3,35 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { NavigationService } from '../../../../../../shared/services/navigation/navigation.service';
+import { animate, keyframes, query, stagger, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'ngx-workshop-list',
   standalone: true,
   imports: [CommonModule, RouterModule, MatCardModule],
+  animations: [
+    trigger('staggerCircleReveal', [
+      transition(':enter', [
+        query('.mat-card-new', [
+          style({ opacity: 0, marginTop: '100px'}),
+          stagger('150ms', [
+            animate('0.6s ease-in-out', keyframes([
+              style({ opacity: 0, marginTop: '15px', clipPath: 'circle(0% at 85% 85%)', offset: 0 }), // top left
+              style({ opacity: 1, marginTop: '0', clipPath: 'circle(200% at 0% 0%)', offset: 1.0 }) // top left
+            ]))
+          ])
+        ], { optional: true })
+      ]),
+      transition(':leave', [
+        animate(600, style({ opacity: 0 }))
+      ])
+    ])
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <div class="workshop-list">
-      <!-- <mat-card 
-        appearance="raised"
-        *ngFor="let workshop of workshops | async" 
-        [routerLink]="'../' + workshop.workshopDocumentGroupId + '/' + workshop.workshopDocuments[0]._id">
-        <img mat-card-image src="/admin/assets/img/workshop-placeholder.png">
-        <mat-card-content>
-          <mat-card-title>{{workshop.name}}</mat-card-title>
-          <mat-card-subtitle>{{workshop.summary}}</mat-card-subtitle>
-        </mat-card-content>
-      </mat-card> -->
-
+    <div class="workshop-list" [@staggerCircleReveal]>
       <div
+        
         class="mat-card-new mat-mdc-card"
         *ngFor="let workshop of workshops | async"
         [routerLink]="
@@ -50,12 +60,6 @@ import { NavigationService } from '../../../../../../shared/services/navigation/
           gap: 24px;
           padding: 24px;
           justify-content: center;
-        }
-        /* TODO(mdc-migration): The following rule targets internal classes of card that may no longer apply for the MDC version. */
-        mat-card {
-          cursor: pointer;
-          width: 312px;
-          margin: 20px;
         }
       }
 
@@ -87,8 +91,7 @@ import { NavigationService } from '../../../../../../shared/services/navigation/
       }
     `,
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class WorkshopListComponent {
-  workshops = inject(NavigationService).getWorkshops()
+  workshops = inject(NavigationService).getWorkshops();
 }

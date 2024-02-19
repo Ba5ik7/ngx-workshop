@@ -132,8 +132,8 @@ export class WorkshopDetailComponent {
   selector: 'ngx-workshop-detail-animation',
   animations: [ RouterAnimations.routeSlide, RouterAnimations.routeCubeRotation ],
   imports: [
-    RouterModule,
     CommonModule,
+    RouterModule,
     MatPaginatorModule
   ],
   template: `
