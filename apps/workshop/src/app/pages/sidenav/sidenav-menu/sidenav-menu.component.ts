@@ -20,7 +20,7 @@ export type SidenavMenuData = {
       <div class="workshop-menu-nav-content">
         <mat-nav-list>
           <ng-container *ngIf="vm.signedIn">
-            <a mat-list-item routerLink="dashboard" routerLinkActive="workshop-menu-nav-item-selected">
+            <a mat-list-item class="workshop-item" routerLink="dashboard" routerLinkActive="workshop-menu-nav-item-selected">
               <mat-icon>dashboard</mat-icon>
               Dashboard
             </a>

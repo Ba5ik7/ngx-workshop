@@ -164,7 +164,7 @@ export class WorkshopDetailComponent {
       perspective: 2500px;
       overflow: hidden;
       width: 100%;
-      height: 100%;
+      height: calc(100% - 48px);
     }
     .paginator {
       position: sticky;
