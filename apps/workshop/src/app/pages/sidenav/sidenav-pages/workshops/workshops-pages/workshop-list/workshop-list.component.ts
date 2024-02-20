@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { NavigationService } from '../../../../../../shared/services/navigation/navigation.service';
@@ -8,7 +8,7 @@ import { animate, keyframes, query, stagger, state, style, transition, trigger }
 @Component({
   selector: 'ngx-workshop-list',
   standalone: true,
-  imports: [CommonModule, RouterModule, MatCardModule],
+  imports: [CommonModule, RouterModule, MatCardModule, NgOptimizedImage],
   animations: [
     trigger('staggerCircleReveal', [
       transition(':enter', [
@@ -31,7 +31,6 @@ import { animate, keyframes, query, stagger, state, style, transition, trigger }
   template: `
     <div class="workshop-list" [@staggerCircleReveal]>
       <div
-        
         class="mat-card-new mat-mdc-card"
         *ngFor="let workshop of workshops | async"
         [routerLink]="
@@ -41,7 +40,7 @@ import { animate, keyframes, query, stagger, state, style, transition, trigger }
           workshop.workshopDocuments[0]._id
         "
       >
-        <img mat-card-image [src]="workshop.thumbnail ?? '/assets/img/workshop-placeholder.png'" />
+        <div class="img-wrapper"><img [ngSrc]="workshop.thumbnail ?? '/assets/img/workshop-placeholder.png'" fill /></div>
         <h2>{{ workshop.name }}</h2>
         <p>{{ workshop.summary }}</p>
       </div>
@@ -73,6 +72,15 @@ import { animate, keyframes, query, stagger, state, style, transition, trigger }
         transition: box-shadow 0.4s;
         cursor: pointer;
         @include mat.elevation(6);
+
+        .img-wrapper {
+          position: relative;
+          width: 100%;
+          height: 50%;
+          img {
+            object-fit: contain;
+          }
+        }
 
         h2 {
           font-weight: 100;

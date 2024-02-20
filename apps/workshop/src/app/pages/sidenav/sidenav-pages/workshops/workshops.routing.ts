@@ -16,6 +16,7 @@ export const WORKSHOPS_ROUTES: Route[] = [
       },
       {
         path: 'workshop-list',
+        data: { alwaysRefresh: true },
         resolve: { workshopResolver },
         loadComponent: () => import('./workshops-pages/workshop-list/workshop-list.component').then(m => m.WorkshopListComponent)
       },
