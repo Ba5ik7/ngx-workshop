@@ -1,0 +1,314 @@
+[{
+  "_id": {
+    "$oid": "65cadf2d8fb422ed7b83a089"
+  },
+  "sectionId": "angular",
+  "sortId": 1,
+  "name": "Part 1: Reactive Streams",
+  "summary": "Unlock the power of Angular and RxJS to build dynamic applications with our workshop on idiomatic reactive data streams, designed for developers seeking to elevate their web development.",
+  "workshopDocuments": [
+    {
+      "_id": {
+        "$oid": "65cadf2d8fb422ed7b83a08b"
+      },
+      "name": "Page",
+      "sortId": 2
+    },
+    {
+      "_id": "65caefa58fb422ed7b83a0a8",
+      "name": "Page 2",
+      "sortId": 1
+    },
+    {
+      "_id": "65cb02798fb422ed7b83a136",
+      "name": "Page 3",
+      "sortId": 2
+    },
+    {
+      "_id": "65cb04ea8fb422ed7b83a13f",
+      "name": "Page 4",
+      "sortId": 3
+    },
+    {
+      "_id": "65cb06248fb422ed7b83a146",
+      "name": "Page 5",
+      "sortId": 4
+    },
+    {
+      "_id": "65d272008fb422ed7b83a336",
+      "name": "Test",
+      "sortId": 5
+    }
+  ],
+  "workshopDocumentGroupId": "idiomatic-reactive-data-streams",
+  "__v": 0,
+  "workshopDocumentsLastUpdated": {
+    "$date": "2024-02-18T21:09:20.706Z"
+  },
+  "thumbnail": "/assets/img/thumbnail_1.webp"
+},
+{
+  "_id": {
+    "$oid": "65d28a298fb422ed7b83a359"
+  },
+  "sectionId": "angular",
+  "sortId": 2,
+  "name": "Part 2: Reactive Streams",
+  "summary": "Lab 2 propels Angular and RxJS mastery forward, exploring intricate data orchestration, dynamic interfaces, and resilient error handling for sophisticated application development.",
+  "workshopDocuments": [
+    {
+      "_id": {
+        "$oid": "65d28a298fb422ed7b83a35b"
+      },
+      "name": "Page",
+      "sortId": 1
+    },
+    {
+      "_id": "65d29abe8fb422ed7b83a3ac",
+      "name": "Page 2",
+      "sortId": 1
+    },
+    {
+      "_id": "65d2a6928fb422ed7b83a3d5",
+      "name": "Page 3",
+      "sortId": 2
+    },
+    {
+      "_id": "65d2b4528fb422ed7b83a404",
+      "name": "Page 4",
+      "sortId": 3
+    },
+    {
+      "_id": "65d2ca988fb422ed7b83a416",
+      "name": "Page 5",
+      "sortId": 4
+    },
+    {
+      "_id": "65d2debc8fb422ed7b83a45f",
+      "name": "Page 6",
+      "sortId": 5
+    }
+  ],
+  "workshopDocumentGroupId": "part-2-reactive-streams",
+  "__v": 0,
+  "workshopDocumentsLastUpdated": {
+    "$date": "2024-02-19T04:53:16.322Z"
+  },
+  "thumbnail": "/assets/img/2-lab-thumb_b.webp"
+},
+{
+  "_id": {
+    "$oid": "65d39eaa8fb422ed7b83a558"
+  },
+  "sectionId": "angular",
+  "sortId": 3,
+  "name": "Part 3: Reactive Streams",
+  "summary": "Coming Soon...",
+  "workshopDocuments": [
+    {
+      "_id": {
+        "$oid": "65d39eaa8fb422ed7b83a55a"
+      },
+      "name": "Page",
+      "sortId": 2
+    }
+  ],
+  "workshopDocumentGroupId": "part-3-reactive-streams",
+  "__v": 0,
+  "workshopDocumentsLastUpdated": {
+    "$date": "2024-02-19T18:32:10.330Z"
+  },
+  "thumbnail": "/assets/img/2-lab-thumb.webp"
+},
+{
+  "_id": {
+    "$oid": "65d40fb18fb422ed7b83a5ee"
+  },
+  "sectionId": "nestjs",
+  "sortId": 0,
+  "name": "Part 1: Data Streams",
+  "summary": "Coming Soon...",
+  "workshopDocuments": [
+    {
+      "_id": {
+        "$oid": "65d40fb18fb422ed7b83a5f0"
+      },
+      "name": "Page",
+      "sortId": 0
+    }
+  ],
+  "workshopDocumentGroupId": "part-1-data-streams",
+  "__v": 0,
+  "workshopDocumentsLastUpdated": {
+    "$date": "2024-02-20T02:34:25.086Z"
+  },
+  "thumbnail": "/assets/img/nestjs_1_thumb_a.webp"
+},
+{
+  "_id": {
+    "$oid": "65d41af08fb422ed7b83a60e"
+  },
+  "sectionId": "rxjs",
+  "sortId": 0,
+  "name": "Easy As 123!",
+  "summary": "Coming Soon...",
+  "workshopDocuments": [
+    {
+      "_id": {
+        "$oid": "65d41af08fb422ed7b83a610"
+      },
+      "name": "Page",
+      "sortId": 0
+    }
+  ],
+  "workshopDocumentGroupId": "easy-as-123",
+  "__v": 0,
+  "workshopDocumentsLastUpdated": {
+    "$date": "2024-02-20T03:22:24.761Z"
+  },
+  "thumbnail": "/assets/img/rxjs_1_thumb_a.webp"
+},
+{
+  "_id": {
+    "$oid": "65d41bcb8fb422ed7b83a618"
+  },
+  "sectionId": "rxjs",
+  "sortId": 1,
+  "name": "Hot vs Cold",
+  "summary": "Coming Soon...",
+  "workshopDocuments": [
+    {
+      "_id": {
+        "$oid": "65d41bcb8fb422ed7b83a61a"
+      },
+      "name": "Page",
+      "sortId": 1
+    }
+  ],
+  "workshopDocumentGroupId": "hot-vs-cold",
+  "__v": 0,
+  "workshopDocumentsLastUpdated": {
+    "$date": "2024-02-20T03:26:03.551Z"
+  },
+  "thumbnail": "assets/img/rxjs_2_thumb_a.webp"
+},
+{
+  "_id": {
+    "$oid": "65d41f1a8fb422ed7b83a636"
+  },
+  "sectionId": "angular",
+  "sortId": 4,
+  "name": "RouteReuseStrategy",
+  "summary": "Coming Soon...",
+  "workshopDocuments": [
+    {
+      "_id": {
+        "$oid": "65d41f1a8fb422ed7b83a638"
+      },
+      "name": "Page",
+      "sortId": 3
+    }
+  ],
+  "workshopDocumentGroupId": "route-reuse-strategy",
+  "__v": 0,
+  "workshopDocumentsLastUpdated": {
+    "$date": "2024-02-20T03:40:10.605Z"
+  },
+  "thumbnail": "assets/img/route_reuse_thumb.webp"
+},
+{
+  "_id": {
+    "$oid": "65d42c9f8fb422ed7b83a63f"
+  },
+  "sectionId": "angular",
+  "sortId": 0,
+  "name": "Getting Started",
+  "summary": "Coming Soon...",
+  "workshopDocuments": [
+    {
+      "_id": {
+        "$oid": "65d42c9f8fb422ed7b83a641"
+      },
+      "name": "Page",
+      "sortId": 4
+    }
+  ],
+  "workshopDocumentGroupId": "getting-started",
+  "__v": 0,
+  "workshopDocumentsLastUpdated": {
+    "$date": "2024-02-20T04:37:51.370Z"
+  },
+  "thumbnail": "assets/img/getting_started_thumb.webp"
+},
+{
+  "_id": {
+    "$oid": "65d42d648fb422ed7b83a663"
+  },
+  "sectionId": "angular",
+  "sortId": 5,
+  "name": "ViewContainerRef",
+  "summary": "Coming Soon...",
+  "workshopDocuments": [
+    {
+      "_id": {
+        "$oid": "65d42d648fb422ed7b83a665"
+      },
+      "name": "Page",
+      "sortId": 5
+    }
+  ],
+  "workshopDocumentGroupId": "view-container-ref",
+  "__v": 0,
+  "workshopDocumentsLastUpdated": {
+    "$date": "2024-02-20T04:41:08.788Z"
+  },
+  "thumbnail": "assets/img/view_ref_thumb.webp"
+},
+{
+  "_id": {
+    "$oid": "65d42de68fb422ed7b83a669"
+  },
+  "sectionId": "angular",
+  "sortId": 6,
+  "name": "Reactive Forms",
+  "summary": "Coming Soon...",
+  "workshopDocuments": [
+    {
+      "_id": {
+        "$oid": "65d42de68fb422ed7b83a66b"
+      },
+      "name": "Page",
+      "sortId": 6
+    }
+  ],
+  "workshopDocumentGroupId": "reactive-forms",
+  "__v": 0,
+  "workshopDocumentsLastUpdated": {
+    "$date": "2024-02-20T04:43:18.278Z"
+  },
+  "thumbnail": "assets/img/reactive_form_thumb.webp"
+},
+{
+  "_id": {
+    "$oid": "65d42e088fb422ed7b83a66f"
+  },
+  "sectionId": "angular",
+  "sortId": 7,
+  "name": "ControlValueAccessor",
+  "summary": "Coming Soon..",
+  "workshopDocuments": [
+    {
+      "_id": {
+        "$oid": "65d42e088fb422ed7b83a671"
+      },
+      "name": "Page",
+      "sortId": 7
+    }
+  ],
+  "workshopDocumentGroupId": "control-value-accessor",
+  "__v": 0,
+  "workshopDocumentsLastUpdated": {
+    "$date": "2024-02-20T04:43:52.762Z"
+  },
+  "thumbnail": "assets/img/control_value_thumb.webp"
+}]

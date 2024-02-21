@@ -1,0 +1,150 @@
+[{
+  "_id": {
+    "$oid": "63fbd42586768e27b837b3b3"
+  },
+  "email": "dusellfam@gmail.com",
+  "password": "$2b$10$Lyg5fDkyD6/fJ.T6nBWhc..h1Z5k89yIg3/Mmlxn1/EgVps9vUoja",
+  "createdAt": {
+    "$date": "2023-02-26T21:50:29.105Z"
+  },
+  "updatedAt": {
+    "$date": "2023-02-26T21:50:29.106Z"
+  },
+  "role": "admin",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "63fc05a62678448fbc600dae"
+  },
+  "email": "kelly@gmail.com",
+  "password": "$2b$10$an1H9n5yV8TsrozpGpN7V.jL8xH0Yh4JDo3pruXcQezkKVGofBl4S",
+  "createdAt": {
+    "$date": "2023-02-27T01:21:42.328Z"
+  },
+  "updatedAt": {
+    "$date": "2023-02-27T01:21:42.328Z"
+  },
+  "role": "regular",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "63fc077f2678448fbc600dc0"
+  },
+  "email": "terry@gmail.com",
+  "password": "$2b$10$ShKZ1cM/K7mpxKW/1YXp7ur0.AImoUw5sZmtzACb5/u9amjgS3Vg.",
+  "createdAt": {
+    "$date": "2023-02-27T01:29:35.570Z"
+  },
+  "updatedAt": {
+    "$date": "2023-02-27T01:29:35.570Z"
+  },
+  "role": "regular",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "63fc07842678448fbc600dc3"
+  },
+  "email": "mary@gmail.com",
+  "password": "$2b$10$Leq8flFacZZy8qn.mG1GyONv8XtM4hsgzb6ha18ph6XDMe3FZ508u",
+  "createdAt": {
+    "$date": "2023-02-27T01:29:40.069Z"
+  },
+  "updatedAt": {
+    "$date": "2023-02-27T01:29:40.069Z"
+  },
+  "role": "regular",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "63fc07882678448fbc600dc6"
+  },
+  "email": "david@gmail.com",
+  "password": "$2b$10$lv9Szqcy2MIyy8LG2s6NbeI6QY4IHMv4IxYWZAiQQzw9brd6ArKIK",
+  "createdAt": {
+    "$date": "2023-02-27T01:29:44.271Z"
+  },
+  "updatedAt": {
+    "$date": "2023-02-27T01:29:44.271Z"
+  },
+  "role": "regular",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "63fc078f2678448fbc600dc9"
+  },
+  "email": "madison@gmail.com",
+  "password": "$2b$10$jvcfmkLUubdVDauna.enEO1uUVA7b9Rmxl57f1hcG7Rw4DgkXvhNW",
+  "createdAt": {
+    "$date": "2023-02-27T01:29:51.830Z"
+  },
+  "updatedAt": {
+    "$date": "2023-02-27T01:29:51.830Z"
+  },
+  "role": "regular",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "63fc07962678448fbc600dcc"
+  },
+  "email": "katie@gmail.com",
+  "password": "$2b$10$IJ6tv4UiyV8NTI4Eu7QI2ervtNsbd2CfGjZd7hVVCSgR36QBSrA6a",
+  "createdAt": {
+    "$date": "2023-02-27T01:29:58.404Z"
+  },
+  "updatedAt": {
+    "$date": "2023-02-27T01:29:58.404Z"
+  },
+  "role": "regular",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "63fc079c2678448fbc600dcf"
+  },
+  "email": "clair@gmail.com",
+  "password": "$2b$10$cNvaCNI3vLe1ZoFQHgMNQeomUdHNIPfyBMfetPVIm/cSvRTKR.dX.",
+  "createdAt": {
+    "$date": "2023-02-27T01:30:04.499Z"
+  },
+  "updatedAt": {
+    "$date": "2023-02-27T01:30:04.499Z"
+  },
+  "role": "regular",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "63fc07a22678448fbc600dd2"
+  },
+  "email": "grace@gmail.com",
+  "password": "$2b$10$.mryb.tt5smgdU9Sqh6csOUJ6R3LoBjIvWHFXg6jqwUMEpea52AuW",
+  "createdAt": {
+    "$date": "2023-02-27T01:30:10.921Z"
+  },
+  "updatedAt": {
+    "$date": "2023-02-27T01:30:10.921Z"
+  },
+  "role": "regular",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "641fbb720f40f20ae56b85e4"
+  },
+  "email": "cody.theroux3@gmail.com",
+  "password": "$2b$10$bljVCO1h49Y6gyhTIXdKTeBX2LeSpInoWpJT7vJ05lAUSTd1arcwe",
+  "createdAt": {
+    "$date": "2023-03-26T03:26:42.703Z"
+  },
+  "updatedAt": {
+    "$date": "2023-03-26T03:26:42.703Z"
+  },
+  "role": "regular",
+  "__v": 0
+}]

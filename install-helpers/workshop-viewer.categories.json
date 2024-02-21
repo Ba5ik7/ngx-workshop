@@ -1,0 +1,281 @@
+[{
+  "_id": {
+    "$oid": "62d201af88e3bd99bbcda2de"
+  },
+  "sectionId": "nestjs",
+  "sortId": 1,
+  "name": "1",
+  "summary": "1",
+  "examples": [],
+  "workshopDocuments": [
+    {
+      "_id": "642b7ba90f40f20ae56b869b",
+      "name": "Page 2",
+      "sortId": 0
+    },
+    {
+      "_id": "62d201af88e3bd99bbcda2e0",
+      "name": "Page",
+      "sortId": 1
+    }
+  ],
+  "id": "1",
+  "__v": 0,
+  "workshopDocumentsLastUpdated": {
+    "$date": "2023-04-04T01:22:24.892Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "637096d2a972682da3ddd33a"
+  },
+  "sectionId": "angular",
+  "sortId": 1,
+  "name": "Cheat Sheet",
+  "summary": "A quick reference guide for Angular.",
+  "examples": [],
+  "workshopDocuments": [
+    {
+      "_id": {
+        "$oid": "637096d2a972682da3ddd33c"
+      },
+      "name": "Page",
+      "sortId": 0
+    }
+  ],
+  "id": "cheat-sheet",
+  "__v": 0,
+  "workshopDocumentsLastUpdated": {
+    "$date": "2022-11-13T07:03:46.728Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "63aa3f1b86055d9ff7720f20"
+  },
+  "sectionId": "rxjs",
+  "sortId": 2,
+  "name": "Hot and Cold Observables",
+  "summary": "Placeholder",
+  "examples": [],
+  "workshopDocuments": [
+    {
+      "_id": {
+        "$oid": "63aa3f1c86055d9ff7720f22"
+      },
+      "name": "Thermal Dynamic and Observables",
+      "sortId": 0
+    },
+    {
+      "_id": {
+        "$oid": "63aa4546736fe43282d9cb01"
+      },
+      "name": "Code Examples",
+      "sortId": 1
+    },
+    {
+      "_id": {
+        "$oid": "63aa46db736fe43282d9cb09"
+      },
+      "name": "Quiz",
+      "sortId": 2
+    }
+  ],
+  "id": "hot-and-cold-observables",
+  "__v": 0,
+  "workshopDocumentsLastUpdated": {
+    "$date": "2022-12-27T01:14:03.300Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "63ab9e63736fe43282d9cb6b"
+  },
+  "sectionId": "rxjs",
+  "sortId": 1,
+  "name": "Easy as 123!",
+  "summary": "Placeholder",
+  "examples": [],
+  "workshopDocuments": [
+    {
+      "_id": {
+        "$oid": "63ab9e63736fe43282d9cb6d"
+      },
+      "name": "Page",
+      "sortId": 0
+    }
+  ],
+  "id": "easy-as-123",
+  "__v": 0,
+  "workshopDocumentsLastUpdated": {
+    "$date": "2022-12-28T01:39:47.465Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "63aba799736fe43282d9cb81"
+  },
+  "sectionId": "rxjs",
+  "sortId": 3,
+  "name": "Under the hood",
+  "summary": "Placeholder :)",
+  "examples": [],
+  "workshopDocuments": [
+    {
+      "_id": {
+        "$oid": "63aba799736fe43282d9cb83"
+      },
+      "name": "Page",
+      "sortId": 0
+    }
+  ],
+  "id": "under-the-hood",
+  "__v": 0,
+  "workshopDocumentsLastUpdated": {
+    "$date": "2022-12-28T02:19:05.506Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "63abb7f1736fe43282d9cbad"
+  },
+  "sectionId": "rxjs",
+  "sortId": 0,
+  "name": "Getting Started",
+  "summary": "placeholder asd",
+  "examples": [],
+  "workshopDocuments": [
+    {
+      "_id": {
+        "$oid": "63abb7f1736fe43282d9cbaf"
+      },
+      "name": "Page",
+      "sortId": 0
+    }
+  ],
+  "id": "getting-started",
+  "__v": 0,
+  "workshopDocumentsLastUpdated": {
+    "$date": "2022-12-28T03:28:49.256Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "63b9d719736fe43282d9cc8d"
+  },
+  "sectionId": "angular",
+  "sortId": 0,
+  "name": "RouteReuseStrategy",
+  "summary": "RouteReuseStrategyxxxx\nLet's take look at how the RouteReuseStrategy can help solve a common issues with reusing components on route params.",
+  "examples": [],
+  "workshopDocuments": [
+    {
+      "_id": {
+        "$oid": "63b9d719736fe43282d9cc8f"
+      },
+      "name": "Page",
+      "sortId": 0
+    }
+  ],
+  "id": "route-reuse-strategy",
+  "__v": 0,
+  "workshopDocumentsLastUpdated": {
+    "$date": "2023-01-07T20:33:29.607Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6428c5e9d916f40b13e1eeea"
+  },
+  "sectionId": "nestjs",
+  "sortId": 2,
+  "name": "2",
+  "summary": "2",
+  "examples": [],
+  "workshopDocuments": [
+    {
+      "_id": {
+        "$oid": "6428c5e9d916f40b13e1eeec"
+      },
+      "name": "Page",
+      "sortId": 0
+    }
+  ],
+  "id": "2",
+  "__v": 0,
+  "workshopDocumentsLastUpdated": {
+    "$date": "2023-04-02T00:01:45.233Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6428cb3bd916f40b13e1f1ab"
+  },
+  "sectionId": "angular",
+  "sortId": 2,
+  "name": "test",
+  "summary": "Test again",
+  "examples": [],
+  "workshopDocuments": [
+    {
+      "_id": {
+        "$oid": "6428cb3bd916f40b13e1f1ad"
+      },
+      "name": "Page",
+      "sortId": 0
+    }
+  ],
+  "id": "3",
+  "__v": 0,
+  "workshopDocumentsLastUpdated": {
+    "$date": "2023-04-02T00:24:27.256Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6428cb5fd916f40b13e1f1b3"
+  },
+  "sectionId": "angular",
+  "sortId": 3,
+  "name": "we",
+  "summary": "we",
+  "examples": [],
+  "workshopDocuments": [
+    {
+      "_id": {
+        "$oid": "6428cb5fd916f40b13e1f1b5"
+      },
+      "name": "Page",
+      "sortId": 0
+    }
+  ],
+  "id": "we",
+  "__v": 0,
+  "workshopDocumentsLastUpdated": {
+    "$date": "2023-04-02T00:25:03.268Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "642a43080f40f20ae56b8681"
+  },
+  "sectionId": "nestjs",
+  "sortId": 0,
+  "name": "test debug",
+  "summary": "asdfadf",
+  "examples": [],
+  "workshopDocuments": [
+    {
+      "_id": {
+        "$oid": "642a43090f40f20ae56b8683"
+      },
+      "name": "Page",
+      "sortId": 0
+    }
+  ],
+  "id": "test-debug",
+  "__v": 0,
+  "workshopDocumentsLastUpdated": {
+    "$date": "2023-04-03T03:09:04.002Z"
+  }
+}]

@@ -3,7 +3,8 @@ import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { NavigationService } from '../../../../../../shared/services/navigation/navigation.service';
-import { animate, keyframes, query, stagger, state, style, transition, trigger } from '@angular/animations';
+import { animate, keyframes, query, stagger, style, transition, trigger } from '@angular/animations';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'ngx-workshop-list',
@@ -101,5 +102,7 @@ import { animate, keyframes, query, stagger, state, style, transition, trigger }
   ],
 })
 export class WorkshopListComponent {
-  workshops = inject(NavigationService).getWorkshops();
+  workshops = inject(NavigationService).getWorkshops().pipe(
+    map((workshops) => workshops.sort((a, b) => a.sortId - b.sortId))
+  );
 }
