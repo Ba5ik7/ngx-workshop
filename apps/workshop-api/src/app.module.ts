@@ -7,6 +7,7 @@ import { ChatModule } from './modules/chat/chat.module';
 import { IamModule } from './modules/iam/iam.module';
 import { Influx } from './providers/influx';
 import { LoggerMiddleware } from './middleware/logger.middleware';
+import { UploaderModule } from './modules/uploader/uploader.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { LoggerMiddleware } from './middleware/logger.middleware';
     WorkshopModule,
     ChatModule,
     IamModule,
+    UploaderModule,
   ],
   providers: [Influx],
 })

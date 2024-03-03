@@ -16,7 +16,8 @@ export class LoggerExceptionFilter implements ExceptionFilter {
     const ctx = host.switchToHttp();
     const request = ctx.getRequest<Request>();
     const response = ctx.getResponse<Response>();
-    const status = exception.getStatus();
+    const status = exception.getStatus?.() ?? 500;
+    console.warn(exception.message);
 
     const { method, originalUrl: path } = request;
     const duration = Date.now() - request['_startTime'];

@@ -1,7 +1,5 @@
 [{
-  "_id": {
-    "$oid": "65cadf2d8fb422ed7b83a08b"
-  },
+  "_id": "65cadf2d8fb422ed7b83a08b",
   "workshopGroupId": "idiomatic-reactive-data-streams",
   "name": "Page",
   "sortId": 0,
@@ -13,9 +11,7 @@
   "__v": 0
 },
 {
-  "_id": {
-    "$oid": "65caefa58fb422ed7b83a0a8"
-  },
+  "_id": "65caefa58fb422ed7b83a0a8",
   "workshopGroupId": "idiomatic-reactive-data-streams",
   "name": "Page 2",
   "sortId": 1,
@@ -27,9 +23,7 @@
   "__v": 0
 },
 {
-  "_id": {
-    "$oid": "65cb02798fb422ed7b83a136"
-  },
+  "_id": "65cb02798fb422ed7b83a136",
   "workshopGroupId": "idiomatic-reactive-data-streams",
   "name": "Page 3",
   "sortId": 2,
@@ -41,9 +35,7 @@
   "__v": 0
 },
 {
-  "_id": {
-    "$oid": "65cb04ea8fb422ed7b83a13f"
-  },
+  "_id": "65cb04ea8fb422ed7b83a13f",
   "workshopGroupId": "idiomatic-reactive-data-streams",
   "name": "Page 4",
   "sortId": 3,
@@ -55,9 +47,7 @@
   "__v": 0
 },
 {
-  "_id": {
-    "$oid": "65cb06248fb422ed7b83a146"
-  },
+  "_id": "65cb06248fb422ed7b83a146",
   "workshopGroupId": "idiomatic-reactive-data-streams",
   "name": "Page 5",
   "sortId": 4,
@@ -69,9 +59,7 @@
   "__v": 0
 },
 {
-  "_id": {
-    "$oid": "65d272008fb422ed7b83a336"
-  },
+  "_id": "65d272008fb422ed7b83a336",
   "workshopGroupId": "idiomatic-reactive-data-streams",
   "name": "Test",
   "sortId": 5,
@@ -83,9 +71,7 @@
   "__v": 0
 },
 {
-  "_id": {
-    "$oid": "65d28a298fb422ed7b83a35b"
-  },
+  "_id": "65d28a298fb422ed7b83a35b",
   "workshopGroupId": "part-2-reactive-streams",
   "name": "Page",
   "sortId": 0,
@@ -97,9 +83,7 @@
   "__v": 0
 },
 {
-  "_id": {
-    "$oid": "65d29abe8fb422ed7b83a3ac"
-  },
+  "_id": "65d29abe8fb422ed7b83a3ac",
   "workshopGroupId": "part-2-reactive-streams",
   "name": "Page 2",
   "sortId": 1,
@@ -111,9 +95,7 @@
   "__v": 0
 },
 {
-  "_id": {
-    "$oid": "65d2a6928fb422ed7b83a3d5"
-  },
+  "_id": "65d2a6928fb422ed7b83a3d5",
   "workshopGroupId": "part-2-reactive-streams",
   "name": "Page 3",
   "sortId": 2,
@@ -125,9 +107,7 @@
   "__v": 0
 },
 {
-  "_id": {
-    "$oid": "65d2b4528fb422ed7b83a404"
-  },
+  "_id": "65d2b4528fb422ed7b83a404",
   "workshopGroupId": "part-2-reactive-streams",
   "name": "Page 4",
   "sortId": 3,
@@ -139,9 +119,7 @@
   "__v": 0
 },
 {
-  "_id": {
-    "$oid": "65d2ca988fb422ed7b83a416"
-  },
+  "_id": "65d2ca988fb422ed7b83a416",
   "workshopGroupId": "part-2-reactive-streams",
   "name": "Page 5",
   "sortId": 4,
@@ -153,9 +131,7 @@
   "__v": 0
 },
 {
-  "_id": {
-    "$oid": "65d2debc8fb422ed7b83a45f"
-  },
+  "_id": "65d2debc8fb422ed7b83a45f",
   "workshopGroupId": "part-2-reactive-streams",
   "name": "Page 6",
   "sortId": 5,
@@ -167,9 +143,7 @@
   "__v": 0
 },
 {
-  "_id": {
-    "$oid": "65d39eaa8fb422ed7b83a55a"
-  },
+  "_id": "65d39eaa8fb422ed7b83a55a",
   "workshopGroupId": "part-3-reactive-streams",
   "name": "Page",
   "sortId": 0,
@@ -181,9 +155,7 @@
   "__v": 0
 },
 {
-  "_id": {
-    "$oid": "65d40fb18fb422ed7b83a5f0"
-  },
+  "_id": "65d40fb18fb422ed7b83a5f0",
   "workshopGroupId": "part-1-data-streams",
   "name": "Page",
   "sortId": 0,
@@ -195,9 +167,7 @@
   "__v": 0
 },
 {
-  "_id": {
-    "$oid": "65d41af08fb422ed7b83a610"
-  },
+  "_id": "65d41af08fb422ed7b83a610",
   "workshopGroupId": "easy-as-123",
   "name": "Page",
   "sortId": 0,
@@ -209,9 +179,7 @@
   "__v": 0
 },
 {
-  "_id": {
-    "$oid": "65d41bcb8fb422ed7b83a61a"
-  },
+  "_id": "65d41bcb8fb422ed7b83a61a",
   "workshopGroupId": "hot-vs-cold",
   "name": "Page",
   "sortId": 0,
@@ -223,9 +191,7 @@
   "__v": 0
 },
 {
-  "_id": {
-    "$oid": "65d41f1a8fb422ed7b83a638"
-  },
+  "_id": "65d41f1a8fb422ed7b83a638",
   "workshopGroupId": "route-reuse-strategy",
   "name": "Page",
   "sortId": 0,
@@ -237,9 +203,7 @@
   "__v": 0
 },
 {
-  "_id": {
-    "$oid": "65d42c9f8fb422ed7b83a641"
-  },
+  "_id": "65d42c9f8fb422ed7b83a641",
   "workshopGroupId": "getting-started",
   "name": "Page",
   "sortId": 0,
@@ -251,9 +215,7 @@
   "__v": 0
 },
 {
-  "_id": {
-    "$oid": "65d42d648fb422ed7b83a665"
-  },
+  "_id": "65d42d648fb422ed7b83a665",
   "workshopGroupId": "view-container-ref",
   "name": "Page",
   "sortId": 0,
@@ -265,9 +227,7 @@
   "__v": 0
 },
 {
-  "_id": {
-    "$oid": "65d42de68fb422ed7b83a66b"
-  },
+  "_id": "65d42de68fb422ed7b83a66b",
   "workshopGroupId": "reactive-forms",
   "name": "Page",
   "sortId": 0,
@@ -279,9 +239,7 @@
   "__v": 0
 },
 {
-  "_id": {
-    "$oid": "65d42e088fb422ed7b83a671"
-  },
+  "_id": "65d42e088fb422ed7b83a671",
   "workshopGroupId": "control-value-accessor",
   "name": "Page",
   "sortId": 0,

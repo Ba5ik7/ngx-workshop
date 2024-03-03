@@ -16,6 +16,7 @@ import { NgxEditorjsImageBlockMediator } from '@tmdjr/ngx-editorjs-image-block';
 import { NgxEditorjsCodeBlockMediator } from '@tmdjr/ngx-editorjs-code-block';
 import { NgxEditorjsMermaidBlockMediator } from '@tmdjr/ngx-editorjs-mermaid-block';
 import { NgxEditorjsQuizBlockMediator } from '@tmdjr/ngx-editorjs-quiz-block';
+
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(appRoutes, withEnabledBlockingInitialNavigation()),
