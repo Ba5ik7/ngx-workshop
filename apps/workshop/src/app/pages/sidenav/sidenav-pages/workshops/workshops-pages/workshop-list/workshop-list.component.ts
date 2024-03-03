@@ -5,11 +5,25 @@ import { MatCardModule } from '@angular/material/card';
 import { NavigationService } from '../../../../../../shared/services/navigation/navigation.service';
 import { animate, keyframes, query, stagger, style, transition, trigger } from '@angular/animations';
 import { map } from 'rxjs';
+import { Pipe, PipeTransform } from '@angular/core';
 
+@Pipe({ name: 'optimizeCloudinaryUrl', standalone: true })
+export class OptimizeCloudinaryUrlPipe implements PipeTransform {
+  transform(url: string): string {
+    const parts = url.split('/upload/');
+    return `${parts[0]}/upload/w_650,q_auto:best,f_auto/${parts[1]}`;
+  }
+}
 @Component({
   selector: 'ngx-workshop-list',
   standalone: true,
-  imports: [CommonModule, RouterModule, MatCardModule, NgOptimizedImage],
+  imports: [
+    CommonModule,
+    RouterModule,
+    MatCardModule,
+    NgOptimizedImage,
+    OptimizeCloudinaryUrlPipe
+  ],
   animations: [
     trigger('staggerCircleReveal', [
       transition(':enter', [
@@ -41,7 +55,9 @@ import { map } from 'rxjs';
           workshop.workshopDocuments[0]._id
         "
       >
-        <div class="img-wrapper"><img [ngSrc]="workshop.thumbnail ?? '/assets/img/workshop-placeholder.png'" fill /></div>
+        <div class="img-wrapper">
+          <img [ngSrc]="workshop.thumbnail | optimizeCloudinaryUrl" fill />
+        </div>
         <h2>{{ workshop.name }}</h2>
         <p>{{ workshop.summary }}</p>
       </div>

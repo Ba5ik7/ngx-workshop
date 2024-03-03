@@ -5,6 +5,17 @@ import { MatCardModule } from '@angular/material/card'
 import { map } from 'rxjs';
 import { NavigationService } from '../../../../../../shared/services/navigation/navigation.service';
 import { ImageUploaderComponent } from '../../../../../../shared/components/image-uploader/image-uploader.component';
+import { Pipe, PipeTransform } from '@angular/core';
+import { animate, keyframes, query, stagger, style, transition, trigger } from '@angular/animations';
+
+
+@Pipe({ name: 'optimizeCloudinaryUrl', standalone: true })
+export class OptimizeCloudinaryUrlPipe implements PipeTransform {
+  transform(url: string): string {
+    const parts = url.split('/upload/');
+    return `${parts[0]}/upload/w_650,q_auto:best,f_auto/${parts[1]}`;
+  }
+}
 
 @Component({
   selector: 'ngx-workshop-list',
@@ -14,10 +25,29 @@ import { ImageUploaderComponent } from '../../../../../../shared/components/imag
     RouterModule,
     MatCardModule,
     NgOptimizedImage,
-    ImageUploaderComponent
+    ImageUploaderComponent,
+    OptimizeCloudinaryUrlPipe
+  ],
+  animations: [
+    trigger('staggerCircleReveal', [
+      transition(':enter', [
+        query('.mat-card-new', [
+          style({ opacity: 0, marginTop: '100px'}),
+          stagger('150ms', [
+            animate('0.6s ease-in-out', keyframes([
+              style({ opacity: 0, marginTop: '15px', clipPath: 'circle(0% at 85% 85%)', offset: 0 }), // top left
+              style({ opacity: 1, marginTop: '0', clipPath: 'circle(200% at 0% 0%)', offset: 1.0 }) // top left
+            ]))
+          ])
+        ], { optional: true })
+      ]),
+      transition(':leave', [
+        animate(600, style({ opacity: 0 }))
+      ])
+    ])
   ],
   template: `
-    <div class="workshop-list">
+    <div class="workshop-list" [@staggerCircleReveal]>
       <div
         class="mat-card-new mat-mdc-card"
         *ngFor="let workshop of workshops | async"
@@ -29,7 +59,7 @@ import { ImageUploaderComponent } from '../../../../../../shared/components/imag
         "
       >
         <div class="img-wrapper">
-          <img [ngSrc]="workshop.thumbnail ?? '/assets/img/workshop-placeholder.png'" fill />
+          <img [ngSrc]="workshop.thumbnail | optimizeCloudinaryUrl" fill />
         </div>
         <h2>{{ workshop.name }}</h2>
         <p>{{ workshop.summary }}</p>
