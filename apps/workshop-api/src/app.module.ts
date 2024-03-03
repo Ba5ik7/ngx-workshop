@@ -8,6 +8,7 @@ import { IamModule } from './modules/iam/iam.module';
 import { Influx } from './providers/influx';
 import { LoggerMiddleware } from './middleware/logger.middleware';
 import { UploaderModule } from './modules/uploader/uploader.module';
+import { OpenAIModule } from './modules/open-ai/open-ai.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { UploaderModule } from './modules/uploader/uploader.module';
     ChatModule,
     IamModule,
     UploaderModule,
+    OpenAIModule
   ],
   providers: [Influx],
 })
