@@ -17,7 +17,7 @@ import { ImageUploaderComponent } from '../../../../../../shared/components/imag
     ImageUploaderComponent
   ],
   template: `
-    <div class="workshop-list" [@staggerCircleReveal]>
+    <div class="workshop-list">
       <div
         class="mat-card-new mat-mdc-card"
         *ngFor="let workshop of workshops | async"
@@ -30,7 +30,6 @@ import { ImageUploaderComponent } from '../../../../../../shared/components/imag
       >
         <div class="img-wrapper">
           <img [ngSrc]="workshop.thumbnail ?? '/assets/img/workshop-placeholder.png'" fill />
-          <ngx-image-uploader class="image-uploader-cta"></ngx-image-uploader>
         </div>
         <h2>{{ workshop.name }}</h2>
         <p>{{ workshop.summary }}</p>

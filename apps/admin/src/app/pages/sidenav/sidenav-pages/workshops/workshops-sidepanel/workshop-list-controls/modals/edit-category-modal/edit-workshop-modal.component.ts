@@ -1,5 +1,5 @@
 import { Component, inject, Inject } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { BehaviorSubject, combineLatest, mergeMap, of, take, takeUntil, tap } from 'rxjs';
 import { NavigationService } from '../../../../../../../../shared/services/navigation/navigation.service';
@@ -10,6 +10,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { CommonModule } from '@angular/common';
 import { Workshop } from '../../../../../../../../shared/interfaces/navigation.interface';
+import { MatRadioModule } from '@angular/material/radio';
 
 @Component({
   standalone: true,
@@ -23,6 +24,7 @@ import { Workshop } from '../../../../../../../../shared/interfaces/navigation.i
     ReactiveFormsModule,
     MatButtonModule,
     MatInputModule,
+    MatRadioModule
   ],
 })
 export class EditWorkshopModalComponent {
@@ -31,6 +33,7 @@ export class EditWorkshopModalComponent {
   private navigationService = inject(NavigationService);
   private dialogRef = inject(MatDialogRef<EditWorkshopModalComponent>);
   private formBuilder = inject(FormBuilder);
+  private selectedImage: File | null = null;
 
   editWorkshopFormLevelMessage$ = new BehaviorSubject<string | undefined>(undefined);
   errorMessages: KeyValue = {
@@ -42,10 +45,13 @@ export class EditWorkshopModalComponent {
 
   loading$ = new BehaviorSubject<boolean>(false)
   formGroup$ = of(
-      inject(FormBuilder).group({
+    this.formBuilder.group({
       _id: [this.data.workshop?._id],
       name: [this.data.workshop?.name, [Validators.required]],
-      summary: [this.data.workshop?.summary, [Validators.required]]
+      summary: [this.data.workshop?.summary, [Validators.required]],
+      imageURLOrUpload: ['url'],
+      thumbnail: [this.data.workshop?.thumbnail, [Validators.required]],
+      image: new FormControl<File | null>(null)
     })
   );
 
@@ -82,5 +88,29 @@ export class EditWorkshopModalComponent {
       },
       error: () => this.editWorkshopFormLevelMessage$.next(this.errorMessages['httpFailure'])
     });
+  }
+
+  onFileSelected(event: Event, formGroup: FormGroup) {
+    const element = event.currentTarget as HTMLInputElement;
+    const fileList: FileList | null = element.files;
+    if (fileList && fileList.length > 0) {
+      this.selectedImage = fileList[0];
+      const formData = new FormData();
+      formData.append('image', this.selectedImage);
+      
+      this.loading$.next(true)
+      console.log('Form Data Ready to be Sent:', formData.get('image'));
+      this.workshopEditorService.uploadImage(formData)
+      .pipe(take(1))
+      .subscribe({
+        next: ({ success }) => {
+          this.loading$.next(false);
+          formGroup.get('thumbnail')?.setValue(success?.secure_url);
+          formGroup.get('imageURLOrUpload')?.setValue('url');
+          console.log(success);
+        },
+        error: () => this.editWorkshopFormLevelMessage$.next(this.errorMessages['httpFailure'])
+      });
+    }
   }
 }

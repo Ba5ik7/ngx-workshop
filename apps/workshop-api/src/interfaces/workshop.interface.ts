@@ -11,6 +11,7 @@ export interface IWorkshop {
   name: string;
   // Short summary of the category item.
   summary: string;
+  thumbnail: string;
   // List of object ids for workshop-documents
   workshopDocuments: IWorkshopDocumentIdentifier[];
 }

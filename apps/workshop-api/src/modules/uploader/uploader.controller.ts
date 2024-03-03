@@ -13,9 +13,6 @@ export class UploaderController {
   @Post('image-upload')
   @UseInterceptors(FileInterceptor('image'))
   async uploadImage(@UploadedFile() file: Express.Multer.File) {
-    const result = await this.cloudinaryService.uploadFile(file);
-    console.log(result);
-    return result.secure_url;
-    return { message: 'File uploaded successfully', fileName: file.originalname };
+    return await this.cloudinaryService.uploadFile(file);
   }
 }

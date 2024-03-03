@@ -62,6 +62,7 @@ export class NavigationService {
           {
             name: workshop.name,
             summary: workshop.summary,
+            thumbnail: workshop.thumbnail,
             workshopDocumentGroupId: newWorkshopDocumentGroupId,
           },
           { returnDocument: 'after' },

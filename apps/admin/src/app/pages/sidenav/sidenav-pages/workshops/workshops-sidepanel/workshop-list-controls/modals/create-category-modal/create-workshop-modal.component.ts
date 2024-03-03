@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { BehaviorSubject, combineLatest, map, mergeMap, take, takeUntil, tap } from 'rxjs';
 import { NavigationService } from '../../../../../../../../shared/services/navigation/navigation.service';
@@ -10,6 +10,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { CommonModule } from '@angular/common';
 import { Workshop } from '../../../../../../../../shared/interfaces/navigation.interface';
+import { MatRadioModule } from '@angular/material/radio';
 
 @Component({
   standalone: true,
@@ -23,6 +24,7 @@ import { Workshop } from '../../../../../../../../shared/interfaces/navigation.i
     ReactiveFormsModule,
     MatButtonModule,
     MatInputModule,
+    MatRadioModule
   ]
 })
 export class CreateWorkshopModalComponent {
@@ -30,6 +32,7 @@ export class CreateWorkshopModalComponent {
   private navigationService = inject(NavigationService);
   private dialogRef = inject(MatDialogRef<CreateWorkshopModalComponent>);
   private formBuilder = inject(FormBuilder);
+  private selectedImage: File | null = null;
 
   createWorkshopFormLevelMessage$ = new BehaviorSubject<string | undefined>(undefined);
   errorMessages: KeyValue = {
@@ -47,10 +50,13 @@ export class CreateWorkshopModalComponent {
   }).pipe(
     map(({ section, workshops }) => {
       return this.formBuilder.group({
-        sectionId:[section?._id],
-        sortId:[workshops.length],
+        sectionId: [section?._id],
+        sortId: [workshops.length],
         name: ['', [Validators.required]],
-        summary: ['', [Validators.required]]
+        summary: ['', [Validators.required]],
+        imageURLOrUpload: ['url'],
+        thumbnail:  new FormControl<string | null>(null),
+        image: new FormControl<File | null>(null)
       })
     })
   );
@@ -88,5 +94,30 @@ export class CreateWorkshopModalComponent {
       },
       error: () => this.createWorkshopFormLevelMessage$.next(this.errorMessages['httpFailure'])
     });
+  }
+
+  onFileSelected(event: Event, formGroup: FormGroup) {
+    const element = event.currentTarget as HTMLInputElement;
+    const fileList: FileList | null = element.files;
+    if (fileList && fileList.length > 0) {
+      this.selectedImage = fileList[0];
+      const formData = new FormData();
+      formData.append('image', this.selectedImage);
+      
+      this.loading$.next(true)
+      console.log('Form Data Ready to be Sent:', formData.get('image'));
+      this.workshopEditorService.uploadImage(formData)
+      .pipe(take(1))
+      .subscribe({
+        next: ({ success }) => {
+          this.loading$.next(false);
+          formGroup.get('thumbnail')?.setValue(success?.secure_url);
+          formGroup.get('imageURLOrUpload')?.setValue('url');
+          console.log(success);
+        },
+        error: () => this.createWorkshopFormLevelMessage$.next(this.errorMessages['httpFailure'])
+      });
+    }
+
   }
 }

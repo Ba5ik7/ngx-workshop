@@ -24,6 +24,12 @@ export class Workshop {
   @Prop({ required: true })
   summary: string;
 
+  @Prop({ 
+    required: true,
+    default: 'https://via.placeholder.com/250/400',
+  })
+  thumbnail: string;
+
   @Prop()
   workshopDocuments: IWorkshopDocumentIdentifier[];
 
