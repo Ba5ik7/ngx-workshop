@@ -12,6 +12,7 @@
 @use './pages/sidenav/sidenav';
 @use './pages/sidenav/sidenav-pages/workshops/workshops';
 @use './pages/sidenav/sidenav-pages/chat/chat';
+@use './pages/sidenav/sidenav-pages/openai/openai';
 
 @use './shared/components/footer/footer-theme';
 @use './shared/components/navbar/navbar-theme';
@@ -82,6 +83,7 @@
   @include sidenav.theme($theme);
   @include workshops.theme($theme);
   @include chat.theme($theme);
+  @include openai.theme($theme);
   @include login.theme($theme);
 
   @include footer-theme.theme($theme);

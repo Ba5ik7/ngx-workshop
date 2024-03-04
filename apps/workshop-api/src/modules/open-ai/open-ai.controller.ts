@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { Roles } from '../../decorators/role.decorator';
 import { Role } from '../../enums/role.enum';
 import { OpenAIService } from './open-ai.service';
@@ -13,5 +13,11 @@ export class OpenAiController {
   async generateContent(@Body() prompt: Record<string, string>) {
     const generatedText = await this.openAIService.generateText(prompt.content);
     return { generatedText };
+  }
+
+  @Roles(Role.Admin)
+  @Get('responses')
+  async getResponses() {
+    return await this.openAIService.getAiResponses();
   }
 }

@@ -42,6 +42,11 @@ export const SIDENAV_ROUTES: Route[] = [
         canActivate: [AuthGuard],
         path: 'workshop-editor',
         loadChildren: () => import('./sidenav-pages/workshops/workshops.routing').then(m => m.WORKSHOPS_ROUTES)
+      },
+      {
+        canActivate: [AuthGuard],
+        path: 'openai',
+        loadChildren: () => import('./sidenav-pages/openai/openai.routing').then(m => m.OPENAI_ROUTES)
       }
     ]
   }

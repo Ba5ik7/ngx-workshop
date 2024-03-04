@@ -77,4 +77,8 @@ export class OpenAIService {
     // Create and save OpenAI response to database
     return await this.openAIResponseModel.create(response);
   }
+
+  async getAiResponses(): Promise<IOpenAIResponse[]> {
+    return this.openAIResponseModel.find().exec();
+  }
 }

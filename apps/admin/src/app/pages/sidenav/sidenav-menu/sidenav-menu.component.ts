@@ -31,6 +31,12 @@ import { Sections } from '../../../shared/interfaces/navigation.interface';
               Users
             </span>
           </a>
+          <a mat-list-item routerLink="openai" routerLinkActive="workshop-menu-nav-item-selected" class="section-item">
+            <span class="mat-list-item-content">  
+              <mat-icon>cloud_sync</mat-icon>
+              Open Ai
+            </span>
+          </a>
           <!-- <a mat-list-item routerLink="chat" routerLinkActive="workshop-menu-nav-item-selected" class="section-item">
             <span class="mat-list-item-content">
               <mat-icon>chat</mat-icon>
