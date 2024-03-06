@@ -20,7 +20,7 @@ import { SidenavHeaderComponent, SidenavHeaderData } from './sidenav-header/side
           <ngx-sidenav-menu [sections]="vm.sections"></ngx-sidenav-menu>
           <router-outlet></router-outlet>
         </main>
-        <ngx-footer></ngx-footer>
+        <!-- <ngx-footer></ngx-footer> -->
       </mat-sidenav-container>
     </ng-container>
     <ng-template #loading>
