@@ -13,8 +13,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { RouterModule } from '@angular/router';
-import { tap } from 'rxjs';
+import { ActivatedRoute, RouterModule } from '@angular/router';
+import { of, switchMap, tap } from 'rxjs';
 import { ChatService } from '../../../../../../shared/services/chat/chat.service';
 
 @Component({
@@ -82,17 +82,17 @@ export class ChatComponent {
     ElementRef<HTMLElement>
   >;
 
+  route = inject(ActivatedRoute);
   chatService = inject(ChatService);
   message = '';
   user = '';
-
-  chatAppData$ = this.chatService
-    .getChatAppData()
-    .pipe(tap(() => this.scrollToBottom()));
-
-  switchRoom(room: string) {
-    this.chatService.switchRoom(room);
-  }
+  
+  chatAppData$ = of(this.route.snapshot.paramMap.get('chatRoom')).pipe(
+    tap(console.log),
+    tap((room) => this.chatService.switchRoom(room ?? 'Angular')),
+    switchMap(() => this.chatService.getChatAppData()),
+    tap(() => this.scrollToBottom())
+  );
 
   sendMessage() {
     if (this.message) {

@@ -29,7 +29,6 @@ export class DeleteSectionModalComponent {
     ) { }
 
   deleteSection() {
-    console.log(this.data);
     this.dialogRef.close();
   }
 }

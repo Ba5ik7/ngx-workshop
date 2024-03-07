@@ -91,12 +91,7 @@ export class UploadImageModalComponent {
     if (this.imageUploadForm.valid) {
       const formData = new FormData();
       formData.append('image', this.selectedFile as File);
-
-      this.httpClient.post('/api/uploader/image-upload', formData).subscribe(response => {
-        console.log(response);
-      });
-
-      console.log('Form Data Ready to be Sent:', formData.get('image'));
+      this.httpClient.post('/api/uploader/image-upload', formData).subscribe();
       this.dialogRef.close();
     }
   }

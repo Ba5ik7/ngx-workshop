@@ -10,13 +10,8 @@ export const OPENAI_ROUTES: Route[] = [
     children: [
       {
         path: '',
-        redirectTo: 'chat',
+        redirectTo: 'Angular',
         pathMatch: 'full'
-      },
-      {
-        canActivate: [AuthGuard],
-        path: 'chat',
-        loadComponent: () => import('./openai-pages/chat/chat.component').then(m => m.ChatComponent)
       },
       {
         canActivate: [AuthGuard],
@@ -29,6 +24,11 @@ export const OPENAI_ROUTES: Route[] = [
         path: 'workshop-creator',
         loadComponent: () => import('./openai-pages/openai-workshop-creator/openai-workshop-creator.component').then(m => m.OpenaiWorkshopCreatorComponent)
       },
+      {
+        canActivate: [AuthGuard],
+        path: ':chatRoom',
+        loadComponent: () => import('./openai-pages/chat/chat.component').then(m => m.ChatComponent)
+      }
     ]
   }
 ];

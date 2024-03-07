@@ -123,7 +123,7 @@ export class NavigationService {
     _id: string,
     workshopIdToUpdate: string,
   ): Promise<{ acknowledged: boolean; deletedCount: number }> {
-    const foo = await this.workshopModel.findByIdAndUpdate<IWorkshop>(workshopIdToUpdate, {
+    await this.workshopModel.findByIdAndUpdate<IWorkshop>(workshopIdToUpdate, {
       $pull: {
         workshopDocuments: {
           _id,
@@ -131,7 +131,6 @@ export class NavigationService {
       },
       workshopDocumentsLastUpdated: Date.now(),
     });
-    console.log(foo);
     return await this.workshopDocumentService.deleteOne(_id);
   }
 

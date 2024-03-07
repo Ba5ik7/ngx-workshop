@@ -1,6 +1,8 @@
-import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { inject, Injectable } from '@angular/core';
 import { BehaviorSubject, combineLatest, map, Observable } from 'rxjs';
 import { io, Socket } from 'socket.io-client';
+import { IChatroom } from '../../interfaces/chatrooms.interface';
 
 export interface Message {
   user: string;
@@ -24,12 +26,13 @@ export interface ChatAppData {
   providedIn: 'root'
 })
 export class ChatService {
+  httpClient = inject(HttpClient);
 
   private client!: Socket;
   private connected$ = new BehaviorSubject(false);
   private user$ = new BehaviorSubject('Ngx-Wesley');
   private rooms$ = new BehaviorSubject<string[]>([]);
-  private activeRoom$ = new BehaviorSubject('General');
+  private activeRoom$ = new BehaviorSubject('Angular');
   private chatRoom$ = new BehaviorSubject<ChatRoom>({
     users: [],
     messages: [],
@@ -115,5 +118,9 @@ export class ChatService {
       chatRoom.messages.push(message);
       this.chatRoom$.next(chatRoom);
     }
+  }
+
+  fetchChatrooms() {
+    return this.httpClient.get<IChatroom[]>('/api/chat/chatrooms');
   }
 }

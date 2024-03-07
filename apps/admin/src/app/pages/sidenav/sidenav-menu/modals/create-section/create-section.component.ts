@@ -96,7 +96,6 @@ export class CreateSectionModalComponent implements OnInit {
   }
 
   createSection() {
-    console.log('Create section');
     this.dialogRef.close();
   }
 

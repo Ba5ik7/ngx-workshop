@@ -99,7 +99,6 @@ export class EditWorkshopModalComponent {
       formData.append('image', this.selectedImage);
       
       this.loading$.next(true)
-      console.log('Form Data Ready to be Sent:', formData.get('image'));
       this.workshopEditorService.uploadImage(formData)
       .pipe(take(1))
       .subscribe({
@@ -107,7 +106,6 @@ export class EditWorkshopModalComponent {
           this.loading$.next(false);
           formGroup.get('thumbnail')?.setValue(success?.secure_url);
           formGroup.get('imageURLOrUpload')?.setValue('url');
-          console.log(success);
         },
         error: () => this.editWorkshopFormLevelMessage$.next(this.errorMessages['httpFailure'])
       });

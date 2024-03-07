@@ -14,7 +14,7 @@ export class OpenAIService {
   private readonly openAIEndpoint = 'https://api.openai.com/v1/chat/completions';
   private readonly apiKey = process.env.OPEN_AI_API_KEY; // Securely manage your API key
 
-  async generateText(messageContent: string) {
+  async generateText(messageContent: string,) {
     try {
       const response = await axios.post(
         this.openAIEndpoint,
@@ -74,7 +74,6 @@ export class OpenAIService {
   }
 
   async createOpenAIResponse(response: IOpenAIResponse) {
-    // Create and save OpenAI response to database
     return await this.openAIResponseModel.create(response);
   }
 
