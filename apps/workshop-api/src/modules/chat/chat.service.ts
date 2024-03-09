@@ -52,35 +52,30 @@ export class ChatService {
     return userToRemove;
   }
 
-  joinRoom(room: string, user: string) {
-    this.chatRooms[room].users.push(user);
-    // sort the users alphabetically
-    this.chatRooms[room].users.sort((a, b) => {
-      return a.toLowerCase() >= b.toLowerCase() ? 1 : -1;
-    });
-  }
-
-  leaveRoom(room: string, user: string) {
-    this.chatRooms[room].users = this.chatRooms[room].users.filter(
-      (u) => u !== user
+  async joinRoom(roomName: string, userId: string) {
+    return await this.chatroomModel.updateOne(
+      { roomName: roomName },
+      { $push: { users: userId } }
     );
   }
 
-  getChatRoom(room: string) {
-    return this.chatRooms[room];
-  }
-
-  getChatRooms() {
-    const keys = Object.keys(this.chatRooms);
-    return keys;
+  async leaveRoom(room: string, user: string) {
+    return await this.chatroomModel
+      .updateOne({ room: room }, { $pull: { users: user } });
   }
 
   addMessage(room: string, message: Message) {
-    this.chatRooms[room].messages.push(message);
+    // this.chatRooms[room].messages.push(message);
+    this.updateChatroomMessage(message.user, message.content, room);
   }
 
   async getChatrooms() {
     return await this.chatroomModel.find().exec();
+  }
+
+  async getChatroom(roomName: string) {
+    return await this.chatroomModel.findOne({ roomName:
+      roomName }).exec();
   }
 
   async createChatroom(chatroom: Chatroom) {
@@ -88,7 +83,7 @@ export class ChatService {
   }
 
   async updateChatroomMessage(
-    userId: string,
+    email: string,
     messageContent: string,
     roomName: string
   ) {
@@ -97,19 +92,12 @@ export class ChatService {
       {
         $push: {
           messages: {
-            user: userId,
+            user: email,
             content: messageContent,
             timestamp: new Date(),
           },
         },
       }
-    );
-  }
-
-  async updateChatroomUser(userId: string, roomName: string) {
-    return await this.chatroomModel.updateOne(
-      { roomName: roomName },
-      { $push: { users: userId } }
     );
   }
 

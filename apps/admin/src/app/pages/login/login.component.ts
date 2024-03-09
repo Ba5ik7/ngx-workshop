@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Subject, takeUntil } from 'rxjs';
+import { mergeMap, Subject, takeUntil } from 'rxjs';
 import { UserStateService } from '../../shared/services/user-state/user-state.service';
 import { AuthService } from '../../shared/services/auth/auth.service';
 import { MatCardModule } from '@angular/material/card';
@@ -116,8 +116,10 @@ export class LoginComponent implements OnInit {
     });
     
     this.authService.signInFormSuccess$
-    .pipe(takeUntil(this.destory))
-    .subscribe((user) => this.signSuccuessful(user));
+    .pipe(
+      takeUntil(this.destory),
+      mergeMap(() => this.userStateService.getUserMetadata())
+    ).subscribe((user) => this.signSuccuessful(user));
   }
 
   signInClick(): void {

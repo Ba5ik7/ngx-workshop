@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { BehaviorSubject, combineLatest, map, Observable } from 'rxjs';
+import { BehaviorSubject, combineLatest, map, Observable, of } from 'rxjs';
 import { io, Socket } from 'socket.io-client';
 import { IChatroom } from '../../interfaces/chatrooms.interface';
+import { UserStateService } from '../user-state/user-state.service';
 
 export interface Message {
   user: string;
@@ -27,6 +28,7 @@ export interface ChatAppData {
 })
 export class ChatService {
   httpClient = inject(HttpClient);
+  userStateService = inject(UserStateService);
 
   private client!: Socket;
   private connected$ = new BehaviorSubject(false);
@@ -69,13 +71,16 @@ export class ChatService {
   }
 
   sendMessage(content: string) {
-    const message = {
-      user: this.user$.value,
-      content,
-    };
-    this.client.emit('messageToServer', {
-      room: this.activeRoom$.value,
-      message,
+    this.userStateService.userMetadata$.pipe(
+      map((userMetadata) => userMetadata?.email)
+    ).subscribe((user) => {
+      this.client.emit('messageToServer', {
+        room: this.activeRoom$.value,
+        message: {
+          user,
+          content,
+        },
+      });
     });
   }
 

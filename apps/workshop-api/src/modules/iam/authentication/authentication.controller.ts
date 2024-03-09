@@ -12,6 +12,8 @@ import { AuthenticationService } from './authentication.service';
 import { Auth } from '../../../decorators/auth.decorator';
 import { AuthType } from '../../../enums/auth-type.enum';
 import { UserAuthDto } from './dto/user-auth.dto';
+import { ActiveUser } from '../../../decorators/active-user.decorator';
+import { IActiveUserData } from '../../../interfaces/active-user-data.interface';
 
 const cookieOptions = {
   secure: false,
@@ -42,8 +44,6 @@ export class AuthenticationController {
   ) {
     const jwt = await this.authService.signIn(userAuthDto);
     response.cookie('accessToken', jwt.accessToken, cookieOptions);
-    // Let's think about the need of refresh-tokens
-    // response.cookie('refreshToken', jwt.refreshToken, cookieOptions);
   }
 
   @HttpCode(HttpStatus.OK)
@@ -58,6 +58,16 @@ export class AuthenticationController {
   @Get('is-user-logged-in')
   isLoggedIn(): boolean {
     return true;
+  }
+
+  @Auth(AuthType.Bearer)
+  @HttpCode(HttpStatus.OK)
+  @Get('user-metadata')
+  async getUserMetadata(@ActiveUser() user: IActiveUserData ) { 
+    return {
+      email: user.email,
+      role: user.role
+    };
   }
 
   // Let's think about the need of refresh-tokens

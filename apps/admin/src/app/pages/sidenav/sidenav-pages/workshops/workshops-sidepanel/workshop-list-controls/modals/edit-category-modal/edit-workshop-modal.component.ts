@@ -28,7 +28,7 @@ import { MatRadioModule } from '@angular/material/radio';
   ],
 })
 export class EditWorkshopModalComponent {
-  constructor(@Inject(MAT_DIALOG_DATA) public data: { workshop: any }) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: { workshop: Workshop }) { }
   private workshopEditorService = inject(WorkshopEditorService);
   private navigationService = inject(NavigationService);
   private dialogRef = inject(MatDialogRef<EditWorkshopModalComponent>);

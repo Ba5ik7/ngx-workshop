@@ -52,7 +52,7 @@ import { ChatService } from '../../../../../../shared/services/chat/chat.service
             [(ngModel)]="message"
             (keyup.enter)="sendMessage()"
           ></textarea>
-          <button mat-mini-fab color="accent" matSuffix>
+          <button mat-mini-fab color="accent" class="" matSuffix>
             <mat-icon>send</mat-icon>
           </button>
         </mat-form-field>
@@ -88,7 +88,6 @@ export class ChatComponent {
   user = '';
   
   chatAppData$ = of(this.route.snapshot.paramMap.get('chatRoom')).pipe(
-    tap(console.log),
     tap((room) => this.chatService.switchRoom(room ?? 'Angular')),
     switchMap(() => this.chatService.getChatAppData()),
     tap(() => this.scrollToBottom())

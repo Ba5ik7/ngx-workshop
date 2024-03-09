@@ -9,7 +9,7 @@ export class ChatGateway {
   @SubscribeMessage('identify')
   async handleIdentify(client: Socket, user: string) {
     this.chatService.identify(user, client.id);
-    return this.chatService.getChatRooms();
+    return this.chatService.getChatrooms();
   }
 
   @SubscribeMessage('disconnect')
@@ -23,7 +23,7 @@ export class ChatGateway {
     this.chatService.joinRoom(data.room, data.user);
     client.join(data.room);
     client.to(data.room).emit('userJoined', data.user);
-    return this.chatService.getChatRoom(data.room);
+    return this.chatService.getChatroom(data.room);
   }
 
   @SubscribeMessage('leaveRoom')
