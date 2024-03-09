@@ -2,17 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { BehaviorSubject, combineLatest, map, Observable, of } from 'rxjs';
 import { io, Socket } from 'socket.io-client';
-import { IChatroom } from '../../interfaces/chatrooms.interface';
+import { IChatMessage, IChatroom } from '../../interfaces/chatrooms.interface';
 import { UserStateService } from '../user-state/user-state.service';
 
-export interface Message {
-  user: string;
-  content: string;
-}
 
 export interface ChatRoom {
   users: string[];
-  messages: Message[];
+  messages: IChatMessage[];
 }
 
 export interface ChatAppData {
@@ -44,7 +40,7 @@ export class ChatService {
     this.client = io('/chat', { autoConnect: true, path: '/api/socket.io' });
     this.client.on('connect', () => this.connected());
     this.client.on('userJoined', (user: string) => this.userJoined(user));
-    this.client.on('messageToClient', (message: Message) => this.messageToClient(message));
+    this.client.on('messageToClient', (message: IChatMessage) => this.messageToClient(message));
     
   }
 
@@ -117,7 +113,7 @@ export class ChatService {
     }
   }
 
-  private messageToClient(message: Message): void {
+  private messageToClient(message: IChatMessage): void {
     const chatRoom = this.chatRoom$.value;
     if (chatRoom) {
       chatRoom.messages.push(message);

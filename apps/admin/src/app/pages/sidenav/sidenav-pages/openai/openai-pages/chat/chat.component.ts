@@ -14,8 +14,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { of, switchMap, tap } from 'rxjs';
+import { combineLatest, of, switchMap, tap } from 'rxjs';
 import { ChatService } from '../../../../../../shared/services/chat/chat.service';
+import { UserStateService } from '../../../../../../shared/services/user-state/user-state.service';
 
 @Component({
   selector: 'ngx-chat',
@@ -32,13 +33,24 @@ import { ChatService } from '../../../../../../shared/services/chat/chat.service
   template: `
     <ng-container *ngIf="chatAppData$ | async as data">
       <div class="messages-panel">
-        <div class="message-container">
-          <div *ngIf="data.chatRoom.messages.length > 0; else noMessages">
-            <div *ngFor="let message of data.chatRoom.messages" #lastMessage>
-              [{{ message.user }}]: {{ message.content }}
+        <div class="messages-container">
+          @if (data.chatRoom.messages.length > 0) {
+            <div
+              #lastMessage
+              class="message-box mat-mdc-card"
+              *ngFor="let message of data.chatRoom.messages"
+              [ngClass]="{'me': message.user === user}">
+                <div class="message-header">
+                  <div class="message-user">
+                    {{ message.user }}
+                  </div>
+                  <div class="message-time">{{ message.timestamp | date:'medium' }}</div>
+                </div>
+                <div class="message">{{ message.content }}</div>
             </div>
-          </div>
-          <ng-template #noMessages><p>No messages in this room</p></ng-template>
+          } @else {
+            <p>No messages in this room</p>
+          }
         </div>
         <mat-form-field class="message sticky" color="accent">
           <mat-label>Message</mat-label>
@@ -60,6 +72,7 @@ import { ChatService } from '../../../../../../shared/services/chat/chat.service
     </ng-container>
   `,
   styles: `
+    @use '@angular/material' as mat;
     ::ng-deep .message > .mat-mdc-form-field-subscript-wrapper {
       display: none;
     }
@@ -73,6 +86,31 @@ import { ChatService } from '../../../../../../shared/services/chat/chat.service
       position: sticky;
       bottom: 0;
     }
+
+    .messages-container {
+      display: flex;
+      flex-direction: column;
+      .message-box {
+        @include mat.elevation(4);
+        padding: 10px;
+        margin: 10px;
+        border-radius: 10px;
+        width: 80%;
+        &.me {
+          align-self: end;
+        }
+        .message-header {
+          display: flex;
+          align-items: baseline;
+          gap: 6px;
+          font-size: 0.8rem;
+          font-weight: 100;
+          .message-time {
+            font-size: 0.6rem;
+          }
+        }
+      }
+    }
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -84,11 +122,17 @@ export class ChatComponent {
 
   route = inject(ActivatedRoute);
   chatService = inject(ChatService);
+  user = 'anonymous';
   message = '';
-  user = '';
   
-  chatAppData$ = of(this.route.snapshot.paramMap.get('chatRoom')).pipe(
-    tap((room) => this.chatService.switchRoom(room ?? 'Angular')),
+  chatAppData$ = combineLatest([
+    of(this.route.snapshot.paramMap.get('chatRoom')),
+    inject(UserStateService).userMetadata$,
+  ]).pipe(
+    tap(([room, userMetadata]) => {
+      this.user = userMetadata?.email ?? 'anonymous';
+      this.chatService.switchRoom(room ?? 'Angular');
+    }),
     switchMap(() => this.chatService.getChatAppData()),
     tap(() => this.scrollToBottom())
   );
