@@ -14,7 +14,7 @@ export class OpenAIService {
   private readonly openAIEndpoint = 'https://api.openai.com/v1/chat/completions';
   private readonly apiKey = process.env.OPEN_AI_API_KEY; // Securely manage your API key
 
-  async generateText(messageContent: string,) {
+  async generateText(messageContent: string): Promise<IOpenAIResponse> {
     try {
       const response = await axios.post(
         this.openAIEndpoint,
@@ -51,7 +51,7 @@ export class OpenAIService {
             },
             {
               role: 'user',
-              content: 'Hello world',
+              content: messageContent,
             },
           ],
         },
@@ -62,11 +62,8 @@ export class OpenAIService {
           },
         },
       );
-
       console.log('OpenAI response:', response.data);
-      await this.createOpenAIResponse(response.data);
-
-      return response.data.choices[0].message.content;
+      return await this.createOpenAIResponse(response.data);
     } catch (error) {
       console.error('Error calling OpenAI API:', error);
       throw new Error('Failed to generate text from OpenAI API');

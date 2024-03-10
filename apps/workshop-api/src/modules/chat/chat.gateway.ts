@@ -34,14 +34,18 @@ export class ChatGateway {
   }
 
   @SubscribeMessage('messageToServer')
-  handleMessageToServer(
+  async handleMessageToServer(
     client: Socket,
-    data: {
-      room: string;
-      message: Message;
-    },
+    data: { useAi: boolean; room: string; message: Message; },
   ) {
-    this.chatService.addMessage(data.room, data.message);
+    this.chatService.addMessage(data.room, data.message, data.useAi)
+    .then((ai: { message: string; } | undefined) => {
+      if (ai) {
+        client.to(data.room).emit('messageToClient', ai.message);
+        client.emit('messageToClient', ai.message);
+      }
+    });
+
     client.to(data.room).emit('messageToClient', data.message);
     client.emit('messageToClient', data.message);
   }

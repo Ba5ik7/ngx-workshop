@@ -139,7 +139,7 @@ export class ChatComponent {
 
   sendMessage() {
     if (this.message) {
-      this.chatService.sendMessage(this.message);
+      this.chatService.sendMessage(this.message, /^\/ai/.test(this.message));
       this.message = '';
     }
   }

@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Chatroom, TChatroomDocument } from './schemas/chatroom.schema';
 import { Model } from 'mongoose';
+import { OpenAIService } from '../open-ai/open-ai.service';
 
 export interface Message {
   user: string;
@@ -16,7 +17,8 @@ export interface ChatRoom {
 @Injectable()
 export class ChatService {
   constructor(
-    @InjectModel(Chatroom.name) private chatroomModel: Model<TChatroomDocument>
+    @InjectModel(Chatroom.name) private chatroomModel: Model<TChatroomDocument>,
+    private openAIService: OpenAIService
   ) {}
 
   users: Record<string, string> = {};
@@ -64,9 +66,19 @@ export class ChatService {
       .updateOne({ room: room }, { $pull: { users: user } });
   }
 
-  addMessage(room: string, message: Message) {
-    // this.chatRooms[room].messages.push(message);
+  async addMessage(room: string, message: Message, useAi: boolean) {
     this.updateChatroomMessage(message.user, message.content, room);
+    if (useAi) {
+      const aiResponse = await this.openAIService.generateText(message.content);
+      const aiModelName = `OpenAI: ${aiResponse.model}`;
+      const aiMessage = aiResponse.choices[0].message.content;
+      this.updateChatroomMessage(aiModelName, aiMessage, room);
+      return {
+        user: aiModelName,
+        message: aiMessage 
+      };
+    }
+    return await new Promise((resolve) => resolve(undefined));
   }
 
   async getChatrooms() {

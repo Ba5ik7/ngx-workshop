@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { BehaviorSubject, combineLatest, map, Observable, of } from 'rxjs';
+import { BehaviorSubject, combineLatest, map, Observable } from 'rxjs';
 import { io, Socket } from 'socket.io-client';
 import { IChatMessage, IChatroom } from '../../interfaces/chatrooms.interface';
 import { UserStateService } from '../user-state/user-state.service';
@@ -66,11 +66,12 @@ export class ChatService {
     return data;
   }
 
-  sendMessage(content: string) {
+  sendMessage(content: string, useAi: boolean) {
     this.userStateService.userMetadata$.pipe(
       map((userMetadata) => userMetadata?.email)
     ).subscribe((user) => {
       this.client.emit('messageToServer', {
+        useAi,
         room: this.activeRoom$.value,
         message: {
           user,
