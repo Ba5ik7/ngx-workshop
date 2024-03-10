@@ -14,9 +14,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { combineLatest, of, switchMap, tap } from 'rxjs';
+import { combineLatest, map, of, switchMap, tap } from 'rxjs';
 import { ChatService } from '../../../../../../shared/services/chat/chat.service';
 import { UserStateService } from '../../../../../../shared/services/user-state/user-state.service';
+import { MarkdownService } from 'ngx-markdown';
 
 @Component({
   selector: 'ngx-chat',
@@ -31,14 +32,14 @@ import { UserStateService } from '../../../../../../shared/services/user-state/u
     RouterModule,
   ],
   template: `
-    <ng-container *ngIf="chatAppData$ | async as data">
+    <ng-container *ngIf="viewModel$ | async as vm">
       <div class="messages-panel">
         <div class="messages-container">
-          @if (data.chatRoom.messages.length > 0) {
+          @if (vm.messages.length > 0) {
             <div
               #lastMessage
               class="message-box mat-mdc-card"
-              *ngFor="let message of data.chatRoom.messages"
+              *ngFor="let message of vm.messages"
               [ngClass]="{'me': message.user === user}">
                 <div class="message-header">
                   <div class="message-user">
@@ -46,7 +47,7 @@ import { UserStateService } from '../../../../../../shared/services/user-state/u
                   </div>
                   <div class="message-time">{{ message.timestamp | date:'medium' }}</div>
                 </div>
-                <div class="message">{{ message.content }}</div>
+                <div class="message" [innerHTML]="message.content"></div>
             </div>
           } @else {
             <p>No messages in this room</p>
@@ -59,7 +60,7 @@ import { UserStateService } from '../../../../../../shared/services/user-state/u
             color="accent"
             class="message-input"
             cdkTextareaAutosize
-            cdkAutosizeMinRows="5"
+            cdkAutosizeMinRows="3"
             cdkAutosizeMaxRows="10"
             [(ngModel)]="message"
             (keyup.enter)="sendMessage()"
@@ -95,7 +96,7 @@ import { UserStateService } from '../../../../../../shared/services/user-state/u
         padding: 10px;
         margin: 10px;
         border-radius: 10px;
-        width: 80%;
+        width: 70%;
         &.me {
           align-self: end;
         }
@@ -105,6 +106,7 @@ import { UserStateService } from '../../../../../../shared/services/user-state/u
           gap: 6px;
           font-size: 0.8rem;
           font-weight: 100;
+          margin-bottom: 5px;
           .message-time {
             font-size: 0.6rem;
           }
@@ -122,10 +124,11 @@ export class ChatComponent {
 
   route = inject(ActivatedRoute);
   chatService = inject(ChatService);
+  markdownService = inject(MarkdownService);
   user = 'anonymous';
   message = '';
   
-  chatAppData$ = combineLatest([
+  viewModel$ = combineLatest([
     of(this.route.snapshot.paramMap.get('chatRoom')),
     inject(UserStateService).userMetadata$,
   ]).pipe(
@@ -134,6 +137,12 @@ export class ChatComponent {
       this.chatService.switchRoom(room ?? 'Angular');
     }),
     switchMap(() => this.chatService.getChatAppData()),
+    map((data) => ({ 
+      messages: data.chatRoom.messages.map((message) => ({
+        ...message,
+        content: this.markdownService.parse(message.content),
+      })),
+    })),
     tap(() => this.scrollToBottom())
   );
 
