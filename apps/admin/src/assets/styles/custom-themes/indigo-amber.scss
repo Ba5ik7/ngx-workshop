@@ -15,13 +15,13 @@ $theme: mat.define-light-theme((
 @include app-theme.theme($theme);
 
 .mat-drawer-content, .mat-sidenav-content, .app-background {
-  background-color: #fafafa;
+  background: #fafafa;
 }
 
 .mat-mdc-card,
 .mat-mdc-card-outlined,
 mat-card.mat-mdc-card.mdc-card {
-  background-color: #ffffff;
+  background: #ffffff;
 }
 
 .workshop-menu-nav, .workshop-controls-panel, .paginator {

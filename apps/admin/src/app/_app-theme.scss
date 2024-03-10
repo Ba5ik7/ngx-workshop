@@ -31,7 +31,7 @@
   }
 
   ::selection {
-    background-color: rgba(mat.get-color-from-palette($primary, default), .4);
+    background: rgba(mat.get-color-from-palette($primary, default), .4);
   }
 
   .app-background {
@@ -65,7 +65,6 @@
   @include ngx-editorjs-code-block.theme($theme);
   @include ngx-editorjs-mermaid-block.theme($theme);
 
-  // @include home-theme.theme($theme);
   @include not-found-theme.theme($theme);
   @include sidenav.theme($theme);
   @include workshops.theme($theme);

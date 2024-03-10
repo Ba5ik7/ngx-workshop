@@ -14,7 +14,7 @@ Orginal Style from https://github.com/Kelbster/highlightjs-material-dark-theme  
 }
 
 .hljs > *::selection {
-  background-color: #3e4451;
+  background: #3e4451;
 }
 
 .hljs-comment {
@@ -84,14 +84,14 @@ Orginal Style from https://github.com/Kelbster/highlightjs-material-dark-theme  
 }
 
 .hljs-addition {
-  background-color: #144212;
+  background: #144212;
   color: #e6e1dc;
   display: inline-block;
   width: 100%;
 }
 
 .hljs-deletion {
-  background-color: #600;
+  background: #600;
   color: #e6e1dc;
   display: inline-block;
   width: 100%;

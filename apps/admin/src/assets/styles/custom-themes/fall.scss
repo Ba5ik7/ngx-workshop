@@ -48,13 +48,13 @@ $dark-fall-theme: mat.define-dark-theme((
 
 
 .mat-drawer-content, .mat-sidenav-content, .app-background {
-  background-color: #4E3732;
+  background: #4E3732;
 }
 
 .mat-mdc-card,
 .mat-mdc-card-outlined,
 mat-card.mat-mdc-card.mdc-card {
-  background-color: #3E2723;
+  background: #3E2723;
 }
 
 .workshop-menu-nav, .workshop-controls-panel, .paginator, .paginator {

@@ -106,13 +106,13 @@
 .hljs-addition {
   /* prettylights-syntax-markup-inserted */
   color: #aff5b4;
-  background-color: #033a16;
+  background: #033a16;
 }
 
 .hljs-deletion {
   /* prettylights-syntax-markup-deleted */
   color: #ffdcd7;
-  background-color: #67060c;
+  background: #67060c;
 }
 
 .hljs-char.escape_,

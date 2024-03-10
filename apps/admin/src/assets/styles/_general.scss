@@ -61,4 +61,14 @@ pre {
   }
 }
 
+[contenteditable] {
+  outline: 0px solid transparent;
+}
 
+.successful-text {
+  color: #66BB6A;
+}
+
+.failure-text {
+  color: #EF5350;
+}

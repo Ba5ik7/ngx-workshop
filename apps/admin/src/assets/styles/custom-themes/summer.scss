@@ -16,13 +16,13 @@ $dark-summer-theme: mat.define-dark-theme((
 @include app-theme.theme($dark-summer-theme);
 
 .mat-drawer-content, .mat-sidenav-content, .app-background {
-  background-color: #2A3C48;
+  background: #2A3C48;
 }
 
 .mat-mdc-card,
 .mat-mdc-card-outlined,
 mat-card.mat-mdc-card.mdc-card {
-  background-color: #1C313A;
+  background: #1C313A;
 }
 
 .workshop-menu-nav, .workshop-controls-panel, .paginator, .paginator {

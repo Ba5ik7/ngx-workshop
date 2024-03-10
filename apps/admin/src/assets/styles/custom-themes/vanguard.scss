@@ -49,13 +49,13 @@ $vanguard-theme: mat.define-dark-theme((
 
 
 .mat-drawer-content, .mat-sidenav-content, .app-background {
-  background-color: #2C3E50;
+  background: #2C3E50;
 }
 
 .mat-mdc-card,
 .mat-mdc-card-outlined,
 mat-card.mat-mdc-card.mdc-card {
-  background-color: #4A5B6D;
+  background: #4A5B6D;
 }
 
 .workshop-menu-nav, .workshop-controls-panel, .paginator, .paginator {
