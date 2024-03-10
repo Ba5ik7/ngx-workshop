@@ -39,10 +39,10 @@ export class ChatGateway {
     data: { useAi: boolean; room: string; message: Message; },
   ) {
     this.chatService.addMessage(data.room, data.message, data.useAi)
-    .then((ai: { message: string; } | undefined) => {
-      if (ai) {
-        client.to(data.room).emit('messageToClient', ai.message);
-        client.emit('messageToClient', ai.message);
+    .then((aiMessage: Message | undefined) => {
+      if (aiMessage) {
+        client.to(data.room).emit('messageToClient', aiMessage);
+        client.emit('messageToClient', aiMessage);
       }
     });
 

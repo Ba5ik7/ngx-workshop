@@ -75,7 +75,7 @@ export class ChatService {
       this.updateChatroomMessage(aiModelName, aiMessage, room);
       return {
         user: aiModelName,
-        message: aiMessage 
+        content: aiMessage 
       };
     }
     return await new Promise((resolve) => resolve(undefined));

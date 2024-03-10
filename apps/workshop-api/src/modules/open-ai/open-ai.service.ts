@@ -62,7 +62,7 @@ export class OpenAIService {
           },
         },
       );
-      console.log('OpenAI response:', response.data);
+      // console.log('OpenAI response:', response.data);
       return await this.createOpenAIResponse(response.data);
     } catch (error) {
       console.error('Error calling OpenAI API:', error);
