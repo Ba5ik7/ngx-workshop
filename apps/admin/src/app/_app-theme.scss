@@ -24,8 +24,6 @@
   $warn: map.get($theme, warn);
   $background: map.get($theme, background);
   $foreground: map.get($theme, foreground);
-  $next-theme: mat.define-palette(mat.$red-palette);
-  $is-dark-theme: map.get($theme, is-dark);
 
 
   ::-webkit-scrollbar-thumb {
@@ -35,17 +33,6 @@
   ::selection {
     background-color: rgba(mat.get-color-from-palette($primary, default), .4);
   }
-
-  // It's only been a week since IE has die and now this on Edge
-  // input:-webkit-autofill,
-  // input:-webkit-autofill:focus {
-  //   -webkit-box-shadow: 0 0 0 1000px rgba(mat.get-color-from-palette($primary, default), .45) inset !important;
-  //   -webkit-text-fill-color: mat.get-color-from-palette($foreground, text) !important;
-  // }
-  // .mdc-text-field, .mdc-text-field--filled {
-  //   background-color: red;
-  //   border: 1px solid yellow;
-  // }
 
   .app-background {
     background: mat.get-color-from-palette($background, background);
