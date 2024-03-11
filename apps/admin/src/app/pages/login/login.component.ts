@@ -27,12 +27,12 @@ import { MatButtonModule } from '@angular/material/button';
           <span class="form-level-error-message">{{signInFormLevelMessage}}</span>
           <mat-form-field color="accent" appearance="fill">
             <mat-label>Email</mat-label>
-            <input matInput #signInEmail type="email" placeholder="Email" formControlName="email">
+            <input matInput #signInEmail type="email" formControlName="email" autocomplete="email" autofocus>
             <mat-error *ngIf="signInForm.get('email')?.errors">{{signInFormErrorMessages['email']}}</mat-error>
           </mat-form-field>
           <mat-form-field color="accent" appearance="fill"> 
             <mat-label>Password</mat-label>
-            <input matInput type="password" placeholder="Password" formControlName="password">
+            <input matInput type="password" formControlName="password" autocomplete="current-password">
             <mat-error *ngIf="signInForm.get('password')?.errors">{{signInFormErrorMessages['password']}}</mat-error>
           </mat-form-field>
           <button mat-raised-button color="accent" (click)="signInClick()" [disabled]="signInForm.invalid || formLoading">Sign In</button>
@@ -141,8 +141,7 @@ export class LoginComponent implements OnInit {
     this.formLoading = predicate;
   }
 
-  signSuccuessful(user: unknown): void {
-    console.log('signSuccuessful', user);
+  signSuccuessful(_user: unknown): void {
     this.requestInProgress();
     this.userStateService.signedIn.next(true);
     this.router.navigate(['auth', 'dashboard']);

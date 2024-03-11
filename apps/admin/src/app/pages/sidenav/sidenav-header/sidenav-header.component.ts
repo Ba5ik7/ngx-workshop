@@ -11,7 +11,7 @@ export type SidenavHeaderData = {
   standalone: true,
   template: `
     <header class="primary-header sidenav-page-header">
-      <img [src]="'/admin' + sidenavHeaderData.headerSvgPath">
+      <img [src]="sidenavHeaderData.headerSvgPath">
       <h1>{{sidenavHeaderData.sectionTitle}}: {{sidenavHeaderData.currentWorkshopTitle}}</h1>
     </header>
   `,

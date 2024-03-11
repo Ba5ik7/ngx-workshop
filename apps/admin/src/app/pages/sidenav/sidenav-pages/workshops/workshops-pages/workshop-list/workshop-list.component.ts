@@ -59,7 +59,7 @@ export class OptimizeCloudinaryUrlPipe implements PipeTransform {
         "
       >
         <div class="img-wrapper">
-          <img [ngSrc]="workshop.thumbnail | optimizeCloudinaryUrl" fill />
+          <img [ngSrc]="workshop.thumbnail | optimizeCloudinaryUrl" priority fill />
         </div>
         <h2>{{ workshop.name }}</h2>
         <p>{{ workshop.summary }}</p>

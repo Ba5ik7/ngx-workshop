@@ -17,13 +17,17 @@ import { NgxEditorjsCodeBlockMediator } from '@tmdjr/ngx-editorjs-code-block';
 import { NgxEditorjsMermaidBlockMediator } from '@tmdjr/ngx-editorjs-mermaid-block';
 import { NgxEditorjsQuizBlockMediator } from '@tmdjr/ngx-editorjs-quiz-block';
 import { provideMarkdown } from 'ngx-markdown';
+import { IMAGE_LOADER } from '@angular/common';
+// import { provideCloudinaryLoader } from '@angular/common';}
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(appRoutes, withEnabledBlockingInitialNavigation()),
     provideMarkdown(),
+    // provideCloudinaryLoader('https://res.cloudinary.com/dowdpiikk'),
     importProvidersFrom(BrowserAnimationsModule),
     importProvidersFrom(HttpClientModule),
+    { provide: IMAGE_LOADER, useValue: (img: { src: string }) => img.src },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: RouteReuseStrategy, useClass: WorkshopReuseStrategy },
     {
