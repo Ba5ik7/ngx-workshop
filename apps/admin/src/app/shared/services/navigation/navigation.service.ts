@@ -5,19 +5,23 @@ import { map, shareReplay, switchMap, takeUntil, tap } from 'rxjs/operators';
 import { Section, Sections, Workshop, WorkshopDocument } from '../../interfaces/navigation.interface';
 
 const staticSections: Map<string, Partial<Section>> = new Map([
-  ['dashboard', { headerSvgPath: '/assets/img/dashboard-color.png', sectionTitle: 'Dashboard' }],
+  ['dashboard', { headerSvgPath: 'https://res.cloudinary.com/dowdpiikk/image/upload/v1710125599/ktmfdy5gaqbl1p5qvjgj.svg', sectionTitle: 'Dashboard' }],
   ['users', { headerSvgPath: '/assets/img/users-color.png', sectionTitle: 'Users' }],
   ['chat', { headerSvgPath: '/assets/img/users-color.png', sectionTitle: 'Chat' }],
-  ['settings', { headerSvgPath: '/assets/img/users-color.png', sectionTitle: 'Settings' }]
+  ['settings', { headerSvgPath: '/assets/img/users-color.png', sectionTitle: 'Settings' }],
+  ['openai', { headerSvgPath: 'https://res.cloudinary.com/dowdpiikk/image/upload/v1710125599/ohvhsxfrnabofkfochnf.svg', sectionTitle: 'OpenAI' }]
 ]);
 
 const staticPages: Map<string, Partial<Workshop>> = new Map([
   ['overview', { name: 'Overview' }],
+  ['openai', { name: 'OpenAI' }],
   ['workshop-list', { name: 'Workshops' }],
   ['General', { name: 'General' }],
   ['Angular', { name: 'Angular' }],
   ['NestJS', { name: 'NestJS' }],
   ['RxJS', { name: 'RxJS' }],
+  ['history', { name: 'History' }],
+  ['workshop-creator', { name: 'Workshop Creator' }],
 ]);
 
 function shareReplayWithTTL<T>(bufferSize: number, ttl: number): MonoTypeOperatorFunction<T> {

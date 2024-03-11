@@ -1,3 +1,6 @@
 @use '@angular/material' as mat;
 @use './assets/styles/custom-themes/professional';
 @use './assets/styles/general';
+
+@include mat.all-component-typographies();
+@include mat.core();

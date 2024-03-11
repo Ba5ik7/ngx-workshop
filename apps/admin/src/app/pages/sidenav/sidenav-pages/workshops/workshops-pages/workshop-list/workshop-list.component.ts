@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MatCardModule } from '@angular/material/card'
-import { map } from 'rxjs';
+import { map, tap } from 'rxjs';
 import { NavigationService } from '../../../../../../shared/services/navigation/navigation.service';
 import { ImageUploaderComponent } from '../../../../../../shared/components/image-uploader/image-uploader.component';
 import { Pipe, PipeTransform } from '@angular/core';
@@ -31,7 +31,7 @@ export class OptimizeCloudinaryUrlPipe implements PipeTransform {
   animations: [
     trigger('staggerCircleReveal', [
       transition(':enter', [
-        query('.mat-card-new', [
+        query('.ngx-mat-card', [
           style({ opacity: 0, marginTop: '100px'}),
           stagger('150ms', [
             animate('0.6s ease-in-out', keyframes([
@@ -49,7 +49,7 @@ export class OptimizeCloudinaryUrlPipe implements PipeTransform {
   template: `
     <div class="workshop-list" [@staggerCircleReveal]>
       <div
-        class="mat-card-new mat-mdc-card"
+        class="ngx-mat-card"
         *ngFor="let workshop of workshops | async"
         [routerLink]="
           '../' +
@@ -88,7 +88,7 @@ export class OptimizeCloudinaryUrlPipe implements PipeTransform {
         }
       }
 
-      .mat-card-new {
+      .ngx-mat-card {
         display: flex;
         flex-direction: column;
         width: 325px;
@@ -129,6 +129,7 @@ export class OptimizeCloudinaryUrlPipe implements PipeTransform {
 })
 export class WorkshopListComponent {
   workshops = inject(NavigationService).getWorkshops().pipe(
-    map((workshops) => workshops.sort((a, b) => a.sortId - b.sortId))
+    map((workshops) => workshops.sort((a, b) => a.sortId - b.sortId)),
+    tap(() => window.document.body.scrollTo(0, 0))
   );
 }

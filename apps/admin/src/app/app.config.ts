@@ -18,7 +18,40 @@ import { NgxEditorjsMermaidBlockMediator } from '@tmdjr/ngx-editorjs-mermaid-blo
 import { NgxEditorjsQuizBlockMediator } from '@tmdjr/ngx-editorjs-quiz-block';
 import { provideMarkdown } from 'ngx-markdown';
 import { IMAGE_LOADER } from '@angular/common';
+import { APP_INITIALIZER } from '@angular/core';
+import { MatIconRegistry } from '@angular/material/icon';
+import { DomSanitizer } from '@angular/platform-browser';
 // import { provideCloudinaryLoader } from '@angular/common';}
+
+// Factory function to register icons
+export function registerIcons(matIconRegistry: MatIconRegistry, domSanitizer: DomSanitizer) {
+  return () => {
+    const openAiIconSvg = document.querySelector('#openai_white_logomark')?.outerHTML;
+    openAiIconSvg && matIconRegistry.addSvgIconLiteral(
+      'openai_white_logomark',
+      domSanitizer.bypassSecurityTrustHtml(openAiIconSvg)
+    );
+
+    const rxjsIconSvg = document.querySelector('#rxjs_white_logomark')?.outerHTML;
+    rxjsIconSvg && matIconRegistry.addSvgIconLiteral(
+      'rxjs_white_logomark',
+      domSanitizer.bypassSecurityTrustHtml(rxjsIconSvg)
+    );
+
+    const nestjsIconSvg = document.querySelector('#nestjs_white_logomark')?.outerHTML;
+    nestjsIconSvg && matIconRegistry.addSvgIconLiteral(
+      'nestjs_white_logomark',
+      domSanitizer.bypassSecurityTrustHtml(nestjsIconSvg)
+    );
+
+    const angularIconSvg = document.querySelector('#angular_white_logomark')?.outerHTML;
+    angularIconSvg && matIconRegistry.addSvgIconLiteral(
+      'angular_white_logomark',
+      domSanitizer.bypassSecurityTrustHtml(angularIconSvg)
+    );
+  };
+}
+
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -27,9 +60,16 @@ export const appConfig: ApplicationConfig = {
     // provideCloudinaryLoader('https://res.cloudinary.com/dowdpiikk'),
     importProvidersFrom(BrowserAnimationsModule),
     importProvidersFrom(HttpClientModule),
+
     { provide: IMAGE_LOADER, useValue: (img: { src: string }) => img.src },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: RouteReuseStrategy, useClass: WorkshopReuseStrategy },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: registerIcons,
+      deps: [MatIconRegistry, DomSanitizer],
+      multi: true,
+    },
     {
       provide: NGX_EDITORJS_OPTIONS,
       useValue: {

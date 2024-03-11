@@ -25,15 +25,15 @@ export class WorkshopReuseStrategy extends RouteReuseStrategy {
 }
 
 export const appRoutes: Routes = [
+  {
+    path: 'login',
+    loadChildren: () => import('./pages/login/login.routing').then(m => m.LOGIN_ROUTES)
+  },
   { 
     path: '',   
     resolve: { sections: () => inject(NavigationService).fetchSections() },
     children: [
       { path: '', redirectTo: '/login', pathMatch: 'full' },
-      {
-        path: 'login',
-        loadChildren: () => import('./pages/login/login.routing').then(m => m.LOGIN_ROUTES)
-      },
       {
         path: 'auth',
         loadChildren: () => import('./pages/sidenav/sidenav.routing').then(m => m.SIDENAV_ROUTES),

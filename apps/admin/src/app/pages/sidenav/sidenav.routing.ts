@@ -45,6 +45,7 @@ export const SIDENAV_ROUTES: Route[] = [
       },
       {
         canActivate: [AuthGuard],
+        resolve: { sectionResolver },
         path: 'openai',
         loadChildren: () => import('./sidenav-pages/openai/openai.routing').then(m => m.OPENAI_ROUTES)
       }

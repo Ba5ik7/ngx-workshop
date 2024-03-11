@@ -2,6 +2,7 @@ import { AuthGuard } from '../../../../shared/guards/auth.guard';
 import { OpenaiComponent } from './openai.component';
 import { Route } from '@angular/router';
 import { openaiResolver } from '../../../../shared/resolvers/openai.resolver';
+import { workshopResolver } from '../../../../shared/resolvers/workshop.resolver';
 
 export const OPENAI_ROUTES: Route[] = [
   {
@@ -16,7 +17,7 @@ export const OPENAI_ROUTES: Route[] = [
       {
         canActivate: [AuthGuard],
         path: 'history',
-        resolve: { openaiResolver },
+        resolve: { openaiResolver, workshopResolver },
         loadComponent: () => import('./openai-pages/history/history.component').then(m => m.HistoryComponent)
       },
       {
@@ -27,9 +28,9 @@ export const OPENAI_ROUTES: Route[] = [
       {
         canActivate: [AuthGuard],
         path: ':chatRoom',
+        resolve: { workshopResolver },
         loadComponent: () => import('./openai-pages/chat/chat.component').then(m => m.ChatComponent)
       }
     ]
   }
 ];
-// workshop-creator

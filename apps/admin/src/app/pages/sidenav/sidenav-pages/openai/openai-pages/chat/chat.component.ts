@@ -65,9 +65,9 @@ import { MarkdownService } from 'ngx-markdown';
             [(ngModel)]="message"
             (keyup.enter)="sendMessage()"
           ></textarea>
-          <button mat-mini-fab color="accent" class="" matSuffix>
+          <!-- <button mat-mini-fab color="accent" class="" matSuffix>
             <mat-icon>send</mat-icon>
-          </button>
+          </button> -->
         </mat-form-field>
       </div>
     </ng-container>

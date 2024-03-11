@@ -33,7 +33,9 @@ import { Sections } from '../../../shared/interfaces/navigation.interface';
           </a>
           <a mat-list-item routerLink="openai" routerLinkActive="workshop-menu-nav-item-selected" class="section-item">
             <span class="mat-list-item-content">  
-              <mat-icon>cloud_sync</mat-icon>
+              <!-- <mat-icon>cloud_sync</mat-icon> -->
+              <!-- <mat-icon>openai_white_logomark</mat-icon> -->
+              <mat-icon svgIcon="openai_white_logomark"></mat-icon>
               Open Ai
             </span>
           </a>
@@ -57,6 +59,7 @@ import { Sections } from '../../../shared/interfaces/navigation.interface';
               class="section-item">
             <!-- <img [src]="'/admin' + section.value.menuSvgPath"> -->
             <span class="mat-list-item-content">
+              <mat-icon [svgIcon]="section.value.menuSvgPath"></mat-icon>
               {{section.value.sectionTitle}}
               <div class="flex-spacer"></div>
               <mat-icon class="delete-icon" (click)="deleteSection($event, section.value)">delete</mat-icon>
