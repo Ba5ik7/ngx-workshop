@@ -89,16 +89,10 @@ export class OptimizeCloudinaryUrlPipe implements PipeTransform {
       }
 
       .ngx-mat-card {
-        display: flex;
-        flex-direction: column;
         width: 325px;
         height: 375px;
         overflow: auto;
-        border-radius: 24px;
-        transition: box-shadow 0.4s;
         cursor: pointer;
-        @include mat.elevation(6);
-
         .img-wrapper {
           position: relative;
           width: 100%;

@@ -6,7 +6,6 @@ import { Router } from '@angular/router';
 import { mergeMap, Subject, takeUntil } from 'rxjs';
 import { UserStateService } from '../../shared/services/user-state/user-state.service';
 import { AuthService } from '../../shared/services/auth/auth.service';
-import { MatCardModule } from '@angular/material/card';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -16,13 +15,9 @@ import { MatButtonModule } from '@angular/material/button';
   standalone: true,
   selector: 'ngx-login',
   template: `
-    <mat-card
-    appearance="raised">
+    <div class="ngx-mat-card">
       <div class="form-container">
-        <mat-card-header>
-          <h3 mat-card-title>Sign In</h3>
-        </mat-card-header>
-        <mat-card-content>
+        <h1>Sign In</h1>
         <form [formGroup]="signInForm">
           <span class="form-level-error-message">{{signInFormLevelMessage}}</span>
           <mat-form-field color="accent" appearance="fill">
@@ -35,11 +30,10 @@ import { MatButtonModule } from '@angular/material/button';
             <input matInput type="password" formControlName="password" autocomplete="current-password">
             <mat-error *ngIf="signInForm.get('password')?.errors">{{signInFormErrorMessages['password']}}</mat-error>
           </mat-form-field>
-          <button mat-raised-button color="accent" (click)="signInClick()" [disabled]="signInForm.invalid || formLoading">Sign In</button>
+          <button mat-raised-button color="warn" (click)="signInClick()" [disabled]="signInForm.invalid || formLoading">Sign In</button>
         </form>
-        </mat-card-content>
       </div>
-    </mat-card>
+    </div>
   `,
   styles: [`
     :host {
@@ -50,17 +44,29 @@ import { MatButtonModule } from '@angular/material/button';
       height: 100%;
       width: 100%;
     }
+    .ngx-mat-card {
+      padding-top: 20px;
+      width: 425px;
+      height: 325px;
+      align-items: center;
+      h1 {
+        font-weight: 100;
+      }
+      // justify-content: center;
+    }
     .form-container form {
       display: flex;
       flex-direction: column;
       gap: 5px;
-      width: 300px;
+      width: 375px;
       .form-level-error-message { color:  #f44336; }
+      button {
+        height: 50px;
+      }
     }
   `],
   imports: [
     CommonModule,
-    MatCardModule,
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
