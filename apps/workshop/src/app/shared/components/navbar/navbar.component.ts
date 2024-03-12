@@ -25,11 +25,12 @@ import { ThemePickerComponent } from '../theme-picker/theme-picker.component';
           [routerLink]="'/sidenav/workshops/' + section.key"
           routerLinkActive="navbar-menu-item-selected"
         >
-          <img
+          <!-- <img
             mat-fab-image
             class="section-logo"
             [src]="section.value.menuSvgPath"
-          />
+          /> -->
+          <mat-icon class="section-logo" [svgIcon]="section.value.menuSvgPath"></mat-icon>
           <p>{{ section.value.sectionTitle }}</p>
         </a>
         <div class="flex-spacer"></div>
@@ -119,9 +120,10 @@ import { ThemePickerComponent } from '../theme-picker/theme-picker.component';
           vertical-align: middle;
         }
       }
-      .section-logo {
-        width: 24px;
-        height: 24px;
+      .section-logo{
+        width: 36px;
+        height: 36px;
+        fill: white!important;
       }
 
       .navbar-header-mobile {
