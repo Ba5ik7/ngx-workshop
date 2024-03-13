@@ -2,10 +2,11 @@ import { RouterModule } from '@angular/router';
 import { Component, inject, OnInit, ViewEncapsulation } from '@angular/core';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { ThemePickerService } from './shared/services/theme-picker/theme-picker.service';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   standalone: true,
-  imports: [NavbarComponent, RouterModule],
+  imports: [NavbarComponent, RouterModule, MatProgressSpinnerModule],
   selector: 'ngx-admin',
   template: `
     <ngx-navbar></ngx-navbar>

@@ -30,7 +30,7 @@ import { MatButtonModule } from '@angular/material/button';
             <input matInput type="password" formControlName="password" autocomplete="current-password">
             <mat-error *ngIf="signInForm.get('password')?.errors">{{signInFormErrorMessages['password']}}</mat-error>
           </mat-form-field>
-          <button mat-raised-button color="warn" (click)="signInClick()" [disabled]="signInForm.invalid || formLoading">Sign In</button>
+          <button mat-raised-button color="accent" (click)="signInClick()" [disabled]="signInForm.invalid || formLoading">Sign In</button>
         </form>
       </div>
     </div>

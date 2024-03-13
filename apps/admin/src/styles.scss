@@ -4,3 +4,7 @@
 
 @include mat.all-component-typographies();
 @include mat.core();
+
+.dark-backdrop {
+  background-color: rgba(0, 0, 0, 0.1);
+}
