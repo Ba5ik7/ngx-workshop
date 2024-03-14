@@ -49,17 +49,14 @@ const safeStringify = (value: unknown) => {
       <div class="workshop-detail-content">
         <div class="page">
           <section class="workshop-viewer-container">
-            <mat-card
-              class="workshop-detail-card"
-              appearance="raised">
-                {{ vm.isExam ? 'Exam' : 'Page' }}
-                <ngx-editorjs
-                  [inputData]="vm.ngxEditorjsBlocks"
-                  [requestValue]="requestValue"
-                  (valueRequested)="vm.valueRequested($event)"
-                ></ngx-editorjs>
-
-            </mat-card>
+            <div class="workshop-detail-card ngx-mat-card">
+              {{ vm.isExam ? 'Exam' : 'Page' }}
+              <ngx-editorjs
+                [inputData]="vm.ngxEditorjsBlocks"
+                [requestValue]="requestValue"
+                (valueRequested)="vm.valueRequested($event)"
+              ></ngx-editorjs>
+            </div>
           </section>
         </div>
       </div>
@@ -79,7 +76,6 @@ const safeStringify = (value: unknown) => {
         transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
         display: block;
         position: relative;
-        border-radius: 4px;
         margin-bottom: 22px;
       }
       h1 {

@@ -8,7 +8,6 @@ $prof-theme: mat.define-dark-theme((
   color: (
     primary: $primary-prof,
     accent: $accent-prof,
-    background: red
   ),
   typography: mat.define-typography-config(),
 ));
@@ -56,6 +55,9 @@ $prof-theme: mat.define-dark-theme((
 ngx-editorjs {
   a, a:visited, a:hover, a:active {
     color: #90CAF9;
+  }
+  [contenteditable] {
+    outline: 0 solid transparent;
   }
 }
 
