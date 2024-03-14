@@ -107,9 +107,16 @@
   transition: box-shadow .4s;
   @include mat.elevation(6);
 
+  mat-icon {
+    width: 200px;
+    height: 200px;
+    vertical-align: middle;
+    margin-bottom: 8px;
+  }
+
   &:hover {
     cursor: pointer;
-    @include mat.elevation(6);
+    @include mat.elevation(8);
   }
 
   img {

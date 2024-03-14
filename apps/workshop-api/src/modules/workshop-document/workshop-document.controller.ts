@@ -13,12 +13,26 @@ export class WorkshopController {
   @Auth(AuthType.None)
   @Get('workshops')
   workshops(): Promise<IWorkshopDocument[]> {
+    // // Delay for testing
+    // return new Promise((resolve) => {
+    //   setTimeout(() => {
+    //     resolve(this.workshopService.findAll());
+    //   }, 2000);
+    // });
+
     return this.workshopService.findAll();
   }
 
   @Auth(AuthType.None)
   @Get(':objectId')
   workshop(@Param('objectId') objectId): Promise<IWorkshopDocument> {
+    // // Delay for testing
+    // return new Promise((resolve) => {
+    //   setTimeout(() => {
+    //     resolve(this.workshopService.getWorkshop(objectId));
+    //   }, 2000);
+    // });
+
     return this.workshopService.getWorkshop(objectId);
   }
 

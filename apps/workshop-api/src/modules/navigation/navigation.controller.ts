@@ -18,12 +18,26 @@ export class NavigationController {
   @Auth(AuthType.None)
   @Get('sections')
   sections(): Promise<{ [key: string]: ISection }> {
+    // // Delay for testing
+    // return new Promise((resolve) => {
+    //   setTimeout(() => {
+    //     resolve(this.navigationService.findAllSections());
+    //   }, 2000);
+    // });
+
     return this.navigationService.findAllSections();
   }
 
   @Auth(AuthType.None)
   @Get('workshops')
   workshops(@Query('section') section: string): Promise<IWorkshop[]> {
+    // // Delay for testing
+    // return new Promise((resolve) => {
+    //   setTimeout(() => {
+    //     resolve(this.navigationService.findAllWorkshopsInSection(section));
+    //   }, 2000);
+    // });
+
     return this.navigationService.findAllWorkshopsInSection(section);
   }
 

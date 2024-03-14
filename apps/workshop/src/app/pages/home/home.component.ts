@@ -1,6 +1,7 @@
 import { Component, HostBinding } from '@angular/core';
 import { FooterComponent } from '../../shared/components/footer/footer.component';
 import { RouterModule } from '@angular/router';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   standalone: true,
@@ -9,6 +10,7 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./home.component.scss'],
   imports: [
     RouterModule,
+    MatIconModule,
     FooterComponent
   ]
 })

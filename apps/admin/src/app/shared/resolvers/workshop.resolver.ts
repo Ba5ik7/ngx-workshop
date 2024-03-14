@@ -11,7 +11,7 @@ export const workshopResolver: WorkshopResolver = (route) => {
   const param = route.routeConfig?.path ?? ':';
   const workshopId = route.params[param.substring(1)] ?? route.routeConfig?.path;
 
-  const loaderTimeout = setTimeout(() => loaderService.show(), 100);
+  const loaderTimeout = setTimeout(() => loaderService.show(), 200);
 
   return inject(NavigationService).navigateToWorkshop(workshopId ?? '').pipe(
     tap(() => clearTimeout(loaderTimeout)),
