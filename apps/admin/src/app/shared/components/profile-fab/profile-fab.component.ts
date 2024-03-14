@@ -9,12 +9,12 @@ import { MatMenuModule } from '@angular/material/menu';
 @Component({
   selector: 'ngx-profile-fab',
   template: `
-  <button mat-icon-button color="accent" [matMenuTriggerFor]="menu">
+    <button mat-icon-button color="accent" [matMenuTriggerFor]="menu">
       <mat-icon>account_circle</mat-icon>
     </button>
     <mat-menu #menu xPosition="before">
-    <button mat-menu-item routerLink="/auth/account">
-      <mat-icon>manage_accounts</mat-icon>
+      <button mat-menu-item routerLink="/auth/account">
+        <mat-icon>manage_accounts</mat-icon>
         <span>Account</span>
       </button>
       <button mat-menu-item routerLink="/auth/settings">
@@ -28,7 +28,12 @@ import { MatMenuModule } from '@angular/material/menu';
     </mat-menu>
   `,
   styles: [`
-
+    // ::ng-deep {
+    //   .mat-mdc-menu-panel {
+    //     background-color: red!important;
+    //     // background-color: var(--theme-color-background);
+    //   }
+    // }
   `],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
