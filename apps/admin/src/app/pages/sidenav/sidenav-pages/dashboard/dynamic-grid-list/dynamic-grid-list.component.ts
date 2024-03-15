@@ -30,7 +30,7 @@ type TCard = {
   selector: 'ngx-dynamic-grid-list',
   template: `
     <div class="grid-container">
-      <mat-grid-list cols="3" rowHeight="350px" cdkDropList (cdkDropListDropped)="onDrop($event)">
+      <mat-grid-list cols="4" rowHeight="350px" cdkDropList (cdkDropListDropped)="onDrop($event)">
         <mat-grid-tile cdkDrag *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
           <div class="dashboard-card ngx-mat-card">
             <div class="card-header">
@@ -86,7 +86,6 @@ type TCard = {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DynamicGridListComponent {
-
 
   cardsSubject = new BehaviorSubject<TCard[]>([
     { title: 'Card 1', cols: 2, rows: 1 },
