@@ -45,14 +45,12 @@ import { MatButtonModule } from '@angular/material/button';
       width: 100%;
     }
     .ngx-mat-card {
-      padding-top: 20px;
+      padding: 24px 0;
       width: 425px;
-      height: 325px;
       align-items: center;
       h1 {
         font-weight: 100;
       }
-      // justify-content: center;
     }
     .form-container form {
       display: flex;

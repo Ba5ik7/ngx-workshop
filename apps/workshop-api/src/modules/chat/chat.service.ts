@@ -82,12 +82,13 @@ export class ChatService {
   }
 
   async getChatrooms() {
-    return await this.chatroomModel.find().exec();
+    return await this.chatroomModel.find().select('-messages').exec();
   }
 
   async getChatroom(roomName: string) {
-    return await this.chatroomModel.findOne({ roomName:
-      roomName }).exec();
+    return await this.chatroomModel.findOne({ roomName: roomName }, { 'messages': { $slice: -10 } })
+                                    .sort({ 'messages.timestamp': -1 })
+                                    .exec();
   }
 
   async createChatroom(chatroom: Chatroom) {

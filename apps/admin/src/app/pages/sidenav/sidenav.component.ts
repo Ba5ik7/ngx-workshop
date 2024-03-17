@@ -1,26 +1,45 @@
-import { Component, inject, ViewEncapsulation } from '@angular/core';
-import { combineLatest, map } from 'rxjs';
+import { AfterContentInit, Component, ElementRef, inject, OnDestroy, ViewChild, ViewEncapsulation } from '@angular/core';
+import { combineLatest, map, tap } from 'rxjs';
 import { NavigationService } from '../../shared/services/navigation/navigation.service';
 import { CommonModule } from '@angular/common';
-import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatSidenavContent, MatSidenavModule } from '@angular/material/sidenav';
 import { RouterModule } from '@angular/router';
 import { FooterComponent } from '../../shared/components/footer/footer.component';
 import { SidenavMenuComponent } from './sidenav-menu/sidenav-menu.component';
 import { SidenavHeaderComponent, SidenavHeaderData } from './sidenav-header/sidenav-header.component';
+import { ScrollService } from '../../shared/services/scroll/scroll.service';
 
+// setTimeout(() => {
+//   document.querySelectorAll('*').forEach((el) => {
+//     el.addEventListener('scroll', (e) => {
+//       console.log('Scrolling element:', e.target);
+//     });
+//   });
+// }, 2000);
 
 @Component({
   standalone: true,
   selector: 'ngx-sidenav',
+  imports: [
+    CommonModule,
+    RouterModule,
+    FooterComponent,
+    MatSidenavModule,
+    SidenavMenuComponent,
+    SidenavHeaderComponent,
+  ],
+  encapsulation: ViewEncapsulation.None,
   template: `
     <ng-container *ngIf="viewModel | async as vm; else loading">
       <mat-sidenav-container class="sidenav-container">
-        <ngx-sidenav-header [sidenavHeaderData]="vm.sidenavHeaderData"></ngx-sidenav-header>
-        <main class="sidenav-body-content">
-          <ngx-sidenav-menu [sections]="vm.sections"></ngx-sidenav-menu>
-          <router-outlet></router-outlet>
-        </main>
-        <!-- <ngx-footer></ngx-footer> -->
+        <mat-sidenav-content #matSidenavContent>
+          <ngx-sidenav-header [sidenavHeaderData]="vm.sidenavHeaderData"></ngx-sidenav-header>
+          <main class="sidenav-body-content">
+            <ngx-sidenav-menu [sections]="vm.sections"></ngx-sidenav-menu>
+            <router-outlet></router-outlet>
+          </main>
+          <!-- <ngx-footer></ngx-footer> -->
+        </mat-sidenav-content>
       </mat-sidenav-container>
     </ng-container>
     <ng-template #loading>
@@ -66,19 +85,14 @@ import { SidenavHeaderComponent, SidenavHeaderData } from './sidenav-header/side
         padding-left: 25px;
       }
     }
-  `],
-  imports: [
-    CommonModule,
-    RouterModule,
-    FooterComponent,
-    MatSidenavModule,
-    SidenavMenuComponent,
-    SidenavHeaderComponent,
-  ],
-  encapsulation: ViewEncapsulation.None
+  `]
 })
-export class SidenavComponent {
+export class SidenavComponent implements OnDestroy {
+  @ViewChild('matSidenavContent') matSidenavContent!: MatSidenavContent;
+
   navigationService = inject(NavigationService);
+  scrollService = inject(ScrollService);
+  
   viewModel = combineLatest({
     sections: this.navigationService.getSections(),
     currentSection: this.navigationService.getCurrentSection(),
@@ -96,6 +110,15 @@ export class SidenavComponent {
           currentWorkshopTitle,
         } as SidenavHeaderData,
       };
+    }),
+    tap(() => {
+      requestAnimationFrame(() => {
+        this.scrollService.attachScrollListener(this.matSidenavContent['elementRef']);
+      });
     })
   );
+
+  ngOnDestroy() {
+    this.scrollService.detachScrollListener(this.matSidenavContent['elementRef']);
+  }
 }

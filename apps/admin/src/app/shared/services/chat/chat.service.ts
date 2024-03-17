@@ -82,8 +82,7 @@ export class ChatService {
   }
 
   switchRoom(room: string) {
-    const activeRoom = this.activeRoom$.value;
-    this.leaveRoom(activeRoom);
+    this.leaveRoom();
     this.joinRoom(room);
     this.activeRoom$.next(room);
   }
@@ -99,8 +98,8 @@ export class ChatService {
     this.client.emit('joinRoom', payload, (chatRoom: ChatRoom) => this.chatRoom$.next(chatRoom));
   }
 
-  private leaveRoom(room: string) {
-    this.client.emit('leaveRoom', { user: this.user$.value, room });
+  leaveRoom() {
+    this.client.emit('leaveRoom', { user: this.user$.value, room: this.activeRoom$.value });
   }
 
   private userJoined(user: string): void {
@@ -124,5 +123,10 @@ export class ChatService {
 
   fetchChatrooms() {
     return this.httpClient.get<IChatroom[]>('/api/chat/chatrooms');
+  }
+
+  fetchMoreMessages(skip: number) {
+    // Implementation to fetch more messages from the backend
+    return this.httpClient.get<IChatMessage[]>(`/api/chat/messages?skip=${skip}`);
   }
 }

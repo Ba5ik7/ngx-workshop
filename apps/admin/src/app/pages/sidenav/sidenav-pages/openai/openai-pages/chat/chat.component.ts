@@ -3,21 +3,23 @@ import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
+  OnDestroy,
+  OnInit,
   QueryList,
-  ViewChild,
   ViewChildren,
   inject,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { combineLatest, map, of, switchMap, tap } from 'rxjs';
+import { Subject, combineLatest, map, of, switchMap, take, takeUntil, tap } from 'rxjs';
+import { MarkdownService } from 'ngx-markdown';
 import { ChatService } from '../../../../../../shared/services/chat/chat.service';
 import { UserStateService } from '../../../../../../shared/services/user-state/user-state.service';
-import { MarkdownService } from 'ngx-markdown';
+import { SpeechService } from '../../../../../../shared/services/speech/speech.service';
+import { ScrollService } from '../../../../../../shared/services/scroll/scroll.service';
 
 @Component({
   selector: 'ngx-chat',
@@ -25,7 +27,7 @@ import { MarkdownService } from 'ngx-markdown';
   imports: [
     CommonModule,
     FormsModule,
-    MatButtonModule,
+    MatIconModule,
     MatInputModule,
     MatFormFieldModule,
     MatIconModule,
@@ -33,8 +35,8 @@ import { MarkdownService } from 'ngx-markdown';
   ],
   template: `
     <ng-container *ngIf="viewModel$ | async as vm">
-      <div class="messages-panel">
-        <div class="messages-container">
+      <div class="messages-panel" >
+        <div class="messages-container" >
           @if (vm.messages.length > 0) {
             <div
               #lastMessage
@@ -48,6 +50,13 @@ import { MarkdownService } from 'ngx-markdown';
                   <div class="message-time">{{ message.timestamp | date:'medium' }}</div>
                 </div>
                 <div class="message" [innerHTML]="message.content"></div>
+                <a
+                  color="accent"
+                  class="message-speak"
+                  (click)="onConvertTextToSpeech(message.contentRaw)"
+                >
+                  <mat-icon>volume_up</mat-icon>
+                </a>
             </div>
           } @else {
             <p>No messages in this room</p>
@@ -65,9 +74,6 @@ import { MarkdownService } from 'ngx-markdown';
             [(ngModel)]="message"
             (keyup.enter)="sendMessage()"
           ></textarea>
-          <!-- <button mat-mini-fab color="accent" class="" matSuffix>
-            <mat-icon>send</mat-icon>
-          </button> -->
         </mat-form-field>
       </div>
     </ng-container>
@@ -116,8 +122,7 @@ import { MarkdownService } from 'ngx-markdown';
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ChatComponent {
-  @ViewChild('textArea') private textArea!: ElementRef;
+export class ChatComponent implements OnInit, OnDestroy {
   @ViewChildren('lastMessage') private messageElements!: QueryList<
     ElementRef<HTMLElement>
   >;
@@ -125,8 +130,13 @@ export class ChatComponent {
   route = inject(ActivatedRoute);
   chatService = inject(ChatService);
   markdownService = inject(MarkdownService);
+  speechService = inject(SpeechService);
+  scrollService = inject(ScrollService);
+
+  onDestroy$ = new Subject();
   user = 'anonymous';
   message = '';
+  offset = 0;
   
   viewModel$ = combineLatest([
     of(this.route.snapshot.paramMap.get('chatRoom')),
@@ -140,9 +150,11 @@ export class ChatComponent {
     map((data) => ({ 
       messages: data.chatRoom.messages.map((message) => ({
         ...message,
-        content: this.markdownService.parse(message.content),
+        content: this.markdownService.parse(message.content) as string,
+        contentRaw: message.content,
       })),
     })),
+    tap(({ messages }) => this.offset = messages.length),
     tap(() => this.scrollToBottom())
   );
 
@@ -160,5 +172,36 @@ export class ChatComponent {
         inline: 'nearest',
       });
     });
+  }
+  
+  onScroll(event: Event) {
+    const scrollTop = (event.target as HTMLElement)?.scrollTop;
+    if (scrollTop === 0) { // Reached the top of the messages container
+      this.loadMoreMessages();
+    }
+  }
+
+  loadMoreMessages() {
+    this.chatService.fetchMoreMessages(this.offset)
+      .pipe(take(1))
+      .subscribe((newMessages) => {
+        console.log('newMessages', newMessages);
+        this.offset += newMessages.length;
+      });
+  }
+
+  onConvertTextToSpeech(text: string): void {
+    this.speechService.speak(text);
+  }
+
+  ngOnInit(): void {
+    this.scrollService.onScroll$
+    .pipe(takeUntil(this.onDestroy$))
+    .subscribe((event) => this.onScroll(event));
+  }
+
+  ngOnDestroy() {
+    this.chatService.leaveRoom();
+    this.onDestroy$.next(true);
   }
 }

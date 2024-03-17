@@ -75,6 +75,7 @@ export class OpenAIService {
   }
 
   async getAiResponses(): Promise<IOpenAIResponse[]> {
-    return this.openAIResponseModel.find().exec();
+    // Limit the number of items returned
+    return await this.openAIResponseModel.find().limit(10).sort({ createdAt: -1 });
   }
 }
