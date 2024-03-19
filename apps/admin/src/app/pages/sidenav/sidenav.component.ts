@@ -1,4 +1,4 @@
-import { AfterContentInit, Component, ElementRef, inject, OnDestroy, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, inject, OnDestroy, ViewChild, ViewEncapsulation } from '@angular/core';
 import { combineLatest, map, tap } from 'rxjs';
 import { NavigationService } from '../../shared/services/navigation/navigation.service';
 import { CommonModule } from '@angular/common';

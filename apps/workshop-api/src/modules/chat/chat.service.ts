@@ -114,14 +114,11 @@ export class ChatService {
     );
   }
 
-  async getChatroomMostRecentMessages(roomName: string) {
-    return await this.chatroomModel.aggregate([
-      { $match: { roomName: roomName } },
-      { $unwind: '$messages' },
-      { $sort: { 'messages.timestamp': -1 } },
-      { $limit: 10 },
-      { $sort: { 'messages.timestamp': 1 } },
-      { $group: { _id: '$_id', messages: { $push: '$messages' } } },
-    ]);
+  async getChatroomOffsetMessages(roomName: string, offset: number) {
+    console.log('offset', typeof offset);
+    return await this.chatroomModel.findOne(
+      { roomName: roomName }, 
+      { 'messages': { $slice: [~~offset, 2] } }
+    ).exec();
   }
 }

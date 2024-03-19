@@ -186,7 +186,7 @@ export class ChatComponent implements OnInit, OnDestroy {
       .pipe(take(1))
       .subscribe((newMessages) => {
         console.log('newMessages', newMessages);
-        this.offset += newMessages.length;
+        this.offset += newMessages.messages.length;
       });
   }
 

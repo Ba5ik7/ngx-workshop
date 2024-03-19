@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Param, Query } from '@nestjs/common';
 import { Roles } from '../../decorators/role.decorator';
 import { Role } from '../../enums/role.enum';
 import { ChatService } from './chat.service';
@@ -19,5 +19,14 @@ export class ChatroomController {
   @Get('chatrooms')
   async getChatrooms() {
     return await this.chatService.getChatrooms();
+  }
+
+  @Roles(Role.Admin)
+  @Get('messages')
+  async getChatroomOffsetMessages(
+    @Query('chatroom') chatroom: string,
+    @Query('offset') offset: number
+  ) {
+    return await this.chatService.getChatroomOffsetMessages(chatroom, offset);
   }
 }

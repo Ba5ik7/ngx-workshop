@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { BehaviorSubject, combineLatest, map, Observable } from 'rxjs';
+import { BehaviorSubject, combineLatest, debounceTime, map, Observable } from 'rxjs';
 import { io, Socket } from 'socket.io-client';
 import { IChatMessage, IChatroom } from '../../interfaces/chatrooms.interface';
 import { UserStateService } from '../user-state/user-state.service';
@@ -125,8 +125,9 @@ export class ChatService {
     return this.httpClient.get<IChatroom[]>('/api/chat/chatrooms');
   }
 
-  fetchMoreMessages(skip: number) {
-    // Implementation to fetch more messages from the backend
-    return this.httpClient.get<IChatMessage[]>(`/api/chat/messages?skip=${skip}`);
+  fetchMoreMessages(offset: number) {
+    const chatroom = this.activeRoom$.value;
+    return this.httpClient.get<IChatroom>(`/api/chat/messages?chatroom=${chatroom}&offset=${offset}`)
+    .pipe(debounceTime(1000));
   }
 }
