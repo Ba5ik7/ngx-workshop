@@ -12,7 +12,7 @@ export class OpenAIService {
   ) {}
 
   private readonly openAIEndpoint = 'https://api.openai.com/v1/chat/completions';
-  private readonly apiKey = process.env.OPEN_AI_API_KEY; // Securely manage your API key
+  private readonly apiKey = process.env.OPEN_AI_API_KEY;
 
   async generateText(messageContent: string): Promise<IOpenAIResponse> {
     try {
@@ -47,7 +47,7 @@ export class OpenAIService {
             // },
             {
               role: 'system',
-              content: `Deubgging`
+              content: `Debugging`
             },
             {
               role: 'user',
