@@ -122,9 +122,7 @@ export class WorkshopDetailComponent {
   private router = inject(Router);
   private activatedRoute = inject(ActivatedRoute);
 
-  requestValue = this.workshopEditorService.saveEditorData$.pipe(
-    tap(() => console.log('Hello'))
-  );
+  requestValue = this.workshopEditorService.saveEditorData$;
 
   viewModel = combineLatest([
     inject(ActivatedRoute).data,
@@ -153,11 +151,6 @@ export class WorkshopDetailComponent {
         handleSavingBlocks: (blocks$: Observable<NgxEditorJsBlock[]>) => {
           void lastValueFrom(
             blocks$.pipe(
-              tap((blocks) => console.log(blocks.length)),
-              // ! HACK to getting working Editor saves on load before
-              // ! the blocks have chance to load
-              // ! Thus saving it as []
-              filter((blocks) => blocks.length > 0),
               switchMap((blocks) =>
                 this.workshopEditorService.savePageHTML(
                   safeStringify(blocks),
@@ -171,7 +164,6 @@ export class WorkshopDetailComponent {
                 this.workshopEditorService.savePageHTMLErrorSubject.next(true);
                 return of([]);
               }),
-              defaultIfEmpty([]), // ! HACK to getting working
             )
           );
         },

@@ -58,7 +58,7 @@
     "zone.js": "0.15.0"
   },
   "devDependencies": {
-    "@tmdjr/ngx-editor-js2": "^0.0.9",
+    "@tmdjr/ngx-editor-js2": "^19.0.0",
     "@tmdjr/ngx-editor-js2-image": "^0.0.9",
     "@tmdjr/ngx-editor-js2-pop-quiz": "^0.0.9",
     "@tmdjr/ngx-editor-js2-codemirror": "^0.0.9",
