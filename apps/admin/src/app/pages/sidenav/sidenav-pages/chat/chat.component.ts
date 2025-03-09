@@ -12,9 +12,8 @@ import { RouterModule } from '@angular/router';
 import { ChatAppData, ChatService } from '../../../../shared/services/chat/chat.service';
 
 @Component({
-  standalone: true,
-  selector: 'ngx-chat',
-  template: `
+    selector: 'ngx-chat',
+    template: `
   <ng-container *ngIf="chatAppData$ | async as data">
     <div class="messages-panel">
       <div class="messages">
@@ -53,7 +52,7 @@ import { ChatAppData, ChatService } from '../../../../shared/services/chat/chat.
     </div>
   </ng-container>
   `,
-  styles: [`
+    styles: [`
     :host {
       grid-template-columns: calc(100vw - 558px) auto;
       display: grid;
@@ -88,16 +87,16 @@ import { ChatAppData, ChatService } from '../../../../shared/services/chat/chat.
       bottom: 0;
     }
   `],
-  imports: [
-    CommonModule,
-    FormsModule,
-    MatButtonModule,
-    MatListModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatIconModule,
-    RouterModule
-  ]
+    imports: [
+        CommonModule,
+        FormsModule,
+        MatButtonModule,
+        MatListModule,
+        MatInputModule,
+        MatFormFieldModule,
+        MatIconModule,
+        RouterModule
+    ]
 })
 export class ChatComponent implements OnInit {
   chatService = inject(ChatService);

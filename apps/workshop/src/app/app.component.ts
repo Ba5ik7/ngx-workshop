@@ -9,13 +9,12 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
 
 @Component({
-  standalone: true,
-  selector: 'ngx-workshop',
-  template: `
+    selector: 'ngx-workshop',
+    template: `
     <ngx-navbar></ngx-navbar>
     <router-outlet></router-outlet>
   `,
-  styles: [`
+    styles: [`
     ngx-workshop {
       display: flex;
       flex-direction: column;
@@ -36,12 +35,12 @@ import { NavbarComponent } from './shared/components/navbar/navbar.component';
       }
     }
   `],
-  encapsulation: ViewEncapsulation.None,
-  imports: [
-    RouterModule,
-    NavbarComponent,
-    MatDialogModule
-  ],
+    encapsulation: ViewEncapsulation.None,
+    imports: [
+        RouterModule,
+        NavbarComponent,
+        MatDialogModule
+    ]
 })
 export class AppComponent {
   resetScrollPosition = inject(Router).events

@@ -16,17 +16,16 @@ import { NavigationService } from '../../../../../../shared/services/navigation/
 
 
 @Component({
-  standalone: true,
-  selector: 'ngx-workshop-list',
-  templateUrl: './workshop-list.component.html',
-  styleUrls: ['./workshop-list.component.scss'],
-  imports: [
-    CommonModule,
-    RouterModule,
-    MatListModule,
-    MatIconModule,
-    DragDropModule
-  ]
+    selector: 'ngx-workshop-list',
+    templateUrl: './workshop-list.component.html',
+    styleUrls: ['./workshop-list.component.scss'],
+    imports: [
+        CommonModule,
+        RouterModule,
+        MatListModule,
+        MatIconModule,
+        DragDropModule
+    ]
 })
 export class WorkshopListComponent implements OnInit, OnDestroy {
   // TODO: Make it Reactive

@@ -9,9 +9,8 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { Subject, takeUntil } from 'rxjs';
 
 @Component({
-  standalone: true,
-  selector: 'ngx-create-section',
-  template: `
+    selector: 'ngx-create-section',
+    template: `
     <div class="form-container">
       <h2 mat-dialog-title>Create a Section</h2>
       <form [formGroup]="createSectionForm" mat-dialog-content>
@@ -36,7 +35,7 @@ import { Subject, takeUntil } from 'rxjs';
       </form>
     </div>
   `,
-  styles: [`
+    styles: [`
   .form-container form {
     display: flex;
     flex-direction: column;
@@ -47,15 +46,15 @@ import { Subject, takeUntil } from 'rxjs';
     }
   }
 `],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatDialogModule,
-    MatButtonModule,
-    MatInputModule,
-  ]
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatDialogModule,
+        MatButtonModule,
+        MatInputModule,
+    ]
 })
 export class CreateSectionModalComponent implements OnInit {
 

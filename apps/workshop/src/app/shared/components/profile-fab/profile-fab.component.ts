@@ -7,8 +7,8 @@ import { RouterModule } from '@angular/router';
 import { MatMenuModule } from '@angular/material/menu';
 
 @Component({
-  selector: 'ngx-profile-fab',
-  template: `
+    selector: 'ngx-profile-fab',
+    template: `
   <button mat-icon-button color="accent" [matMenuTriggerFor]="menu">
       <mat-icon>account_circle</mat-icon>
     </button>
@@ -27,18 +27,17 @@ import { MatMenuModule } from '@angular/material/menu';
       </button>
     </mat-menu>
   `,
-  styles: [`
+    styles: [`
 
   `],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [
-    CommonModule,
-    RouterModule,
-    MatButtonModule,
-    MatIconModule,
-    MatMenuModule
-  ],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        CommonModule,
+        RouterModule,
+        MatButtonModule,
+        MatIconModule,
+        MatMenuModule
+    ]
 })
 export class ProfileFabComponent {
 

@@ -4,9 +4,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
-  standalone: true,
-  selector: 'ngx-delete-section-modal',
-  template: `
+    selector: 'ngx-delete-section-modal',
+    template: `
     <h2 mat-dialog-title>Delete the {{data.navItem.name}} Section?</h2>
     <h3 class="warn" mat-dialog-content>This action cannot be undone.</h3>
     <mat-dialog-actions align="end">
@@ -15,11 +14,11 @@ import { MatButtonModule } from '@angular/material/button';
       <button mat-flat-button color="warn" (click)="deleteSection()">Delete</button>
     </mat-dialog-actions>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    MatButtonModule,
-    MatDialogModule
-  ]
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        MatButtonModule,
+        MatDialogModule
+    ]
 })
 export class DeleteSectionModalComponent {
 

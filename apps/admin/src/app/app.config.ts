@@ -1,4 +1,4 @@
-import { ApplicationConfig } from '@angular/core';
+import { ApplicationConfig, inject, provideAppInitializer } from '@angular/core';
 import {
   RouteReuseStrategy,
   provideRouter,
@@ -18,7 +18,7 @@ import { NgxEditorjsMermaidBlockMediator } from '@tmdjr/ngx-editorjs-mermaid-blo
 import { NgxEditorjsQuizBlockMediator } from '@tmdjr/ngx-editorjs-quiz-block';
 import { provideMarkdown } from 'ngx-markdown';
 import { IMAGE_LOADER } from '@angular/common';
-import { APP_INITIALIZER } from '@angular/core';
+
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 // import { provideCloudinaryLoader } from '@angular/common';}
@@ -64,12 +64,10 @@ export const appConfig: ApplicationConfig = {
     { provide: IMAGE_LOADER, useValue: (img: { src: string }) => img.src },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: RouteReuseStrategy, useClass: WorkshopReuseStrategy },
-    {
-      provide: APP_INITIALIZER,
-      useFactory: registerIcons,
-      deps: [MatIconRegistry, DomSanitizer],
-      multi: true,
-    },
+    provideAppInitializer(() => {
+        const initializerFn = (registerIcons)(inject(MatIconRegistry), inject(DomSanitizer));
+        return initializerFn();
+      }),
     {
       provide: NGX_EDITORJS_OPTIONS,
       useValue: {

@@ -1,34 +1,151 @@
-@use '@angular/material' as mat;
-@use './app/app-theme';
-@use './assets/styles/general';
-// @use './assets/styles/custom-themes/synthwave';
-@use './assets/styles/custom-themes/professional';
+/* You can add global styles to this file, and also import other style files */
+@use "@angular/material" as mat;
 
-@include mat.all-component-typographies();
-@include mat.core();
-
-// Define the light theme.
-// $primary: mat.define-palette(mat.$indigo-palette);
-// $accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
-// $theme: mat.define-light-theme((
-//   color: (
-//     primary: $primary,
-//     accent: $accent
-//   ),
-//   typography: mat.define-typography-config(),
-// ));
-
-// @include mat.all-legacy-component-typographies();
-// @include mat.legacy-core();
-
-// @include mat.all-legacy-component-themes($theme);
-// @include app-theme.theme($theme);
-
-
-input:-webkit-autofill,
-input:-webkit-autofill:focus {
-  transition: background-color 600000s 0s, color 600000s 0s;
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body.light-mode {
+  color-scheme: light;
+  color: var(--mat-sys-on-surface);
+  background-color: var(--mat-sys-surface);
+}
+
+body.dark-mode {
+  color-scheme: dark;
+  color: var(--mat-sys-on-surface);
+  background-color: var(--mat-sys-surface);
+}
+
+body {
+  &.red-palette {
+    @include mat.theme(
+      (
+        color: mat.$red-palette,
+      )
+    );
+  }
+
+  &.green-palette {
+    @include mat.theme(
+      (
+        color: mat.$green-palette,
+      )
+    );
+  }
+
+  &.blue-palette {
+    @include mat.theme(
+      (
+        color: mat.$blue-palette,
+      )
+    );
+  }
+
+  &.yellow-palette {
+    @include mat.theme(
+      (
+        color: mat.$yellow-palette,
+      )
+    );
+  }
+
+  &.cyan-palette {
+    @include mat.theme(
+      (
+        color: mat.$cyan-palette,
+      )
+    );
+  }
+
+  &.magenta-palette {
+    @include mat.theme(
+      (
+        color: mat.$magenta-palette,
+      )
+    );
+  }
+
+  &.orange-palette {
+    @include mat.theme(
+      (
+        color: mat.$orange-palette,
+      )
+    );
+  }
+  &.chartreuse-palette {
+    @include mat.theme(
+      (
+        color: mat.$chartreuse-palette,
+      )
+    );
+  }
+  &.spring-green-palette {
+    @include mat.theme(
+      (
+        color: mat.$spring-green-palette,
+      )
+    );
+  }
+  &.azure-palette {
+    @include mat.theme(
+      (
+        color: mat.$azure-palette,
+      )
+    );
+  }
+  &.violet-palette {
+    @include mat.theme(
+      (
+        color: mat.$violet-palette,
+      )
+    );
+  }
+  &.rose-palette {
+    @include mat.theme(
+      (
+        color: mat.$rose-palette,
+      )
+    );
+  }
+}
+
+.flex-spacer {
+  flex-grow: 1;
+}
+
+@for $i from 0 through 24 {
+  .mat-elevation-z#{$i} {
+    @include mat.elevation($i);
+  }
+}
+
+// TODO Clean this shit up
+// ! Needs to be a part of Library
+.cdk-drag-preview {
+  color: var(--mat-sys-on-secondary-container);
+  background-color: var(--mat-sys-secondary-container);
+  border-radius: 8px;
+  box-sizing: border-box;
+  overflow: visible;
+  box-shadow: var(--mat-sys-level4);
+
+  & *:not(toolbar) {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+}
+
+.cdk-drag-placeholder {
+  opacity: 0;
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+// TODO END Clean this shit up

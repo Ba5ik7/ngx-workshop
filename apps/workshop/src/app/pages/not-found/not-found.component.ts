@@ -4,9 +4,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { FooterComponent } from '../../shared/components/footer/footer.component';
 
 @Component({
-  standalone: true,
-  selector: 'ngx-not-found',
-  template: `
+    selector: 'ngx-not-found',
+    template: `
     <main>
       <div class="wrapper">
         <svg
@@ -38,7 +37,7 @@ import { FooterComponent } from '../../shared/components/footer/footer.component
 
     <ngx-footer></ngx-footer>
   `,
-  styles: [`
+    styles: [`
     $vertical-spacing: 64px;
     $horizontal-spacing: 32px;
 
@@ -72,12 +71,11 @@ import { FooterComponent } from '../../shared/components/footer/footer.component
       }
     }
   `],
-
-  imports: [
-    CommonModule,
-    MatButtonModule,
-    FooterComponent,
-  ],
+    imports: [
+        CommonModule,
+        MatButtonModule,
+        FooterComponent,
+    ]
 })
 export class NotFoundComponent {
   @HostBinding('class.main-content') readonly mainContentClass = true;

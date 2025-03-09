@@ -4,22 +4,21 @@ import { OpenaiService } from '../../../../../../shared/services/openai/openai.s
 import { combineLatest, map } from 'rxjs';
 
 @Component({
-  selector: 'ngx-history',
-  standalone: true,
-  imports: [CommonModule],
-  template: `
+    selector: 'ngx-history',
+    imports: [CommonModule],
+    template: `
     @if (viewModal$ | async; as vm) {
       @for (item of vm.openaiResponses; track $index) {
         <div><pre><code>{{ item | json }}</code></pre></div>
       }
     }
   `,
-  styles: `
+    styles: `
     :host {
       display: block;
     }
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HistoryComponent {
   openAiService = inject(OpenaiService);

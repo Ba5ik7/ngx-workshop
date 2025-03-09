@@ -16,18 +16,17 @@ import { WorkshopDocumentIdentifier } from '../../../../../../shared/interfaces/
 import { NavigationService } from '../../../../../../shared/services/navigation/navigation.service';
 
 @Component({
-  standalone: true,
-  selector: 'ngx-page-list',
-  templateUrl: './page-list.component.html',
-  styleUrls: ['./page-list.component.scss'],
-  imports: [
-    CommonModule,
-    RouterModule,
-    MatListModule,
-    MatIconModule,
-    DragDropModule,
-    MatButtonModule
-  ]
+    selector: 'ngx-page-list',
+    templateUrl: './page-list.component.html',
+    styleUrls: ['./page-list.component.scss'],
+    imports: [
+        CommonModule,
+        RouterModule,
+        MatListModule,
+        MatIconModule,
+        DragDropModule,
+        MatButtonModule
+    ]
 })
 export class PageListComponent implements OnInit, OnDestroy {
   // TODO: Make it Reactive

@@ -7,10 +7,9 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @Component({
-  selector: 'ngx-image-uploader',
-  standalone: true,
-  imports: [CommonModule, MatButtonModule, MatIconModule],
-  template: `
+    selector: 'ngx-image-uploader',
+    imports: [CommonModule, MatButtonModule, MatIconModule],
+    template: `
     <button  
       mat-mini-fab 
       class="image-block-button mat-elevation-z2"
@@ -18,8 +17,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
         <mat-icon>edit</mat-icon>
     </button>
   `,
-  styles: ``,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    styles: ``,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ImageUploaderComponent {
   matDialog = inject(MatDialog);
@@ -30,10 +29,9 @@ export class ImageUploaderComponent {
 }
 
 @Component({
-  selector: 'ngx-upload-image-modal',
-  standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, MatButtonModule, HttpClientModule],
-  template: `
+    selector: 'ngx-upload-image-modal',
+    imports: [CommonModule, ReactiveFormsModule, MatButtonModule, HttpClientModule],
+    template: `
     <div class="upload-modal">
       <form [formGroup]="imageUploadForm" (ngSubmit)="uploadImage()">
         <input 
@@ -52,8 +50,8 @@ export class ImageUploaderComponent {
       </form>
     </div>
   `,
-  styles: [
-    `
+    styles: [
+        `
       .upload-modal {
         display: flex;
         flex-direction: column;
@@ -66,8 +64,8 @@ export class ImageUploaderComponent {
         gap: 20px;
       }
     `
-  ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    ],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UploadImageModalComponent {
   private dialogRef = inject(MatDialogRef<UploadImageModalComponent>);

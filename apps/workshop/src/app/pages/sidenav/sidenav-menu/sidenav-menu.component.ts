@@ -13,9 +13,8 @@ export type SidenavMenuData = {
   signedIn: boolean,
 };
 @Component({
-  standalone: true,
-  selector: 'ngx-sidenav-menu',
-  template: `
+    selector: 'ngx-sidenav-menu',
+    template: `
     <div class="workshop-menu-nav">
       <div class="workshop-menu-nav-content">
         <mat-nav-list>
@@ -46,7 +45,7 @@ export type SidenavMenuData = {
       </div>
     </div>
   `,
-  styles: [`
+    styles: [`
     :host {
       .mat-icon {
         margin: 0 10px 3px 0;
@@ -60,14 +59,14 @@ export type SidenavMenuData = {
       }
     }
   `],
-  imports: [
-    CommonModule,
-    RouterModule,
-    MatButtonModule,
-    MatListModule,
-    MatIconModule,
-    MatDividerModule,
-  ]
+    imports: [
+        CommonModule,
+        RouterModule,
+        MatButtonModule,
+        MatListModule,
+        MatIconModule,
+        MatDividerModule,
+    ]
 })
 export class SidenavMenuComponent {
   @Input() vm: SidenavMenuData = {

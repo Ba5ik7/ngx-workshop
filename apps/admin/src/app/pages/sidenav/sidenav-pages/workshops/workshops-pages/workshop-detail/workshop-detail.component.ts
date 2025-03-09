@@ -30,9 +30,8 @@ const safeStringify = (value: unknown) => {
   }
 }
 @Component({
-  standalone: true,
-  selector: 'ngx-workshop-detail',
-  template: `
+    selector: 'ngx-workshop-detail',
+    template: `
     <ng-container *ngIf="viewModel | async as vm; else elseTemplate">
       <mat-paginator
         *ngIf="vm.hasMoreThanOneDocument"
@@ -65,7 +64,7 @@ const safeStringify = (value: unknown) => {
       LOADING!!!
     </ng-template>
   `,
-  styles: [`
+    styles: [`
     .workshop-viewer-container {
       display: block;
       padding: 20px 60px;
@@ -98,12 +97,12 @@ const safeStringify = (value: unknown) => {
       }
     }
   `],
-  imports: [
-    CommonModule,
-    NgxEditorjsModule,
-    MatPaginatorModule,
-    MatCardModule
-  ]
+    imports: [
+        CommonModule,
+        NgxEditorjsModule,
+        MatPaginatorModule,
+        MatCardModule
+    ]
 })
 export class WorkshopDetailComponent {
   @ViewChild('paginator') paginator!: MatPaginator;

@@ -1,7 +1,7 @@
-import { 
-  ActivatedRouteSnapshot, 
-  DetachedRouteHandle, 
-  RouteReuseStrategy, 
+import {
+  ActivatedRouteSnapshot,
+  DetachedRouteHandle,
+  RouteReuseStrategy,
   Routes
 } from '@angular/router';
 import { NavigationService } from './shared/services/navigation/navigation.service';
@@ -27,14 +27,13 @@ export class WorkshopReuseStrategy extends RouteReuseStrategy {
 
 export const appRoutes: Routes = [
   {
-    path: '',   
-    resolve: { 
+    path: '',
+    resolve: {
       sections: () => inject(NavigationService).fetchSections(),
       isLoggedIn: () => inject(UserStateService).isUserLoggedIn(),
-      theme: () => inject(ThemePickerService).init()
     },
     children: [
-      { 
+      {
         path: '',
         pathMatch: 'full',
         loadComponent: () => import('./pages/home/home.component').then(m => m.HomeComponent)

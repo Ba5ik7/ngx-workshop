@@ -22,18 +22,17 @@ import { SpeechService } from '../../../../../../shared/services/speech/speech.s
 import { ScrollService } from '../../../../../../shared/services/scroll/scroll.service';
 
 @Component({
-  selector: 'ngx-chat',
-  standalone: true,
-  imports: [
-    CommonModule,
-    FormsModule,
-    MatIconModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatIconModule,
-    RouterModule,
-  ],
-  template: `
+    selector: 'ngx-chat',
+    imports: [
+        CommonModule,
+        FormsModule,
+        MatIconModule,
+        MatInputModule,
+        MatFormFieldModule,
+        MatIconModule,
+        RouterModule,
+    ],
+    template: `
     <ng-container *ngIf="viewModel$ | async as vm">
       <div class="messages-panel" >
         <div class="messages-container" >
@@ -78,7 +77,7 @@ import { ScrollService } from '../../../../../../shared/services/scroll/scroll.s
       </div>
     </ng-container>
   `,
-  styles: `
+    styles: `
     @use '@angular/material' as mat;
     ::ng-deep .message > .mat-mdc-form-field-subscript-wrapper {
       display: none;
@@ -120,7 +119,7 @@ import { ScrollService } from '../../../../../../shared/services/scroll/scroll.s
       }
     }
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ChatComponent implements OnInit, OnDestroy {
   @ViewChildren('lastMessage') private messageElements!: QueryList<

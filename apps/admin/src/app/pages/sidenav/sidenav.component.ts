@@ -18,18 +18,17 @@ import { ScrollService } from '../../shared/services/scroll/scroll.service';
 // }, 2000);
 
 @Component({
-  standalone: true,
-  selector: 'ngx-sidenav',
-  imports: [
-    CommonModule,
-    RouterModule,
-    FooterComponent,
-    MatSidenavModule,
-    SidenavMenuComponent,
-    SidenavHeaderComponent,
-  ],
-  encapsulation: ViewEncapsulation.None,
-  template: `
+    selector: 'ngx-sidenav',
+    imports: [
+        CommonModule,
+        RouterModule,
+        FooterComponent,
+        MatSidenavModule,
+        SidenavMenuComponent,
+        SidenavHeaderComponent,
+    ],
+    encapsulation: ViewEncapsulation.None,
+    template: `
     <ng-container *ngIf="viewModel | async as vm; else loading">
       <mat-sidenav-container class="sidenav-container">
         <mat-sidenav-content #matSidenavContent>
@@ -46,7 +45,7 @@ import { ScrollService } from '../../shared/services/scroll/scroll.service';
         loading...
     </ng-template>
   `,
-  styles: [`
+    styles: [`
     ngx-sidenav {
       display: flex;
       flex-direction: column;

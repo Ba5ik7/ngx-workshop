@@ -7,9 +7,8 @@ import { UserStateService } from '../../services/user-state/user-state.service';
 import { ProfileFabComponent } from '../profile-fab/profile-fab.component';
 
 @Component({
-  standalone: true,
-  selector: 'ngx-navbar',
-  template: `
+    selector: 'ngx-navbar',
+    template: `
     <nav class="navbar-header mat-elevation-z6">
       <a mat-button routerLink="/">
         <mat-icon class="workshop-logo">admin_panel_settings</mat-icon>
@@ -19,7 +18,7 @@ import { ProfileFabComponent } from '../profile-fab/profile-fab.component';
       <ngx-profile-fab *ngIf="userStateServices.signedIn$ | async"></ngx-profile-fab>
     </nav>
   `,
-  styles: [`
+    styles: [`
     :host {
       position: fixed;
       left: 0;
@@ -42,14 +41,14 @@ import { ProfileFabComponent } from '../profile-fab/profile-fab.component';
       vertical-align: middle;
     }
   `],
-  imports: [
-    CommonModule,
-    RouterModule,
-    MatButtonModule,
-    MatIconModule,
-    ProfileFabComponent
-  ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    imports: [
+        CommonModule,
+        RouterModule,
+        MatButtonModule,
+        MatIconModule,
+        ProfileFabComponent
+    ],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NavbarComponent {
   userStateServices = inject(UserStateService);

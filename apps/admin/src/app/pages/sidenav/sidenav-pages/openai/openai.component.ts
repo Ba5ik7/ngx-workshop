@@ -5,10 +5,9 @@ import { RouterModule } from '@angular/router';
 import { ChatService } from '../../../../shared/services/chat/chat.service';
 
 @Component({
-  standalone: true,
-  selector: 'ngx-chat',
-  imports: [CommonModule, RouterModule, MatListModule],
-  template: `
+    selector: 'ngx-chat',
+    imports: [CommonModule, RouterModule, MatListModule],
+    template: `
     <div class="main-content">
       <router-outlet></router-outlet>
     </div>
@@ -45,7 +44,7 @@ import { ChatService } from '../../../../shared/services/chat/chat.service';
       </div>
     </div>
   `,
-  styles: [`
+    styles: [`
     :host {
       grid-template-columns: calc(100vw - 558px) auto;
       display: grid;

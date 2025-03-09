@@ -9,18 +9,17 @@ import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  standalone: true,
-  imports: [
-    CommonModule,
-    MatGridListModule,
-    MatCardModule,
-    MatMenuModule,
-    MatIconModule,
-    MatButtonModule,
-    LayoutModule
-  ],
-  selector: 'ngx-dynamic-grid-list',
-  template: `
+    imports: [
+        CommonModule,
+        MatGridListModule,
+        MatCardModule,
+        MatMenuModule,
+        MatIconModule,
+        MatButtonModule,
+        LayoutModule
+    ],
+    selector: 'ngx-dynamic-grid-list',
+    template: `
     <div class="grid-container">
       <mat-grid-list cols="2" rowHeight="350px">
         <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
@@ -45,7 +44,7 @@ import { CommonModule } from '@angular/common';
       </mat-grid-list>
     </div>
   `,
-  styles: [`
+    styles: [`
     .grid-container { margin: 20px; }
     .dashboard-card {
       position: absolute;
@@ -61,7 +60,7 @@ import { CommonModule } from '@angular/common';
     }
     .dashboard-card-content { text-align: center; }
   `],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DynamicGridListComponent {
   /** Based on the screen size, switch from standard to one column per row */

@@ -15,35 +15,34 @@ export class OptimizeCloudinaryUrlPipe implements PipeTransform {
   }
 }
 @Component({
-  selector: 'ngx-workshop-list',
-  standalone: true,
-  imports: [
-    CommonModule,
-    RouterModule,
-    MatCardModule,
-    NgOptimizedImage,
-    OptimizeCloudinaryUrlPipe
-  ],
-  animations: [
-    trigger('staggerCircleReveal', [
-      transition(':enter', [
-        query('.mat-card-new', [
-          style({ opacity: 0, marginTop: '100px'}),
-          stagger('150ms', [
-            animate('0.6s ease-in-out', keyframes([
-              style({ opacity: 0, marginTop: '15px', clipPath: 'circle(0% at 85% 85%)', offset: 0 }), // top left
-              style({ opacity: 1, marginTop: '0', clipPath: 'circle(200% at 0% 0%)', offset: 1.0 }) // top left
-            ]))
-          ])
-        ], { optional: true })
-      ]),
-      transition(':leave', [
-        animate(600, style({ opacity: 0 }))
-      ])
-    ])
-  ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  template: `
+    selector: 'ngx-workshop-list',
+    imports: [
+        CommonModule,
+        RouterModule,
+        MatCardModule,
+        NgOptimizedImage,
+        OptimizeCloudinaryUrlPipe
+    ],
+    animations: [
+        trigger('staggerCircleReveal', [
+            transition(':enter', [
+                query('.mat-card-new', [
+                    style({ opacity: 0, marginTop: '100px' }),
+                    stagger('150ms', [
+                        animate('0.6s ease-in-out', keyframes([
+                            style({ opacity: 0, marginTop: '15px', clipPath: 'circle(0% at 85% 85%)', offset: 0 }), // top left
+                            style({ opacity: 1, marginTop: '0', clipPath: 'circle(200% at 0% 0%)', offset: 1.0 }) // top left
+                        ]))
+                    ])
+                ], { optional: true })
+            ]),
+            transition(':leave', [
+                animate(600, style({ opacity: 0 }))
+            ])
+        ])
+    ],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    template: `
     <div class="workshop-list" [@staggerCircleReveal]>
       <div
         class="mat-card-new mat-mdc-card"
@@ -63,8 +62,8 @@ export class OptimizeCloudinaryUrlPipe implements PipeTransform {
       </div>
     </div>
   `,
-  styles: [
-    `
+    styles: [
+        `
       @use '@angular/material' as mat;
       :host {
         display: flex;
@@ -115,7 +114,7 @@ export class OptimizeCloudinaryUrlPipe implements PipeTransform {
         }
       }
     `,
-  ],
+    ]
 })
 export class WorkshopListComponent {
   workshops = inject(NavigationService).getWorkshops().pipe(

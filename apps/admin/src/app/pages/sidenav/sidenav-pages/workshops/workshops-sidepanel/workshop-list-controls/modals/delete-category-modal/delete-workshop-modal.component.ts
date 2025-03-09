@@ -13,18 +13,17 @@ import { CommonModule } from '@angular/common';
 import { Workshop } from '../../../../../../../../shared/interfaces/navigation.interface';
 
 @Component({
-  standalone: true,
-  selector: 'ngx-delete-workshop-modal',
-  templateUrl: './delete-workshop-modal.component.html',
-  styleUrls: ['./delete-workshop-modal.component.scss'],
-  imports: [
-    CommonModule,
-    MatFormFieldModule,
-    MatDialogModule,
-    ReactiveFormsModule,
-    MatButtonModule,
-    MatInputModule,
-  ],
+    selector: 'ngx-delete-workshop-modal',
+    templateUrl: './delete-workshop-modal.component.html',
+    styleUrls: ['./delete-workshop-modal.component.scss'],
+    imports: [
+        CommonModule,
+        MatFormFieldModule,
+        MatDialogModule,
+        ReactiveFormsModule,
+        MatButtonModule,
+        MatInputModule,
+    ]
 })
 export class DeleteWorkshopModalComponent {
   private dialogRef = inject(MatDialogRef<DeleteWorkshopModalComponent>);

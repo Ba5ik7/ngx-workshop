@@ -7,6 +7,7 @@ import {
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { BehaviorSubject, combineLatest, map, pairwise, startWith, tap } from 'rxjs';
 import { NgxEditorjsModule } from '@tmdjr/ngx-editorjs';
+import { NgxEditorJs2Component } from '@tmdjr/ngx-editor-js2';
 import { NavigationService } from '../../../../../../shared/services/navigation/navigation.service';
 import { CommonModule } from '@angular/common';
 import { WorkshopDocument } from '../../../../../../shared/interfaces/navigation.interface';
@@ -62,21 +63,25 @@ const safeParse = (json: string) => {
   }
 }
 @Component({
-  standalone: true,
-  selector: 'ngx-workshop-detail',
-  imports: [
-    CommonModule,
-    NgxEditorjsModule,
-    MatCardModule,
-    NgxEditorjsClientModule
-  ],
-  template: `
+    selector: 'ngx-workshop-detail',
+    imports: [
+        CommonModule,
+        NgxEditorjsModule,
+        MatCardModule,
+        NgxEditorjsClientModule,
+        NgxEditorJs2Component
+    ],
+    template: `
     <ng-container *ngIf="viewModel | async as vm; else elseTemplate">
       <div class="workshop-detail-content">
         <div class="page">
           <section class="workshop-viewer-container">
             <div class="workshop-detail-card mat-mdc-card">
-              <ngx-editorjs-client [inputData]="vm.ngxEditorjsBlocks"></ngx-editorjs-client>
+              <ngx-editor-js2
+                [blocks]="(vm.ngxEditorjsBlocks)"
+                [requestBlocks]="requestBlocks$ | async"
+                (blocksRequested)="handleBlocks($event)"
+              ></ngx-editor-js2>
             </div>
           </section>
         </div>
@@ -86,7 +91,7 @@ const safeParse = (json: string) => {
       LOADING!!!
     </ng-template>
   `,
-  styles: [`
+    styles: [`
     @use '@angular/material' as mat;
     :host { display: block; }
     .workshop-viewer-container {
@@ -124,19 +129,25 @@ export class WorkshopDetailComponent {
       };
     })
   );
+
+  requestBlocks = new BehaviorSubject<{}>({});
+  requestBlocks$ = this.requestBlocks.asObservable();
+
+  handleBlocks(blocks$: any) {
+    console.log(blocks$);
+  }
 }
 
 
 @Component({
-  standalone: true,
-  selector: 'ngx-workshop-detail-animation',
-  animations: [ RouterAnimations.routeSlide, RouterAnimations.routeCubeRotation ],
-  imports: [
-    CommonModule,
-    RouterModule,
-    MatPaginatorModule
-  ],
-  template: `
+    selector: 'ngx-workshop-detail-animation',
+    animations: [RouterAnimations.routeSlide, RouterAnimations.routeCubeRotation],
+    imports: [
+        CommonModule,
+        RouterModule,
+        MatPaginatorModule
+    ],
+    template: `
     <ng-container *ngIf="viewModel | async as vm; else elseTemplate">
       <mat-paginator
         *ngIf="vm.hasMoreThanOneDocument"
@@ -158,7 +169,7 @@ export class WorkshopDetailComponent {
       LOADING!!!
     </ng-template>
   `,
-  styles: [`
+    styles: [`
     .container {
       /* position: relative; */
       perspective: 2500px;

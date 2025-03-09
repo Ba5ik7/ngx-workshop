@@ -10,16 +10,15 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
-  standalone: true,
-  selector: 'ngx-theme-picker',
-  imports: [
-    CommonModule,
-    MatButtonModule,
-    MatMenuModule,
-    MatIconModule,
-    MatTooltipModule
-  ],
-  template: `
+    selector: 'ngx-theme-picker',
+    imports: [
+        CommonModule,
+        MatButtonModule,
+        MatMenuModule,
+        MatIconModule,
+        MatTooltipModule
+    ],
+    template: `
     <ng-container *ngIf="currentTheme$ | async as currentTheme">
       <button mat-button [mat-menu-trigger-for]="themeMenu" [matTooltip]="matTooltipTest">
         {{ currentTheme | uppercase }}
@@ -40,9 +39,9 @@ import { DomSanitizer } from '@angular/platform-browser';
     </ng-container>
     
   `,
-  styleUrls: ['./theme-picker.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None
+    styleUrls: ['./theme-picker.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None
 })
 export class ThemePickerComponent {
 

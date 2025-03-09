@@ -18,20 +18,19 @@ interface PageType {
 }
 
 @Component({
-  standalone: true,
-  selector: 'ngx-create-page-modal',
-  templateUrl: './create-page-modal.component.html',
-  styleUrls: ['./create-page-modal.component.scss'],
-  imports: [
-    CommonModule,
-    MatFormFieldModule,
-    MatDialogModule,
-    ReactiveFormsModule,
-    MatButtonModule,
-    MatInputModule,
-    MatRatioModule
-  ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'ngx-create-page-modal',
+    templateUrl: './create-page-modal.component.html',
+    styleUrls: ['./create-page-modal.component.scss'],
+    imports: [
+        CommonModule,
+        MatFormFieldModule,
+        MatDialogModule,
+        ReactiveFormsModule,
+        MatButtonModule,
+        MatInputModule,
+        MatRatioModule
+    ],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CreatePageModalComponent {
   private workshopEditorService = inject(WorkshopEditorService);

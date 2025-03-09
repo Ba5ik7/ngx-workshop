@@ -1,4 +1,4 @@
-import { APP_INITIALIZER, ApplicationConfig } from '@angular/core';
+import { ApplicationConfig, inject, provideAppInitializer } from '@angular/core';
 import {
   RouteReuseStrategy,
   provideRouter,
@@ -18,6 +18,11 @@ import { NgxEditorjsQuizClientBlockComponent } from '@tmdjr/ngx-editorjs-quiz-bl
 import { NgxEditorjsMermaidClientBlockComponent } from '@tmdjr/ngx-editorjs-mermaid-block';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
+import { NGX_EDITORJS_OPTIONS } from '@tmdjr/ngx-editorjs';
+import { NgxEditorJs2ImageComponent } from '@tmdjr/ngx-editor-js2-image';
+import { NgxEditorJs2BlockquotesComponent } from '@tmdjr/ngx-editor-js2-blockquotes';
+import { NgxEditorJs2CodemirrorComponent } from '@tmdjr/ngx-editor-js2-codemirror';
+import { NgxEditorJs2PopQuizComponent } from '@tmdjr/ngx-editor-js2-pop-quiz';
 
 // Factory function to register icons
 export function registerIcons(matIconRegistry: MatIconRegistry, domSanitizer: DomSanitizer) {
@@ -55,12 +60,10 @@ export const appConfig: ApplicationConfig = {
     importProvidersFrom(HttpClientModule),
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: RouteReuseStrategy, useClass: WorkshopReuseStrategy },
-    {
-      provide: APP_INITIALIZER,
-      useFactory: registerIcons,
-      deps: [MatIconRegistry, DomSanitizer],
-      multi: true,
-    },
+    provideAppInitializer(() => {
+        const initializerFn = (registerIcons)(inject(MatIconRegistry), inject(DomSanitizer));
+        return initializerFn();
+      }),
     {
       provide: NGX_EDITORJS_CLIENT_OPTIONS,
       useValue: {
@@ -94,6 +97,33 @@ export const appConfig: ApplicationConfig = {
             name: 'Quiz',
             component: NgxEditorjsMermaidClientBlockComponent,
             componentInstanceName: 'NgxEditorjsMermaidBlockMediator',
+          },
+        ],
+      },
+    },
+    {
+      provide: NGX_EDITORJS_OPTIONS,
+      useValue: {
+        consumerSupportedBlocks: [
+          {
+            name: 'Image',
+            component: NgxEditorJs2ImageComponent,
+            componentInstanceName: 'NgxEditorJs2ImageComponent',
+          },
+          {
+            name: 'Blockquote',
+            component: NgxEditorJs2BlockquotesComponent,
+            componentInstanceName: 'NgxEditorJs2BlockquotesComponent',
+          },
+          {
+            name: 'Codemirror',
+            component: NgxEditorJs2CodemirrorComponent,
+            componentInstanceName: 'NgxEditorJs2CodemirrorComponent',
+          },
+          {
+            name: 'Pop Quiz',
+            component: NgxEditorJs2PopQuizComponent,
+            componentInstanceName: 'NgxEditorJs2PopQuizComponent',
           },
         ],
       },

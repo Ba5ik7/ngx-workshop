@@ -1,65 +1,118 @@
-import { DOCUMENT } from '@angular/common';
-import { Inject, Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { LocalStorage, WebstorageService } from '../../services/webstorage/webstorage.service';
+import {
+  computed,
+  Injectable,
+  linkedSignal,
+  resource,
+  signal,
+} from '@angular/core';
+
+export interface DocsSiteTheme {
+  name: string;
+  displayName: string;
+  color: string;
+}
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ThemePickerService {
   static THEME_EXAMPLE_ICON = 'assets/img/theme-demo-icon.svg';
-  static DEFAULT_THEME = 'indigo-pink';
-  static STRORAGE_KEY = 'theme-picker-current-name';
-  static NOT_FOUND = 'NOT_FOUND';
+  static DEFAULT_THEME = 'cyan-palette';
+  static THEME_STRORAGE_KEY: string = 'theme-picker-current-name';
+  static DARK_MODE_STRORAGE_KEY: string = 'dark-mode';
+  static THEMES: DocsSiteTheme[] = [
+    {
+      displayName: 'Red Palette',
+      name: 'red-palette',
+      color: '#ffd9d4',
+    },
+    {
+      displayName: 'Green Palette',
+      name: 'green-palette',
+      color: '#76ff61',
+    },
+    {
+      displayName: 'Blue Palette',
+      name: 'blue-palette',
+      color: '#e0e0fe',
+    },
+    {
+      displayName: 'Yellow Palette',
+      name: 'yellow-palette',
+      color: '#eaea01',
+    },
+    {
+      displayName: 'Cyan Palette',
+      name: 'cyan-palette',
+      color: '#00fbfb',
+    },
+    {
+      displayName: 'Magenta Palette',
+      name: 'magenta-palette',
+      color: '#ffd6f5',
+    },
+    {
+      displayName: 'Orange Palette',
+      name: 'orange-palette',
+      color: '#ffdcc7',
+    },
+    {
+      displayName: 'Chartreuse Palette',
+      name: 'chartreuse-palette',
+      color: '#82ff0d',
+    },
+    {
+      displayName: 'Spring-Green Palette',
+      name: 'spring-green-palette',
+      color: '#62ff93',
+    },
+    {
+      displayName: 'Azure Palette',
+      name: 'azure-palette',
+      color: '#d6e3fe',
+    },
+    {
+      color: '#810081',
+      displayName: 'Violet Palette',
+      name: 'violet-palette',
+    },
+    {
+      displayName: 'Rose Palette',
+      name: 'rose-palette',
+      color: '#ffd8e1',
+    },
+  ];
 
-  currentTheme$ = new BehaviorSubject(this.getStoredThemeName().value ?? ThemePickerService.DEFAULT_THEME);
+  darkMode = signal<boolean>(
+    localStorage.getItem(ThemePickerService.DARK_MODE_STRORAGE_KEY) === 'true'
+  );
+  darkModeResource = resource({
+    request: () => this.darkMode(),
+    loader: async ({ request: darkMode }) => {
+      await localStorage.setItem(
+        ThemePickerService.DARK_MODE_STRORAGE_KEY,
+        darkMode.toString()
+      );
+    },
+  });
 
-  constructor(
-    @Inject(DOCUMENT) private document: Document,
-    private webstorageService: WebstorageService
-  ) { }
+  userSelectedTheme = signal<string>(
+    localStorage.getItem(ThemePickerService.THEME_STRORAGE_KEY) ?? ThemePickerService.DEFAULT_THEME
+  );
+  currentTheme = linkedSignal<string, string>({
+    source: this.userSelectedTheme,
+    computation: (newTheme, previous) => {
+      return this.setThemeStyleAndLocalStorage(newTheme)
+        ? newTheme
+        : previous?.value ?? ThemePickerService.DEFAULT_THEME;
+    },
+  });
 
-  init(): void {
-    // !TODO: Uncomment this code
-    // const themeName = this.getStoredThemeName();
-    // const theme = themeName.value !== ThemePickerService.NOT_FOUND ? themeName.value : ThemePickerService.DEFAULT_THEME;
-    // this.setStyle('theme', `${theme}.css`);
-    // this.storeTheme(theme);
-    // this.currentTheme$.next(theme);
-  }
-
-  storeTheme(theme: string): void {
-    this.webstorageService.setLocalstorageItem({ key: ThemePickerService.STRORAGE_KEY, value: theme });
-  }
-  
-  getStoredThemeName(): LocalStorage {
-    return this.webstorageService.getLocalstorageItem(ThemePickerService.STRORAGE_KEY);
-  }
-
-  setStyle(key: string, href: string): void {
-    this.getLinkElementForKey(key).setAttribute('href', href);
-  }
-
-  removeStyle(key: string): void {
-    const existingLinkElement = this.getExistingLinkElementByKey(key);
-    if (existingLinkElement) {
-      this.document.head.removeChild(existingLinkElement);
-    }
-  }
-
-  private getLinkElementForKey(key: string): HTMLLinkElement {
-    return this.getExistingLinkElementByKey(key) ?? this.createLinkElementWithKey(key);
-  }
-  
-  private getExistingLinkElementByKey(key: string): HTMLLinkElement | null {
-    return this.document.head.querySelector(`link[rel="stylesheet"].style-manager-${key}`);
-  }
-  
-  private createLinkElementWithKey(key: string): HTMLLinkElement {
-    const linkEl = this.document.createElement('link');
-    linkEl.setAttribute('rel', 'stylesheet');
-    linkEl.classList.add(`style-manager-${key}`);
-    this.document.head.appendChild(linkEl);
-    return linkEl;
+  setThemeStyleAndLocalStorage(newTheme: string) {
+    localStorage.setItem(ThemePickerService.THEME_STRORAGE_KEY, newTheme);
+    document.body.className = `${newTheme} ${
+      this.darkMode() ? 'dark-mode' : 'light-mode'
+    }`;
+    return true;
   }
 }

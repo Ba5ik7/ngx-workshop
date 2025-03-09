@@ -16,19 +16,18 @@ type TCard = {
 };
 
 @Component({
-  standalone: true,
-  imports: [
-    CommonModule,
-    MatGridListModule,
-    MatCardModule,
-    MatMenuModule,
-    MatIconModule,
-    MatButtonModule,
-    DragDropModule,
-    LayoutModule
-  ],
-  selector: 'ngx-dynamic-grid-list',
-  template: `
+    imports: [
+        CommonModule,
+        MatGridListModule,
+        MatCardModule,
+        MatMenuModule,
+        MatIconModule,
+        MatButtonModule,
+        DragDropModule,
+        LayoutModule
+    ],
+    selector: 'ngx-dynamic-grid-list',
+    template: `
     <div class="grid-container">
       <mat-grid-list cols="4" rowHeight="350px" cdkDropList (cdkDropListDropped)="onDrop($event)">
         <mat-grid-tile cdkDrag *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
@@ -57,7 +56,7 @@ type TCard = {
       </mat-grid-list>
     </div>
   `,
-  styles: [`
+    styles: [`
     .grid-container { margin: 20px; }
     
     .dashboard-card {
@@ -83,7 +82,7 @@ type TCard = {
     }
     .dashboard-card-content { text-align: center; }
   `],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DynamicGridListComponent {
 

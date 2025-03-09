@@ -13,19 +13,18 @@ import { MatInputModule } from '@angular/material/input';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  standalone: true,
-  selector: 'ngx-delete-page-modal',
-  templateUrl: './delete-page-modal.component.html',
-  styleUrls: ['./delete-page-modal.component.scss'],
-  imports: [
-    CommonModule,
-    MatFormFieldModule,
-    MatDialogModule,
-    ReactiveFormsModule,
-    MatButtonModule,
-    MatInputModule,
-  ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'ngx-delete-page-modal',
+    templateUrl: './delete-page-modal.component.html',
+    styleUrls: ['./delete-page-modal.component.scss'],
+    imports: [
+        CommonModule,
+        MatFormFieldModule,
+        MatDialogModule,
+        ReactiveFormsModule,
+        MatButtonModule,
+        MatInputModule,
+    ],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DeletePageModalComponent {
   private workshopEditorService = inject(WorkshopEditorService);

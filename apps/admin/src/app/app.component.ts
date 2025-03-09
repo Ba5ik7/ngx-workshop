@@ -5,14 +5,13 @@ import { ThemePickerService } from './shared/services/theme-picker/theme-picker.
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
-  standalone: true,
-  imports: [NavbarComponent, RouterModule, MatProgressSpinnerModule],
-  selector: 'ngx-admin',
-  template: `
+    imports: [NavbarComponent, RouterModule, MatProgressSpinnerModule],
+    selector: 'ngx-admin',
+    template: `
     <ngx-navbar></ngx-navbar>
     <router-outlet></router-outlet>
   `,
-  styles: [`
+    styles: [`
     ngx-admin {
       display: flex;
       flex-direction: column;
@@ -26,7 +25,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
       }
     }
   `],
-  encapsulation: ViewEncapsulation.None,
+    encapsulation: ViewEncapsulation.None
 })
 export class AppComponent implements OnInit {
   themePickerService = inject(ThemePickerService);

@@ -13,19 +13,18 @@ import { Workshop } from '../../../../../../../../shared/interfaces/navigation.i
 import { MatRadioModule } from '@angular/material/radio';
 
 @Component({
-  standalone: true,
-  selector: 'ngx-edit-workshop-modal',
-  templateUrl: './edit-workshop-modal.component.html',
-  styleUrls: ['./edit-workshop-modal.component.scss'],
-  imports: [
-    CommonModule,
-    MatFormFieldModule,
-    MatDialogModule,
-    ReactiveFormsModule,
-    MatButtonModule,
-    MatInputModule,
-    MatRadioModule
-  ],
+    selector: 'ngx-edit-workshop-modal',
+    templateUrl: './edit-workshop-modal.component.html',
+    styleUrls: ['./edit-workshop-modal.component.scss'],
+    imports: [
+        CommonModule,
+        MatFormFieldModule,
+        MatDialogModule,
+        ReactiveFormsModule,
+        MatButtonModule,
+        MatInputModule,
+        MatRadioModule
+    ]
 })
 export class EditWorkshopModalComponent {
   constructor(@Inject(MAT_DIALOG_DATA) public data: { workshop: Workshop }) { }

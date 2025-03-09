@@ -7,15 +7,14 @@ export type SidenavHeaderData = {
   currentWorkshopTitle: string;
 };
 @Component({
-  selector: 'ngx-sidenav-header',
-  standalone: true,
-  template: `
+    selector: 'ngx-sidenav-header',
+    template: `
     <header class="primary-header sidenav-page-header">
       <img [src]="sidenavHeaderData.headerSvgPath">
       <h1>{{sidenavHeaderData.sectionTitle}}: {{sidenavHeaderData.currentWorkshopTitle}}</h1>
     </header>
   `,
-  styles: [`
+    styles: [`
     .sidenav-page-header {
       display: flex;
       align-items: center;
@@ -37,8 +36,8 @@ export type SidenavHeaderData = {
       }
     }
   `],
-  imports: [CommonModule],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [CommonModule],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SidenavHeaderComponent {
   @Input() sidenavHeaderData: SidenavHeaderData = {

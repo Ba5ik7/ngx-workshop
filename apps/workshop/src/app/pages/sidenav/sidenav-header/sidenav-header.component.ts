@@ -9,9 +9,8 @@ export type SidenavHeaderData = {
   currentWorkshopTitle: string;
 };
 @Component({
-  selector: 'ngx-sidenav-header',
-  standalone: true,
-  template: `
+    selector: 'ngx-sidenav-header',
+    template: `
     <header class="primary-header sidenav-page-header">
       <button mat-button class="sidenav-toggle" (click)="toggleSideNav.emit()">
         <mat-icon>menu</mat-icon>
@@ -20,7 +19,7 @@ export type SidenavHeaderData = {
       <h1>{{sidenavHeaderData.sectionTitle}}: {{sidenavHeaderData.currentWorkshopTitle}}</h1>
     </header>
   `,
-  styles: [`
+    styles: [`
     .sidenav-page-header {
       display: flex;
       align-items: center;
@@ -56,8 +55,8 @@ export type SidenavHeaderData = {
       }
     }
   `],
-  imports: [CommonModule, MatButtonModule, MatIconModule],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [CommonModule, MatButtonModule, MatIconModule],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SidenavHeaderComponent {
   @Output() toggleSideNav = new EventEmitter<void>();

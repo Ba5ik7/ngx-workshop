@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
-import { ThemePickerComponent } from '../../../../shared/components/theme-picker/theme-picker.component';
+import { ThemePickerComponent } from '../../../../shared/components/theme-picker.component';
 @Component({
-  standalone: true,
-  selector: 'ngx-settings',
-  template: `
+    selector: 'ngx-settings',
+    template: `
     <main class="wrapper">
       <mat-card appearance="raised" class="card-content">
         <mat-card-content>
@@ -28,8 +27,8 @@ import { ThemePickerComponent } from '../../../../shared/components/theme-picker
       }
     `],
     imports: [
-      MatCardModule,
-      ThemePickerComponent
+        MatCardModule,
+        ThemePickerComponent
     ]
 })
 export class SettingsComponent { }

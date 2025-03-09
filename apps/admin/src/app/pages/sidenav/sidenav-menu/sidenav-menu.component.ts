@@ -13,9 +13,8 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatDialogModule } from '@angular/material/dialog';
 import { Sections } from '../../../shared/interfaces/navigation.interface';
 @Component({
-  standalone: true,
-  selector: 'ngx-sidenav-menu',
-  template: `
+    selector: 'ngx-sidenav-menu',
+    template: `
     <div class="workshop-menu-nav">
       <div class="workshop-menu-nav-content">
         <mat-nav-list>
@@ -69,7 +68,7 @@ import { Sections } from '../../../shared/interfaces/navigation.interface';
       </div>
     </div>
   `,
-  styles: [`
+    styles: [`
     :host {
       .mat-icon {
         margin: 0 10px 3px 0;
@@ -102,17 +101,17 @@ import { Sections } from '../../../shared/interfaces/navigation.interface';
       }
     }
   `],
-  imports: [
-    CommonModule,
-    RouterModule,
-    MatButtonModule,
-    MatListModule,
-    MatIconModule,
-    MatDividerModule,
-    DeleteSectionModalComponent,
-    CreateSectionModalComponent,
-    MatDialogModule,
-  ]
+    imports: [
+        CommonModule,
+        RouterModule,
+        MatButtonModule,
+        MatListModule,
+        MatIconModule,
+        MatDividerModule,
+        DeleteSectionModalComponent,
+        CreateSectionModalComponent,
+        MatDialogModule,
+    ]
 })
 export class SidenavMenuComponent {
   // @TODO - Reactive

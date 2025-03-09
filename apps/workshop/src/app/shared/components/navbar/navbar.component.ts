@@ -7,12 +7,11 @@ import { UserStateService } from '../../services/user-state/user-state.service';
 import { ProfileFabComponent } from '../profile-fab/profile-fab.component';
 import { combineLatest, map } from 'rxjs';
 import { NavigationService } from '../../services/navigation/navigation.service';
-import { ThemePickerComponent } from '../theme-picker/theme-picker.component';
+import { ThemePickerComponent } from '../theme-picker.component';
 
 @Component({
-  standalone: true,
-  selector: 'ngx-navbar',
-  template: `
+    selector: 'ngx-navbar',
+    template: `
     <ng-container *ngIf="viewModel$ | async as mv; else loading">
       <nav class="navbar-header mat-elevation-z6 docs-navbar-hide-small">
         <a routerLink="/" class="workshop-logo docs-button">
@@ -78,8 +77,8 @@ import { ThemePickerComponent } from '../theme-picker/theme-picker.component';
     </ng-container>
     <ng-template #loading> LOADING... </ng-template>
   `,
-  styles: [
-    `
+    styles: [
+        `
       :host {
         position: fixed;
         left: 0;
@@ -188,16 +187,16 @@ import { ThemePickerComponent } from '../theme-picker/theme-picker.component';
         }
       }
     `,
-  ],
-  imports: [
-    CommonModule,
-    RouterModule,
-    MatButtonModule,
-    MatIconModule,
-    ProfileFabComponent,
-    ThemePickerComponent,
-  ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    ],
+    imports: [
+        CommonModule,
+        RouterModule,
+        MatButtonModule,
+        MatIconModule,
+        ProfileFabComponent,
+        ThemePickerComponent,
+    ],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NavbarComponent {
   userStateService = inject(UserStateService);

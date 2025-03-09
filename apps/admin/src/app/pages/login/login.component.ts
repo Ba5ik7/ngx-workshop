@@ -12,9 +12,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
-  standalone: true,
-  selector: 'ngx-login',
-  template: `
+    selector: 'ngx-login',
+    template: `
     <div class="ngx-mat-card">
       <div class="form-container">
         <h1>Sign In</h1>
@@ -35,7 +34,7 @@ import { MatButtonModule } from '@angular/material/button';
       </div>
     </div>
   `,
-  styles: [`
+    styles: [`
     :host {
       display: flex;
       flex-direction: column;
@@ -63,13 +62,13 @@ import { MatButtonModule } from '@angular/material/button';
       }
     }
   `],
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule
-  ]
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatButtonModule
+    ]
 })
 export class LoginComponent implements OnInit {
   // ! @TODO Make this reactive

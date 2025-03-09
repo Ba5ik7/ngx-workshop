@@ -15,9 +15,8 @@ const EXTRA_SMALL_WIDTH_BREAKPOINT = 720;
 const SMALL_WIDTH_BREAKPOINT = 959;
 
 @Component({
-  standalone: true,
-  selector: 'ngx-sidenav',
-  template: `
+    selector: 'ngx-sidenav',
+    template: `
     <ng-container *ngIf="viewModel | async as vm; else loading">
       <mat-sidenav-container class="sidenav-container">
       <mat-sidenav #sidenav class="workshop-sidenav"
@@ -39,7 +38,7 @@ const SMALL_WIDTH_BREAKPOINT = 959;
         loading...
     </ng-template>
   `,
-  styles: [`
+    styles: [`
     ngx-sidenav {
       display: flex;
       flex-direction: column;
@@ -79,15 +78,15 @@ const SMALL_WIDTH_BREAKPOINT = 959;
       }
     }
   `],
-  imports: [
-    CommonModule,
-    RouterModule,
-    FooterComponent,
-    MatSidenavModule,
-    SidenavMenuComponent,
-    SidenavHeaderComponent,
-  ],
-  encapsulation: ViewEncapsulation.None
+    imports: [
+        CommonModule,
+        RouterModule,
+        FooterComponent,
+        MatSidenavModule,
+        SidenavMenuComponent,
+        SidenavHeaderComponent,
+    ],
+    encapsulation: ViewEncapsulation.None
 })
 export class SidenavComponent {
   breakpoints = inject(BreakpointObserver);

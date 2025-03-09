@@ -4,10 +4,9 @@ import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  standalone: true,
-  selector: 'ngx-users',
-  imports: [FormsModule, CommonModule],
-  template: `
+    selector: 'ngx-users',
+    imports: [FormsModule, CommonModule],
+    template: `
     <div style="text-align:center">
       <h1>Generate Text with OpenAI</h1>
       <form (ngSubmit)="onSubmit()">
@@ -20,7 +19,7 @@ import { FormsModule } from '@angular/forms';
       <h2>Generated Text:</h2>
       <p>{{ generatedText }}</p>
     </div>
-  `,
+  `
 })
 export class UsersComponent {
   private http = inject(HttpClient);

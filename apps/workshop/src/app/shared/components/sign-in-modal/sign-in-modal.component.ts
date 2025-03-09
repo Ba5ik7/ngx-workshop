@@ -24,22 +24,21 @@ import { PasswordValidator } from '../../validators/password.validator';
 import { AuthenticationService } from '../../services/authentication/authentication.service';
 
 @Component({
-  standalone: true,
-  selector: 'ngx-sign-in-modal',
-  templateUrl: './sign-in-modal.component.html',
-  styleUrls: ['./sign-in-modal.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [
-    { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } }
-  ],
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    MatDialogModule,
-    MatButtonModule,
-    MatInputModule,
-    MatFormFieldModule,
-  ]
+    selector: 'ngx-sign-in-modal',
+    templateUrl: './sign-in-modal.component.html',
+    styleUrls: ['./sign-in-modal.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    providers: [
+        { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } }
+    ],
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        MatDialogModule,
+        MatButtonModule,
+        MatInputModule,
+        MatFormFieldModule,
+    ]
 })
 export class SignInModalComponent implements OnInit, OnDestroy {
   constructor(

@@ -8,9 +8,8 @@ import { PageListComponent } from './workshops-sidepanel/page-list-controls/page
 import { WorkshopListComponent } from './workshops-sidepanel/workshop-list-controls/workshop-list.component';
 
 @Component({
-  standalone: true,
-  selector: 'ngx-workshops',
-  template: `
+    selector: 'ngx-workshops',
+    template: `
   <ng-container *ngIf="viewModel | async as vm; else loading">
 
     <router-outlet
@@ -36,7 +35,7 @@ import { WorkshopListComponent } from './workshops-sidepanel/workshop-list-contr
     loading...
   </ng-template>
   `,
-  styles: [`
+    styles: [`
     :host {
       grid-template-columns: 0 calc(100vw - 558px) auto;
       display: grid;
@@ -51,13 +50,13 @@ import { WorkshopListComponent } from './workshops-sidepanel/workshop-list-contr
       width: 315px;
     }
   `],
-  imports: [
-    CommonModule,
-    RouterModule,
-    PageListComponent,
-    WorkshopListComponent,
-    MatSnackBarModule
-  ]
+    imports: [
+        CommonModule,
+        RouterModule,
+        PageListComponent,
+        WorkshopListComponent,
+        MatSnackBarModule
+    ]
 })
 export class WorkshopsComponent {
   routerIsActivate = false;
