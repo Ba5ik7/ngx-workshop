@@ -9,7 +9,6 @@ import { importProvidersFrom } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './shared/interceptors/jwt.interceptor';
-import { NGX_EDITORJS_OPTIONS } from '@tmdjr/ngx-editorjs';
 import { NgxEditorjsParagraphBlockMediator } from '@tmdjr/ngx-editorjs-paragraph-block';
 import { NgxEditorjsBlockquotesBlockMediator } from '@tmdjr/ngx-editorjs-blockquotes-block';
 import { NgxEditorjsImageBlockMediator } from '@tmdjr/ngx-editorjs-image-block';
@@ -18,6 +17,12 @@ import { NgxEditorjsMermaidBlockMediator } from '@tmdjr/ngx-editorjs-mermaid-blo
 import { NgxEditorjsQuizBlockMediator } from '@tmdjr/ngx-editorjs-quiz-block';
 import { provideMarkdown } from 'ngx-markdown';
 import { IMAGE_LOADER } from '@angular/common';
+
+import { NGX_EDITORJS_OPTIONS } from '@tmdjr/ngx-editor-js2';
+import { NgxEditorJs2ImageComponent } from '@tmdjr/ngx-editor-js2-image';
+import { NgxEditorJs2BlockquotesComponent } from '@tmdjr/ngx-editor-js2-blockquotes';
+import { NgxEditorJs2CodemirrorComponent } from '@tmdjr/ngx-editor-js2-codemirror';
+import { NgxEditorJs2PopQuizComponent } from '@tmdjr/ngx-editor-js2-pop-quiz';
 
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -101,6 +106,33 @@ export const appConfig: ApplicationConfig = {
             name: 'Mermaid',
             component: NgxEditorjsMermaidBlockMediator,
             componentInstanceName: 'NgxEditorjsMermaidBlockMediator',
+          },
+        ],
+      },
+    },
+    {
+      provide: NGX_EDITORJS_OPTIONS,
+      useValue: {
+        consumerSupportedBlocks: [
+          {
+            name: 'Image',
+            component: NgxEditorJs2ImageComponent,
+            componentInstanceName: 'NgxEditorJs2ImageComponent',
+          },
+          {
+            name: 'Blockquote',
+            component: NgxEditorJs2BlockquotesComponent,
+            componentInstanceName: 'NgxEditorJs2BlockquotesComponent',
+          },
+          {
+            name: 'Codemirror',
+            component: NgxEditorJs2CodemirrorComponent,
+            componentInstanceName: 'NgxEditorJs2CodemirrorComponent',
+          },
+          {
+            name: 'Pop Quiz',
+            component: NgxEditorJs2PopQuizComponent,
+            componentInstanceName: 'NgxEditorJs2PopQuizComponent',
           },
         ],
       },

@@ -1,7 +1,6 @@
 import { RouterModule } from '@angular/router';
-import { Component, inject, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
-import { ThemePickerService } from './shared/services/theme-picker/theme-picker.service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
@@ -27,9 +26,6 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
   `],
     encapsulation: ViewEncapsulation.None
 })
-export class AppComponent implements OnInit {
-  themePickerService = inject(ThemePickerService);
-  ngOnInit(): void {
-    this.themePickerService.init();
-  }
+export class AppComponent {
+
 }

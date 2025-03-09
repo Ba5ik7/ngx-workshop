@@ -22,7 +22,6 @@ import { ScrollService } from '../../shared/services/scroll/scroll.service';
     imports: [
         CommonModule,
         RouterModule,
-        FooterComponent,
         MatSidenavModule,
         SidenavMenuComponent,
         SidenavHeaderComponent,
@@ -91,7 +90,7 @@ export class SidenavComponent implements OnDestroy {
 
   navigationService = inject(NavigationService);
   scrollService = inject(ScrollService);
-  
+
   viewModel = combineLatest({
     sections: this.navigationService.getSections(),
     currentSection: this.navigationService.getCurrentSection(),

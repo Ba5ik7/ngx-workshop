@@ -19,19 +19,19 @@ import { Sections } from '../../../shared/interfaces/navigation.interface';
       <div class="workshop-menu-nav-content">
         <mat-nav-list>
           <a mat-list-item routerLink="dashboard" routerLinkActive="workshop-menu-nav-item-selected" class="section-item">
-            <span class="mat-list-item-content">  
+            <span class="mat-list-item-content">
             <mat-icon>dashboard</mat-icon>
               Dashboard
             </span>
           </a>
           <a mat-list-item routerLink="users" routerLinkActive="workshop-menu-nav-item-selected" class="section-item">
-            <span class="mat-list-item-content">  
+            <span class="mat-list-item-content">
               <mat-icon>supervisor_account</mat-icon>
               Users
             </span>
           </a>
           <a mat-list-item routerLink="openai" routerLinkActive="workshop-menu-nav-item-selected" class="section-item">
-            <span class="mat-list-item-content">  
+            <span class="mat-list-item-content">
               <!-- <mat-icon>cloud_sync</mat-icon> -->
               <!-- <mat-icon>openai_white_logomark</mat-icon> -->
               <mat-icon svgIcon="openai_white_logomark"></mat-icon>
@@ -108,8 +108,6 @@ import { Sections } from '../../../shared/interfaces/navigation.interface';
         MatListModule,
         MatIconModule,
         MatDividerModule,
-        DeleteSectionModalComponent,
-        CreateSectionModalComponent,
         MatDialogModule,
     ]
 })

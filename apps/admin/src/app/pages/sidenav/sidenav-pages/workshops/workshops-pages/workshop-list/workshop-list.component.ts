@@ -24,7 +24,6 @@ export class OptimizeCloudinaryUrlPipe implements PipeTransform {
         RouterModule,
         MatCardModule,
         NgOptimizedImage,
-        ImageUploaderComponent,
         OptimizeCloudinaryUrlPipe
     ],
     animations: [

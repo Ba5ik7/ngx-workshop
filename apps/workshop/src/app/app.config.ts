@@ -18,7 +18,7 @@ import { NgxEditorjsQuizClientBlockComponent } from '@tmdjr/ngx-editorjs-quiz-bl
 import { NgxEditorjsMermaidClientBlockComponent } from '@tmdjr/ngx-editorjs-mermaid-block';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
-import { NGX_EDITORJS_OPTIONS } from '@tmdjr/ngx-editorjs';
+import { NGX_EDITORJS_OPTIONS } from '@tmdjr/ngx-editor-js2';
 import { NgxEditorJs2ImageComponent } from '@tmdjr/ngx-editor-js2-image';
 import { NgxEditorJs2BlockquotesComponent } from '@tmdjr/ngx-editor-js2-blockquotes';
 import { NgxEditorJs2CodemirrorComponent } from '@tmdjr/ngx-editor-js2-codemirror';

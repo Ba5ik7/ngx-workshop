@@ -5,13 +5,14 @@ import {
   PageEvent
 } from '@angular/material/paginator';
 import { ActivatedRoute, Router } from '@angular/router';
-import { combineLatest, map } from 'rxjs';
+import { BehaviorSubject, combineLatest, map } from 'rxjs';
 import { NgxEditorjsModule } from '@tmdjr/ngx-editorjs';
 import { WorkshopEditorService } from '../../../../../../shared/services/workshops/workshops.service';
 import { NavigationService } from '../../../../../../shared/services/navigation/navigation.service';
 import { CommonModule } from '@angular/common';
 import { WorkshopDocument } from '../../../../../../shared/interfaces/navigation.interface';
 import { MatCardModule } from '@angular/material/card';
+import { NgxEditorJs2Component } from '@tmdjr/ngx-editor-js2';
 
 
 const safeParse = (json: string) => {
@@ -50,11 +51,11 @@ const safeStringify = (value: unknown) => {
           <section class="workshop-viewer-container">
             <div class="workshop-detail-card ngx-mat-card">
               {{ vm.isExam ? 'Exam' : 'Page' }}
-              <ngx-editorjs
-                [inputData]="vm.ngxEditorjsBlocks"
-                [requestValue]="requestValue"
-                (valueRequested)="vm.valueRequested($event)"
-              ></ngx-editorjs>
+              <ngx-editor-js2
+                [blocks]="vm.ngxEditorjsBlocks"
+                [requestBlocks]="requestBlocks$ | async"
+                (blocksRequested)="handleBlocks($event)"
+              ></ngx-editor-js2>
             </div>
           </section>
         </div>
@@ -101,7 +102,8 @@ const safeStringify = (value: unknown) => {
         CommonModule,
         NgxEditorjsModule,
         MatPaginatorModule,
-        MatCardModule
+        MatCardModule,
+        NgxEditorJs2Component
     ]
 })
 export class WorkshopDetailComponent {
@@ -148,4 +150,11 @@ export class WorkshopDetailComponent {
       };
     })
   );
+
+  requestBlocks = new BehaviorSubject<unknown>({});
+  requestBlocks$ = this.requestBlocks.asObservable();
+
+  handleBlocks(blocks$: any) {
+    console.log(blocks$);
+  }
 }

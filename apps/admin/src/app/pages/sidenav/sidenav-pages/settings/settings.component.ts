@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
-import { ThemePickerComponent } from '../../../../shared/components/theme-picker/theme-picker.component';
+import { ThemePickerComponent } from '../../../../shared/components/theme-picker.component';
 @Component({
     selector: 'ngx-settings',
     template: `
