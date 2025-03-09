@@ -5,6 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
 import { UserStateService } from '../../services/user-state/user-state.service';
 import { ProfileFabComponent } from '../profile-fab/profile-fab.component';
+import { ThemePickerComponent } from '../theme-picker.component';
 
 @Component({
     selector: 'ngx-navbar',
@@ -15,6 +16,7 @@ import { ProfileFabComponent } from '../profile-fab/profile-fab.component';
         <span>Ngx-Admin</span>
       </a>
       <div class="flex-spacer"></div>
+      <ngx-theme-picker></ngx-theme-picker>
       <ngx-profile-fab *ngIf="userStateServices.signedIn$ | async"></ngx-profile-fab>
     </nav>
   `,
@@ -24,6 +26,8 @@ import { ProfileFabComponent } from '../profile-fab/profile-fab.component';
       left: 0;
       right: 0;
       z-index: 2;
+      color: var(--mat-sys-on-primary-container);
+      background-color: var(--mat-sys-primary-container);
     }
 
     .navbar-header {
@@ -46,7 +50,8 @@ import { ProfileFabComponent } from '../profile-fab/profile-fab.component';
         RouterModule,
         MatButtonModule,
         MatIconModule,
-        ProfileFabComponent
+        ProfileFabComponent,
+        ThemePickerComponent
     ],
     changeDetection: ChangeDetectionStrategy.OnPush
 })

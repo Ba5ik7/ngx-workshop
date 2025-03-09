@@ -1,4 +1,4 @@
-import { RouterModule } from '@angular/router';
+import { RouterLink, RouterModule } from '@angular/router';
 import { Component, ViewEncapsulation, inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Event, NavigationEnd, Router } from '@angular/router';
@@ -36,6 +36,7 @@ import { NavbarComponent } from './shared/components/navbar/navbar.component';
     }
   `],
     encapsulation: ViewEncapsulation.None,
+    standalone: true,
     imports: [
         RouterModule,
         NavbarComponent,

@@ -47,7 +47,7 @@ export class OptimizeCloudinaryUrlPipe implements PipeTransform {
     template: `
     <div class="workshop-list" [@staggerCircleReveal]>
       <div
-        class="ngx-mat-card"
+        class="ngx-mat-card mat-elevation-z6"
         *ngFor="let workshop of workshops | async"
         [routerLink]="
           '../' +
@@ -91,6 +91,10 @@ export class OptimizeCloudinaryUrlPipe implements PipeTransform {
         height: 375px;
         overflow: auto;
         cursor: pointer;
+        // border: 1px solid #e0e0e0;
+        border-radius: 16px;
+        color: var(--mat-sys-on-secondary-container);
+        background-color: var(--mat-sys-secondary-container);
         .img-wrapper {
           position: relative;
           width: 100%;

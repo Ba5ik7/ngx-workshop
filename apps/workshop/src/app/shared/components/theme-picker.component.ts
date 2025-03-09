@@ -12,6 +12,7 @@ import {
 // Menu Item
 @Component({
   selector: 'app-theme-picker-menu-item',
+  standalone: true,
   imports: [MatMenuItem, MatIcon],
   template: `
     <button mat-menu-item>
@@ -68,6 +69,7 @@ export class ThemePickerMenuItemComponent {
 // Menu
 @Component({
   selector: 'ngx-theme-picker',
+  standalone: true,
   imports: [
     MatIconButton,
     MatMenu,

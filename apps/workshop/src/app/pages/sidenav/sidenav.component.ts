@@ -60,6 +60,8 @@ const SMALL_WIDTH_BREAKPOINT = 959;
       }
     }
     .workshop-menu-nav {
+      color: var(--mat-sys-on-secondary-container);
+      background-color: var(--mat-sys-secondary-container);
       position: sticky;
       top: 0;
       .workshop-menu-nav-content {

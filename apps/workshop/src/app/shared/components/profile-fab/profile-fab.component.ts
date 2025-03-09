@@ -3,7 +3,7 @@ import { UserStateService } from '../../services/user-state/user-state.service';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterLink, RouterModule } from '@angular/router';
 import { MatMenuModule } from '@angular/material/menu';
 
 @Component({
@@ -31,10 +31,11 @@ import { MatMenuModule } from '@angular/material/menu';
 
   `],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
     imports: [
         CommonModule,
-        RouterModule,
         MatButtonModule,
+        RouterLink,
         MatIconModule,
         MatMenuModule
     ]

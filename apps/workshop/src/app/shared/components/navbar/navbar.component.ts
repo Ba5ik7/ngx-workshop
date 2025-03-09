@@ -2,15 +2,24 @@ import { CommonModule } from '@angular/common';
 import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { RouterModule } from '@angular/router';
 import { UserStateService } from '../../services/user-state/user-state.service';
 import { ProfileFabComponent } from '../profile-fab/profile-fab.component';
 import { combineLatest, map } from 'rxjs';
 import { NavigationService } from '../../services/navigation/navigation.service';
 import { ThemePickerComponent } from '../theme-picker.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
     selector: 'ngx-navbar',
+    standalone: true,
+    imports: [
+      CommonModule,
+      MatButtonModule,
+      RouterLink,
+      MatIconModule,
+      ProfileFabComponent,
+      ThemePickerComponent,
+  ],
     template: `
     <ng-container *ngIf="viewModel$ | async as mv; else loading">
       <nav class="navbar-header mat-elevation-z6 docs-navbar-hide-small">
@@ -93,6 +102,8 @@ import { ThemePickerComponent } from '../theme-picker.component';
         flex-wrap: wrap;
         align-items: center;
         flex-direction: column;
+        color: var(--mat-sys-on-primary-container);
+        background-color: var(--mat-sys-primary-container);
 
         .docs-button {
           width: 100%;
@@ -187,14 +198,6 @@ import { ThemePickerComponent } from '../theme-picker.component';
         }
       }
     `,
-    ],
-    imports: [
-        CommonModule,
-        RouterModule,
-        MatButtonModule,
-        MatIconModule,
-        ProfileFabComponent,
-        ThemePickerComponent,
     ],
     changeDetection: ChangeDetectionStrategy.OnPush
 })

@@ -71,12 +71,12 @@ export class WorkshopEditorService {
   // ! Worst place to put this, it saves the HTML of the editor
   savePageHTMLSuccessSubject = new Subject<boolean>();
   savePageHTMLErrorSubject = new Subject<boolean>();
-  saveEditorDataSubject = new Subject<boolean>();
+  saveEditorDataSubject = new Subject<unknown>();
   saveEditorData$ = this.saveEditorDataSubject.asObservable();
   savePageHTML(html: string, _id: string) {
     return this.apiCall<WorkshopDocument>('/workshop/update-workshop-html', { _id, html });
   }
-  
+
 
   private apiCall<T>(url: string, body: unknown, method: 'post' | 'get' = 'post', params?: HttpParams) {
     const request = this.httpClient.request<T>(method, this.baseUrl + url, {

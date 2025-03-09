@@ -23,6 +23,8 @@ export type SidenavHeaderData = {
     .sidenav-page-header {
       display: flex;
       align-items: center;
+      color: var(--mat-sys-on-secondary-container);
+      background-color: var(--mat-sys-secondary-container);
       @media (max-width: 959px) {
         padding-left: 0;
       }

@@ -57,11 +57,11 @@ export class PageListComponent implements OnInit, OnDestroy {
 
   // ! Worst place to put this, it saves the HTML of the editor
   saveEditorData(): void {
-    this.workshopEditorService.saveEditorDataSubject.next(true);
+    this.workshopEditorService.saveEditorDataSubject.next({});
   }
 
   ngOnInit(): void {
-    this.initSortPages(); 
+    this.initSortPages();
    }
 
   ngOnDestroy(): void {
@@ -87,7 +87,7 @@ export class PageListComponent implements OnInit, OnDestroy {
 
   onDrop(event: CdkDragDrop<{ previousIndex: number, currentIndex: number }[]>) {
     this.cdkDragDisabled = true;
-    const documents = this.documents ?? []; 
+    const documents = this.documents ?? [];
     moveItemInArray(documents, event.previousIndex, event.currentIndex);
     this.documents?.map((document, index) => document.sortId = index);
     this.workshopEditorService.sortDocuments(documents, this.workshopDocumentId).subscribe({
@@ -117,12 +117,12 @@ export class PageListComponent implements OnInit, OnDestroy {
       this.snackBar.open('😿 Error updating the categories new order', undefined, this.snackBarOptiions);
       this.cdkDragDisabled = false;
     });
-    
+
     this.sortDocumentFormSuccess$
     .pipe(takeUntil(this.destory))
     .subscribe(() => {
       this.snackBar.open('😸 Categories new order updated', undefined, this.snackBarOptiions);
-      this.cdkDragDisabled = false;      
+      this.cdkDragDisabled = false;
     });
 
     this.workshopEditorService.savePageHTMLErrorSubject

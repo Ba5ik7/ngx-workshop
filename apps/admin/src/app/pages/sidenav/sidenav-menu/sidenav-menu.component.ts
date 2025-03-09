@@ -70,6 +70,9 @@ import { Sections } from '../../../shared/interfaces/navigation.interface';
   `,
     styles: [`
     :host {
+      mat-divider {
+        margin: 12px 0;
+      }
       .mat-icon {
         margin: 0 10px 3px 0;
         vertical-align: middle;

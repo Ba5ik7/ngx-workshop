@@ -106,7 +106,7 @@ const safeParse = (json: string) => {
         padding: 16px 56px 36px;
         margin-bottom: 22px;
         border-radius: 24px;
-        @include mat.elevation(6);
+        border: 1px solid var(--mat-sys-primary);
         @media (max-width: 720px) {
           padding: 15px;
         }
@@ -181,6 +181,8 @@ export class WorkshopDetailComponent {
       position: sticky;
       top: 0;
       z-index: 2;
+      color: var(--mat-sys-on-secondary-container);
+      background-color: var(--mat-sys-secondary-container);
     }
     ::ng-deep .mat-mdc-paginator-container {
       min-height: 48px;
