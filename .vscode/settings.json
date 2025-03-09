@@ -1,22 +1,39 @@
+// Cobalt Next Theme
 {
-  "workbench.colorCustomizations": {
-    "activityBar.activeBackground": "#84c985",
-    "activityBar.background": "#84c985",
-    "activityBar.foreground": "#15202b",
-    "activityBar.inactiveForeground": "#15202b99",
-    "activityBarBadge.background": "#6564bb",
-    "activityBarBadge.foreground": "#e7e7e7",
-    "commandCenter.border": "#15202b99",
-    "sash.hoverBorder": "#84c985",
-    "statusBar.background": "#60ba62",
-    "statusBar.foreground": "#15202b",
-    "statusBarItem.hoverBackground": "#46a148",
-    "statusBarItem.remoteBackground": "#60ba62",
-    "statusBarItem.remoteForeground": "#15202b",
-    "titleBar.activeBackground": "#60ba62",
-    "titleBar.activeForeground": "#15202b",
-    "titleBar.inactiveBackground": "#60ba6299",
-    "titleBar.inactiveForeground": "#15202b99"
+  "editor.bracketPairColorization.enabled": true, // Native bracket matching - colors included in theme
+  "color-highlight.markerType": "underline", // requires Color Highlight Extension
+  "color-highlight.markRuler": false, // requires Color Highlight Extension
+  "editor.colorDecorators": false, // using Color Hightlight instead
+  "editor.cursorBlinking": "solid",
+  "editor.cursorStyle": "line",
+  "editor.cursorWidth": 3,
+  "editor.letterSpacing": 0.5,
+  "editor.lineHeight": 32,
+  "editor.fontFamily": "Cascadia Code, Fira Code, Menlo, Monaco, 'Courier New', monospace",
+  "editor.fontSize": 16,
+  "editor.fontWeight": "400",
+  "editor.matchBrackets": "always", // using Subtle Match Brackets instead
+  "editor.tabSize": 2,
+  "files.trimTrailingWhitespace": true,
+  "subtleBrackets.style": { // requires Subtle Match Bracket Extension
+    "global": {
+      "borderColor": "#fac863",
+      "borderWidth": "2px"
+    }
   },
-  "peacock.color": "#60ba62"
+  "terminal.integrated.fontFamily": "Inconsolata for Powerline",
+  "terminal.integrated.fontSize": 14,
+  "window.title": "${dirty} ${activeEditorMedium}${separator}${rootName}",
+  // "workbench.colorTheme": "Cobalt2",
+  "workbench.editor.tabSizing": "shrink",
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.startupEditor": "newUntitledFile",
+  "editor.selectionHighlight": true,
+  "editor.foldingHighlight": true,
+  "editor.guides.highlightActiveBracketPair": true,
+  "editor.unicodeHighlight.includeStrings": true,
+  "editor.inlineSuggest.syntaxHighlightingEnabled": true,
+  "better-comments.highlightPlainText": true,
+  "angular-jest-test-runner.debug.projectPath": "${workspaceFolder}/projects/ngx-editor-js2/",
+
 }
