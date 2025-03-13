@@ -65,43 +65,6 @@ export const appConfig: ApplicationConfig = {
         return initializerFn();
       }),
     {
-      provide: NGX_EDITORJS_CLIENT_OPTIONS,
-      useValue: {
-        blocks: [
-          {
-            name: 'Paragraph',
-            component: NgxEditorjsParagraphClientBlockComponent,
-            componentInstanceName: 'NgxEditorjsParagraphBlockMediator',
-          },
-          {
-            name: 'Blockquotes',
-            component: NgxEditorjsBlockquotesClientBlockComponent,
-            componentInstanceName: 'NgxEditorjsBlockquotesBlockMediator',
-          },
-          {
-            name: 'Image',
-            component: NgxEditorjsImageClientBlockComponent,
-            componentInstanceName: 'NgxEditorjsImageBlockMediator',
-          },
-          {
-            name: 'Code',
-            component: NgxEditorjsCodeClientBlockComponent,
-            componentInstanceName: 'NgxEditorjsCodeBlockMediator',
-          },
-          {
-            name: 'Quiz',
-            component: NgxEditorjsQuizClientBlockComponent,
-            componentInstanceName: 'NgxEditorjsQuizBlockMediator',
-          },
-          {
-            name: 'Quiz',
-            component: NgxEditorjsMermaidClientBlockComponent,
-            componentInstanceName: 'NgxEditorjsMermaidBlockMediator',
-          },
-        ],
-      },
-    },
-    {
       provide: NGX_EDITORJS_OPTIONS,
       useValue: {
         consumerSupportedBlocks: [

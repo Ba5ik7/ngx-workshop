@@ -8,27 +8,4 @@
   $background: map.get($theme, background);
   $foreground: map.get($theme, foreground);
 
-  ngx-home {
-    color: mat.get-color-from-palette($foreground, text);
-
-    .home-row-column {
-      color: mat.get-color-from-palette($foreground, secondary-text);
-    }
-
-    .header-background {
-      background: mat.get-color-from-palette($primary);
-    }
-
-    .header-headline {
-      color: mat.get-color-from-palette($primary, default-contrast);
-    }
-
-    .header-start {
-      color: mat.get-color-from-palette($primary);
-    }
-
-    .home-row {
-      color: mat.get-color-from-palette($foreground, secondary-text);
-    }
-  }
 }

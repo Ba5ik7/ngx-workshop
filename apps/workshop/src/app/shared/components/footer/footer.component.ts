@@ -22,6 +22,8 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
       // height: 44px;
       padding: 6px;
       text-align: right;
+      background-color: var(--mat-sys-on-primary-container);
+      color: var(--mat-sys-primary-container);
       .docs-footer-greeting {
         font-size: 9px;
         text-decoration: none;

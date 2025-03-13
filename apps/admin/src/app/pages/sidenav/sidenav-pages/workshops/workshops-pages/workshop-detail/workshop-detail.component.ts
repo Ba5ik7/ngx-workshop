@@ -64,7 +64,7 @@ const safeStringify = (value: unknown) => {
       </mat-paginator>
       <div class="workshop-detail-content">
         <div class="page">
-          <section class="workshop-viewer-container">
+          <div class="workshop-viewer-container">
             <div class="workshop-detail-card ngx-mat-card">
               <!-- {{ vm.isExam ? 'Exam' : 'Page' }} -->
               <ngx-editor-js2
@@ -73,7 +73,7 @@ const safeStringify = (value: unknown) => {
                 (blocksRequested)="vm.handleSavingBlocks($event)"
               ></ngx-editor-js2>
             </div>
-          </section>
+          </div>
         </div>
       </div>
     </ng-container>
@@ -83,7 +83,7 @@ const safeStringify = (value: unknown) => {
     `
       .workshop-viewer-container {
         display: block;
-        padding: 20px 60px;
+        padding: 12px 60px;
 
         .workshop-detail-card {
           max-width: 750px;
@@ -93,24 +93,11 @@ const safeStringify = (value: unknown) => {
           position: relative;
           margin-bottom: 22px;
         }
-        h1 {
-          padding: 0.6em 0 3px;
-        }
-        p {
-          line-height: 1.6em;
-        }
       }
       .paginator {
         position: sticky;
         top: 0;
         z-index: 2;
-      }
-      workshop-detail {
-        font-weight: 400;
-        @media (max-width: 599px) {
-          padding-left: 15px;
-          padding-right: 15px;
-        }
       }
     `,
   ],
@@ -163,7 +150,7 @@ export class WorkshopDetailComponent {
               catchError(() => {
                 this.workshopEditorService.savePageHTMLErrorSubject.next(true);
                 return of([]);
-              }),
+              })
             )
           );
         },

@@ -113,7 +113,7 @@ export class ThemePickerMenuItemComponent {
         button {
           @include mat.icon-overrides(
             (
-              color: var(--mat-sys-primary),
+              color: var(--mat-sys-on-primary-container)
             )
           );
         }

@@ -7,20 +7,19 @@ import { ProfileFabComponent } from '../profile-fab/profile-fab.component';
 import { combineLatest, map } from 'rxjs';
 import { NavigationService } from '../../services/navigation/navigation.service';
 import { ThemePickerComponent } from '../theme-picker.component';
-import { RouterLink } from '@angular/router';
+import { RouterLink, RouterModule } from '@angular/router';
 
 @Component({
-    selector: 'ngx-navbar',
-    standalone: true,
-    imports: [
-      CommonModule,
-      MatButtonModule,
-      RouterLink,
-      MatIconModule,
-      ProfileFabComponent,
-      ThemePickerComponent,
+  selector: 'ngx-navbar',
+  imports: [
+    CommonModule,
+    MatButtonModule,
+    RouterModule,
+    MatIconModule,
+    ProfileFabComponent,
+    ThemePickerComponent,
   ],
-    template: `
+  template: `
     <ng-container *ngIf="viewModel$ | async as mv; else loading">
       <nav class="navbar-header mat-elevation-z6 docs-navbar-hide-small">
         <a routerLink="/" class="workshop-logo docs-button">
@@ -38,7 +37,11 @@ import { RouterLink } from '@angular/router';
             class="section-logo"
             [src]="section.value.menuSvgPath"
           /> -->
-          <mat-icon class="section-logo" [svgIcon]="section.value.menuSvgPath"></mat-icon>
+          <mat-icon
+            class="section-logo"
+            [svgIcon]="section.value.menuSvgPath"
+          ></mat-icon>
+
           <p>{{ section.value.sectionTitle }}</p>
         </a>
         <div class="flex-spacer"></div>
@@ -86,8 +89,8 @@ import { RouterLink } from '@angular/router';
     </ng-container>
     <ng-template #loading> LOADING... </ng-template>
   `,
-    styles: [
-        `
+  styles: [
+    `
       :host {
         position: fixed;
         left: 0;
@@ -95,7 +98,6 @@ import { RouterLink } from '@angular/router';
         z-index: 2;
         width: 110px;
       }
-
       .navbar-header {
         display: flex;
         height: 100svh;
@@ -104,25 +106,27 @@ import { RouterLink } from '@angular/router';
         flex-direction: column;
         color: var(--mat-sys-on-primary-container);
         background-color: var(--mat-sys-primary-container);
-
         .docs-button {
           width: 100%;
           display: flex;
           flex-direction: column;
           justify-content: center;
           align-items: center;
-          gap: 0.75rem;
           padding-block: 1.25rem;
           text-decoration: none;
-          fill: var(--quaternary-contrast);
           color: inherit;
           cursor: pointer;
           transition: fill 0.3s ease;
+          &.navbar-menu-item-selected {
+            color: var(--mat-sys-primary-container);
+            background-color: var(--mat-sys-on-primary-container);
+          }
         }
       }
-
       .workshop-logo {
-        font-weight: 100;
+        font-weight: 300;
+        font-size: 0.9rem;
+        margin: 0;
         mat-icon {
           font-size: 3.18rem;
           width: 50px;
@@ -130,10 +134,9 @@ import { RouterLink } from '@angular/router';
           vertical-align: middle;
         }
       }
-      .section-logo{
+      .section-logo {
         width: 36px;
         height: 36px;
-        fill: white!important;
       }
 
       .navbar-header-mobile {
@@ -198,8 +201,8 @@ import { RouterLink } from '@angular/router';
         }
       }
     `,
-    ],
-    changeDetection: ChangeDetectionStrategy.OnPush
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavbarComponent {
   userStateService = inject(UserStateService);
