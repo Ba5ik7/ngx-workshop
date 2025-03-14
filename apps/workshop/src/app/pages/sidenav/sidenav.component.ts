@@ -1,4 +1,10 @@
-import { Component, inject, ViewChild, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  inject,
+  signal,
+  ViewChild,
+  ViewEncapsulation,
+} from '@angular/core';
 import { combineLatest, map } from 'rxjs';
 import { NavigationService } from '../../shared/services/navigation/navigation.service';
 import { CommonModule } from '@angular/common';
@@ -15,6 +21,8 @@ import {
 } from './sidenav-header/sidenav-header.component';
 import { UserStateService } from '../../shared/services/user-state/user-state.service';
 import { BreakpointObserver } from '@angular/cdk/layout';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 const EXTRA_SMALL_WIDTH_BREAKPOINT = 720;
 const SMALL_WIDTH_BREAKPOINT = 959;
@@ -26,6 +34,8 @@ const SMALL_WIDTH_BREAKPOINT = 959;
     RouterModule,
     FooterComponent,
     MatSidenavModule,
+    MatIconModule,
+    MatButtonModule,
     SidenavMenuComponent,
     SidenavHeaderComponent,
   ],
@@ -51,8 +61,9 @@ const SMALL_WIDTH_BREAKPOINT = 959;
         ></ngx-sidenav-header>
         <main class="sidenav-body-content">
           <ngx-sidenav-menu
-            *ngIf="vm.isScreenSmall === false"
+            [ngClass]="{ closed: !opened() }"
             [sidenavMenuData]="vm.sidenavMenuData"
+            (toggleSideNav)="opened.set(!opened())"
           ></ngx-sidenav-menu>
           <router-outlet></router-outlet>
         </main>
@@ -68,21 +79,19 @@ const SMALL_WIDTH_BREAKPOINT = 959;
         flex-direction: column;
         overflow: auto;
       }
+      ngx-sidenav-menu {
+        transition: margin-left 0.3s;
+        z-index: 1000;
+        &.closed {
+          margin-left: -240px;
+        }
+      }
       .sidenav-body-content {
         display: flex;
         flex: 1 1 auto;
         background-color: var(--mat-sys-surface);
         @media (max-width: 959px) {
           min-height: 100vh;
-        }
-      }
-
-      .sidenav-toggle {
-        display: none;
-        @media (max-width: 959px) {
-          display: flex;
-          align-items: center;
-          justify-content: center;
         }
       }
     `,
@@ -93,6 +102,8 @@ export class SidenavComponent {
   navigationService = inject(NavigationService);
 
   @ViewChild('sidenav') sidenav!: MatSidenav;
+
+  opened = signal(true);
 
   viewModel = combineLatest({
     signedIn: inject(UserStateService).signedIn$,
@@ -125,7 +136,7 @@ export class SidenavComponent {
             sections,
             workshops,
             signedIn,
-          } as SidenavMenuData,
+          },
           sidenavHeaderData: {
             headerSvgPath,
             sectionTitle,

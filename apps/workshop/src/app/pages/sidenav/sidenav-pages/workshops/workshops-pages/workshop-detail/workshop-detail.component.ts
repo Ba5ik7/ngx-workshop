@@ -141,7 +141,7 @@ const safeParse = (json: string) => {
         display: block;
       }
       .workshop-viewer-container {
-        padding: 40px;
+        padding: 62px;
         @media (max-width: 720px) {
           padding: 15px 10px;
         }
