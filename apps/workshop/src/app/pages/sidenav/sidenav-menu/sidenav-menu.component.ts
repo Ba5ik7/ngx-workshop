@@ -45,10 +45,9 @@ export type SidenavMenuData = {
               routerLink="dashboard"
               routerLinkActive="workshop-menu-nav-item-selected"
             >
-              <mat-icon>dashboard</mat-icon>
+              <!-- <mat-icon>dashboard</mat-icon> -->
               Dashboard
             </a>
-            <mat-divider></mat-divider>
           </ng-container>
           <ng-container
             *ngIf="sidenavMenuData.workshops.length > 0; else elseTemplate"
@@ -92,7 +91,7 @@ export type SidenavMenuData = {
       :host {
         .toggle-wrapper {
           position: relative;
-          @media (max-width: 786px) {
+          @media (max-width: 960px) {
             display: none;
           }
           .sidenav-toggle-desktop {
@@ -121,6 +120,7 @@ export type SidenavMenuData = {
           box-sizing: border-box;
           border: 0.5px solid var(--mat-sys-primary-container);
           border-left: none;
+          border-radius: 0 0 24px 0;
           .workshop-menu-nav-content {
             width: 240px;
             height: 100svh;

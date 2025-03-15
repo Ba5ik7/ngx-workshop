@@ -61,6 +61,7 @@ const SMALL_WIDTH_BREAKPOINT = 959;
         ></ngx-sidenav-header>
         <main class="sidenav-body-content">
           <ngx-sidenav-menu
+            classs="desktop-sidenav"
             [ngClass]="{ closed: !opened() }"
             [sidenavMenuData]="vm.sidenavMenuData"
             (toggleSideNav)="opened.set(!opened())"
@@ -82,6 +83,11 @@ const SMALL_WIDTH_BREAKPOINT = 959;
       ngx-sidenav-menu {
         transition: margin-left 0.3s;
         z-index: 1000;
+
+        @media (max-width: 960px) {
+            display: none;
+          }
+
         &.closed {
           margin-left: -240px;
         }

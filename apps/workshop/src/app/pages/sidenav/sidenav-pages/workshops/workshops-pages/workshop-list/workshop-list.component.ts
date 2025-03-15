@@ -41,11 +41,10 @@ export class OptimizeCloudinaryUrlPipe implements PipeTransform {
             ])
         ])
     ],
-    changeDetection: ChangeDetectionStrategy.OnPush,
     template: `
     <div class="workshop-list" [@staggerCircleReveal]>
       <div
-        class="mat-card-new mat-mdc-card"
+        class="mat-card-new"
         *ngFor="let workshop of workshops | async"
         [routerLink]="
           '../' +
@@ -88,7 +87,8 @@ export class OptimizeCloudinaryUrlPipe implements PipeTransform {
         transition: box-shadow 0.4s;
         cursor: pointer;
         @include mat.elevation(6);
-
+        background-color: var(--mat-sys-secondary-container);
+        color: var(--mat-sys-on-secondary-container);
         .img-wrapper {
           position: relative;
           width: 100%;
@@ -108,7 +108,7 @@ export class OptimizeCloudinaryUrlPipe implements PipeTransform {
 
         p {
           font-size: 1rem;
-          font-weight: 100;
+          font-weight: 300;
           padding: 0px 8px;
           margin: 0 0 24px;
         }

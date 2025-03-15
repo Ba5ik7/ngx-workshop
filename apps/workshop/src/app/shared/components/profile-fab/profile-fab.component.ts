@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { UserStateService } from '../../services/user-state/user-state.service';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -7,14 +7,21 @@ import { RouterLink, RouterModule } from '@angular/router';
 import { MatMenuModule } from '@angular/material/menu';
 
 @Component({
-    selector: 'ngx-profile-fab',
-    template: `
-  <button mat-icon-button color="accent" [matMenuTriggerFor]="menu">
+  selector: 'ngx-profile-fab',
+  imports: [
+    CommonModule,
+    MatButtonModule,
+    RouterLink,
+    MatIconModule,
+    MatMenuModule,
+  ],
+  template: `
+    <button mat-icon-button class="account-circle" [matMenuTriggerFor]="menu">
       <mat-icon>account_circle</mat-icon>
     </button>
     <mat-menu #menu xPosition="before">
-    <button mat-menu-item routerLink="/sidenav/account">
-      <mat-icon>manage_accounts</mat-icon>
+      <button mat-menu-item routerLink="/sidenav/account">
+        <mat-icon>manage_accounts</mat-icon>
         <span>Account</span>
       </button>
       <button mat-menu-item routerLink="/sidenav/settings">
@@ -27,23 +34,23 @@ import { MatMenuModule } from '@angular/material/menu';
       </button>
     </mat-menu>
   `,
-    styles: [`
-
-  `],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [
-        CommonModule,
-        MatButtonModule,
-        RouterLink,
-        MatIconModule,
-        MatMenuModule
-    ]
+  styles: [
+    `
+      @use '@angular/material' as mat;
+      :host {
+        .account-circle {
+          @include mat.icon-overrides(
+            (
+              color: var(--mat-sys-on-primary-container),
+            )
+          );
+        }
+      }
+    `,
+  ],
 })
 export class ProfileFabComponent {
-
-  constructor(private userStateService: UserStateService) { }
-
+  userStateService = inject(UserStateService);
   signOut(): void {
     this.userStateService.signOut();
   }

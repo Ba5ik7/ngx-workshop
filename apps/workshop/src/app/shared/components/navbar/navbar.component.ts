@@ -45,11 +45,11 @@ import { RouterLink, RouterModule } from '@angular/router';
           <p>{{ section.value.sectionTitle }}</p>
         </a>
         <div class="flex-spacer"></div>
+        <ngx-theme-picker class="docs-button" ></ngx-theme-picker>
         <ng-container *ngIf="mv.signedIn; else authentication">
-          <ngx-profile-fab></ngx-profile-fab>
+          <ngx-profile-fab class="docs-button" ></ngx-profile-fab>
         </ng-container>
         <ng-template #authentication>
-          <ngx-theme-picker></ngx-theme-picker>
           <a class="docs-button" (click)="mv.openDialog()">Sign In</a>
         </ng-template>
       </nav>
