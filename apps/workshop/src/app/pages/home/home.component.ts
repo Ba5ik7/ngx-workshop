@@ -1,10 +1,11 @@
-import { Component, HostBinding } from '@angular/core';
+import { Component } from '@angular/core';
 import { FooterComponent } from '../../shared/components/footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
     selector: 'ngx-home',
+    host: { class: 'main-content' },
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.scss'],
     imports: [
@@ -13,6 +14,4 @@ import { MatIconModule } from '@angular/material/icon';
         FooterComponent
     ]
 })
-export class HomeComponent {
-  @HostBinding('class.main-content') readonly mainContentClass = true;
-}
+export class HomeComponent {}

@@ -1,10 +1,11 @@
-import { Component, HostBinding } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { FooterComponent } from '../../shared/components/footer/footer.component';
 
 @Component({
     selector: 'ngx-not-found',
+    host: { class: 'main-content' },
     template: `
     <main>
       <div class="wrapper">
@@ -77,6 +78,4 @@ import { FooterComponent } from '../../shared/components/footer/footer.component
         FooterComponent,
     ]
 })
-export class NotFoundComponent {
-  @HostBinding('class.main-content') readonly mainContentClass = true;
-}
+export class NotFoundComponent {}

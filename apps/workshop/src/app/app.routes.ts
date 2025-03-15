@@ -2,7 +2,7 @@ import {
   ActivatedRouteSnapshot,
   DetachedRouteHandle,
   RouteReuseStrategy,
-  Routes
+  Routes,
 } from '@angular/router';
 import { NavigationService } from './shared/services/navigation/navigation.service';
 import { Injectable, inject } from '@angular/core';
@@ -11,16 +11,25 @@ import { ThemePickerService } from './shared/services/theme-picker/theme-picker.
 
 @Injectable({ providedIn: 'root' })
 export class WorkshopReuseStrategy extends RouteReuseStrategy {
-  retrieve(): DetachedRouteHandle | null { return null; }
-  shouldAttach(): boolean { return false; }
-  shouldDetach(): boolean { return false; }
+  retrieve(): DetachedRouteHandle | null {
+    return null;
+  }
+  shouldAttach(): boolean {
+    return false;
+  }
+  shouldDetach(): boolean {
+    return false;
+  }
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   store(): void {}
-  shouldReuseRoute(future: ActivatedRouteSnapshot, curr: ActivatedRouteSnapshot): boolean {
+  shouldReuseRoute(
+    future: ActivatedRouteSnapshot,
+    curr: ActivatedRouteSnapshot
+  ): boolean {
     if (future.routeConfig === curr.routeConfig) {
       return !future.data['alwaysRefresh'];
     } else {
-        return false;
+      return false;
     }
   }
 }
@@ -36,7 +45,8 @@ export const appRoutes: Routes = [
       {
         path: '',
         pathMatch: 'full',
-        loadComponent: () => import('./pages/home/home.component').then(m => m.HomeComponent)
+        loadComponent: () =>
+          import('./pages/home/home.component').then((m) => m.HomeComponent),
       },
       // {
       //   path: 'account',
@@ -48,15 +58,29 @@ export const appRoutes: Routes = [
       // },
       {
         path: '404',
-        loadChildren: () => import('./pages/not-found/not-found.routing').then(m => m.NOT_FOUND_ROUTES)
+        loadChildren: () =>
+          import('./pages/not-found/not-found.routing').then(
+            (m) => m.NOT_FOUND_ROUTES
+          ),
+      },
+      {
+        path: 'assessment-test',
+        loadComponent: () =>
+          import('./pages/assessment-test/assessment-test.component').then(
+            (m) => m.AssessmentTestComponent
+          ),
       },
       {
         path: 'sidenav',
-        loadChildren: () => import('./pages/sidenav/sidenav.routing').then(m => m.SIDENAV_ROUTES)
+        loadChildren: () =>
+          import('./pages/sidenav/sidenav.routing').then(
+            (m) => m.SIDENAV_ROUTES
+          ),
       },
       {
-        path: '**', redirectTo: '/404'
+        path: '**',
+        redirectTo: '/404',
       },
-    ]
+    ],
   },
 ];
