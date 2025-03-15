@@ -10,7 +10,8 @@ import { Point } from '@influxdata/influxdb-client';
 
 @Catch()
 export class LoggerExceptionFilter implements ExceptionFilter {
-  constructor(private readonly influx: Influx) {}
+  // constructor(private readonly influx: Influx) {}
+  constructor() {}
 
   catch(exception: HttpException, host: ArgumentsHost) {
     const ctx = host.switchToHttp();
@@ -23,13 +24,13 @@ export class LoggerExceptionFilter implements ExceptionFilter {
     const duration = Date.now() - request['_startTime'];
 
 
-    const point = new Point('api_requests')
-      .tag('host', request.hostname || 'unknown')
-      .stringField('method', method)
-      .stringField('path', path)
-      .intField('status', status)
-      .intField('duration', duration);
-    this.influx.writePoint('Ngx-Workshop', 'Ngx-Workshop-Bucket', point);
+    // const point = new Point('api_requests')
+    //   .tag('host', request.hostname || 'unknown')
+    //   .stringField('method', method)
+    //   .stringField('path', path)
+    //   .intField('status', status)
+    //   .intField('duration', duration);
+    // this.influx.writePoint('Ngx-Workshop', 'Ngx-Workshop-Bucket', point);
 
     response.status(status).json({
       message: exception.message,

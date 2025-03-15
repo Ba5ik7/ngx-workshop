@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { map } from 'rxjs/operators';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { map, withLatestFrom } from 'rxjs/operators';
 import { Breakpoints, BreakpointObserver, LayoutModule } from '@angular/cdk/layout';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
@@ -7,6 +7,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
+import { AssessmentTestService } from 'apps/workshop/src/app/shared/services/assessment-test/assessment-test.service';
 
 @Component({
     imports: [
@@ -37,7 +38,7 @@ import { CommonModule } from '@angular/common';
               </mat-card-title>
             </mat-card-header>
             <mat-card-content class="dashboard-card-content">
-              <div>Card Content Here</div>
+              <pre><code>{{card.assessmentTest | json }}</code></pre>
             </mat-card-content>
           </mat-card>
         </mat-grid-tile>
@@ -52,34 +53,37 @@ import { CommonModule } from '@angular/common';
       left: 15px;
       right: 15px;
       bottom: 15px;
+      overflow: auto;
     }
     .more-button {
       position: absolute;
       top: 5px;
       right: 10px;
     }
-    .dashboard-card-content { text-align: center; }
   `],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DynamicGridListComponent {
+
+  assessmentTest = inject(AssessmentTestService);
   /** Based on the screen size, switch from standard to one column per row */
   cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
-    map(({ matches }) => {
+    withLatestFrom(this.assessmentTest.assessmentTest$),
+    map(([{ matches }, assessmentTest]) => {
       if (matches) {
         return [
-          { title: 'Card 1', cols: 1, rows: 1 },
-          { title: 'Card 2', cols: 1, rows: 1 },
-          { title: 'Card 3', cols: 1, rows: 1 },
-          { title: 'Card 4', cols: 1, rows: 1 }
+          { title: 'Card 1', cols: 1, rows: 1, assessmentTest },
+          { title: 'Card 2', cols: 1, rows: 1, assessmentTest: 'Hello' },
+          { title: 'Card 3', cols: 1, rows: 1, assessmentTest: 'Hello' },
+          { title: 'Card 4', cols: 1, rows: 1, assessmentTest: 'Hello' }
         ];
       }
 
       return [
-        { title: 'Card 1', cols: 2, rows: 1 },
-        { title: 'Card 2', cols: 1, rows: 1 },
-        { title: 'Card 3', cols: 1, rows: 2 },
-        { title: 'Card 4', cols: 1, rows: 1 }
+        { title: 'Card 1', cols: 2, rows: 1, assessmentTest },
+        { title: 'Card 2', cols: 1, rows: 1, assessmentTest: 'Hello' },
+        { title: 'Card 3', cols: 1, rows: 2, assessmentTest: 'Hello' },
+        { title: 'Card 4', cols: 1, rows: 1, assessmentTest: 'Hello' }
       ];
     })
   );

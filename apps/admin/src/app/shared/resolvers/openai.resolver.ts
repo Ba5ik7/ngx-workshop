@@ -5,6 +5,7 @@ import { IOpenAIResponse } from '../interfaces/openai-responses.interface';
 import { OpenaiService } from '../services/openai/openai.service';
 
 type IOpenAIResponseResolver = ResolveFn<Observable<Partial<IOpenAIResponse[]> | undefined>>;
-export const openaiResolver: IOpenAIResponseResolver = () => {  
+export const openaiResolver: IOpenAIResponseResolver = () => {
+  console.log('openaiResolver');
   return inject(OpenaiService).fetchOpenaiResponses();
 };

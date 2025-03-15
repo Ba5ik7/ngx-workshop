@@ -1,12 +1,12 @@
 import { Route } from '@angular/router';
-import { workshopResolver } from '../../../../shared/resolvers/workshop.resolver';
 import { DashboardComponent } from './dashboard.component';
+import { assessmentTestResolver } from '../../../../shared/resolvers/assessment-test.resolver';
 
 export const DASHBOARD_ROUTES: Route[] = [
   { path: '', redirectTo: 'overview', pathMatch: 'full' },
   {
     path: 'overview',
-    resolve: { workshopResolver },
+    resolve: { assessmentTestResolver },
     component: DashboardComponent
   }
 ];

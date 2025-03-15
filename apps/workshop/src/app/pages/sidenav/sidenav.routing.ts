@@ -7,7 +7,7 @@ export const SIDENAV_ROUTES: Route[] = [
   {
     path: '',
     component: SidenavComponent,
-    
+
     children: [
       {
         canActivate: [AuthGuard],
