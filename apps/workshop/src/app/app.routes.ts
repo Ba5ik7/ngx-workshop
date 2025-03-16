@@ -8,6 +8,7 @@ import { NavigationService } from './shared/services/navigation/navigation.servi
 import { Injectable, inject } from '@angular/core';
 import { UserStateService } from './shared/services/user-state/user-state.service';
 import { ThemePickerService } from './shared/services/theme-picker/theme-picker.service';
+import { AuthGuard } from './shared/guards/auth.guard';
 
 @Injectable({ providedIn: 'root' })
 export class WorkshopReuseStrategy extends RouteReuseStrategy {
@@ -65,9 +66,9 @@ export const appRoutes: Routes = [
       },
       {
         path: 'assessment-test',
-        loadComponent: () =>
-          import('./pages/assessment-test/assessment-test.component').then(
-            (m) => m.AssessmentTestComponent
+        loadChildren: () =>
+          import('./pages/assessment-test/assessment-test.routing').then(
+            (m) => m.ASSESSMENT_TEST_ROUTES
           ),
       },
       {

@@ -22,14 +22,14 @@ import { UserStateService } from '../../services/user-state/user-state.service';
 import { MatchPasswordValidator } from '../../validators/match-passwords.validator';
 import { PasswordValidator } from '../../validators/password.validator';
 import { AuthenticationService } from '../../services/authentication/authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
-    selector: 'ngx-sign-in-modal',
-    templateUrl: './sign-in-modal.component.html',
-    styleUrls: ['./sign-in-modal.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'ngx-authenticate-modal',
+    templateUrl: './authenticate-modal.component.html',
+    styleUrls: ['./authenticate-modal.component.scss'],
     providers: [
-        { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } }
+      {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'outline'}}
     ],
     imports: [
         CommonModule,
@@ -40,20 +40,21 @@ import { AuthenticationService } from '../../services/authentication/authenticat
         MatFormFieldModule,
     ]
 })
-export class SignInModalComponent implements OnInit, OnDestroy {
+export class AuthenticateModalComponent implements OnInit, OnDestroy {
   constructor(
     private changeDetectorRef: ChangeDetectorRef,
-    private dialogRef: MatDialogRef<SignInModalComponent>,
+    private dialogRef: MatDialogRef<AuthenticateModalComponent>,
     private formBuilder: FormBuilder,
     private authenticationService: AuthenticationService,
-    private userStateService: UserStateService
+    private userStateService: UserStateService,
+    private router: Router
   ) { }
 
   @ViewChild('createAccountEmail') createAccountEmail!: ElementRef;
   @ViewChild('signInEmail') signInEmail!: ElementRef;
 
   destory: Subject<boolean> = new Subject();
-  
+
   createAccountFormLevelMessage!: string;
   signInFormLevelMessage!: string;
 
@@ -102,10 +103,10 @@ export class SignInModalComponent implements OnInit, OnDestroy {
     this.signInForm.statusChanges
     .pipe(takeUntil(this.destory))
     .subscribe(() => this.setErrorsMessages(this.signInForm, this.signInFormErrorMessages));
-  
+
     this.authenticationService.signInFormError$
     .pipe(takeUntil(this.destory))
-    .subscribe((error) => {      
+    .subscribe((error) => {
       this.requestInProgress();
       if(error === HttpStatusCode.Unauthorized) {
         this.signInForm.get('email')?.setErrors({ signInUnauthorized: true });
@@ -115,7 +116,7 @@ export class SignInModalComponent implements OnInit, OnDestroy {
         this.changeDetectorRef.markForCheck();
       }
     });
-    
+
     this.authenticationService.signInFormSuccess$
     .pipe(takeUntil(this.destory))
     .subscribe(() => this.signSuccuessful());
@@ -128,7 +129,7 @@ export class SignInModalComponent implements OnInit, OnDestroy {
 
     this.authenticationService.createAccountFormError$
     .pipe(takeUntil(this.destory))
-    .subscribe((error) => {      
+    .subscribe((error) => {
       this.requestInProgress();
       if(error === HttpStatusCode.Conflict) {
         this.createAccountForm.get('email')?.setErrors({ duplicateKey: true });
@@ -146,7 +147,7 @@ export class SignInModalComponent implements OnInit, OnDestroy {
 
   signInClick(): void {
     this.requestInProgress(true);
-    this.authenticationService.signIn(this.signInForm.value);    
+    this.authenticationService.signIn(this.signInForm.value);
   }
 
   createAccountClick(): void {
@@ -157,6 +158,7 @@ export class SignInModalComponent implements OnInit, OnDestroy {
   signSuccuessful(): void {
     this.requestInProgress();
     this.userStateService.signedIn.next(true);
+    this.router.navigate(['/sidenav/dashboard/overview']);
     this.dialogRef.close();
   }
 
@@ -168,7 +170,7 @@ export class SignInModalComponent implements OnInit, OnDestroy {
   setErrorsMessages(formGroup: FormGroup, formControlMessages: { [key: string]: string }): void {
     Object.keys(formGroup.controls).forEach(element => {
       const errors = formGroup.get(element)?.errors;
-      if(errors) {         
+      if(errors) {
         const error = Object.keys(errors)[0];
         formControlMessages[element] = this.errorMessages[error];
       }

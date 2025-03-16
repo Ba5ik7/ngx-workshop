@@ -1,9 +1,14 @@
 import { Component } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-assessment-test',
   host: { class: 'main-content' },
-  template: ` <h1>Assessment Test</h1> `,
+  imports: [RouterModule],
+  template: `
+    <h1>Assessment Test</h1>
+    <router-outlet></router-outlet>
+  `,
   styles: [
     `
       :host {

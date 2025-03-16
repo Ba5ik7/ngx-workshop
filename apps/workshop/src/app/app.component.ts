@@ -3,7 +3,7 @@ import { Component, ViewEncapsulation, inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Event, NavigationEnd, Router } from '@angular/router';
 import { filter, map, pairwise, startWith } from 'rxjs';
-import { SignInModalComponent } from './shared/components/sign-in-modal/sign-in-modal.component';
+import { AuthenticateModalComponent } from './shared/components/authenticate-modal/authenticate-modal.component';
 import { UserStateService } from './shared/services/user-state/user-state.service';
 import { MatDialogModule } from '@angular/material/dialog';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
@@ -58,7 +58,7 @@ export class AppComponent {
   openSignInModal = inject(UserStateService)
     .openSignInModal$.pipe(filter((open) => open))
     .subscribe(() => {
-      this.matDialog.open(SignInModalComponent, { width: '300px' });
+      this.matDialog.open(AuthenticateModalComponent, { width: '300px' });
     });
 }
 

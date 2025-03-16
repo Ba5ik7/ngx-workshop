@@ -1,0 +1,19 @@
+@use '@angular/material' as mat;
+
+.form-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background-color: var(--mat-sys-primary-container);
+
+  .form-level-error-message {
+    color:  var(--mat-sys-error);
+  }
+
+  mat-form-field {
+    @include mat.form-field-overrides((
+      subscript-text-size: .7rem,
+      subscript-text-line-height: .7rem,
+    ));
+  }
+}
