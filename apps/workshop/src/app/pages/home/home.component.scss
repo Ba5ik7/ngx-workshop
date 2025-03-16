@@ -3,30 +3,41 @@
   flex-direction: column;
   min-height: 100svh;
 
+  color: var(--mat-sys-on-primary-container);
 
+  .home-row-column {
     color: var(--mat-sys-on-primary-container);
+  }
 
-    .home-row-column {
-      color: var(--mat-sys-on-primary-container);
+  .header-background {
+    background-color: var(--mat-sys-primary);
+  }
+
+  .header-headline {
+    color: var(--mat-sys-secondary-container);
+  }
+
+  .header-start {
+    color: var(--mat-sys-primary-container);
+  }
+
+  .home-row {
+    color: var(--mat-sys-primary-container);
+  }
+
+  .home-promo-section {
+    h2 {
+      font-size: 2.5rem;
+      font-weight: 300;
+      margin: 0;
     }
-
-    .header-background {
-      background-color: var(--mat-sys-primary-container);
-
+    p {
+      font-weight: 300;
+      font-size: 1.3rem;
+      line-height: 2rem;
+      margin: 0;
     }
-
-    .header-headline {
-      color: var(--mat-sys-on-primary-container);
-    }
-
-    .header-start {
-      color: var(--mat-sys-on-primary-container);
-    }
-
-    .home-row {
-      color: var(--mat-sys-on-primary-container);
-    }
-
+  }
 
   .header-background {
     overflow: hidden;
@@ -86,28 +97,26 @@
     align-items: center;
     display: flex;
     flex-direction: column;
-    // padding: 16px;
-    // width: 75%;
-    // max-width: 1080px;
-    // margin: auto;
+    padding: 16px;
+    width: 75%;
+    max-width: 1080px;
+    margin: auto;
 
-    a {
+    .home-row-column {
       text-decoration: none;
-    }
 
-    h2 {
-      font-size: 2rem;
-      font-weight: 400;
-      margin: 0 0 8px;
-      padding: 0;
-    }
+      h2 {
+        font-size: 2rem;
+        font-weight: 400;
+        margin: 0 0 8px;
+      }
 
-    p {
-      font-size: 1.7rem;
-      font-weight: 100;
-      line-height: 28px;
-      margin: 0 0 24px 0;
-      padding: 0;
+      p {
+        font-size: 1.3rem;
+        font-weight: 300;
+        line-height: 1.75rem;
+        margin: 0 0 24px 0;
+      }
     }
   }
 
@@ -129,6 +138,7 @@
     border-radius: 24px;
     transition: box-shadow 0.4s;
     box-shadow: var(--mat-sys-level3);
+    background-color: var(--mat-sys-secondary-container);
 
     mat-icon {
       width: 200px;

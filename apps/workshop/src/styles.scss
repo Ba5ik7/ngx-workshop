@@ -96,6 +96,7 @@ body {
     @include mat.theme(
       (
         color: mat.$azure-palette,
+        density: -2,
       )
     );
   }
