@@ -17,7 +17,11 @@ import {
   template: `
     <button mat-menu-item>
       @if (isCurrentTheme(); as isCurrentTheme) {
-      <mat-icon class="docs-theme-selected-icon">radio_button_checked</mat-icon>
+      <ng-container>
+        <mat-icon class="docs-theme-selected-icon"
+          >radio_button_checked</mat-icon
+        >
+      </ng-container>
       } @else {
       <mat-icon>radio_button_unchecked</mat-icon>
       }
@@ -113,7 +117,7 @@ export class ThemePickerMenuItemComponent {
         button {
           @include mat.icon-overrides(
             (
-              color: var(--mat-sys-on-primary-container)
+              color: var(--mat-sys-on-primary-container),
             )
           );
         }

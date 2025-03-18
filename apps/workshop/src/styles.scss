@@ -1,5 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-@use "@angular/material" as mat;
+@use '@angular/material' as mat;
 
 html,
 body {
@@ -7,7 +7,7 @@ body {
 }
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
 
 body.light-mode {
@@ -27,6 +27,7 @@ body {
     @include mat.theme(
       (
         color: mat.$red-palette,
+        density: -2,
       )
     );
   }
@@ -35,6 +36,7 @@ body {
     @include mat.theme(
       (
         color: mat.$green-palette,
+        density: -2,
       )
     );
   }
@@ -43,6 +45,7 @@ body {
     @include mat.theme(
       (
         color: mat.$blue-palette,
+        density: -2,
       )
     );
   }
@@ -51,6 +54,7 @@ body {
     @include mat.theme(
       (
         color: mat.$yellow-palette,
+        density: -2,
       )
     );
   }
@@ -59,6 +63,7 @@ body {
     @include mat.theme(
       (
         color: mat.$cyan-palette,
+        density: -2,
       )
     );
   }
@@ -67,6 +72,7 @@ body {
     @include mat.theme(
       (
         color: mat.$magenta-palette,
+        density: -2,
       )
     );
   }
@@ -75,6 +81,7 @@ body {
     @include mat.theme(
       (
         color: mat.$orange-palette,
+        density: -2,
       )
     );
   }
@@ -82,6 +89,7 @@ body {
     @include mat.theme(
       (
         color: mat.$chartreuse-palette,
+        density: -2,
       )
     );
   }
@@ -89,6 +97,7 @@ body {
     @include mat.theme(
       (
         color: mat.$spring-green-palette,
+        density: -2,
       )
     );
   }
@@ -104,6 +113,7 @@ body {
     @include mat.theme(
       (
         color: mat.$violet-palette,
+        density: -2,
       )
     );
   }
@@ -111,6 +121,7 @@ body {
     @include mat.theme(
       (
         color: mat.$rose-palette,
+        density: -2,
       )
     );
   }

@@ -1,25 +1,19 @@
 import { Route } from '@angular/router';
-import { AssessmentTestComponent } from './assessment-test.component';
 import { AuthGuard } from '../../shared/guards/auth.guard';
+import { assessmentTestResolver } from '../../shared/resolvers/assessment-test.resolver';
 
 export const ASSESSMENT_TEST_ROUTES: Route[] = [
   {
     path: '',
-    component: AssessmentTestComponent,
-    children: [
-      {
-        path: '',
-        redirectTo: 'test-selection',
-        pathMatch: 'full',
-      },
-      {
-        path: 'test-selection',
-        canActivate: [AuthGuard],
-        loadComponent: () =>
-          import('./test-selection/test-selection.component').then(
-            (m) => m.TestSelectionComponent
-          ),
-      },
-    ],
+    canActivate: [AuthGuard],
+    resolve: { assessmentTestResolver },
+    loadComponent: () =>
+      import('./assessment-test.component').then(
+        (m) => m.AssessmentTestComponent
+      ),
   },
+  {
+    path: '**',
+    redirectTo: '',
+  }
 ];
