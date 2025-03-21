@@ -1,9 +1,10 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
-export type TAssessmentTest = AssessmentTest & Document;
 
+export type TUserAssessmentTest = UserAssessmentTest & Document;
 type TestSubject = 'ANGULAR' | 'NESTJS' | 'RXJS';
+
 export interface TestQuestion {
   question: string;
   choices: { value: string }[];
@@ -13,22 +14,28 @@ export interface TestQuestion {
 }
 
 @Schema()
-export class AssessmentTest {
+export class UserAssessmentTest {
+  @Prop({ required: true })
+  assessmentTestId: string;
 
-  @Prop({ default: () => 'Test Name' })
-  name: string;
+  @Prop({ required: true })
+  userId: string;
+
+  @Prop({ default: 0 })
+  score: number;
 
   @Prop({ default: () => 'ANGULAR' })
   subject: TestSubject;
 
-  @Prop({ default: 1 })
-  level: number;
+  @Prop({ default: () => [] })
+  userAnswers: string[];
+
+  @Prop({ default: false })
+  completed: boolean;
 
   @Prop({ default: () => Date.now() })
   lastUpdated: Date;
-
-  @Prop({ default: () => [] })
-  testQuestions: TestQuestion[];
 }
 
-export const AssessmentTestSchema = SchemaFactory.createForClass(AssessmentTest);
+export const UserAssessmentTestSchema =
+  SchemaFactory.createForClass(UserAssessmentTest);
