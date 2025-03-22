@@ -1,11 +1,12 @@
 import { Component, input, linkedSignal, output } from '@angular/core';
 import { MatButton } from '@angular/material/button';
+import { SubjectLevel } from '../../../shared/services/assessment-test/assessment-test.service';
 
-type SubjectCard = { value: string; enabled: boolean, image: string };
+type SubjectCard = { value: string; enabled: boolean, image: string, level: number };
 const subjectsMap = new Map<string, SubjectCard>([
-  ['NESTJS', { value: 'NestJS', enabled: false, image: 'nestjs2.svg' }],
-  ['ANGULAR', { value: 'Angular', enabled: false, image: 'angular_nav_gradient.gif' }],
-  ['RXJS', { value: 'RxJS', enabled: false, image: 'rxjs1.svg' }],
+  ['NESTJS', { value: 'NestJS', enabled: false, image: 'nestjs2.svg', level: 0 }],
+  ['ANGULAR', { value: 'Angular', enabled: false, image: 'angular_nav_gradient.gif', level: 0 }],
+  ['RXJS', { value: 'RxJS', enabled: false, image: 'rxjs1.svg', level: 0 }],
 ]);
 
 @Component({
@@ -20,7 +21,7 @@ const subjectsMap = new Map<string, SubjectCard>([
       >
         <img src="../../../assets/img/{{subject.image}}" />
         <h2>{{ subject.value }}</h2>
-        <p>Level X</p>
+        <p>Level {{ subject.level }}</p>
         <button
           mat-stroked-button
           [disabled]="!subject.enabled"
@@ -74,14 +75,20 @@ const subjectsMap = new Map<string, SubjectCard>([
 })
 export class TestSelectionComponent {
   startTest = output<string>();
-  subjectEligibility = input<string[]>([]);
+  subjectEligibility = input<SubjectLevel[]>([]);
 
-  enabledSubjects = linkedSignal<string[], SubjectCard[]>({
+  enabledSubjects = linkedSignal<SubjectLevel[], SubjectCard[]>({
     source: this.subjectEligibility,
     computation: (subjects) => {
-      subjectsMap.forEach(
-        (subjectCard, key) => (subjectCard.enabled = subjects?.includes(key))
-      );
+      subjectsMap.forEach((subjectCard, key) => {
+        const matchingSubject = subjects.find(
+          (subj) => subj.subject.toUpperCase() === key
+        );
+        if (matchingSubject) {
+          subjectCard.level = matchingSubject.levelCount;
+          subjectCard.enabled = matchingSubject.enabled;
+        }
+      });
       return Array.from(subjectsMap.values());
     },
   });

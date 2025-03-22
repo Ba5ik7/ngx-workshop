@@ -69,20 +69,16 @@ export class AssessmentTestService {
       ),
     }).pipe(
       map(({ userTests, assessmentTests }) => {
-        const userTestsArray = Array.isArray(userTests)
-          ? userTests
-          : [userTests];
-        const assessmentTestsArray = Array.isArray(assessmentTests)
-          ? assessmentTests
-          : [assessmentTests];
-        return subjects.filter(
-          (subject) =>
-            userTestsArray.filter(
-              (test) => test.subject === subject && test.completed
-            ).length <
-            assessmentTestsArray.filter((test) => test.subject === subject)
-              .length
-        );
+        const userTestsArray = Array.isArray(userTests) ? userTests : [userTests];
+        const assessmentTestsArray = Array.isArray(assessmentTests) ? assessmentTests : [assessmentTests];
+        return subjects
+          .map(subject => {
+            const completedCount = userTestsArray.filter(test => test.subject === subject && test.completed).length;
+            const totalCount = assessmentTestsArray.filter(test => test.subject === subject).length;
+            return { subject, levelCount: completedCount, totalCount, enabled: completedCount < totalCount };
+          })
+          // .filter(({ levelCount, totalCount }) => levelCount < totalCount)
+          // .map(({ subject, levelCount }) => ({ subject, levelCount }));
       }),
       catchError((err) =>
         throwError(

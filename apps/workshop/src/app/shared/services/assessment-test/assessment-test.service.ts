@@ -28,6 +28,13 @@ export interface ITestQuestion {
   incorrectResponse: string;
 }
 
+export interface SubjectLevel {
+  subject: string;
+  levelCount: number;
+  totalCount: number;
+  enabled: boolean;
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -77,7 +84,7 @@ export class AssessmentTestService {
   }
 
   fetchUserSubjectsEligibility(subjects: string[]) {
-    return this.httpClient.get<string[]>(
+    return this.httpClient.get<SubjectLevel[]>(
       `/api/assessment-test/user-subjects-eligibility?subjects=${subjects.join(
         ','
       )}`
