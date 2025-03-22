@@ -8,10 +8,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { AssessmentTestService } from 'apps/workshop/src/app/shared/services/assessment-test/assessment-test.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
     imports: [
         CommonModule,
+        RouterLink,
         MatGridListModule,
         MatCardModule,
         MatMenuModule,
@@ -38,6 +40,7 @@ import { AssessmentTestService } from 'apps/workshop/src/app/shared/services/ass
               </mat-card-title>
             </mat-card-header>
             <mat-card-content class="dashboard-card-content">
+              <a routerLink="/assessment-test">Assesment Test</a>
               <pre><code>{{card.assessmentTest | json }}</code></pre>
             </mat-card-content>
           </mat-card>

@@ -35,9 +35,9 @@ type TCard = {
             <div class="card-header">
               <div class="card-title">
                 {{card.title}}
-                <button 
-                  mat-icon-button class="more-button" 
-                  [matMenuTriggerFor]="menu" 
+                <button
+                  mat-icon-button class="more-button"
+                  [matMenuTriggerFor]="menu"
                   aria-label="Toggle menu">
                   <mat-icon>more_vert</mat-icon>
                 </button>
@@ -58,7 +58,7 @@ type TCard = {
   `,
     styles: [`
     .grid-container { margin: 20px; }
-    
+
     .dashboard-card {
       position: absolute;
       top: 15px;
