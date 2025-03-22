@@ -1,16 +1,16 @@
 import { Component, inject, signal } from '@angular/core';
 import { TestSelectionComponent } from './test-selection/test-selection.component';
 import { AssessmentTestService } from '../../shared/services/assessment-test/assessment-test.service';
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, NgClass } from '@angular/common';
 import { TestQuestionComponent } from './test-question/test-question.component';
 import { BehaviorSubject, combineLatest, lastValueFrom, map, tap } from 'rxjs';
 
 @Component({
   selector: 'app-assessment-test',
   host: { class: 'main-content' },
-  imports: [TestSelectionComponent, TestQuestionComponent, AsyncPipe],
+  imports: [TestSelectionComponent, TestQuestionComponent, AsyncPipe, NgClass],
   template: `
-    <div class="container">
+    <div class="container" [ngClass]="{ 'taking-test': beginTest() }">
       @if(beginTest()) {
       <ngx-test-question
         [question]="(currentQuestion$ | async)!"
@@ -36,6 +36,13 @@ import { BehaviorSubject, combineLatest, lastValueFrom, map, tap } from 'rxjs';
           padding: 36px;
           background-color: var(--mat-sys-secondary-container);
           color: var(--mat-sys-on-secondary-container);
+          @media (min-width: 768px) {
+            width: 60%;
+            &.taking-test {
+              width: 40%;
+            }
+          }
+
           // box-shadow: var(--mat-sys-level5);
         }
       }

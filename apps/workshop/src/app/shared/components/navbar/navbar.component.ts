@@ -22,7 +22,7 @@ import { RouterLink, RouterModule } from '@angular/router';
   template: `
     <ng-container *ngIf="viewModel$ | async as mv; else loading">
       <nav class="navbar-header mat-elevation-z6 docs-navbar-hide-small">
-        <a routerLink="/" class="workshop-logo docs-button">
+        <a routerLink="{{ mv.signedIn ? '/sidenav/dashboard/overview' : '/' }}" class="workshop-logo docs-button">
           <mat-icon>tips_and_updates</mat-icon>
           <p>Ngx-Workshop</p>
         </a>
