@@ -95,6 +95,7 @@ export class AssessmentTestService {
   startTest(subject: string, userId: string): Observable<TUserAssessmentTest> {
     return from(this.userAssessmentTestModel.find({ userId, subject })).pipe(
       map((userAssessmentsTests) => {
+        console.log('userAssessmentsTests', userAssessmentsTests);
         const testsArray = Array.isArray(userAssessmentsTests)
           ? userAssessmentsTests
           : [userAssessmentsTests];
@@ -113,6 +114,7 @@ export class AssessmentTestService {
           this.assessmentTestModel.findOne({ subject, level: nextTestLevel })
         ).pipe(
           switchMap((nextAssessmentTest) => {
+            console.log('nextAssessmentTest', nextAssessmentTest);
             if (!nextAssessmentTest) {
               return throwError(
                 () => new Error(`User has maxed out tests for ${subject}`)
@@ -123,6 +125,7 @@ export class AssessmentTestService {
               this.userAssessmentTestModel.create({
                 assessmentTestId: nextAssessmentTest._id,
                 userId,
+                subject,
               })
             );
           })

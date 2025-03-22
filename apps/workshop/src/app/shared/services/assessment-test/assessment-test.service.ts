@@ -75,4 +75,12 @@ export class AssessmentTestService {
       }
     );
   }
+
+  fetchUserSubjectsEligibility(subjects: string[]) {
+    return this.httpClient.get<string[]>(
+      `/api/assessment-test/user-subjects-eligibility?subjects=${subjects.join(
+        ','
+      )}`
+    );
+  }
 }

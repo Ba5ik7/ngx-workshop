@@ -17,7 +17,10 @@ import { BehaviorSubject, combineLatest, lastValueFrom, map, tap } from 'rxjs';
         (submittedAnswer)="submitAnswer($event)"
       ></ngx-test-question>
       } @else {
-      <ngx-test-selection (startTest)="startTest()"></ngx-test-selection>
+      <ngx-test-selection
+        [subjectEligibility]="(subjectEligibility$ | async)!"
+        (startTest)="startTest($event)"
+      ></ngx-test-selection>
       }
     </div>
   `,
@@ -26,19 +29,14 @@ import { BehaviorSubject, combineLatest, lastValueFrom, map, tap } from 'rxjs';
       :host {
         height: 100%;
         display: flex;
-        flex-direction: column;
         align-items: center;
         justify-content: center;
         .container {
-          max-width: 800px;
-          max-height: 600px;
-          overflow: auto;
-          width: 100%;
           border-radius: 24px;
-          padding: 24px;
+          padding: 36px;
           background-color: var(--mat-sys-secondary-container);
           color: var(--mat-sys-on-secondary-container);
-          box-shadow: var(--mat-sys-level5);
+          // box-shadow: var(--mat-sys-level5);
         }
       }
     `,
@@ -52,6 +50,10 @@ export class AssessmentTestComponent {
   currentIndex = new BehaviorSubject(0);
   answers: string[] = [];
 
+  subjectEligibility$ = this.assessmentTestService.fetchUserSubjectsEligibility(
+    ['ANGULAR', 'NESTJS', 'RXJS']
+  );
+
   currentQuestion$ = combineLatest([
     this.currentIndex,
     this.assessmentTestService.assessmentTest$,
@@ -64,18 +66,21 @@ export class AssessmentTestComponent {
     map(({ currentIndex, testQuestions }) => testQuestions[currentIndex])
   );
 
-  startTest() {
+  startTest(subject: string) {
     this.beginTest.set(true);
-    lastValueFrom(
-      this.assessmentTestService.startUserAssessmentTest('ANGULAR')
-    );
+    lastValueFrom(this.assessmentTestService.startUserAssessmentTest(subject));
   }
 
   submitAnswer(answer: string) {
     if (this.answers.push(answer) >= this.testLength) {
-      this.beginTest.set(false);
       lastValueFrom(
-        this.assessmentTestService.submitTest(this.answers)
+        this.assessmentTestService.submitTest(this.answers).pipe(
+          tap(() => {
+            this.beginTest.set(false);
+            this.currentIndex.next(0);
+            this.answers = [];
+          })
+        )
       );
     } else {
       this.currentIndex.next(this.currentIndex.value + 1);

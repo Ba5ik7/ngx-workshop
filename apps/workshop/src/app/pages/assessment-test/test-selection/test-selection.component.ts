@@ -1,16 +1,88 @@
-import { Component, output } from '@angular/core';
+import { Component, input, linkedSignal, output } from '@angular/core';
 import { MatButton } from '@angular/material/button';
+
+type SubjectCard = { value: string; enabled: boolean, image: string };
+const subjectsMap = new Map<string, SubjectCard>([
+  ['NESTJS', { value: 'NestJS', enabled: false, image: 'nestjs2.svg' }],
+  ['ANGULAR', { value: 'Angular', enabled: false, image: 'angular_nav_gradient.gif' }],
+  ['RXJS', { value: 'RxJS', enabled: false, image: 'rxjs1.svg' }],
+]);
 
 @Component({
   selector: 'ngx-test-selection',
   imports: [MatButton],
   template: `
-  <h1>Assessment Test Start</h1>
-  <p>Click the button below to start the test. Once you start the test, you will not be able to go back.</p>
-  <p>Good luck! & Don't Cheat!</p>
-  <button mat-button (click)="startTest.emit()">Start Test</button>
+    <h1>Select a subject to start assessment test.</h1>
+    <div class="assessment-test-selection-wrapper">
+      @for (subject of enabledSubjects(); track subject.value) {
+      <a
+        class="assessment-test-selection"
+      >
+        <img src="../../../assets/img/{{subject.image}}" />
+        <h2>{{ subject.value }}</h2>
+        <p>Level X</p>
+        <button
+          mat-stroked-button
+          [disabled]="!subject.enabled"
+          (click)="startTest.emit(subject.value.toUpperCase())"
+        >
+          {{ subject.enabled ? 'Start Test' : 'Come back later' }}
+        </button>
+      </a>
+      } @empty {
+      <p>No tests available</p>
+      }
+    </div>
   `,
+  styles: [
+    `
+      :host {
+        h1 {
+          font-size: 2.5rem;
+          font-weight: 300;
+          margin: 0 0 24px;
+        }
+        h2 {
+          font-size: 2rem;
+          font-weight: 400;
+          margin: 0 0 4px;
+        }
+
+        p {
+          font-size: 1.3rem;
+          font-weight: 300;
+          line-height: 1.75rem;
+          margin: 0 0 24px 0;
+        }
+        .assessment-test-selection-wrapper {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 48px;
+          .assessment-test-selection {
+            display: flex;
+            flex-direction: column;
+            img {
+              width: 200px;
+              height: 200px;
+            }
+          }
+        }
+      }
+    `,
+  ],
 })
 export class TestSelectionComponent {
-  startTest = output();
+  startTest = output<string>();
+  subjectEligibility = input<string[]>([]);
+
+  enabledSubjects = linkedSignal<string[], SubjectCard[]>({
+    source: this.subjectEligibility,
+    computation: (subjects) => {
+      subjectsMap.forEach(
+        (subjectCard, key) => (subjectCard.enabled = subjects?.includes(key))
+      );
+      return Array.from(subjectsMap.values());
+    },
+  });
 }
