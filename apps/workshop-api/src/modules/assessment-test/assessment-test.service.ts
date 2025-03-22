@@ -12,10 +12,10 @@ import {
 } from './schemas/user-assessment-test.schemas';
 import {
   catchError,
+  forkJoin,
   from,
   map,
   Observable,
-  of,
   switchMap,
   throwError,
 } from 'rxjs';
@@ -39,7 +39,9 @@ export class AssessmentTestService {
   }
 
   async fetchAssessmentTest(id: string) {
-    return await this.assessmentTestModel.findById(new Types.ObjectId(id)).exec();
+    return await this.assessmentTestModel
+      .findById(new Types.ObjectId(id))
+      .exec();
   }
 
   async update(assessmentTest: TAssessmentTest) {
@@ -52,6 +54,42 @@ export class AssessmentTestService {
 
   async delete(_id: string) {
     return await this.assessmentTestModel.deleteOne({ _id });
+  }
+
+  fetchUserSubjectsEligibility(userId: string, subjects: string[]) {
+    return forkJoin({
+      userTests: from(
+        this.userAssessmentTestModel.find({
+          userId,
+          subject: { $in: subjects },
+        })
+      ),
+      assessmentTests: from(
+        this.assessmentTestModel.find({ subject: { $in: subjects } })
+      ),
+    }).pipe(
+      map(({ userTests, assessmentTests }) => {
+        const userTestsArray = Array.isArray(userTests)
+          ? userTests
+          : [userTests];
+        const assessmentTestsArray = Array.isArray(assessmentTests)
+          ? assessmentTests
+          : [assessmentTests];
+        return subjects.filter(
+          (subject) =>
+            userTestsArray.filter(
+              (test) => test.subject === subject && test.completed
+            ).length <
+            assessmentTestsArray.filter((test) => test.subject === subject)
+              .length
+        );
+      }),
+      catchError((err) =>
+        throwError(
+          () => new Error(`Failed to fetch subjects level: ${err.message}`)
+        )
+      )
+    );
   }
 
   startTest(subject: string, userId: string): Observable<TUserAssessmentTest> {

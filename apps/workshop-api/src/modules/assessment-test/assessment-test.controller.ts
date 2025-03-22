@@ -1,4 +1,12 @@
-import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Query,
+} from '@nestjs/common';
 import { AssessmentTestService } from './assessment-test.service';
 import { TAssessmentTest } from './schemas/assessment-test.schemas';
 import { ActiveUser } from '../../decorators/active-user.decorator';
@@ -26,6 +34,18 @@ export class AssessmentTestController {
   @Delete()
   delete(@Body() id: string) {
     return this.assessmentTestService.delete(id);
+  }
+
+  @Get('user-subjects-eligibility')
+  fetchUserSubjectsEligibility(
+    @ActiveUser() user: IActiveUserData,
+    @Query('subjects') subjects: string
+  ) {
+    const subjectArray = subjects.split(',');
+    return this.assessmentTestService.fetchUserSubjectsEligibility(
+      user.sub,
+      subjectArray
+    );
   }
 
   @Post('start-test')
