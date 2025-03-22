@@ -1,6 +1,4 @@
-import { Body, Controller, Delete, Get, Post } from '@nestjs/common';
-import { Auth } from '../../decorators/auth.decorator';
-import { AuthType } from '../../enums/auth-type.enum';
+import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { AssessmentTestService } from './assessment-test.service';
 import { TAssessmentTest } from './schemas/assessment-test.schemas';
 import { ActiveUser } from '../../decorators/active-user.decorator';
@@ -11,7 +9,7 @@ export class AssessmentTestController {
   constructor(private assessmentTestService: AssessmentTestService) {}
 
   @Post()
-  create(@Body() assessmentTest: TAssessmentTest): Promise<TAssessmentTest> {
+  create(@Body() assessmentTest: TAssessmentTest) {
     return this.assessmentTestService.create(assessmentTest);
   }
 
@@ -21,7 +19,7 @@ export class AssessmentTestController {
   }
 
   @Post()
-  update(@Body() assessmentTest: TAssessmentTest): Promise<TAssessmentTest> {
+  update(@Body() assessmentTest: TAssessmentTest) {
     return this.assessmentTestService.update(assessmentTest);
   }
 
@@ -39,13 +37,15 @@ export class AssessmentTestController {
   }
 
   @Post('submit-test')
-  submitTest(
-    @ActiveUser() user: IActiveUserData,
-    @Body() reqBody: { testId: string; answers: string[] }
-  ) {
+  submitTest(@Body() reqBody: { testId: string; answers: string[] }) {
     return this.assessmentTestService.submitTest(
       reqBody.testId,
       reqBody.answers
     );
+  }
+
+  @Get(':id')
+  fetchAssessmentTest(@Param('id') id: string) {
+    return this.assessmentTestService.fetchAssessmentTest(id);
   }
 }

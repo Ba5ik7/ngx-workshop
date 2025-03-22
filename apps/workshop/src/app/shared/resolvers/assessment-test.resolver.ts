@@ -4,6 +4,6 @@ import { Observable } from 'rxjs';
 import { AssessmentTestService } from '../services/assessment-test/assessment-test.service';
 
 type AssessmentTestResolver = ResolveFn<Observable<unknown>>;
-export const assessmentTestResolver: AssessmentTestResolver = () => {
-  return inject(AssessmentTestService).fetchAssessmentTest();
+export const assessmentTestResolver: AssessmentTestResolver = (route) => {
+  return inject(AssessmentTestService).fetchAssessmentTest(route.params['id']);
 };

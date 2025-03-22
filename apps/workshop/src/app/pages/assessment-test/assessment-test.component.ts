@@ -3,7 +3,7 @@ import { TestSelectionComponent } from './test-selection/test-selection.componen
 import { AssessmentTestService } from '../../shared/services/assessment-test/assessment-test.service';
 import { AsyncPipe } from '@angular/common';
 import { TestQuestionComponent } from './test-question/test-question.component';
-import { BehaviorSubject, combineLatest, map } from 'rxjs';
+import { BehaviorSubject, combineLatest, lastValueFrom, map, tap } from 'rxjs';
 
 @Component({
   selector: 'app-assessment-test',
@@ -13,13 +13,11 @@ import { BehaviorSubject, combineLatest, map } from 'rxjs';
     <div class="container">
       @if(beginTest()) {
       <ngx-test-question
-        [question]="currentQuestion$ | async"
-        (answer)="answerQuestion()"
+        [question]="(currentQuestion$ | async)!"
+        (submittedAnswer)="submitAnswer($event)"
       ></ngx-test-question>
       } @else {
-      <ngx-test-selection
-        (startTest)="beginTest.set(true)"
-      ></ngx-test-selection>
+      <ngx-test-selection (startTest)="startTest()"></ngx-test-selection>
       }
     </div>
   `,
@@ -50,17 +48,37 @@ export class AssessmentTestComponent {
   assessmentTestService = inject(AssessmentTestService);
   beginTest = signal(false);
 
+  testLength = 0;
   currentIndex = new BehaviorSubject(0);
+  answers: string[] = [];
 
   currentQuestion$ = combineLatest([
     this.currentIndex,
-    this.assessmentTestService.assessmentTest$.pipe(
-      map((test) => test[0].testQuestions)
-    ),
-  ]).pipe(map(([currentIndex, testQuestions]) => testQuestions[currentIndex]));
+    this.assessmentTestService.assessmentTest$,
+  ]).pipe(
+    map(([currentIndex, test]) => ({
+      currentIndex,
+      testQuestions: test ? test.testQuestions : [],
+    })),
+    tap(({ testQuestions }) => (this.testLength = testQuestions.length)),
+    map(({ currentIndex, testQuestions }) => testQuestions[currentIndex])
+  );
 
-  answerQuestion() {
-    this.currentIndex.next(this.currentIndex.value + 1);
-    // this.assessmentTestService.answerQuestion();
+  startTest() {
+    this.beginTest.set(true);
+    lastValueFrom(
+      this.assessmentTestService.startUserAssessmentTest('ANGULAR')
+    );
+  }
+
+  submitAnswer(answer: string) {
+    if (this.answers.push(answer) >= this.testLength) {
+      this.beginTest.set(false);
+      lastValueFrom(
+        this.assessmentTestService.submitTest(this.answers)
+      );
+    } else {
+      this.currentIndex.next(this.currentIndex.value + 1);
+    }
   }
 }

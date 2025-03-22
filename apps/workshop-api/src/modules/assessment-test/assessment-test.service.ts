@@ -4,7 +4,7 @@ import {
   TAssessmentTest,
 } from './schemas/assessment-test.schemas';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import { Model, Types } from 'mongoose';
 import { User, UserDocument } from '../iam/authentication/schemas/user.schema';
 import {
   UserAssessmentTest,
@@ -36,6 +36,10 @@ export class AssessmentTestService {
 
   async fetch() {
     return await this.assessmentTestModel.find().exec();
+  }
+
+  async fetchAssessmentTest(id: string) {
+    return await this.assessmentTestModel.findById(new Types.ObjectId(id)).exec();
   }
 
   async update(assessmentTest: TAssessmentTest) {
