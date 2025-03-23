@@ -94,8 +94,12 @@ export class SomeWidgetComponent {
                 <mat-icon>more_vert</mat-icon>
               </button>
               <mat-menu #menu="matMenu" xPosition="before">
-                <button mat-menu-item>Expand</button>
-                <button mat-menu-item>Remove</button>
+                <button mat-menu-item (click)="thinOrWide(widget)">
+                  {{ widget.cols === 1 ? 'Wide' : 'Thin' }}
+                </button>
+                <button mat-menu-item (click)="shortOrTall(widget)">
+                  {{ widget.rows === 1 ? 'Tall' : 'Short' }}
+                </button>
               </mat-menu>
             </mat-card-title>
             <mat-card-content>
@@ -137,6 +141,14 @@ export class DynamicGridListComponent {
   assessmentTest = inject(AssessmentTestService);
   breakpointObserver = inject(BreakpointObserver);
 
+  thinOrWide(widget: WidgetConfig) {
+    widget.cols = widget.cols === 2 ? 1 : 2;
+  }
+
+  shortOrTall(widget: WidgetConfig) {
+    widget.rows = widget.rows === 2 ? 1 : 2;
+  }
+
   widgets = combineLatest([
     this.breakpointObserver.observe(Breakpoints.Handset),
     this.assessmentTest.fetchUserSubjectsEligibility([
@@ -158,7 +170,7 @@ export class DynamicGridListComponent {
             cols: 1,
             rows: 1,
           },
-      ];
+        ];
       }
       return [
         {
