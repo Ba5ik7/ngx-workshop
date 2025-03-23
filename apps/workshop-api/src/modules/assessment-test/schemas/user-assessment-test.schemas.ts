@@ -31,6 +31,9 @@ export class UserAssessmentTest {
   userAnswers: string[];
 
   @Prop({ default: false })
+  passed: boolean;
+
+  @Prop({ default: false })
   completed: boolean;
 
   @Prop({ default: () => Date.now() })

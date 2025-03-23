@@ -5,7 +5,6 @@ import {
 } from './schemas/assessment-test.schemas';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
-import { User, UserDocument } from '../iam/authentication/schemas/user.schema';
 import {
   UserAssessmentTest,
   TUserAssessmentTest,
@@ -23,7 +22,6 @@ import {
 @Injectable()
 export class AssessmentTestService {
   constructor(
-    @InjectModel(User.name) private userModel: Model<UserDocument>,
     @InjectModel(UserAssessmentTest.name)
     private userAssessmentTestModel: Model<TUserAssessmentTest>,
     @InjectModel(AssessmentTest.name)
@@ -56,6 +54,10 @@ export class AssessmentTestService {
     return await this.assessmentTestModel.deleteOne({ _id });
   }
 
+  async fetchUsersAssessments(userId: string) {
+    return await this.userAssessmentTestModel.find({ userId }).exec();
+  }
+
   fetchUserSubjectsEligibility(userId: string, subjects: string[]) {
     return forkJoin({
       userTests: from(
@@ -69,16 +71,28 @@ export class AssessmentTestService {
       ),
     }).pipe(
       map(({ userTests, assessmentTests }) => {
-        const userTestsArray = Array.isArray(userTests) ? userTests : [userTests];
-        const assessmentTestsArray = Array.isArray(assessmentTests) ? assessmentTests : [assessmentTests];
-        return subjects
-          .map(subject => {
-            const completedCount = userTestsArray.filter(test => test.subject === subject && test.completed).length;
-            const totalCount = assessmentTestsArray.filter(test => test.subject === subject).length;
-            return { subject, levelCount: completedCount, totalCount, enabled: completedCount < totalCount };
-          })
-          // .filter(({ levelCount, totalCount }) => levelCount < totalCount)
-          // .map(({ subject, levelCount }) => ({ subject, levelCount }));
+        const userTestsArray = Array.isArray(userTests)
+          ? userTests
+          : [userTests];
+        const assessmentTestsArray = Array.isArray(assessmentTests)
+          ? assessmentTests
+          : [assessmentTests];
+        return subjects.map((subject) => {
+          const completedCount = userTestsArray.filter(
+            (test) => test.subject === subject && test.completed
+          ).length;
+          const totalCount = assessmentTestsArray.filter(
+            (test) => test.subject === subject
+          ).length;
+          return {
+            subject,
+            levelCount: completedCount,
+            totalCount,
+            enabled: completedCount < totalCount,
+          };
+        });
+        // .filter(({ levelCount, totalCount }) => levelCount < totalCount)
+        // .map(({ subject, levelCount }) => ({ subject, levelCount }));
       }),
       catchError((err) =>
         throwError(
@@ -91,7 +105,6 @@ export class AssessmentTestService {
   startTest(subject: string, userId: string): Observable<TUserAssessmentTest> {
     return from(this.userAssessmentTestModel.find({ userId, subject })).pipe(
       map((userAssessmentsTests) => {
-        console.log('userAssessmentsTests', userAssessmentsTests);
         const testsArray = Array.isArray(userAssessmentsTests)
           ? userAssessmentsTests
           : [userAssessmentsTests];
@@ -110,7 +123,6 @@ export class AssessmentTestService {
           this.assessmentTestModel.findOne({ subject, level: nextTestLevel })
         ).pipe(
           switchMap((nextAssessmentTest) => {
-            console.log('nextAssessmentTest', nextAssessmentTest);
             if (!nextAssessmentTest) {
               return throwError(
                 () => new Error(`User has maxed out tests for ${subject}`)
@@ -175,6 +187,7 @@ export class AssessmentTestService {
                 {
                   completed: true,
                   score,
+                  passed: score === assessmentTest.testQuestions.length,
                   userAnswers: answers,
                 },
                 { returnDocument: 'after' }

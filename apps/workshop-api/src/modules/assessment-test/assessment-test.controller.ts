@@ -36,6 +36,15 @@ export class AssessmentTestController {
     return this.assessmentTestService.delete(id);
   }
 
+  @Get('user-asssessments')
+  fetchUsersAssessments(
+    @ActiveUser() user: IActiveUserData,
+  ) {
+    return this.assessmentTestService.fetchUsersAssessments(
+      user.sub
+    );
+  }
+
   @Get('user-subjects-eligibility')
   fetchUserSubjectsEligibility(
     @ActiveUser() user: IActiveUserData,
