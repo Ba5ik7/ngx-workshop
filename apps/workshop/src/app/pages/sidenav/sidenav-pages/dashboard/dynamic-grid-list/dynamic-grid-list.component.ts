@@ -6,6 +6,7 @@ import {
   input,
   Input,
   OnInit,
+  signal,
   Type,
   ViewContainerRef,
 } from '@angular/core';
@@ -21,9 +22,15 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
-import { AssessmentTestService } from 'apps/workshop/src/app/shared/services/assessment-test/assessment-test.service';
-import { RouterLink } from '@angular/router';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { combineLatest } from 'rxjs';
+
+import {
+  AssessmentTestService,
+  SubjectLevel,
+} from '../../../../../shared/services/assessment-test/assessment-test.service';
+import { TestsInfoWidgetComponent } from '../widgets/tests-info-widget.component';
+import { TodoWidgetComponent } from '../widgets/todo-widget.component';
 
 export interface WidgetConfig {
   id: string;
@@ -54,20 +61,17 @@ export class DynamicWidgetDirective implements OnInit {
 
 @Component({
   selector: 'app-some-widget',
-  imports: [CommonModule],
-  template: `<div>
-    <h2>{{ data().title }}</h2>
-    <pre>{{ data() | json }}</pre>
-  </div>`,
+  imports: [CommonModule, MatExpansionModule],
+  template: ` <pre>{{ data() | json }}</pre> `,
 })
 export class SomeWidgetComponent {
-  data = input.required<WidgetConfig>();
+  panelOpenState = signal(false);
+  data = input.required<SubjectLevel[]>();
 }
 
 @Component({
   imports: [
     CommonModule,
-    RouterLink,
     MatGridListModule,
     MatCardModule,
     MatMenuModule,
@@ -84,7 +88,6 @@ export class SomeWidgetComponent {
         <mat-grid-tile [colspan]="widget.cols" [rowspan]="widget.rows">
           <mat-card appearance="outlined" class="dashboard-card">
             <mat-card-title>
-              {{ widget.title }}
               <button
                 mat-icon-button
                 class="more-button"
@@ -158,7 +161,7 @@ export class DynamicGridListComponent {
     ]),
   ]).pipe(
     map(([{ matches }, assessmentTest]) => {
-      const widgetData = { assessmentTest };
+      const widgetData = assessmentTest;
 
       if (matches) {
         return [
@@ -184,7 +187,7 @@ export class DynamicGridListComponent {
         {
           id: 'widget2',
           title: 'Test Widget 2',
-          componentType: SomeWidgetComponent,
+          componentType: TodoWidgetComponent,
           data: widgetData,
           cols: 1,
           rows: 1,
@@ -192,7 +195,7 @@ export class DynamicGridListComponent {
         {
           id: 'widget3',
           title: 'Test Widget 3',
-          componentType: SomeWidgetComponent,
+          componentType: TestsInfoWidgetComponent,
           data: widgetData,
           cols: 1,
           rows: 2,
