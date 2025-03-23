@@ -132,6 +132,7 @@ export class AssessmentTestService {
             return from(
               this.userAssessmentTestModel.create({
                 assessmentTestId: nextAssessmentTest._id,
+                testName: nextAssessmentTest.name,
                 userId,
                 subject,
               })

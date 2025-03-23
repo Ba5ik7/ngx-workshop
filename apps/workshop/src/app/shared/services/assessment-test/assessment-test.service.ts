@@ -6,7 +6,9 @@ export interface IUserAssessmentTest {
   _id: string;
   assessmentTestId: string;
   userId: string;
+  testName: string;
   score: number;
+  passed: boolean;
   completed: boolean;
   subject: string;
   userAnswers: string[];
@@ -88,6 +90,12 @@ export class AssessmentTestService {
       `/api/assessment-test/user-subjects-eligibility?subjects=${subjects.join(
         ','
       )}`
+    );
+  }
+
+  fetchUsersAssessments() {
+    return this.httpClient.get<IUserAssessmentTest[]>(
+      '/api/assessment-test/user-asssessments'
     );
   }
 }

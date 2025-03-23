@@ -21,6 +21,9 @@ export class UserAssessmentTest {
   @Prop({ required: true })
   userId: string;
 
+  @Prop({ default: () => 'DEFAULT' })
+  testName: string;
+
   @Prop({ default: 0 })
   score: number;
 

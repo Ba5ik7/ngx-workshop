@@ -124,6 +124,8 @@ export class SomeWidgetComponent {
         margin: 20px;
       }
       .dashboard-card {
+        color: var(--mat-sys-on-secondary-container);
+        background-color: var(--mat-sys-secondary-container);
         position: absolute;
         top: 15px;
         left: 15px;
@@ -154,14 +156,15 @@ export class DynamicGridListComponent {
 
   widgets = combineLatest([
     this.breakpointObserver.observe(Breakpoints.Handset),
+    this.assessmentTest.fetchUsersAssessments(),
     this.assessmentTest.fetchUserSubjectsEligibility([
       'ANGULAR',
       'NESTJS',
       'RXJS',
     ]),
   ]).pipe(
-    map(([{ matches }, assessmentTest]) => {
-      const widgetData = assessmentTest;
+    map(([{ matches }, assessmentTests, subjectLevels]) => {
+      const testInfoWidgetData = { assessmentTests, subjectLevels };
 
       if (matches) {
         return [
@@ -169,7 +172,7 @@ export class DynamicGridListComponent {
             id: 'widget1',
             title: 'Test Widget',
             componentType: SomeWidgetComponent,
-            data: widgetData,
+            data: testInfoWidgetData,
             cols: 1,
             rows: 1,
           },
@@ -180,7 +183,7 @@ export class DynamicGridListComponent {
           id: 'widget1',
           title: 'Test Widget',
           componentType: SomeWidgetComponent,
-          data: widgetData,
+          data: testInfoWidgetData,
           cols: 2,
           rows: 1,
         },
@@ -188,7 +191,7 @@ export class DynamicGridListComponent {
           id: 'widget2',
           title: 'Test Widget 2',
           componentType: TodoWidgetComponent,
-          data: widgetData,
+          data: testInfoWidgetData,
           cols: 1,
           rows: 1,
         },
@@ -196,7 +199,7 @@ export class DynamicGridListComponent {
           id: 'widget3',
           title: 'Test Widget 3',
           componentType: TestsInfoWidgetComponent,
-          data: widgetData,
+          data: testInfoWidgetData,
           cols: 1,
           rows: 2,
         },
@@ -204,7 +207,7 @@ export class DynamicGridListComponent {
           id: 'widget4',
           title: 'Test Widget 4',
           componentType: SomeWidgetComponent,
-          data: widgetData,
+          data: testInfoWidgetData,
           cols: 1,
           rows: 1,
         },
