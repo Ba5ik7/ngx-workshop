@@ -10,6 +10,7 @@ import { MatDivider } from '@angular/material/divider';
 import { MatButton, MatButtonModule } from '@angular/material/button';
 import { RouterLink } from '@angular/router';
 import { map, timer } from 'rxjs';
+import { MatIconModule } from '@angular/material/icon';
 
 type TestInfo = {
   assessmentTests: IUserAssessmentTest[];
@@ -19,6 +20,7 @@ type TestInfo = {
 interface TestInfoViewModel {
   subjectLevels: {
     subjectTitle: string;
+    subjectIcon: string;
     levelCount: number;
     completedTests?: {
       testName: string;
@@ -32,6 +34,12 @@ interface TestInfoViewModel {
   }[];
 }
 
+const iconMap = new Map<string, string>([
+  ['ANGULAR', 'angular_white_logomark'],
+  ['RXJS', 'rxjs_white_logomark'],
+  ['NESTJS', 'nestjs_white_logomark'],
+]);
+
 @Component({
   selector: 'ngx-tests-info-widget',
   imports: [
@@ -40,6 +48,7 @@ interface TestInfoViewModel {
     MatProgressBarModule,
     MatDivider,
     MatButtonModule,
+    MatIconModule,
     RouterLink,
   ],
   template: `
@@ -48,7 +57,9 @@ interface TestInfoViewModel {
       @for (subject of data().subjectLevels; track $index) {
       <mat-expansion-panel [expanded]="subject.subjectTitle === 'ANGULAR' && (openPanelDelay | async)" >
         <mat-expansion-panel-header>
-          <mat-panel-title> {{ subject.subjectTitle }} </mat-panel-title>
+          <mat-panel-title>
+            <mat-icon class="subject-icon" [svgIcon]="subject.subjectIcon"></mat-icon> {{ subject.subjectTitle }}
+          </mat-panel-title>
           <mat-panel-description>
             Level {{ subject.levelCount }}
           </mat-panel-description>
@@ -103,6 +114,9 @@ interface TestInfoViewModel {
           align-items: flex-end;
           justify-content: space-between;
         }
+        .subject-icon {
+          margin-right: 12px;
+        }
         h2 {
           font-weight: 300;
           margin: 12px 0;
@@ -131,9 +145,9 @@ export class TestsInfoWidgetComponent {
 
   data = input.required<TestInfoViewModel, TestInfo>({
     transform: (data) => {
-      const subjectLevels = data.subjectLevels.map((subject) => {
+      const subjectLevels = data.subjectLevels.map((subjectLevel) => {
         const testsForSubject = data.assessmentTests.filter(
-          (test) => test.subject === subject.subject
+          (test) => test.subject === subjectLevel.subject
         );
 
         const incompleteTests = testsForSubject.filter(
@@ -151,8 +165,9 @@ export class TestsInfoWidgetComponent {
           });
 
         return {
-          subjectTitle: subject.subject,
-          levelCount: subject.levelCount,
+          subjectTitle: subjectLevel.subject,
+          subjectIcon: iconMap.get(subjectLevel.subject) ?? '',
+          levelCount: subjectLevel.levelCount,
           incompleteTests,
           completedTests,
         };
