@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, signal, input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import {
@@ -34,7 +34,14 @@ interface TestInfoViewModel {
 
 @Component({
   selector: 'ngx-tests-info-widget',
-  imports: [CommonModule, MatExpansionModule, MatProgressBarModule, MatDivider, MatButtonModule, RouterLink],
+  imports: [
+    CommonModule,
+    MatExpansionModule,
+    MatProgressBarModule,
+    MatDivider,
+    MatButtonModule,
+    RouterLink,
+  ],
   template: `
     <h2>Assessment Tests</h2>
     <mat-accordion>
@@ -115,7 +122,6 @@ interface TestInfoViewModel {
         .float-right {
           float: right;
         }
-
       }
     `,
   ],

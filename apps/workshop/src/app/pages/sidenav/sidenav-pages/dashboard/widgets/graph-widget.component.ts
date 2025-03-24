@@ -4,6 +4,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { NgxChartsModule, ScaleType } from '@swimlane/ngx-charts';
 
 import { SubjectLevel } from '../../../../../shared/services/assessment-test/assessment-test.service';
+import { map, timer } from 'rxjs';
 
 export var multi = [
   {
@@ -89,31 +90,33 @@ export var multi = [
   selector: 'ngx-graph-widget',
   imports: [CommonModule, MatExpansionModule, NgxChartsModule],
   template: `
-    <ngx-charts-line-chart
-      [scheme]="colorScheme"
-      [legend]="legend"
-      [legendTitle]="legendTitle"
-      [showXAxisLabel]="showXAxisLabel"
-      [showYAxisLabel]="showYAxisLabel"
-      [xAxis]="xAxis"
-      [yAxis]="yAxis"
-      [xAxisLabel]="xAxisLabel"
-      [yAxisLabel]="yAxisLabel"
-      [timeline]="timeline"
-      [results]="multi"
-      [autoScale]="autoScale"
-      (select)="onSelect($event)"
-      (activate)="onActivate($event)"
-      (deactivate)="onDeactivate($event)"
-    >
-    </ngx-charts-line-chart>
+    @if(delayView | async) {
+      <ngx-charts-line-chart
+        [scheme]="colorScheme"
+        [legend]="legend"
+        [legendTitle]="legendTitle"
+        [showXAxisLabel]="showXAxisLabel"
+        [showYAxisLabel]="showYAxisLabel"
+        [xAxis]="xAxis"
+        [yAxis]="yAxis"
+        [xAxisLabel]="xAxisLabel"
+        [yAxisLabel]="yAxisLabel"
+        [timeline]="timeline"
+        [results]="multi"
+        [autoScale]="autoScale"
+        (select)="onSelect($event)"
+        (activate)="onActivate($event)"
+        (deactivate)="onDeactivate($event)"
+      >
+      </ngx-charts-line-chart>
+    }
   `,
   styles: [
     `
       :host {
         display: block;
-        max-height: 324px;
-        padding-top: 24px;
+        // max-height: 324px;
+        // padding-top: 24px;
 
         &::ng-deep .ngx-charts .gridline-path {
           color: var(--mat-sys-on-secondary-container)!important;
@@ -130,6 +133,8 @@ export var multi = [
   ],
 })
 export class GraphWidgetComponent {
+  delayView = timer(1000).pipe(map(() => true));
+
   panelOpenState = signal(false);
   data = input.required<SubjectLevel[]>();
 
@@ -165,14 +170,14 @@ export class GraphWidgetComponent {
   }
 
   onSelect(data: unknown): void {
-    console.log('Item clicked', JSON.parse(JSON.stringify(data)));
+    // console.log('Item clicked', JSON.parse(JSON.stringify(data)));
   }
 
   onActivate(data: unknown): void {
-    console.log('Activate', JSON.parse(JSON.stringify(data)));
+    // console.log('Activate', JSON.parse(JSON.stringify(data)));
   }
 
   onDeactivate(data: unknown): void {
-    console.log('Deactivate', JSON.parse(JSON.stringify(data)));
+    // console.log('Deactivate', JSON.parse(JSON.stringify(data)));
   }
 }

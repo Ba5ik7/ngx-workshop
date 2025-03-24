@@ -181,7 +181,7 @@ export class WorkshopDetailComponent {
   requestBlocks$ = this.requestBlocks.asObservable();
 
   handleBlocks(blocks$: any) {
-    console.log(blocks$);
+    // console.log(blocks$);
   }
 }
 
