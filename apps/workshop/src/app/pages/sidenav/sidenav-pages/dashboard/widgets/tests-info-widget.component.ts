@@ -9,6 +9,7 @@ import {
 import { MatDivider } from '@angular/material/divider';
 import { MatButton, MatButtonModule } from '@angular/material/button';
 import { RouterLink } from '@angular/router';
+import { map, timer } from 'rxjs';
 
 type TestInfo = {
   assessmentTests: IUserAssessmentTest[];
@@ -38,7 +39,7 @@ interface TestInfoViewModel {
     <h2>Assessment Tests</h2>
     <mat-accordion>
       @for (subject of data().subjectLevels; track $index) {
-      <mat-expansion-panel>
+      <mat-expansion-panel [expanded]="subject.subjectTitle === 'ANGULAR' && (openPanelDelay | async)" >
         <mat-expansion-panel-header>
           <mat-panel-title> {{ subject.subjectTitle }} </mat-panel-title>
           <mat-panel-description>
@@ -120,7 +121,8 @@ interface TestInfoViewModel {
   ],
 })
 export class TestsInfoWidgetComponent {
-  panelOpenState = signal(false);
+  openPanelDelay = timer(800).pipe(map(() => true));
+
   data = input.required<TestInfoViewModel, TestInfo>({
     transform: (data) => {
       const subjectLevels = data.subjectLevels.map((subject) => {

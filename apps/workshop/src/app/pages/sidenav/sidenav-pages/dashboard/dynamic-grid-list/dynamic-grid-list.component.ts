@@ -31,6 +31,7 @@ import {
 } from '../../../../../shared/services/assessment-test/assessment-test.service';
 import { TestsInfoWidgetComponent } from '../widgets/tests-info-widget.component';
 import { TodoWidgetComponent } from '../widgets/todo-widget.component';
+import { GraphWidgetComponent } from '../widgets/graph-widget.component';
 
 export interface WidgetConfig {
   id: string;
@@ -125,13 +126,15 @@ export class SomeWidgetComponent {
       }
       .dashboard-card {
         color: var(--mat-sys-on-secondary-container);
+        fill: var(--mat-sys-on-secondary-container);
+        stroke: var(--mat-sys-on-secondary-container);
         background-color: var(--mat-sys-secondary-container);
         position: absolute;
         top: 15px;
         left: 15px;
         right: 15px;
         bottom: 15px;
-        overflow: auto;
+        overflow: hidden;
       }
       .more-button {
         position: absolute;
@@ -182,7 +185,7 @@ export class DynamicGridListComponent {
         {
           id: 'widget1',
           title: 'Test Widget',
-          componentType: SomeWidgetComponent,
+          componentType: GraphWidgetComponent,
           data: testInfoWidgetData,
           cols: 2,
           rows: 1,
