@@ -35,5 +35,6 @@
   "editor.inlineSuggest.syntaxHighlightingEnabled": true,
   "better-comments.highlightPlainText": true,
   "angular-jest-test-runner.debug.projectPath": "${workspaceFolder}/projects/ngx-editor-js2/",
+  "nxConsole.generateAiAgentRules": true,
 
 }

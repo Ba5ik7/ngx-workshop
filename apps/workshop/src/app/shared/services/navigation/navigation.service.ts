@@ -82,7 +82,7 @@ export class NavigationService {
     return of(workshopDocumentId).pipe(
       tap((id) => {
         this.currentWorkshop$.next(
-          staticPages.get(id) ?? 
+          staticPages.get(id) ??
           this.workshops$.getValue()
             .find((workshop) => workshop.workshopDocumentGroupId === id)
         );

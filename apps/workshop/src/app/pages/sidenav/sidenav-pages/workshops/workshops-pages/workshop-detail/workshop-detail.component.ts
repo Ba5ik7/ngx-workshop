@@ -13,7 +13,6 @@ import {
   startWith,
   tap,
 } from 'rxjs';
-import { NgxEditorjsModule } from '@tmdjr/ngx-editorjs';
 import { NgxEditorJs2Component } from '@tmdjr/ngx-editor-js2';
 import { NavigationService } from '../../../../../../shared/services/navigation/navigation.service';
 import { CommonModule } from '@angular/common';
@@ -112,7 +111,6 @@ const safeParse = (json: string) => {
   selector: 'ngx-workshop-detail',
   imports: [
     CommonModule,
-    NgxEditorjsModule,
     MatCardModule,
     NgxEditorJs2Component,
   ],

@@ -154,27 +154,22 @@ export class AssessmentTestService {
       this.userAssessmentTestModel.findById(userAssessmentTestId)
     ).pipe(
       switchMap((userAssessmentTest) => {
-        if (!userAssessmentTest) {
+        if (!userAssessmentTest)
           return throwError(() => new Error('User assessment test not found'));
-        }
-
-        if (userAssessmentTest.completed) {
+        if (userAssessmentTest.completed)
           return throwError(
             () => new Error('User assessment test already completed')
           );
-        }
 
         return from(
           this.assessmentTestModel.findById(userAssessmentTest.assessmentTestId)
         ).pipe(
           switchMap((assessmentTest) => {
-            if (!assessmentTest) {
+            if (!assessmentTest)
               return throwError(() => new Error('Assessment test not found'));
-            }
 
-            if (answers.length !== assessmentTest.testQuestions.length) {
+            if (answers.length !== assessmentTest.testQuestions.length)
               return throwError(() => new Error('Invalid number of answers'));
-            }
 
             const score = answers.reduce((acc, answer, index) => {
               return answer === assessmentTest.testQuestions[index].answer
