@@ -119,7 +119,7 @@ const safeParse = (json: string) => {
       <div class="workshop-detail-content">
         <div class="page">
           <div class="workshop-viewer-container">
-            <div class="workshop-detail-card mat-elevation-z12">
+            <div class="workshop-detail-card ">
               <ngx-editor-js2
                 [blocks]="vm.ngxEditorjsBlocks"
                 [requestBlocks]="requestBlocks$ | async"
@@ -146,13 +146,13 @@ const safeParse = (json: string) => {
         .workshop-detail-card {
           display: block;
           position: relative;
-          max-width: 600px;
+          max-width: 800px;
           padding: 32px 32px 56px;
           margin-bottom: 22px;
           border-radius: 24px;
           // border: 0.5px solid var(--mat-sys-primary);
-          color: var(--mat-sys-on-secondary-container);
-          background-color: var(--mat-sys-secondary-container);
+          // color: var(--mat-sys-on-secondary-container);
+          // background-color: var(--mat-sys-secondary-container);
           @media (max-width: 720px) {
             padding: 15px;
           }
@@ -225,7 +225,7 @@ export class WorkshopDetailComponent {
       .paginator {
         position: sticky;
         top: 0;
-        z-index: 2;
+        z-index: 5;
         color: var(--mat-sys-primary-container);
         background-color: var(--mat-sys-primary);
         @include mat.paginator-overrides(
